@@ -16,10 +16,10 @@ export function useLocalStorage<S> (key: string, defaultValue?: S):
         return saved ? JSON.parse(saved): (defaultValue);
     }
 
-    function clear() {
-        console.log(`useLocalStorage clear ${key} value=`, value);
-        localStorage.removeItem(key);
-    }
+    // function clear() {
+    //     console.log(`useLocalStorage clear ${key} value=`, value);
+    //     localStorage.removeItem(key);
+    // }
 
     useEffect(() => {
         // console.log(`useLocalStorage ${key} new value=`, value);

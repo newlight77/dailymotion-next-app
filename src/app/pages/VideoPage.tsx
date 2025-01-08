@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 // import VideoPlayer from '../components/VideoPlayer';
-import { VideoResponse } from '../service/getVideo';
+import { VideoResponse } from '../../service/getVideo';
 
 const VideoPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();

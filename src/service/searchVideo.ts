@@ -91,6 +91,7 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
 
     let list = [];
     if (data.list) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       list = data.list.map((d: any) => {
         return {
           id: d.id,

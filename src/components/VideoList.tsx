@@ -19,11 +19,6 @@ const VideoList: React.FC<VideoListProps> = ({ videos }) => {
         second: '2-digit'
     }
 
-    const timeFormat: Intl.DateTimeFormatOptions = {
-        minute: '2-digit',
-        second: '2-digit'
-    }
-
     const displayDate = (time: number) => {
         return new Date(time * 1000).toLocaleDateString('en-US', dateTimeFormat);
         // return new Intl.DateTimeFormat('en-US', format).format(time * 1000);
