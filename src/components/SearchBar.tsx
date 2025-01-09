@@ -38,15 +38,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     };
 
     return (
-        <div>
+        <div className='flex flex-row gap-1'>
             <input
+                className='basis-3/5'
                 type="text"
                 value={keywords}
                 onChange={handleInputChange}
                 placeholder="Search videos by title or channel"
                 onKeyUp={handleKeyup}
             />
-            <button onClick={handleSearch}>Search</button>
+            <button className='basis-1/5' onClick={handleSearch}>Search</button>
         </div>
     );
 };

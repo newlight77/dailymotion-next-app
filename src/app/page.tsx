@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import VideoList from '../components/VideoList';
 import { MetaVideo, SearchResponse } from '../service/searchVideo';
-import SearchFavorites from '@/components/SearchFavorites';
+import Favorites, { FavoriteWithEpisodes } from '@/components/Favorites';
 import SearchHistory from '@/components/SearchHsitory';
 import css from 'styled-jsx/css';
 
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
     const [searchResults, setSearchResults] = useState<MetaVideo[]>([]);
     const [searchKeywords, setSearchKeywords] = useState<string>('');
     const [newToHsitory, setNewToHistory] = useState<string>('');
-    const [newToFavortie, setNewTofavorite] = useState<string>('');
+    const [newToFavortie, setNewToFavorite] = useState<FavoriteWithEpisodes>();
     const [error, setError] = useState<{ message: string } | undefined>(undefined);
 
     const handleSearch = (searchResponse: SearchResponse) => {
@@ -35,23 +35,23 @@ const HomePage: React.FC = () => {
         setSearchKeywords(selectedKeywords);
     };
 
-    const handleSelectFavorite = (selectedKeywords: string) => {
-        setSearchKeywords(selectedKeywords);
+    const handleSelectFavorite = (favorite: FavoriteWithEpisodes) => {
+        setSearchKeywords(`${favorite.title} ${favorite.lastEpisode ? favorite.lastEpisode : ''}`);
     };
 
-    const handleAddToFavorite = (selectedKeywords: string) => {
-        setNewTofavorite(selectedKeywords);
+    const handleAddToFavorite = (keywords: string) => {
+        setNewToFavorite({id: crypto.randomUUID().toString(), title: keywords});
     };
 
     return (
         <div>
             <div className='container mx-auto'>
                 <div className="absolute z-100 right-0 h-200 w-1/4 min-w-72 max-w-96 p-2">
-                    {<SearchFavorites onSelected={handleSelectFavorite} newKeywords={newToFavortie} />}
+                    {<Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />}
                 </div>
             </div>
             <main className='w-3/4 min-w-400 max-w-2000 p-2'>
-                <div className='pl-32 p-16 items-center justify-center'>
+                <div className='p-4 items-center justify-center'>
                     <div>
                         <h1>Dailymotion Video Search</h1>
                     </div>
