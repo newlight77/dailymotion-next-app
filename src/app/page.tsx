@@ -46,11 +46,12 @@ const HomePage: React.FC = () => {
     return (
         <div>
             <div className='container mx-auto'>
-                <div className="absolute z-100 right-0 h-200 w-1/4 min-w-72 max-w-96 p-2">
+                <div className="absolute z-100 right-0 h-200 w-1/4 p-1">
                     {<Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />}
                 </div>
             </div>
-            <main className='w-3/4 min-w-400 max-w-2000 p-2'>
+            
+            <main className='w-3/4 min-w-400 max-w-2000 p-1'>
                 <div className='p-4 items-center justify-center'>
                     <div>
                         <h1>Dailymotion Video Search</h1>
@@ -71,6 +72,7 @@ const HomePage: React.FC = () => {
                         {<VideoList videos={searchResults} />}
                 </div>
             </main>
+
             <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
                 <a
                     className="flex items-center gap-2 hover:underline hover:underline-offset-4"

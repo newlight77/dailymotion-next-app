@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from '@/shared/useLocalStorage';
 import Link from 'next/link'
 
@@ -23,6 +23,7 @@ const FAVORITES: FavoriteWithEpisodes[] = [
     { id: crypto.randomUUID().toString(), title: 'master of all worlds' },
     { id: crypto.randomUUID().toString(), title: 'divine lord of the heavens' },
     { id: crypto.randomUUID().toString(), title: 'myriad realms supreme' },
+    { id: crypto.randomUUID().toString(), title: 'Supreme god emperor' },
 
     { id: crypto.randomUUID().toString(), title: 'Tales of demons and gods' },
     { id: crypto.randomUUID().toString(), title: 'Magic chef of ice and fire' },
@@ -47,7 +48,6 @@ const FAVORITES: FavoriteWithEpisodes[] = [
     { id: crypto.randomUUID().toString(), title: 'Stellar transformation' },
     { id: crypto.randomUUID().toString(), title: 'Nirvana of storm rider' },
     { id: crypto.randomUUID().toString(), title: 'Mortal journey to immortality' },
-    { id: crypto.randomUUID().toString(), title: 'Battle through the heavens' },
     { id: crypto.randomUUID().toString(), title: 'Legend of xianwu' },
     { id: crypto.randomUUID().toString(), title: 'Yishi Zhi Zun ' },
     { id: crypto.randomUUID().toString(), title: 'Ancient Lords' },
@@ -81,7 +81,6 @@ const FAVORITES: FavoriteWithEpisodes[] = [
     { id: crypto.randomUUID().toString(), title: 'Wonderland of ten thousands' },
     { id: crypto.randomUUID().toString(), title: 'The lord of no boundary' },
     { id: crypto.randomUUID().toString(), title: 'The God of Ten Thousand Realms' },
-    { id: crypto.randomUUID().toString(), title: 'Supreme god emperor' },
     { id: crypto.randomUUID().toString(), title: 'Spirit sword sovereign' },
     { id: crypto.randomUUID().toString(), title: 'Supreme Lord of Galaxy' },
     { id: crypto.randomUUID().toString(), title: 'The Sovereign of All Realms' },
@@ -94,7 +93,6 @@ const FAVORITES: FavoriteWithEpisodes[] = [
     { id: crypto.randomUUID().toString(), title: 'Proud Swordsman' },
     { id: crypto.randomUUID().toString(), title: 'Lingwu Continent' },
     { id: crypto.randomUUID().toString(), title: 'Glorious Revenge of Ye Feng' },
-    { id: crypto.randomUUID().toString(), title: 'Apotheosis' },
 ]
 .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
 // .sort((a: FavoriteType, b: FavoriteType) => a.title.localeCompare(b.title));
@@ -110,68 +108,105 @@ export type FavoriteType = {
 }
 
 export type FavoriteWithEpisodes = FavoriteType & {
-    lastEpisode?: number,
+    lastEpisode?: string,
     total?: number
 }
 
 const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
     const [favorites, setFavorites] = useLocalStorage<FavoriteWithEpisodes[]>(`favorites`, FAVORITES);
+    const [editMode, setEditMode] = useState(false);
+
+    const addOrUpdate = (favorite?: FavoriteWithEpisodes) : FavoriteWithEpisodes | undefined => {
+        if (favorite && favorites) {
+            const newFavorite: FavoriteWithEpisodes = {
+                id: favorite.id ? favorite.id : crypto.randomUUID().toString(),
+                title: favorite.title,
+                lastEpisode: favorite.lastEpisode,
+                total: favorite.total
+            }
+            const newFavorites = [newFavorite, ...favorites]
+                .reduce<FavoriteWithEpisodes[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
+            setFavorites(newFavorites);
+            return newFavorite
+        }
+    }
 
     useEffect(() => {
-        if (newFavorite && favorites) {
-            const searchKeywords: FavoriteWithEpisodes = {id: crypto.randomUUID().toString(), title: newFavorite.title}
-            const newFavorites = [...favorites, searchKeywords]
-                .reduce<FavoriteWithEpisodes[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
-                setFavorites(newFavorites);
-        }
+        addOrUpdate(newFavorite);
     }, [newFavorite]);
-
-    const selectLastEpisode = async (selected: FavoriteWithEpisodes) => {
-        onSelected(selected)
-        // console.log('favorites ', selected, favorites);
-    }
 
     const selectFavorite = async (selected: FavoriteWithEpisodes) => {
         onSelected(selected)
-        // console.log('favorites ', selected, favorites);
     }
 
     const deleteFavorite = async (id: string) => {
         if (favorites) {
             const newFavorites = favorites.filter(s => s.id !== id)
             setFavorites(newFavorites);
-            // console.log('favorites after ', id, newFavorites);
         }
     }
+
+    const handleLastEpisodeChange = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+        if (event.target.value !== selected.lastEpisode ) {
+            console.log('last episode change', selected.lastEpisode);
+            const updated = addOrUpdate({ ...selected, lastEpisode: event.target.value });
+            console.log('last episode updated', updated);
+        }
+    };
+
+    // const handleLastEpisodeBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+    //     if (event.target.value !== selected.lastEpisode ) {
+    //         console.log('last episode change', event.target.value);
+    //         const updated = addOrUpdate({ ...selected, lastEpisode: event.target.value });
+    //         console.log('last episode updated', updated);
+    //     }
+    // };
 
     function resetFavorites(): void {
         setFavorites(FAVORITES);
     }
 
+    function toggleEditFavorites(): void {
+        setEditMode(editMode ? false : true);
+    }
+
     return (
         <div>
             <h2>favorties</h2>
-            <div className='items-center'>
+            <div className='items-center min-w-72'>
+                <button onClick={toggleEditFavorites}>edit episode</button>
+                <button onClick={resetFavorites}>reset</button>
                 <div>
                     { favorites?.map(kw => (
                         <div key={crypto.randomUUID().toString()} className="flex flex-wrap gap-4 items-center">
-                            {/* <div className="basis-1/2"> */}
-                                {/* <div className="flex flex-row gap-4 items-center"> */}
-                                    <Link href={''} className="basis-1/8" onClick={() => deleteFavorite(kw.id)}>
-                                        delete
-                                    </Link>
-                                    <Link href={''} className="basis-1/2" onClick={() => selectFavorite(kw)}>
-                                        {`${kw.title} ${kw.total ? kw.total : ''}` }
-                                    </Link>
-                                    <Link href={''} className="basis-1/8" onClick={() => selectLastEpisode(kw)}>
+                            <Link href={''} className="basis-1/8" onClick={() => deleteFavorite(kw.id)}>
+                                delete
+                            </Link>
+                            <Link href={''} className="basis-5/8" onClick={() => selectFavorite(kw)}>
+                                {`${kw.title} ${kw.total ? kw.total : ''}` }
+                            </Link>
+
+                            { editMode ?
+                                <div>
+                                    <input
+                                        className='basis-1/8 min-w-8 max-w-28'
+                                        type="text"
+                                        value={kw.lastEpisode || ''}
+                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeChange(event, kw)}
+                                        // onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeBlur(event, kw) }
+                                        placeholder="last episode"
+                                    />
+                                </div>
+                            :
+                                <div>
+                                    <Link href={''} className="basis-1/8" onClick={() => selectFavorite(kw)}>
                                         {`${ kw.lastEpisode ? kw.lastEpisode : ''}` }
                                     </Link>
-                                {/* </div> */}
-                            {/* </div> */}
+                                </div>
+                            }
                         </div>
                     ))}
                 </div>
-                <button onClick={resetFavorites}>reset favorites</button>
             </div>
         </div>
     );
