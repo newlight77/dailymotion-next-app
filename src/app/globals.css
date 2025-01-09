@@ -5,6 +5,85 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* deepskyblue */
+  --color-deepskyblue: hsl(195, 100%, 50%, 0.9);
+  --color-deepskyblue-variant: hsl(195, 100%, 50%, 0.2);
+
+  /* darksteelblue*/
+  --color-darksteelblue: hsl(207, 44%, 10%);
+  --color-darksteelblue-variant: hsl(207, 44%, 10%, 0.8);
+
+  /* lightseagreen */
+  --color-lightseagreen: hsl(177, 70%, 41%, 0.9);
+  --color-lightseagreen-variant: hsl(177, 70%, 41%, 0.2);
+
+  /* darkaqua */
+  --color-darkaqua: hsl(180, 100%, 10%);
+  --color-darkaqua-variant: hsl(180, 100%, 10%, 0.8);
+
+  /* darkgreen */
+  --color-darkgreen: hsla(177, 93%, 26%, 0.792);
+  --color-darkgreen-variant: rgba(17, 60, 58, 0.2);
+
+  /* peachpuff */
+  --color-peachpuff: hsl(28, 100%, 86%, 0.9);
+  --color-peachpuff-variant: hsl(28, 100%, 86%, 0.2);
+
+  /* darkpapayawhip */
+  --color-darkpapayawhip: hsl(37, 100%, 10%);
+  --color-darkpapayawhip-variant: hsl(37, 100%, 10%, 0.8);
+
+  /* salmon */
+  --color-salmon: hsl(6, 93%, 71%, 0.9);
+  --color-salmon-variant: hsl(6, 93%, 71%, 0.2);
+
+  /* darkcrimson */
+  --color-darkcrimson: hsl(348, 83%, 10%);
+  --color-darkcrimson-variant: hsl(348, 83%, 10%, 0.8);
+
+  /* orchid */
+  --color-orchid: hsl(302, 59%, 65%, 0.9);
+  --color-orchid-variant: hsl(302, 59%, 65%, 0.2);
+
+  /* darklavender */
+  --color-darklavender: hsl(240, 67%, 10%);
+  --color-darklavender-variant: hsl(240, 67%, 10%, 0.8);
+
+  /* blueviolet */
+  --color-blueviolet: hsl(271, 76%, 53%, 0.9);
+  --color-blueviolet-variant: hsl(271, 76%, 53%, 0.2);
+
+  /* lavender */
+  --color-lavender: hsl(240, 67%, 10%);
+  --color-lavender-variant: hsl(240, 67%, 10%, 0.8);
+
+  /* lemonchiffon */
+  --color-lemonchiffon: hsl(54, 100%, 90%, 0.9);
+  --color-lemonchiffon-variant: hsl(54, 100%, 90%, 0.2);
+
+  /* darkkhaki */
+  --color-darkkhaki: hsl(56, 38%, 10%);
+  --color-darkkhaki-variant: hsl(156, 38%, 10%, 0.8);
+
+  /* gold */
+  --color-gold: hsl(51, 100%, 50%, 0.9);
+  --color-gold-variant: hsl(51, 100%, 50%, 0.2);
+
+  /* darkmoccasin */
+  --color-darkmoccasin: hsl(38, 100%, 10%);
+  --color-darkmoccasin-variant: hsl(38, 100%, 10%, 0.8);
+
+
+  --color-white: #fff;
+  --color-light: rgba(255, 255, 255, 0.6);
+
+  --transition: all 400ms ease;
+
+  --container-width-lg: 75%;
+  --container-width-md: 86%;
+  --container-width-sm: 90%;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,21 +91,26 @@
     --background: #0a0a0a;
     --foreground: #ededed;
 
-    /* deepskyblue */
-    --color-primary: hsl(195, 100%, 50%, 0.9);
-    --color-primary-variant: hsl(195, 100%, 50%, 0.2);
-    /* dark steelblue */
-    --color-secondary: hsl(207, 44%, 10%);
-    --color-secondary-variant: hsl(207, 44%, 10%, 0.8);
+    --color-primary: var(--color-deepskyblue);
+    --color-primary-variant: var(--color-deepskyblue-variant);
 
-    --color-white: #fff;
-    --color-light: rgba(255, 255, 255, 0.6);
+    --color-secondary: var(--color-darksteelblue);
+    --color-secondary-variant: var(--color-darksteelblue-variant);
+  }
+}
 
-    --transition: all 400ms ease;
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
 
-    --container-width-lg: 75%;
-    --container-width-md: 86%;
-    --container-width-sm: 90%;
+    /* foreground */
+    --color-primary: var(--color-darkpapayawhip);
+    --color-primary-variant: var(--color-darkpapayawhip-variant);
+
+    /* background */
+    --color-secondary: var(--color-peachpuff);
+    --color-secondary-variant: var(--color-peachpuff-variant);
   }
 }
 
