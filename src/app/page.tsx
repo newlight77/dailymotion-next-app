@@ -5,6 +5,15 @@ import VideoList from '../components/VideoList';
 import { MetaVideo, SearchResponse } from '../service/searchVideo';
 import SearchFavorites from '@/components/SearchFavorites';
 import SearchHistory from '@/components/SearchHsitory';
+import css from 'styled-jsx/css';
+
+const style = css`
+    display: flex;
+    bottom: 1rem;
+    left: 50%;
+    position: fixed;
+    z-index: 100;
+`
 
 const HomePage: React.FC = () => {
     const [searchResults, setSearchResults] = useState<MetaVideo[]>([]);
@@ -36,7 +45,12 @@ const HomePage: React.FC = () => {
 
     return (
         <div>
-            <main>
+            <div className='container mx-auto'>
+                <div className="absolute z-100 right-0 h-200 w-1/4 min-w-72 max-w-96 p-2">
+                    {<SearchFavorites onSelected={handleSelectFavorite} newKeywords={newToFavortie} />}
+                </div>
+            </div>
+            <main className='w-3/4 min-w-400 max-w-2000 p-2'>
                 <div className='pl-32 p-16 items-center justify-center'>
                     <div>
                         <h1>Dailymotion Video Search</h1>
@@ -51,9 +65,6 @@ const HomePage: React.FC = () => {
                 <div className='flex flex-row gap-4'>
                     <div className="basis-1/8 p-4">
                             {<SearchHistory onSelected={handleSelectHistory} onAddToFavorite={handleAddToFavorite} newKeywords={newToHsitory} />}
-                    </div>
-                    <div className="basis-1/8 p-4 ">
-                            {<SearchFavorites onSelected={handleSelectFavorite} newKeywords={newToFavortie} />}
                     </div>
                 </div>
                 <div className="p-4 items-center justify-center">
