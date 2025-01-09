@@ -12,8 +12,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
 
     useEffect(() => {
         if (keywords === '') setKeywords(localStorage.getItem('lastSearch') || '');
-        if (newKeywords) setKeywords(newKeywords);
-    }, [newKeywords, keywords]);
+        if (newKeywords && newKeywords !== keywords) setKeywords(newKeywords);
+    }, [newKeywords]);
 
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

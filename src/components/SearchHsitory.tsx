@@ -20,7 +20,7 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
     const addToHistory = (newKeywords?: string) => {
         if (newKeywords && searchHistory) {
             const searchKeywords: SearchKeywords = {id: crypto.randomUUID().toString(), keywords: newKeywords}
-            const newSearchHistory = [...searchHistory, searchKeywords]
+            const newSearchHistory = [searchKeywords, ...searchHistory]
                 .reduce<SearchKeywords[]>((acc, curr) => acc.some(item => item.keywords === curr.keywords) ? acc : [...acc, curr], []);
             setSearchHistory(newSearchHistory);
         }

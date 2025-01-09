@@ -172,7 +172,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
 
     return (
         <div>
-            <h2>favorties</h2>
+            <h2>My favorite titles</h2>
             <div className='items-center min-w-72'>
                 <button onClick={toggleEditFavorites}>edit episode</button>
                 <button onClick={resetFavorites}>reset</button>
