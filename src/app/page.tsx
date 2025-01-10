@@ -47,11 +47,11 @@ const HomePage: React.FC = () => {
     };
 
     const handleAddSearchToFavorite = (keywords: string) => {
-        setNewToFavorite({id: crypto.randomUUID().toString(), title: keywords});
+        setNewToFavorite({uid: crypto.randomUUID().toString(), title: keywords});
     };
 
     const handleAddRecentViewToFavorite = (lastview: LastView) => {
-        setNewToFavorite({id: crypto.randomUUID().toString(), title: lastview.title, lastEpisode: lastview.episode});
+        setNewToFavorite({uid: crypto.randomUUID().toString(), title: lastview.title, lastEpisode: lastview.episode});
     };
 
     return (

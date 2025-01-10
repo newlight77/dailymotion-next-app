@@ -14,6 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     useEffect(() => {
         if (keywords === '') setKeywords(localStorage.getItem('lastSearch') || '');
         if (newKeywords && newKeywords !== keywords) setKeywords(newKeywords);
+        if (keywords !== '') handleSearch();
     }, [newKeywords]);
 
 
@@ -33,27 +34,26 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
             limit: 30,
             page: 1
         }
-        const response = await searchVideos(params); // remove onSearch here
+        const response = await searchVideos(params);
         onSearch(response);
         localStorage.setItem('lastSearch', keywords);
 
         if (response.error) {
             setError(error);
         }
-
     };
 
     return (
         <div className='flex flex-row gap-1'>
             <input
-                className='basis-3/5'
+                className='basis-2/4'
                 type="text"
                 value={keywords}
                 onChange={handleInputChange}
                 placeholder="Search videos by title or channel"
                 onKeyUp={handleKeyup}
             />
-            <button className='basis-1/5' onClick={handleSearch}>Search</button>
+            <button className='basis-1/8' onClick={handleSearch}>Search</button>
 
             <div >
                 {error && <p>Error: {error.message}</p>}

@@ -15,8 +15,8 @@ interface FavoritesProps {
 }
 
 export type FavoriteType = {
-    id: string,
-    title: string
+    uid: string,
+    title: string,
 }
 
 export type FavoriteWithEpisodes = FavoriteType & {
@@ -32,7 +32,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
     const addOrUpdate = (favorite?: FavoriteWithEpisodes) : FavoriteWithEpisodes | undefined => {
         if (favorite && favorites) {
             const newFavorite: FavoriteWithEpisodes = {
-                id: favorite.id ? favorite.id : crypto.randomUUID().toString(),
+                uid: favorite.uid ? favorite.uid : crypto.randomUUID().toString(),
                 title: favorite.title,
                 lastEpisode: favorite.lastEpisode,
                 total: favorite.total
@@ -52,9 +52,9 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         onSelected(selected)
     }
 
-    const deleteFavorite = async (id: string) => {
+    const deleteFavorite = async (uid: string) => {
         if (favorites) {
-            const newFavorites = favorites.filter(s => s.id !== id)
+            const newFavorites = favorites.filter(s => s.uid !== uid)
             setFavorites(newFavorites);
         }
     }
@@ -80,7 +80,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
     }
 
     return (
-        <div className='absolute z-100 right-0 p-1 h-200 w-1/5'>
+        <div className='absolute z-100 right-0 p-2 m-1 h-200 w-1/5 bg-darkSdeepskyblueVariant'>
             <div>
                 <div className="flex flex-row gap-4 p-4 items-center">
                     <Link href={''} onClick={toggleShowHide}>
@@ -101,7 +101,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                         <div>
                             { favorites?.map(kw => (
                                 <div key={crypto.randomUUID().toString()} className="flex flex-wrap gap-4 items-center">
-                                    <Link href={''} className="basis-1/8" onClick={() => deleteFavorite(kw.id)}>
+                                    <Link href={''} className="basis-1/8" onClick={() => deleteFavorite(kw.uid)}>
                                         delete
                                     </Link>
                                     <Link href={''} className="basis-5/8" onClick={() => selectFavorite(kw)}>

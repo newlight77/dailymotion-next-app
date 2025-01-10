@@ -9,7 +9,7 @@ interface SearchBarProps {
 }
 
 type SearchKeywords = {
-    id: string,
+    uid: string,
     keywords: string,
 }
 
@@ -19,7 +19,7 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
 
     const addToHistory = (newKeywords?: string) => {
         if (newKeywords && history) {
-            const searchKeywords: SearchKeywords = {id: crypto.randomUUID().toString(), keywords: newKeywords}
+            const searchKeywords: SearchKeywords = {uid: crypto.randomUUID().toString(), keywords: newKeywords}
             const newHistory = [searchKeywords, ...history]
                 .reduce<SearchKeywords[]>((acc, curr) => acc.some(item => item.keywords === curr.keywords) ? acc : [...acc, curr], []);
             setHistory(newHistory);
@@ -38,9 +38,9 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
         onSelected(selectedKeywords)
     }
 
-    const deleteFromHistory = async (id: string) => {
+    const deleteFromHistory = async (uid: string) => {
         if (history) {
-            const newHistory = history.filter(s => s.id !== id)
+            const newHistory = history.filter(s => s.uid !== uid)
             setHistory(newHistory);
         }
     }
@@ -78,11 +78,11 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
                     <div>
                         <div>
                         { history?.map(s => (
-                            <div key={s.id} className="flex flex-row gap-4 items-center">
+                            <div key={s.uid} className="flex flex-row gap-4 items-center">
                                 <Link href={''} className="basis-1/8" onClick={() => addToFavorites(s.keywords)}>
                                     add to favorite
                                 </Link>
-                                <Link href={''} className="basis-1/8" onClick={() => deleteFromHistory(s.id)}>
+                                <Link href={''} className="basis-1/8" onClick={() => deleteFromHistory(s.uid)}>
                                     delete
                                 </Link>
                                 <Link href={''} className="basis-1/2" onClick={() => selectKeywords(s.keywords)}>
