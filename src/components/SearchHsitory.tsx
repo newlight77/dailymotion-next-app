@@ -6,7 +6,6 @@ interface SearchBarProps {
     newKeywords?: string,
     onSelected: (keywords: string) => void;
     onAddToFavorite: (keywords: string) => void;
-
 }
 
 type SearchKeywords = {
@@ -31,22 +30,22 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
         addToHistory(newKeywords);
     }, [newKeywords]);
 
-    const addKeywordsToFavorites = async (keywords: string) => {
+    const addToFavorites = async (keywords: string) => {
         onAddToFavorite(keywords);
     }
 
-    const selectKeywordsFavorites = async (selectedKeywords: string) => {
+    const selectKeywords = async (selectedKeywords: string) => {
         onSelected(selectedKeywords)
     }
 
-    const deleteKeywordsHistory = async (id: string) => {
+    const deleteFromHistory = async (id: string) => {
         if (history) {
             const newHistory = history.filter(s => s.id !== id)
             setHistory(newHistory);
         }
     }
 
-    const clearSearchKeywordsHistory = async () => {
+    const clearHistory = async () => {
         setHistory([]);
     }
 
@@ -66,7 +65,7 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
                             <Link href={''} onClick={toggleShowHide}>
                                 <h3>My recent searches</h3>
                             </Link>
-                            <Link href={''} onClick={clearSearchKeywordsHistory}>clear history</Link>
+                            <Link href={''} onClick={clearHistory}>clear history</Link>
                         </div>
                         :
                         ''
@@ -80,13 +79,13 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
                         <div>
                         { history?.map(s => (
                             <div key={s.id} className="flex flex-row gap-4 items-center">
-                                <Link href={''} className="basis-1/8" onClick={() => addKeywordsToFavorites(s.keywords)}>
+                                <Link href={''} className="basis-1/8" onClick={() => addToFavorites(s.keywords)}>
                                     add to favorite
                                 </Link>
-                                <Link href={''} className="basis-1/8" onClick={() => deleteKeywordsHistory(s.id)}>
+                                <Link href={''} className="basis-1/8" onClick={() => deleteFromHistory(s.id)}>
                                     delete
                                 </Link>
-                                <Link href={''} className="basis-1/2" onClick={() => selectKeywordsFavorites(s.keywords)}>
+                                <Link href={''} className="basis-1/2" onClick={() => selectKeywords(s.keywords)}>
                                     {s.keywords}
                                 </Link>
                             </div>
