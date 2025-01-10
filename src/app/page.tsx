@@ -5,16 +5,8 @@ import VideoList from '../components/VideoList';
 import { MetaVideo, SearchResponse } from '../service/searchVideo';
 import Favorites, { FavoriteWithEpisodes } from '@/components/Favorites';
 import SearchHistory from '@/components/SearchHsitory';
-import css from 'styled-jsx/css';
 import ViewHistory, { LastView } from '@/components/ViewHistory';
 
-const style = css`
-    display: flex;
-    bottom: 1rem;
-    left: 50%;
-    position: fixed;
-    z-index: 100;
-`
 
 const HomePage: React.FC = () => {
     const [searchResults, setSearchResults] = useState<MetaVideo[]>([]);
