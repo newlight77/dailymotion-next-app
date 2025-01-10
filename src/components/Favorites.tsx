@@ -59,14 +59,6 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         }
     }
 
-    // const handleLastEpisodeChange = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
-    //     if (event.target.value !== selected.lastEpisode ) {
-    //         console.log('last episode change', selected.lastEpisode);
-    //         const updated = addOrUpdate({ ...selected, lastEpisode: event.target.value });
-    //         console.log('last episode updated', updated);
-    //     }
-    // };
-
     const handleLastEpisodeBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
         if (event.target.value !== selected.lastEpisode ) {
             console.log('last episode change', event.target.value);
@@ -115,9 +107,6 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                                     <Link href={''} className="basis-5/8" onClick={() => selectFavorite(kw)}>
                                         {`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }
                                     </Link>
-                                    {/* <Link href={''} className="basis-1/8" onClick={() => selectFavorite(kw)}>
-                                        {`${ kw.lastEpisode ? kw.lastEpisode : ''}` }
-                                    </Link> */}
 
                                     { editMode ?
                                         <div>
@@ -125,7 +114,6 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                                                 className='basis-1/8 min-w-8 max-w-28 h-6 w-12'
                                                 type="text"
                                                 defaultValue={kw.lastEpisode || ''}
-                                                // onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeChange(event, kw)}
                                                 onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeBlur(event, kw) }
                                                 placeholder=""
                                             />

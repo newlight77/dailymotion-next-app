@@ -20,15 +20,11 @@ const HomePage: React.FC = () => {
     const [searchKeywords, setSearchKeywords] = useState<string>('');
     const [newToHsitory, setNewToHistory] = useState<string>('');
     const [newToFavortie, setNewToFavorite] = useState<FavoriteWithEpisodes>();
-    // const [error, setError] = useState<{ message: string } | undefined>(undefined);
 
     const handleSearch = (searchResponse: SearchResponse) => {
         const { results } = searchResponse;
         setSearchResults(results?.list || []);
         setNewToHistory(searchResponse.search);
-        // if (error) {
-        //     setError(error);
-        // }
     };
 
     const handleSelectHistory = (selectedKeywords: string) => {
@@ -51,34 +47,17 @@ const HomePage: React.FC = () => {
 
             <main className='container min-w-400 max-w-2000 p-1'>
 
-                {/* <div className="favorites absolute z-100 right-0 p-1 h-200 w-1/5"> */}
-                    <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
-                {/* </div> */}
+                <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
 
                 <div className='search'>
                     <div className='search-bar p-4'>
-                        {/* <div className='p-4'> */}
-                            <div>
-                                <h1>Dailymotion Video Search</h1>
-                            </div>
-                            <div >
-                                <SearchBar onSearch={handleSearch} newKeywords={searchKeywords}/>
-                            </div>
-                            {/* <div >
-                                {error && <p>Error: {error.message}</p>}
-                            </div> */}
-                        {/* </div> */}
-                        {/* <div className='flex flex-row gap-4 p-4'> */}
-                            {/* <div className="basis-1/8 p-4"> */}
-                                <SearchHistory onSelected={handleSelectHistory} onAddToFavorite={handleAddToFavorite} newKeywords={newToHsitory} />
-                            {/* </div> */}
-                        {/* </div> */}
+                        <h1>Dailymotion Video Search</h1>
+                        <SearchBar onSearch={handleSearch} newKeywords={searchKeywords}/>
+                        <SearchHistory onSelected={handleSelectHistory} onAddToFavorite={handleAddToFavorite} newKeywords={newToHsitory} />
                     </div>
 
                     <div className='search-results'>
-                        {/* <div className="p-4 "> */}
-                            <VideoList videos={searchResults} />
-                        {/* </div> */}
+                        <VideoList videos={searchResults} />
                     </div>
                 </div>
             </main>

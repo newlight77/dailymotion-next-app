@@ -63,7 +63,6 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
                     <Link href={''} onClick={toggleShowHide}>
                     { show ? '' : 'show recent searches' }
                     </Link>
-                    {/* <Link href={''} onClick={toggleShowHide}> */}
                     { show ?
                         <div>
                             <Link href={''} onClick={toggleShowHide}>
@@ -74,17 +73,12 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
                         :
                         ''
                     }
-                    {/* </Link> */}
                 </div>
             </div>
             <div>
                 {
                     show ?
                     <div>
-                        <div className="">
-                            {/* <button onClick={clearSearchKeywordsHistory}>clear history</button> */}
-                            {/* <Link href={''} onClick={clearSearchKeywordsHistory}>clear history</Link> */}
-                        </div>
                         <div>
                         { searchHistory?.map(s => (
                             <div key={s.id} className="flex flex-row gap-4 items-center">
