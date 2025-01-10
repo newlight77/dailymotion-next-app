@@ -11,7 +11,7 @@ export function useLocalStorage<S> (key: string, defaultValue?: S):
     const [value, setValue] = useState(initValue);
 
     function getStorageValue(key: string, defaultValue?: S): S {
-        const saved = localStorage.getItem(key);
+        const saved = typeof window !== 'undefined' ? localStorage.getItem(key) : undefined;
         // console.log(`useLocalStorage ${key} saved=`, saved);
         return saved ? JSON.parse(saved): (defaultValue);
     }
@@ -23,7 +23,7 @@ export function useLocalStorage<S> (key: string, defaultValue?: S):
 
     useEffect(() => {
         // console.log(`useLocalStorage ${key} new value=`, value);
-        if (value) localStorage.setItem(key, JSON.stringify(value))
+        if (value && typeof window !== 'undefined') localStorage.setItem(key, JSON.stringify(value))
     }, [key, value, setValue]);
 
     return [value, setValue];
