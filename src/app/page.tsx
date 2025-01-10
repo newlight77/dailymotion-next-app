@@ -6,6 +6,7 @@ import { MetaVideo, SearchResponse } from '../service/searchVideo';
 import Favorites, { FavoriteWithEpisodes } from '@/components/Favorites';
 import SearchHistory from '@/components/SearchHsitory';
 import css from 'styled-jsx/css';
+import ViewHistory, { LastView } from '@/components/ViewHistory';
 
 const style = css`
     display: flex;
@@ -17,9 +18,11 @@ const style = css`
 
 const HomePage: React.FC = () => {
     const [searchResults, setSearchResults] = useState<MetaVideo[]>([]);
-    const [searchKeywords, setSearchKeywords] = useState<string>('');
+    const [newKeywords, setNewKeywords] = useState<string>('');
+
     const [newToHsitory, setNewToHistory] = useState<string>('');
     const [newToFavortie, setNewToFavorite] = useState<FavoriteWithEpisodes>();
+    const [newToLastview, setNewToLastView] = useState<LastView>();
 
     const handleSearch = (searchResponse: SearchResponse) => {
         const { results } = searchResponse;
@@ -27,16 +30,28 @@ const HomePage: React.FC = () => {
         setNewToHistory(searchResponse.search);
     };
 
-    const handleSelectHistory = (selectedKeywords: string) => {
-        setSearchKeywords(selectedKeywords);
+    const handleSelectVideo = (selectedLastView: LastView) => {
+        setNewToLastView(selectedLastView);
+    };
+
+    const handleSelectSearchHistory = (selectedKeywords: string) => {
+        setNewKeywords(selectedKeywords);
+    };
+
+    const handleSelectRecentView = (selectedLastView: LastView) => {
+        setNewKeywords(`${selectedLastView.title} ${selectedLastView.episode ? selectedLastView.episode : ''}`);
     };
 
     const handleSelectFavorite = (favorite: FavoriteWithEpisodes) => {
-        setSearchKeywords(`${favorite.title} ${favorite.lastEpisode ? favorite.lastEpisode : ''}`);
+        setNewKeywords(`${favorite.title} ${favorite.lastEpisode ? favorite.lastEpisode : ''}`);
     };
 
-    const handleAddToFavorite = (keywords: string) => {
+    const handleAddSearchToFavorite = (keywords: string) => {
         setNewToFavorite({id: crypto.randomUUID().toString(), title: keywords});
+    };
+
+    const handleAddRecentViewToFavorite = (lastview: LastView) => {
+        setNewToFavorite({id: crypto.randomUUID().toString(), title: lastview.title, lastEpisode: lastview.episode});
     };
 
     return (
@@ -52,12 +67,19 @@ const HomePage: React.FC = () => {
                 <div className='search'>
                     <div className='search-bar p-4'>
                         <h1>Dailymotion Video Search</h1>
-                        <SearchBar onSearch={handleSearch} newKeywords={searchKeywords}/>
-                        <SearchHistory onSelected={handleSelectHistory} onAddToFavorite={handleAddToFavorite} newKeywords={newToHsitory} />
+                        <SearchBar onSearch={handleSearch} newKeywords={newKeywords}/>
+                        <div className='history flex flex-wrap'>
+                            <div className="basis-1/8 w-1/3">
+                                <SearchHistory onSelected={handleSelectSearchHistory} onAddToFavorite={handleAddSearchToFavorite} newKeywords={newToHsitory} />
+                            </div>
+                            <div className="basis-1/8 w-1/3">
+                                <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} newLastView={newToLastview} />
+                            </div>
+                        </div>
                     </div>
 
                     <div className='search-results'>
-                        <VideoList videos={searchResults} />
+                        <VideoList videos={searchResults} onSelected={handleSelectVideo}/>
                     </div>
                 </div>
             </main>
