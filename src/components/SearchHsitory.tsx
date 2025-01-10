@@ -15,15 +15,15 @@ type SearchKeywords = {
 }
 
 const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAddToFavorite }) => {
-    const [searchHistory, setSearchHistory] = useLocalStorage<SearchKeywords[]>(`search-history`, []);
+    const [history, setHistory] = useLocalStorage<SearchKeywords[]>(`search-history`, []);
     const [show, setShow] = React.useState(false)
 
     const addToHistory = (newKeywords?: string) => {
-        if (newKeywords && searchHistory) {
+        if (newKeywords && history) {
             const searchKeywords: SearchKeywords = {id: crypto.randomUUID().toString(), keywords: newKeywords}
-            const newSearchHistory = [searchKeywords, ...searchHistory]
+            const newHistory = [searchKeywords, ...history]
                 .reduce<SearchKeywords[]>((acc, curr) => acc.some(item => item.keywords === curr.keywords) ? acc : [...acc, curr], []);
-            setSearchHistory(newSearchHistory);
+            setHistory(newHistory);
         }
     }
 
@@ -40,16 +40,14 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
     }
 
     const deleteKeywordsHistory = async (id: string) => {
-        if (searchHistory) {
-            const newSearchHistory = searchHistory.filter(s => s.id !== id)
-            setSearchHistory(newSearchHistory);
-            console.log('searchHistory after ', id, newSearchHistory);
+        if (history) {
+            const newHistory = history.filter(s => s.id !== id)
+            setHistory(newHistory);
         }
     }
 
     const clearSearchKeywordsHistory = async () => {
-        setSearchHistory([]);
-        console.log('clearSearchHistory ', searchHistory);
+        setHistory([]);
     }
 
     function toggleShowHide(): void {
@@ -80,7 +78,7 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
                     show ?
                     <div>
                         <div>
-                        { searchHistory?.map(s => (
+                        { history?.map(s => (
                             <div key={s.id} className="flex flex-row gap-4 items-center">
                                 <Link href={''} className="basis-1/8" onClick={() => addKeywordsToFavorites(s.keywords)}>
                                     add to favorite
