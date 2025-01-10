@@ -40,28 +40,35 @@ const VideoList: React.FC<VideoListProps> = ({ videos }) => {
     }
 
     return (
-        <div className="">
-            <div>
-                <input
-                    type="text"
-                    value={filterKeywords}
-                    onChange={onFilterInputChange}
-                    placeholder="filter on title"
-                />
-                <input
-                    type="text"
-                    value={exclusions}
-                    onChange={onExclusionsInputChange}
-                    placeholder="exclusions on title"
-                />
-            </div>
+        <div className="p-4">
+
+            {
+                videos.length !== 0 ?
+                <div className="p-4">
+                    <input
+                        type="text"
+                        value={filterKeywords}
+                        onChange={onFilterInputChange}
+                        placeholder="filter on title"
+                    />
+                    <input
+                        type="text"
+                        value={exclusions}
+                        onChange={onExclusionsInputChange}
+                        placeholder="exclusions on title"
+                    />
+                </div>
+                :
+                <></>
+            }
+
             <div className="flex flex-wrap">
                 {videos
                     .filter(v => filterKeywords !== '' ? v.title.includes(filterKeywords) : true)
                     .filter(v => exclusions !== '' ? !v.title.includes(exclusions) : true)
                     .sort((a: any, b: any)=> b.updated_time - a.updated_time)
                     .map(video => (
-                    <div key={video.id} className="basis-1/3 p-3 grow hover:border border-gold">
+                    <div key={video.id} className="basis-1/3 p-2 m-2 grow hover:border border-gold">
                         <Link href={`https://www.dailymotion.com/video/${video.id}`}>
                             <Image src={video.thumbnail_480_url} alt={video.title} width={640} height={640} />
                             <h5>title: {video.title}</h5>

@@ -9,6 +9,7 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     const [keywords, setKeywords] = useState(newKeywords || '');
+    const [error, setError] = useState<{ message: string } | undefined>(undefined);
 
     useEffect(() => {
         if (keywords === '') setKeywords(localStorage.getItem('lastSearch') || '');
@@ -32,9 +33,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
             limit: 30,
             page: 1
         }
-        const metaVideos = await searchVideos(params); // remove onSearch here
-        onSearch(metaVideos);
+        const response = await searchVideos(params); // remove onSearch here
+        onSearch(response);
         localStorage.setItem('lastSearch', keywords);
+
+        if (response.error) {
+            setError(error);
+        }
+
     };
 
     return (
@@ -48,6 +54,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
                 onKeyUp={handleKeyup}
             />
             <button className='basis-1/5' onClick={handleSearch}>Search</button>
+
+            <div >
+                {error && <p>Error: {error.message}</p>}
+            </div>
+
         </div>
     );
 };

@@ -20,15 +20,15 @@ const HomePage: React.FC = () => {
     const [searchKeywords, setSearchKeywords] = useState<string>('');
     const [newToHsitory, setNewToHistory] = useState<string>('');
     const [newToFavortie, setNewToFavorite] = useState<FavoriteWithEpisodes>();
-    const [error, setError] = useState<{ message: string } | undefined>(undefined);
+    // const [error, setError] = useState<{ message: string } | undefined>(undefined);
 
     const handleSearch = (searchResponse: SearchResponse) => {
-        const { results, error } = searchResponse;
+        const { results } = searchResponse;
         setSearchResults(results?.list || []);
         setNewToHistory(searchResponse.search);
-        if (error) {
-            setError(error);
-        }
+        // if (error) {
+        //     setError(error);
+        // }
     };
 
     const handleSelectHistory = (selectedKeywords: string) => {
@@ -45,43 +45,45 @@ const HomePage: React.FC = () => {
 
     return (
         <div>
-            <div className='container mx-auto'>
-                <div className="absolute z-100 right-0 h-200 w-1/4 p-1">
-                    {<Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />}
-                </div>
-            </div>
-            
-            <main className='w-3/4 min-w-400 max-w-2000 p-1'>
-                <div className='p-4 items-center justify-center'>
-                    <div>
-                        <h1>Dailymotion Video Search</h1>
+            <header>
+
+            </header>
+
+            <main className='container min-w-400 max-w-2000 p-1'>
+
+                {/* <div className="favorites absolute z-100 right-0 p-1 h-200 w-1/5"> */}
+                    <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
+                {/* </div> */}
+
+                <div className='search'>
+                    <div className='search-bar p-4'>
+                        {/* <div className='p-4'> */}
+                            <div>
+                                <h1>Dailymotion Video Search</h1>
+                            </div>
+                            <div >
+                                <SearchBar onSearch={handleSearch} newKeywords={searchKeywords}/>
+                            </div>
+                            {/* <div >
+                                {error && <p>Error: {error.message}</p>}
+                            </div> */}
+                        {/* </div> */}
+                        {/* <div className='flex flex-row gap-4 p-4'> */}
+                            {/* <div className="basis-1/8 p-4"> */}
+                                <SearchHistory onSelected={handleSelectHistory} onAddToFavorite={handleAddToFavorite} newKeywords={newToHsitory} />
+                            {/* </div> */}
+                        {/* </div> */}
                     </div>
-                    <div >
-                        <SearchBar onSearch={handleSearch} newKeywords={searchKeywords}/>
+
+                    <div className='search-results'>
+                        {/* <div className="p-4 "> */}
+                            <VideoList videos={searchResults} />
+                        {/* </div> */}
                     </div>
-                    <div >
-                        {error && <p>Error: {error.message}</p>}
-                    </div>
-                </div>
-                <div className='flex flex-row gap-4'>
-                    <div className="basis-1/8 p-4">
-                            {<SearchHistory onSelected={handleSelectHistory} onAddToFavorite={handleAddToFavorite} newKeywords={newToHsitory} />}
-                    </div>
-                </div>
-                <div className="p-4 items-center justify-center">
-                        {<VideoList videos={searchResults} />}
                 </div>
             </main>
 
             <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Go to nextjs.org →
-                </a>
             </footer>
         </div>
     );
