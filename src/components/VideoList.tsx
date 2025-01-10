@@ -61,7 +61,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos }) => {
                     .filter(v => exclusions !== '' ? !v.title.includes(exclusions) : true)
                     .sort((a: any, b: any)=> b.updated_time - a.updated_time)
                     .map(video => (
-                    <div key={video.id} className="basis-1/3 p-3">
+                    <div key={video.id} className="basis-1/3 p-3 grow hover:border border-gold">
                         <Link href={`https://www.dailymotion.com/video/${video.id}`}>
                             <Image src={video.thumbnail_480_url} alt={video.title} width={640} height={640} />
                             <h5>title: {video.title}</h5>
