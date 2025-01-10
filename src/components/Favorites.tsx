@@ -146,21 +146,21 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         }
     }
 
-    const handleLastEpisodeChange = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
-        if (event.target.value !== selected.lastEpisode ) {
-            console.log('last episode change', selected.lastEpisode);
-            const updated = addOrUpdate({ ...selected, lastEpisode: event.target.value });
-            console.log('last episode updated', updated);
-        }
-    };
-
-    // const handleLastEpisodeBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+    // const handleLastEpisodeChange = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
     //     if (event.target.value !== selected.lastEpisode ) {
-    //         console.log('last episode change', event.target.value);
+    //         console.log('last episode change', selected.lastEpisode);
     //         const updated = addOrUpdate({ ...selected, lastEpisode: event.target.value });
     //         console.log('last episode updated', updated);
     //     }
     // };
+
+    const handleLastEpisodeBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+        if (event.target.value !== selected.lastEpisode ) {
+            console.log('last episode change', event.target.value);
+            const updated = addOrUpdate({ ...selected, lastEpisode: event.target.value });
+            console.log('last episode updated', updated);
+        }
+    };
 
     function resetFavorites(): void {
         setFavorites(FAVORITES);
@@ -183,18 +183,21 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                                 delete
                             </Link>
                             <Link href={''} className="basis-5/8" onClick={() => selectFavorite(kw)}>
-                                {`${kw.title} ${kw.total ? kw.total : ''}` }
+                                {`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }
                             </Link>
+                            {/* <Link href={''} className="basis-1/8" onClick={() => selectFavorite(kw)}>
+                                {`${ kw.lastEpisode ? kw.lastEpisode : ''}` }
+                            </Link> */}
 
                             { editMode ?
                                 <div>
                                     <input
-                                        className='basis-1/8 min-w-8 max-w-28'
+                                        className='basis-1/8 min-w-8 max-w-28 h-6 w-12'
                                         type="text"
-                                        value={kw.lastEpisode || ''}
-                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeChange(event, kw)}
-                                        // onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeBlur(event, kw) }
-                                        placeholder="last episode"
+                                        defaultValue={kw.lastEpisode || ''}
+                                        // onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeChange(event, kw)}
+                                        onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeBlur(event, kw) }
+                                        placeholder=""
                                     />
                                 </div>
                             :
