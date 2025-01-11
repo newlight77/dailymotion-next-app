@@ -29,6 +29,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
     const [favorites, setFavorites] = useLocalStorage<FavoriteWithEpisodes[]>(`favorites`, FAVORITES);
     const [editMode, setEditMode] = useState(false);
     const [show, setShow] = React.useState(false)
+    const [data, setData] = React.useState('')
 
     const addOrUpdate = (favorite?: FavoriteWithEpisodes) : FavoriteWithEpisodes | undefined => {
         if (favorite && favorites) {
@@ -76,6 +77,25 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         }
     };
 
+    const handleReloadDataChange = (event: React.FocusEvent<HTMLTextAreaElement>) => {
+        if (event.target.value !== data) {
+            setData(event.target.value);
+        }
+    };
+
+    const loadData = () => {
+        if (data) {
+            try {
+                const newFavorites = (JSON.parse(data) as FavoriteWithEpisodes[])
+                .reduce<FavoriteWithEpisodes[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
+                setFavorites(newFavorites);
+            } catch (error) {
+                // display error latet
+                alert(`there is an error with the json you try to load : ${error}`);
+            }
+        }
+    };
+
     function resetFavorites(): void {
         setFavorites(FAVORITES);
     }
@@ -88,8 +108,25 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         setShow(show ? false : true);
     }
 
+    const sample = JSON.stringify(
+    [
+        {
+            "uid": "910906a2-95eb-4c8b-b560-91fe65754252",
+            "title": "divine lord of the heavens",
+            "lastEpisode": "28",
+            "total": 0
+        },
+        {
+            "uid": "7526bc07-7eb1-41df-afd2-67b1bbeb94b0",
+            "title": "martial peak",
+            "lastEpisode": "19",
+            "total": 0
+        }
+    ], null, 4
+    )
+
     return (
-        <div className='absolute z-100 right-0 p-2 m-1 h-200 w-1/5 bg-darkSdeepskyblueVariant'>
+        <div className='absolute z-100 right-0 p-2 m-1 h-200 w-1/5'>
             <div>
                 <div className="flex flex-row gap-4 p-4 items-center">
                     <Link href={''} onClick={toggleShowHide}>
@@ -107,6 +144,19 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                     <div className='items-center min-w-72'>
                         <button onClick={toggleEditFavorites}>edit episode</button>
                         <button onClick={resetFavorites}>reset</button>
+                        {editMode ?
+                            <>
+                                <textarea
+                                    className='flex w-full h-96'
+                                    defaultValue={data || ''}
+                                    onBlur={(event: React.FocusEvent<HTMLTextAreaElement>) => handleReloadDataChange(event) }
+                                    placeholder={`Example : \n ${sample}`}
+                                ></textarea>
+                                <button onClick={loadData}>load</button>
+                            </>
+                            :
+                            <></>
+                        }
                         <div>
                             { favorites?.map(kw => (
                                 <div key={crypto.randomUUID().toString()} className="flex flex-wrap gap-4 items-center">
