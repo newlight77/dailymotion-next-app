@@ -72,6 +72,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected }) => {
                 {videos
                     .filter(v => filterKeywords !== '' ? v.title.includes(filterKeywords) : true)
                     .filter(v => exclusions !== '' ? !v.title.includes(exclusions) : true)
+                    .filter(v => exclusions !== '' ? !v.description.includes(exclusions) : true)
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
                     <div key={video.id} className="basis-1/3 p-2 m-2 grow hover:border border-gold">

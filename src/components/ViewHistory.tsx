@@ -23,7 +23,7 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
     const addToRecentViews = (lastView?: LastView) => {
         if (lastView && history) {
             const newHistory = [...history, lastView]
-                .reduce<LastView[]>((acc, curr) => acc.some(item => item.link === curr.link) ? acc : [...acc, curr], []);
+                .reduce<LastView[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
             setHistory(newHistory);
         }
     }

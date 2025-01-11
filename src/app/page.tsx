@@ -35,7 +35,7 @@ const HomePage: React.FC = () => {
     };
 
     const handleSelectFavorite = (favorite: FavoriteWithEpisodes) => {
-        setNewKeywords(`${favorite.title} ${favorite.lastEpisode ? favorite.lastEpisode : ''}`);
+        setNewKeywords(`${favorite.title} ${favorite.lastEpisode ? favorite.lastEpisode : ''} ${favorite.lastEpisode ? favorite.lastEpisode : ''}`);
     };
 
     const handleAddSearchToFavorite = (keywords: string) => {

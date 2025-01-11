@@ -20,6 +20,7 @@ export type FavoriteType = {
 }
 
 export type FavoriteWithEpisodes = FavoriteType & {
+    subtitle?: string,
     lastEpisode?: string,
     total?: number
 }
@@ -67,6 +68,14 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         }
     };
 
+    const handleSubtitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+        if (event.target.value !== selected.subtitle ) {
+            console.log('last episode change', event.target.value);
+            const updated = addOrUpdate({ ...selected, subtitle: event.target.value });
+            console.log('subtitle updated', updated);
+        }
+    };
+
     function resetFavorites(): void {
         setFavorites(FAVORITES);
     }
@@ -105,17 +114,25 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                                         delete
                                     </Link>
                                     <Link href={''} className="basis-5/8" onClick={() => selectFavorite(kw)}>
-                                        {`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }
+                                        <div>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
+                                        { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
                                     </Link>
 
                                     { editMode ?
                                         <div>
                                             <input
+                                                className='basis-1/8 min-w-8 max-w-28 h-6'
+                                                type="text"
+                                                defaultValue={kw.subtitle || ''}
+                                                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleSubtitleBlur(event, kw) }
+                                                placeholder=""
+                                            />
+                                            <input
                                                 className='basis-1/8 min-w-8 max-w-28 h-6 w-12'
                                                 type="text"
                                                 defaultValue={kw.lastEpisode || ''}
                                                 onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeBlur(event, kw) }
-                                                placeholder=""
+                                                placeholder="subtitle"
                                             />
                                         </div>
                                     :
