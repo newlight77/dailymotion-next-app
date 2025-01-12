@@ -78,7 +78,7 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
             </div>
             <div className='items-center'>
                 <div>
-                    { history?.map(s => (
+                    { show && history ?.map(s => (
                         <div key={s.id} className="flex flex-row gap-4 items-center">
                             <Link href={''} className="basis-1/8" onClick={() => addToFavorites(s)}>
                                 add to favorite
