@@ -52,23 +52,23 @@ const HomePage: React.FC = () => {
 
             </header>
 
-            <main className='container min-w-400 p-1 md:max-w-1800 shadow-md'>
-                <h1 className='title text-4xl'>My favorites Videos</h1>
+            <main className='container min-w-400 md:max-w-1800'>
+                <h1 className='title text-4xl p-1'>My favorites Videos</h1>
 
-                <div className="md:absolute md:z-100 right-0 md:p-2 md:m-1 pb-4 pt-4">
+                <div className="md:absolute md:z-100 right-0 pb-4 pt-4 md:p-2 md:m-1">
                     <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
                 </div>
                 <div className='search'>
-                    <div className='search-bar md:p-4 sm:p-1'>
-                        <SearchBar onSearch={handleSearch} newKeywords={newKeywords}/>
+                    <div className='search-bar md:p-4'>
                         <div className='history md:flex flex-wrap'>
-                            <div className="basis-1/8 md:w-1/3 sm:w-64 pt-4">
+                            <div className="basis-1/8 pt-2 md:w-1/3 sm:w-64">
                                 <SearchHistory onSelected={handleSelectSearchHistory} onAddToFavorite={handleAddSearchToFavorite} newKeywords={newToHsitory} />
                             </div>
-                            <div className="basis-1/8 md:w-1/3 sm:w-64 pt-4">
+                            <div className="basis-1/8 pt-2 md:w-1/3 sm:w-64">
                                 <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} newLastView={newToLastview} />
                             </div>
                         </div>
+                        <SearchBar onSearch={handleSearch} newKeywords={newKeywords}/>
                     </div>
 
                     <div className='search-results'>

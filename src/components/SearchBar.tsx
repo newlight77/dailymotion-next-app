@@ -16,6 +16,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
         if (newKeywords && newKeywords !== keywords) setKeywords(newKeywords);
     }, [newKeywords]);
 
+    useEffect(() => {
+        if (keywords !== '') handleSearch()
+    }, [keywords]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setKeywords(event.target.value);
@@ -43,21 +46,23 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     };
 
     return (
-        <div className='flex flex-row gap-1'>
-            <input
-                className='basis-2/4'
-                type="text"
-                value={keywords}
-                onChange={handleInputChange}
-                placeholder="Search videos by title or channel"
-                onKeyUp={handleKeyup}
-            />
-            <button className='basis-1/8' onClick={handleSearch}>Search</button>
+        <div className='p-1 md:p-2 md:w-1/5'>
+            <div className='flex flex-row gap-1'>
+                <input
+                    className='basis-2/4'
+                    type="text"
+                    value={keywords}
+                    onChange={handleInputChange}
+                    placeholder="Search videos by title or channel"
+                    onKeyUp={handleKeyup}
+                />
+                <button className='basis-1/8' onClick={handleSearch}>Search</button>
 
-            <div >
-                {error && <p>Error: {error.message}</p>}
+                <div >
+                    {error && <p>Error: {error.message}</p>}
+                </div>
+
             </div>
-
         </div>
     );
 };
