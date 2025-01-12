@@ -58,7 +58,7 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
     }
 
     return (
-        <div className="gap-4 p-4">
+        <div className="md:gap-4 md:p-4 sm:p-1 sm:gap-1">
             <div>
                 <div className="flex flex-row p-1 pb-4 items-center">
                     <Link href={''} onClick={toggleShowHide}>

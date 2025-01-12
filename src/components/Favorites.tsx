@@ -126,9 +126,9 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
     )
 
     return (
-        <div className='absolute z-100 right-0 p-2 m-1 h-200 w-1/5'>
+        <div className='md:p-2 md:m-1 md:h-200 md:w-1/5'>
             <div>
-                <div className="flex flex-row gap-4 p-4 items-center">
+                <div className="flex flex-row md:gap-4 md:p-4 items-center">
                     <Link href={''} onClick={toggleShowHide}>
                     { show ?
                         <h3>My favorite titles</h3>

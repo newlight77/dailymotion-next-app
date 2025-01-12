@@ -46,7 +46,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected }) => {
     }
 
     return (
-        <div className="p-4">
+        <div className="md:p-4">
 
             {
                 videos.length !== 0 ?
@@ -75,23 +75,32 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected }) => {
                     .filter(v => exclusions !== '' ? !v.description.includes(exclusions) : true)
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
-                    <div key={video.id} className="basis-1/3 p-2 m-2 grow hover:border border-gold">
-                        <Link href={`https://www.dailymotion.com/video/${video.id}`} target="_blank" onClick={() => selectVideo(video)}>
-                            <Image src={video.thumbnail_480_url} alt={video.title} width={640} height={640} />
-                            <h5>title: {video.title}</h5>
+                    <div key={video.id} className="basis-1/4 md:p-2 md:m-2 grow md:hover:border border-gold mt-4">
+                        <Link className='videolink w-screen'
+                                href={`https://www.dailymotion.com/video/${video.id}`}
+                                target="_blank"
+                                onClick={() => selectVideo(video)}>
+                            <Image className='video pr-1'
+                                src={video.thumbnail_480_url}
+                                alt={video.title}
+                                width={480}
+                                height={480} />
                         </Link>
-                        <h5>description: {video.description}</h5>
-                        <h5>duration: {displayDuration(video.duration)}</h5>
-                        <h5>channel: {video.channel}</h5>
-                        <h5>language: {video.language}</h5>
-                        {/* <h5>channel name: {video.channelName}</h5> */}
-                        {/* <h5>channel id: {video.channelId}</h5> */}
-                        {/* <h5>channel slug: {video.channelSlug}</h5> */}
-                        {/* <h5>channel description: {video.channelDescription}</h5> */}
-                        <h5>country: {video.country}</h5>
-                        <h5>owner country: {video.ownerCountry}</h5>
-                        {/* <h5>owner language: {video.ownerLanguage}</h5> */}
-                        <h5>updated time: {displayDate(video.updated_time)}</h5>
+                        <h5 className='title font-extrabold text-xl text-wrap'>{video.title}</h5>
+                        <div className='description text-wrap'>{video.description}</div>
+                        <div className='p-0'>duration: {displayDuration(video.duration)}</div>
+                        <div className='p-0'>updated time: {displayDate(video.updated_time)}</div>
+                        <div className='flex flex-wrap items-center'>
+                            <div className='basis-1/2'>channel: {video.channel}</div>
+                            <div className='basis-1/2'>language: {video.language}</div>
+                            {/* <div>channel name: {video.channelName}</div> */}
+                            {/* <div>channel id: {video.channelId}</div> */}
+                            {/* <div>channel slug: {video.channelSlug}</div> */}
+                            {/* <div>channel description: {video.channelDescription}</div> */}
+                            <div className='basis-1/2'>country: {video.country}</div>
+                            <div className='basis-1/2'>owner country: {video.ownerCountry}</div>
+                            {/* <div>owner language: {video.ownerLanguage}</div> */}
+                        </div>
                     </div>
                 ))}
             </div>
