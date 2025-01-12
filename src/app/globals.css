@@ -184,7 +184,7 @@ article {
 }
 
 input {
-  background: var(--color-primary-variant);
+  background: var(--color-secondary);
   color: var(--color-light);
   padding: 0.25rem 0.33rem;
   margin: 0.25rem;
