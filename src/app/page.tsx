@@ -52,10 +52,10 @@ const HomePage: React.FC = () => {
 
             </header>
 
-            <main className='container min-w-400 md:max-w-1800'>
+            <main className='container min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'>
                 <h1 className='title text-4xl p-1'>My favorites Videos</h1>
 
-                <div className="md:absolute md:z-100 right-0 pb-4 pt-4 md:p-2 md:m-1">
+                <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1">
                     <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
                 </div>
                 <div className='search'>
