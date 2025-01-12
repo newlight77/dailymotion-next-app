@@ -75,7 +75,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected }) => {
                     .filter(v => exclusions !== '' ? !v.description.includes(exclusions) : true)
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
-                    <div key={video.id} className="basis-1/4 w-screen grow md:hover:border border-gold">
+                    <div key={video.id} className="basis-1/4 pt-4 pb-4 w-screen grow md:hover:border border-gold">
                         <Link className='videolink'
                                 href={`https://www.dailymotion.com/video/${video.id}`}
                                 target="_blank"
