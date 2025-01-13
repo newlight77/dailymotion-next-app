@@ -9,20 +9,38 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     const [keywords, setKeywords] = useState(newKeywords || '');
+    const [debouncedInpout, setDebouncedInpout] = useState('');
     const [error, setError] = useState<{ message: string } | undefined>(undefined);
+
+    const delay=400;
+    let timerId: NodeJS.Timeout = setTimeout(() => {}, delay);;
+
+    function debounce(callback: () => void, timeout: number) {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => callback(), timeout);
+    }
 
     useEffect(() => {
         if (keywords === '') setKeywords(localStorage.getItem('lastSearch') || '');
-        if (newKeywords && newKeywords !== keywords) setKeywords(newKeywords);
+        if (debouncedInpout === '' && keywords === '') setDebouncedInpout(localStorage.getItem('lastSearch') || '')
+        if (newKeywords && newKeywords !== keywords) {
+            setKeywords(newKeywords);
+            setDebouncedInpout(newKeywords);
+        }
     }, [newKeywords]);
 
     useEffect(() => {
         if (keywords !== '') handleSearch()
     }, [keywords]);
 
-    const handleInputBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value !== keywords) {
-            setKeywords(event.target.value);
+    useEffect(() => {
+        if (debouncedInpout !== '') setKeywords(keywords)
+    }, [debouncedInpout]);
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value !== debouncedInpout) {
+            setDebouncedInpout(event.target.value)
+            debounce(() => setKeywords(event.target.value), delay)
         }
     };
 
@@ -53,12 +71,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
                 <input
                     className='basis-2/4 min-w-96'
                     type="text"
-                    defaultValue={keywords}
-                    onBlur={handleInputBlur}
+                    value={debouncedInpout}
+                    onChange={handleInputChange}
                     placeholder="Search videos by title or channel"
                     onKeyUp={handleKeyup}
                 />
-                <button className='basis-1/8' onClick={handleSearch}>Search</button>
+                {/* <button className='basis-1/8' onClick={handleSearch}>Search</button> */}
 
                 <div >
                     {error && <p>Error: {error.message}</p>}
