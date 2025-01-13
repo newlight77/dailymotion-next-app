@@ -20,8 +20,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
         if (keywords !== '') handleSearch()
     }, [keywords]);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setKeywords(event.target.value);
+    const handleInputBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value !== keywords) {
+            setKeywords(event.target.value);
+        }
     };
 
     const handleKeyup = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -51,8 +53,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
                 <input
                     className='basis-2/4'
                     type="text"
-                    value={keywords}
-                    onChange={handleInputChange}
+                    defaultValue={keywords}
+                    onBlur={handleInputBlur}
                     placeholder="Search videos by title or channel"
                     onKeyUp={handleKeyup}
                 />
