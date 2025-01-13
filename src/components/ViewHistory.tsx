@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import { useLocalStorage } from '@/shared/useLocalStorage';
 import Link from 'next/link'
+import { Channel } from './FollowingChannels';
 
 interface ViewHistoryProps {
     newLastView?: LastView,
     onSelected: (lastView: LastView) => void;
     onAddToFavorite: (lastView: LastView) => void;
-
+    onFollowChannel: (channel: Channel) => void;
 }
 
 export type LastView = {
     id: string,
     title: string,
     episode: string,
+    channel: string,
     link: string,
 }
 
-const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAddToFavorite }) => {
+const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAddToFavorite, onFollowChannel }) => {
     const [history, setHistory] = useLocalStorage<LastView[]>(`view-history`, []);
     const [show, setShow] = React.useState(false)
 
@@ -36,6 +38,10 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
         onAddToFavorite(lastView);
     }
 
+    const followChannel = async (lastView: LastView) => {
+        onFollowChannel({uid: crypto.randomUUID().toString(), name: lastView.channel, slug: '', link: ''});
+    }
+
     const selectLastView = async (selected: LastView) => {
         onSelected(selected)
     }
@@ -44,13 +50,13 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
         if (history) {
             const newSearchHistory = history.filter(s => s.id !== id)
             setHistory(newSearchHistory);
-            console.log('searchHistory after ', id, newSearchHistory);
+            console.log('view history after ', id, newSearchHistory);
         }
     }
 
     const clearHistory = async () => {
         setHistory([]);
-        console.log('clearSearchHistory ', history);
+        console.log('clear view history ', history);
     }
 
     function toggleShowHide(): void {
@@ -82,6 +88,9 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
                         <div key={s.id} className="flex flex-row gap-4 items-center">
                             <Link href={''} className="basis-1/8" onClick={() => addToFavorites(s)}>
                                 add to favorite
+                            </Link>
+                            <Link href={''} className="basis-1/8" onClick={() => followChannel(s)}>
+                                 {`follow ${s.channel}` }
                             </Link>
                             <Link href={''} className="basis-1/8" onClick={() => deleteHistory(s.id)}>
                                 delete

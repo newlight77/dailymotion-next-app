@@ -6,6 +6,7 @@ import { MetaVideo, SearchResponse } from '../service/searchVideo';
 import Favorites, { FavoriteWithEpisodes } from '@/components/Favorites';
 import SearchHistory from '@/components/SearchHsitory';
 import ViewHistory, { LastView } from '@/components/ViewHistory';
+import FollowingChannels, { Channel } from '@/components/FollowingChannels';
 
 
 const HomePage: React.FC = () => {
@@ -15,6 +16,7 @@ const HomePage: React.FC = () => {
     const [newToHsitory, setNewToHistory] = useState<string>('');
     const [newToFavortie, setNewToFavorite] = useState<FavoriteWithEpisodes>();
     const [newToLastview, setNewToLastView] = useState<LastView>();
+    const [newToFollowingChannel, setNewToFollowingChannel] = useState<Channel>();
 
     const handleSearch = (searchResponse: SearchResponse) => {
         const { results } = searchResponse;
@@ -26,6 +28,10 @@ const HomePage: React.FC = () => {
         setNewToLastView(selectedLastView);
     };
 
+    const handleSelectChannel = (selectedChannel: Channel) => {
+        setNewKeywords(selectedChannel.name);
+    };
+
     const handleSelectSearchHistory = (selectedKeywords: string) => {
         setNewKeywords(selectedKeywords);
     };
@@ -35,7 +41,7 @@ const HomePage: React.FC = () => {
     };
 
     const handleSelectFavorite = (favorite: FavoriteWithEpisodes) => {
-        setNewKeywords(`${favorite.title} ${favorite.lastEpisode ? favorite.lastEpisode : ''} ${favorite.lastEpisode ? favorite.lastEpisode : ''}`);
+        setNewKeywords(`${favorite.title} ${favorite.originalTitle ? favorite.originalTitle : ''} ${favorite.originalTitle ? favorite.lastEpisode : ''}`);
     };
 
     const handleAddSearchToFavorite = (keywords: string) => {
@@ -44,6 +50,10 @@ const HomePage: React.FC = () => {
 
     const handleAddRecentViewToFavorite = (lastview: LastView) => {
         setNewToFavorite({uid: crypto.randomUUID().toString(), title: lastview.title, lastEpisode: lastview.episode});
+    };
+
+    const handleAddViewToFollowingChannel = (channel: Channel) => {
+        setNewToFollowingChannel(channel);
     };
 
     return (
@@ -61,18 +71,21 @@ const HomePage: React.FC = () => {
                 <div className='search'>
                     <div className='search-bar md:p-4'>
                         <div className='history md:flex flex-wrap'>
-                            <div className="basis-1/8 pt-2 md:w-1/3 sm:w-64">
+                            <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
                                 <SearchHistory onSelected={handleSelectSearchHistory} onAddToFavorite={handleAddSearchToFavorite} newKeywords={newToHsitory} />
                             </div>
-                            <div className="basis-1/8 pt-2 md:w-1/3 sm:w-64">
-                                <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} newLastView={newToLastview} />
+                            <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
+                                <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} onFollowChannel={handleAddViewToFollowingChannel} newLastView={newToLastview} />
+                            </div>
+                            <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
+                                <FollowingChannels onSelected={handleSelectChannel} newChannel={newToFollowingChannel} />
                             </div>
                         </div>
                         <SearchBar onSearch={handleSearch} newKeywords={newKeywords}/>
                     </div>
 
                     <div className='search-results'>
-                        <VideoList videos={searchResults} onSelected={handleSelectVideo}/>
+                        <VideoList videos={searchResults} onSelected={handleSelectVideo} onSelectedChannel={handleSelectChannel}/>
                     </div>
                 </div>
             </main>
