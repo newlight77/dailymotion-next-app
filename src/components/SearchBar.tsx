@@ -51,7 +51,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
         <div className='p-1 md:p-2 md:w-1/5'>
             <div className='flex flex-row gap-1'>
                 <input
-                    className='basis-2/4'
+                    className='basis-2/4 min-w-64 max-w-96'
                     type="text"
                     defaultValue={keywords}
                     onBlur={handleInputBlur}

@@ -20,6 +20,7 @@ export type FavoriteType = {
 }
 
 export type FavoriteWithEpisodes = FavoriteType & {
+    originalTitle?: string,
     subtitle?: string,
     lastEpisode?: string,
     total?: number
@@ -36,6 +37,8 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
             const newFavorite: FavoriteWithEpisodes = {
                 uid: favorite.uid ? favorite.uid : crypto.randomUUID().toString(),
                 title: favorite.title,
+                originalTitle: favorite.originalTitle,
+                subtitle: favorite.subtitle,
                 lastEpisode: favorite.lastEpisode,
                 total: favorite.total
             }
@@ -69,9 +72,17 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         }
     };
 
+    const handleOriginalTitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+        if (event.target.value !== selected.originalTitle ) {
+            console.log('originalTitle change', event.target.value);
+            const updated = addOrUpdate({ ...selected, originalTitle: event.target.value });
+            console.log('originalTitle updated', updated);
+        }
+    };
+
     const handleSubtitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
         if (event.target.value !== selected.subtitle ) {
-            console.log('last episode change', event.target.value);
+            console.log('subtitle change', event.target.value);
             const updated = addOrUpdate({ ...selected, subtitle: event.target.value });
             console.log('subtitle updated', updated);
         }
@@ -142,7 +153,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                 {
                     show ?
                     <div className='items-center min-w-72 bg-primary'>
-                        <button onClick={toggleEditFavorites}>edit episode</button>
+                        <button onClick={toggleEditFavorites}>edit</button>
                         <button onClick={resetFavorites}>reset</button>
                         {editMode ?
                             <>
@@ -165,6 +176,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                                     </Link>
                                     <Link href={''} className="basis-5/8" onClick={() => selectFavorite(kw)}>
                                         <div>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
+                                        { kw.originalTitle ? <div>{kw.originalTitle}</div> : <></>}
                                         { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
                                     </Link>
 
@@ -173,16 +185,23 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                                             <input
                                                 className='basis-1/8 min-w-8 max-w-28 h-6'
                                                 type="text"
+                                                defaultValue={kw.originalTitle || ''}
+                                                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOriginalTitleBlur(event, kw) }
+                                                placeholder="original title"
+                                            />
+                                            <input
+                                                className='basis-1/8 min-w-8 max-w-28 h-6'
+                                                type="text"
                                                 defaultValue={kw.subtitle || ''}
                                                 onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleSubtitleBlur(event, kw) }
-                                                placeholder=""
+                                                placeholder="subtitle"
                                             />
                                             <input
                                                 className='basis-1/8 min-w-8 max-w-28 h-6 w-12'
                                                 type="text"
                                                 defaultValue={kw.lastEpisode || ''}
                                                 onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeBlur(event, kw) }
-                                                placeholder="subtitle"
+                                                placeholder="episode"
                                             />
                                         </div>
                                     :
