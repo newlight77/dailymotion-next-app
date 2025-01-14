@@ -77,9 +77,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onSelectedCha
 
             <div className="md:flex flex-wrap gap-4">
                 {videos
-                    .filter(v => filterKeywords !== '' ? v.title.includes(filterKeywords) : true)
-                    .filter(v => filterKeywords !== '' ? v.description.includes(filterKeywords) : true)
-                    .filter(v => filterKeywords !== '' ? v.channel.includes(filterKeywords) : true)
+                    .filter(v => filterKeywords !== '' ? v.title.includes(filterKeywords) || v.description.includes(filterKeywords) || v.channel.includes(filterKeywords): true)
                     .filter(v => exclusions !== '' ? !v.title.includes(exclusions) : true)
                     .filter(v => exclusions !== '' ? !v.description.includes(exclusions) : true)
                     .filter(v => exclusions !== '' ? !v.channel.includes(exclusions) : true)
