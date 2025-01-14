@@ -92,12 +92,16 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
                             <Link href={''} className="basis-1/8" onClick={() => followChannel(s)}>
                                  {`follow ${s.channel}` }
                             </Link>
+                            <Link href={s.link} className="basis-1/8">
+                                view
+                            </Link>
                             <Link href={''} className="basis-1/8" onClick={() => deleteHistory(s.id)}>
                                 delete
                             </Link>
-                            <Link href={s.link} className="basis-1/2" onClick={() => selectLastView(s)}>
+                            <Link href={''} className="basis-1/2" onClick={() => selectLastView(s)}>
                             {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
                             </Link>
+
                         </div>
                     ))}
                 </div>
