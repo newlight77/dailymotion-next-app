@@ -33,8 +33,10 @@ export interface MetaVideo {
   channelDescription: string;
   country: string;
   ownerCountry: string;
-  language: string;
   ownerLanguage: string;
+  ownerUsername: string;
+  ownerUrl: string;
+  language: string;
   thumbnail_url: string;
   thumbnail_180_url: string;
   thumbnail_240_url: string;
@@ -72,7 +74,7 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
         limit: searchParams.limit || 10,
         page: searchParams.page|| 1,
       },
-      fields: 'id,channel,country,thumbnail_url,thumbnail_180_url,thumbnail_240_url,thumbnail_360_url,thumbnail_480_url,duration,description,title,owner.country,language,owner.language,channel.name,channel.description,channel.slug,channel.id,updated_time',
+      fields: 'id,channel,country,thumbnail_url,thumbnail_180_url,thumbnail_240_url,thumbnail_360_url,thumbnail_480_url,duration,description,title,owner.country,owner.username,owner.url,language,owner.language,channel.name,channel.description,channel.slug,channel.id,updated_time',
   }
 
   try {
@@ -106,6 +108,8 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
           channelDescription: d['channel.description'],
           ownerCountry: d['owner.country'],
           ownerLanguage: d['owner.language'],
+          ownerUsername: d['owner.username'],
+          ownerUrl: d['owner.url'],
           thumbnail_url: d.thumbnail_url,
           thumbnail_180_url: d.thumbnail_180_url,
           thumbnail_240_url: d.thumbnail_240_url,

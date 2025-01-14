@@ -114,6 +114,8 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onSelectedCha
                                 <div className='basis-1/2'>country: {video.country}</div>
                                 <div className='basis-1/2'>owner country: {video.ownerCountry}</div>
                                 {/* <div>owner language: {video.ownerLanguage}</div> */}
+                                <div className='basis-1/2'>owner username: {video.ownerUsername}</div>
+                                {/* <div className='basis-1/2'>owner url: {video.ownerUrl}</div> */}
                             </div>
                         </div>
                     </div>
