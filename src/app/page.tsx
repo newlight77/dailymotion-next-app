@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import VideoList from '../components/VideoList';
 import { MetaVideo, SearchResponse } from '../service/searchVideo';
-import Favorites, { FavoriteWithEpisodes } from '@/components/Favorites';
+import Favorites, { FavoriteType } from '@/components/Favorites';
 import SearchHistory from '@/components/SearchHsitory';
 import ViewHistory, { LastView } from '@/components/ViewHistory';
 import FollowingChannels, { Channel } from '@/components/FollowingChannels';
@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
     const [newKeywords, setNewKeywords] = useState<string>('');
 
     const [newToHsitory, setNewToHistory] = useState<string>('');
-    const [newToFavortie, setNewToFavorite] = useState<FavoriteWithEpisodes>();
+    const [newToFavortie, setNewToFavorite] = useState<FavoriteType>();
     const [newToLastview, setNewToLastView] = useState<LastView>();
     const [newToFollowingChannel, setNewToFollowingChannel] = useState<Channel>();
 
@@ -40,16 +40,16 @@ const HomePage: React.FC = () => {
         setNewKeywords(`${selectedLastView.title} ${selectedLastView.episode ? selectedLastView.episode : ''}`);
     };
 
-    const handleSelectFavorite = (favorite: FavoriteWithEpisodes) => {
+    const handleSelectFavorite = (favorite: FavoriteType) => {
         setNewKeywords(`${favorite.title} ${favorite.originalTitle ? favorite.originalTitle : ''} ${favorite.originalTitle ? favorite.lastEpisode : ''}`);
     };
 
     const handleAddSearchToFavorite = (keywords: string) => {
-        setNewToFavorite({uid: crypto.randomUUID().toString(), title: keywords});
+        setNewToFavorite({uid: crypto.randomUUID().toString(), title: keywords, order: 0});
     };
 
     const handleAddRecentViewToFavorite = (lastview: LastView) => {
-        setNewToFavorite({uid: crypto.randomUUID().toString(), title: lastview.title, lastEpisode: lastview.episode});
+        setNewToFavorite({uid: crypto.randomUUID().toString(), title: lastview.title, lastEpisode: lastview.episode, order: 0});
     };
 
     const handleAddViewToFollowingChannel = (channel: Channel) => {

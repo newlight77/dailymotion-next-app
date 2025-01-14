@@ -3,23 +3,25 @@ import { useLocalStorage } from '@/shared/useLocalStorage';
 import Link from 'next/link'
 import serie from './series';
 
-const FAVORITES: FavoriteWithEpisodes[] = [
+const LOWEST_ORDER = Number.MAX_VALUE;
+
+const FAVORITES: FavoriteType[] = [
     ...serie,
 ]
+// dedup
 .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
 // .sort((a: FavoriteType, b: FavoriteType) => a.title.localeCompare(b.title));
+.sort((a: FavoriteType, b: FavoriteType) => (a.order ?? LOWEST_ORDER) - (b.order ?? LOWEST_ORDER));
 
 interface FavoritesProps {
     newFavorite?: FavoriteType,
-    onSelected: (favorite: FavoriteWithEpisodes) => void;
+    onSelected: (favorite: FavoriteType) => void;
 }
 
 export type FavoriteType = {
     uid: string,
     title: string,
-}
-
-export type FavoriteWithEpisodes = FavoriteType & {
+    order: number,
     originalTitle?: string,
     subtitle?: string,
     lastEpisode?: string,
@@ -27,25 +29,59 @@ export type FavoriteWithEpisodes = FavoriteType & {
 }
 
 const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
-    const [favorites, setFavorites] = useLocalStorage<FavoriteWithEpisodes[]>(`favorites`, FAVORITES);
+    const [favorites, setFavorites] = useLocalStorage<FavoriteType[]>(`favorites`, FAVORITES);
     const [editMode, setEditMode] = useState(false);
     const [show, setShow] = React.useState(false)
     const [data, setData] = React.useState('')
 
-    const addOrUpdate = (favorite?: FavoriteWithEpisodes) : FavoriteWithEpisodes | undefined => {
+    const addOrUpdate = (favorite?: FavoriteType) => {
         if (favorite && favorites) {
-            const newFavorite: FavoriteWithEpisodes = {
-                uid: favorite.uid ? favorite.uid : crypto.randomUUID().toString(),
-                title: favorite.title,
-                originalTitle: favorite.originalTitle,
-                subtitle: favorite.subtitle,
-                lastEpisode: favorite.lastEpisode,
-                total: favorite.total
-            }
+            const newFavorite: FavoriteType = { ...favorite, uid: favorite.uid ? favorite.uid : crypto.randomUUID().toString() }
             const newFavorites = [newFavorite, ...favorites]
-                .reduce<FavoriteWithEpisodes[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
+                // dedup
+                .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
+                .sort((a, b) => (a.order) - (b.order));
             setFavorites(newFavorites);
-            return newFavorite
+        }
+    }
+
+    const shiftItems = (originalOrder: number, changedFavorite: FavoriteType, current: FavoriteType) => {
+        if (changedFavorite.order < originalOrder) {
+            if (changedFavorite.order <= current.order && current.order <= originalOrder) {
+                current.order += 1;
+            }
+        }
+        if (changedFavorite.order > originalOrder) {
+            if (changedFavorite.order >= current.order && current.order >= originalOrder) {
+                current.order -= 1;
+            }
+        }
+    }
+
+    const insertAtAndShiftAllItemsOrder = (originalOrder: number, changedFavorite?: FavoriteType) => {
+        if (changedFavorite && favorites) {
+            const sortedFavorites = favorites.sort((a, b) => (a.order) - (b.order));
+
+             // Adjust the order of all items that have an order greater than the new order
+            sortedFavorites.forEach(f => {
+                shiftItems(originalOrder, changedFavorite, f);
+            });
+
+            // Update the changed item with its new order (keep the existing title)
+            // const updatedFavorite: FavoriteType = { ...changedFavorite, order: changedFavorite.order  }
+            // const updatedFavorites = [updatedFavorite, ...sortedFavorites]
+            // .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
+            // .sort((a, b) => (a.order) - (b.order));
+
+            const updatedFavorites = sortedFavorites
+            .map(favorite => {
+                if (favorite.uid === changedFavorite.uid) {
+                  return { ...favorite, order: changedFavorite.order };
+                }
+                return favorite;
+            })
+            .sort((a, b) => a.order - b.order);
+            setFavorites(updatedFavorites);
         }
     }
 
@@ -53,7 +89,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         addOrUpdate(newFavorite);
     }, [newFavorite]);
 
-    const selectFavorite = async (selected: FavoriteWithEpisodes) => {
+    const selectFavorite = async (selected: FavoriteType) => {
         onSelected(selected)
     }
 
@@ -64,27 +100,27 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         }
     }
 
-    const handleLastEpisodeBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+    const handleLastEpisodeBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
         if (event.target.value !== selected.lastEpisode ) {
-            console.log('last episode change', event.target.value);
-            const updated = addOrUpdate({ ...selected, lastEpisode: event.target.value });
-            console.log('last episode updated', updated);
+            addOrUpdate({ ...selected, lastEpisode: event.target.value });
         }
     };
 
-    const handleOriginalTitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+    const handleOrderBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
+        if (event.target.value !== selected.order?.toString() ) {
+            insertAtAndShiftAllItemsOrder(selected.order, { ...selected, order: Number(event.target.value) });
+        }
+    };
+
+    const handleOriginalTitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
         if (event.target.value !== selected.originalTitle ) {
-            console.log('originalTitle change', event.target.value);
-            const updated = addOrUpdate({ ...selected, originalTitle: event.target.value });
-            console.log('originalTitle updated', updated);
+            addOrUpdate({ ...selected, originalTitle: event.target.value });
         }
     };
 
-    const handleSubtitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteWithEpisodes) => {
+    const handleSubtitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
         if (event.target.value !== selected.subtitle ) {
-            console.log('subtitle change', event.target.value);
-            const updated = addOrUpdate({ ...selected, subtitle: event.target.value });
-            console.log('subtitle updated', updated);
+            addOrUpdate({ ...selected, subtitle: event.target.value });
         }
     };
 
@@ -97,8 +133,8 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
     const loadData = () => {
         if (data) {
             try {
-                const newFavorites = (JSON.parse(data) as FavoriteWithEpisodes[])
-                .reduce<FavoriteWithEpisodes[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
+                const newFavorites = (JSON.parse(data) as FavoriteType[])
+                .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
                 setFavorites(newFavorites);
             } catch (error) {
                 // display error latet
@@ -182,6 +218,13 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
 
                                     { editMode ?
                                         <div>
+                                            <input
+                                                className='basis-1/8 min-w-8 max-w-28 h-6'
+                                                type="text"
+                                                defaultValue={kw.order || ''}
+                                                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOrderBlur(event, kw) }
+                                                placeholder="order"
+                                            />
                                             <input
                                                 className='basis-1/8 min-w-8 max-w-28 h-6'
                                                 type="text"
