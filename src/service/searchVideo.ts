@@ -32,10 +32,12 @@ export interface MetaVideo {
   channelName: string;
   channelDescription: string;
   country: string;
+  owner: string,
+  ownerId: string,
+  ownerUrl: string;
+  ownerUsername: string;
   ownerCountry: string;
   ownerLanguage: string;
-  ownerUsername: string;
-  ownerUrl: string;
   language: string;
   thumbnail_url: string;
   thumbnail_180_url: string;
@@ -74,7 +76,31 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
         limit: searchParams.limit || 10,
         page: searchParams.page|| 1,
       },
-      fields: 'id,channel,country,thumbnail_url,thumbnail_180_url,thumbnail_240_url,thumbnail_360_url,thumbnail_480_url,duration,description,title,owner.country,owner.username,owner.url,language,owner.language,channel.name,channel.description,channel.slug,channel.id,updated_time',
+      fields: [
+        'id',
+        'title',
+        'duration',
+        'description',
+        'country',
+        'language',
+        'thumbnail_url',
+        'thumbnail_180_url',
+        'thumbnail_240_url',
+        'thumbnail_360_url',
+        'thumbnail_480_url',
+        'owner',
+        'owner.id',
+        'owner.username',
+        'owner.url',
+        'owner.country',
+        'owner.language',
+        'channel',
+        'channel.name',
+        'channel.description',
+        'channel.slug',
+        'channel.id',
+        'updated_time'
+      ].join(','),
   }
 
   try {
@@ -98,25 +124,27 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
         return {
           id: d.id,
           title: d.title,
+          duration: d.duration,
           description: d.description,
           country: d.country,
           language: d.language,
-          channel: d.channel,
-          channelId: d['channel.id'],
-          channelSlug: d['channel.slug'],
-          channelName: d['channel.name'],
-          channelDescription: d['channel.description'],
-          ownerCountry: d['owner.country'],
-          ownerLanguage: d['owner.language'],
-          ownerUsername: d['owner.username'],
-          ownerUrl: d['owner.url'],
           thumbnail_url: d.thumbnail_url,
           thumbnail_180_url: d.thumbnail_180_url,
           thumbnail_240_url: d.thumbnail_240_url,
           thumbnail_360_url: d.thumbnail_360_url,
           thumbnail_480_url: d.thumbnail_480_url,
+          owner: d['owner'],
+          ownerId: d['owner.id'],
+          ownerUsername: d['owner.username'],
+          ownerUrl: d['owner.url'],
+          ownerCountry: d['owner.country'],
+          ownerLanguage: d['owner.language'],
+          channel: d.channel,
+          channelId: d['channel.id'],
+          channelSlug: d['channel.slug'],
+          channelName: d['channel.name'],
+          channelDescription: d['channel.description'],
           updated_time: d.updated_time,
-          duration: d.duration,
         }
       })
     }

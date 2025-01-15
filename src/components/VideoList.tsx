@@ -3,16 +3,16 @@ import Link from 'next/link'
 import { MetaVideo } from '../service/searchVideo';
 import Image from 'next/image';
 import { LastView } from './ViewHistory';
-import { Channel } from './FollowingChannels';
+import { Following } from './Followings';
 
 
 interface VideoListProps {
     videos: MetaVideo[];
     onSelected: (lastView: LastView) => void;
-    onSelectedChannel: (channel: Channel) => void;
+    onFollowUser: (following: Following) => void;
 }
 
-const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onSelectedChannel }) => {
+const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowUser }) => {
 
     const [filterKeywords, setFilterKeywords] = useState('');
     const [exclusions, setExclusions] = useState('');
@@ -26,11 +26,11 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onSelectedCha
     };
 
     const selectVideo = (video: MetaVideo) => {
-        onSelected({id: video.id, title: video.title, episode: '', channel: video.channel, link: `https://www.dailymotion.com/video/${video.id}`});
+        onSelected({id: video.id, title: video.title, episode: '', owner: video.ownerUsername, link: `https://www.dailymotion.com/video/${video.id}`});
     }
 
-    const selectChannel = (channel: Channel) => {
-        onSelectedChannel({uid: channel.uid, name: channel.name, slug: '', link: `https://www.dailymotion.com/channels/${channel.uid}`});
+    const followOwner = (following: Following) => {
+        onFollowUser({uid: following.uid, owner: following.owner, link: `https://www.dailymotion.com/${following.owner}`});
     }
 
     const dateTimeFormat: Intl.DateTimeFormatOptions = {
@@ -77,10 +77,10 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onSelectedCha
 
             <div className="md:flex flex-wrap gap-4">
                 {videos
-                    .filter(v => filterKeywords !== '' ? v.title.includes(filterKeywords) || v.description.includes(filterKeywords) || v.channel.includes(filterKeywords): true)
+                    .filter(v => filterKeywords !== '' ? v.title.includes(filterKeywords) || v.description.includes(filterKeywords) || v.ownerUsername.includes(filterKeywords): true)
                     .filter(v => exclusions !== '' ? !v.title.includes(exclusions) : true)
                     .filter(v => exclusions !== '' ? !v.description.includes(exclusions) : true)
-                    .filter(v => exclusions !== '' ? !v.channel.includes(exclusions) : true)
+                    .filter(v => exclusions !== '' ? !v.ownerUsername.includes(exclusions) : true)
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
                     <div key={video.id} className="basis-1/4 pt-4 pb-4 w-screen grow md:hover:border border-gold">
@@ -100,17 +100,14 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onSelectedCha
                             <div className=''>duration: {displayDuration(video.duration)}</div>
                             <div className=''>updated time: {displayDate(video.updated_time)}</div>
                             <div className='flex flex-wrap items-center'>
-                                <Link className='channellink basis-1/2'
-                                    href={`https://www.dailymotion.com/video/${video.id}`}
-                                    target="_blank"
-                                    onClick={() => selectChannel({uid: video.channelId, name: video.channelName, slug: video.channelSlug, link: ''})}>
-                                    <div className=''>channel: {video.channel}</div>
+                                <Link className='followinglink basis-1/2'
+                                    href={''}
+                                    onClick={() => followOwner({uid: video.id, owner: video.ownerUsername, link: ''})}>
+                                    <div className=''>follow <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.ownerUsername}`}</span></div>
                                 </Link>
                                 <div className='basis-1/2'>language: {video.language}</div>
-                                <div>channel name: {video.channelName}</div>
-                                <div>channel id: {video.channelId}</div>
-                                {/* <div>channel slug: {video.channelSlug}</div> */}
-                                {/* <div>channel description: {video.channelDescription}</div> */}
+                                {/* <div>following slug: {video.followingSlug}</div> */}
+                                {/* <div>following description: {video.followingDescription}</div> */}
                                 <div className='basis-1/2'>country: {video.country}</div>
                                 <div className='basis-1/2'>owner country: {video.ownerCountry}</div>
                                 {/* <div>owner language: {video.ownerLanguage}</div> */}

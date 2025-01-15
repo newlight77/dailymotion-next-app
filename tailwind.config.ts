@@ -11,6 +11,10 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        primaryVariant: "var(--primary-variant)",
+        secondaryVariant: "var(--secondary-variant)",
         darksteelblue: 'var(--color-darksteelblue)',
         darksdeepskyblueVariant: 'var(--color-darksteelblue-variant)',
         deepskyblue: 'var(--color-deepskyblue)',

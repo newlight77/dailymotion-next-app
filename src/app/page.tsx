@@ -6,7 +6,7 @@ import { MetaVideo, SearchResponse } from '../service/searchVideo';
 import Favorites, { FavoriteType } from '@/components/Favorites';
 import SearchHistory from '@/components/SearchHsitory';
 import ViewHistory, { LastView } from '@/components/ViewHistory';
-import FollowingChannels, { Channel } from '@/components/FollowingChannels';
+import Followings, { Following } from '@/components/Followings';
 
 
 const HomePage: React.FC = () => {
@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
     const [newToHsitory, setNewToHistory] = useState<string>('');
     const [newToFavortie, setNewToFavorite] = useState<FavoriteType>();
     const [newToLastview, setNewToLastView] = useState<LastView>();
-    const [newToFollowingChannel, setNewToFollowingChannel] = useState<Channel>();
+    const [newToFollowingFollowing, setNewToFollowingUser] = useState<Following>();
 
     const handleSearch = (searchResponse: SearchResponse) => {
         const { results } = searchResponse;
@@ -28,8 +28,12 @@ const HomePage: React.FC = () => {
         setNewToLastView(selectedLastView);
     };
 
-    const handleSelectChannel = (selectedChannel: Channel) => {
-        setNewKeywords(selectedChannel.name);
+    const handleFollowUser = (followingUser: Following) => {
+        setNewToFollowingUser(followingUser);
+    };
+
+    const handleSelectFollowing = (selectedFollowing: Following) => {
+        setNewKeywords(selectedFollowing.owner);
     };
 
     const handleSelectSearchHistory = (selectedKeywords: string) => {
@@ -52,8 +56,8 @@ const HomePage: React.FC = () => {
         setNewToFavorite({uid: crypto.randomUUID().toString(), title: lastview.title, lastEpisode: lastview.episode, order: 0});
     };
 
-    const handleAddViewToFollowingChannel = (channel: Channel) => {
-        setNewToFollowingChannel(channel);
+    const handleAddViewToFollowingUser = (following: Following) => {
+        setNewToFollowingUser(following);
     };
 
     return (
@@ -75,17 +79,17 @@ const HomePage: React.FC = () => {
                                 <SearchHistory onSelected={handleSelectSearchHistory} onAddToFavorite={handleAddSearchToFavorite} newKeywords={newToHsitory} />
                             </div>
                             <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                                <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} onFollowChannel={handleAddViewToFollowingChannel} newLastView={newToLastview} />
+                                <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} onFollowUser={handleAddViewToFollowingUser} newLastView={newToLastview} />
                             </div>
                             <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                                <FollowingChannels onSelected={handleSelectChannel} newChannel={newToFollowingChannel} />
+                                <Followings onSelected={handleSelectFollowing} newFollowing={newToFollowingFollowing} />
                             </div>
                         </div>
                         <SearchBar onSearch={handleSearch} newKeywords={newKeywords}/>
                     </div>
 
                     <div className='search-results'>
-                        <VideoList videos={searchResults} onSelected={handleSelectVideo} onSelectedChannel={handleSelectChannel}/>
+                        <VideoList videos={searchResults} onSelected={handleSelectVideo} onFollowUser={handleFollowUser}/>
                     </div>
                 </div>
             </main>

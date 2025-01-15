@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
 import { useLocalStorage } from '@/shared/useLocalStorage';
 import Link from 'next/link'
-import { Channel } from './FollowingChannels';
+import { Following } from './Followings';
 
 interface ViewHistoryProps {
     newLastView?: LastView,
     onSelected: (lastView: LastView) => void;
     onAddToFavorite: (lastView: LastView) => void;
-    onFollowChannel: (channel: Channel) => void;
+    onFollowUser: (following: Following) => void;
 }
 
 export type LastView = {
     id: string,
     title: string,
     episode: string,
-    channel: string,
+    owner: string,
     link: string,
 }
 
-const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAddToFavorite, onFollowChannel }) => {
+const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAddToFavorite, onFollowUser }) => {
     const [history, setHistory] = useLocalStorage<LastView[]>(`view-history`, []);
     const [show, setShow] = React.useState(false)
 
@@ -38,8 +38,8 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
         onAddToFavorite(lastView);
     }
 
-    const followChannel = async (lastView: LastView) => {
-        onFollowChannel({uid: crypto.randomUUID().toString(), name: lastView.channel, slug: '', link: ''});
+    const followFollowing = async (lastView: LastView) => {
+        onFollowUser({uid: crypto.randomUUID().toString(), owner: lastView.owner, link: ''});
     }
 
     const selectLastView = async (selected: LastView) => {
@@ -89,8 +89,8 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
                             <Link href={''} className="basis-1/8" onClick={() => addToFavorites(s)}>
                                 add to favorite
                             </Link>
-                            <Link href={''} className="basis-1/8" onClick={() => followChannel(s)}>
-                                 {`follow ${s.channel}` }
+                            <Link href={''} className="basis-1/8" onClick={() => followFollowing(s)}>
+                                 {`follow ${s.owner}` }
                             </Link>
                             <Link href={s.link} className="basis-1/8">
                                 view

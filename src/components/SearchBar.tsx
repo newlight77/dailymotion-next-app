@@ -12,7 +12,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     const [debouncedInpout, setDebouncedInpout] = useState('');
     const [error, setError] = useState<{ message: string } | undefined>(undefined);
 
-    const delay=400;
+    const delay = 1100;
     let timerId: NodeJS.Timeout = setTimeout(() => {}, delay);;
 
     function debounce(callback: () => void, timeout: number) {
@@ -38,10 +38,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     }, [debouncedInpout]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value !== debouncedInpout) {
-            setDebouncedInpout(event.target.value)
-            debounce(() => setKeywords(event.target.value), delay)
-        }
+        setDebouncedInpout(event.target.value)
+        debounce(() => {
+            if (keywords !== debouncedInpout) {
+                setKeywords(event.target.value)
+            }
+        }, delay)
     };
 
     const handleKeyup = (event: React.KeyboardEvent<HTMLInputElement>) => {
