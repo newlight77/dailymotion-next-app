@@ -15,7 +15,6 @@ export type Following = {
 
 const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
     const [followings, setFollowings] = useLocalStorage<Following[]>(`followings`, []);
-    // const [owner, setOwner] = useState('');
     const [show, setShow] = React.useState(false)
 
     const addNewFollowing = (following?: Following) => {
@@ -30,12 +29,6 @@ const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
         addNewFollowing(newFollowing);
     }, [newFollowing]);
 
-    // useEffect(() => {
-    //     if (owner !== '') {
-    //         addNewFollowing({uid: crypto.randomUUID().toString(), owner: owner, link: ''});
-    //     }
-    // }, [owner]);
-
     const deleteFollowing = async (id: string) => {
         if (followings) {
             const newFollowingFollowings = followings.filter(s => s.uid !== id)
@@ -49,13 +42,6 @@ const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
         console.log('clear follwoing followings', history);
     }
 
-    // const handleOwnerBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     if (event.target.value !== '' && event.target.value !== owner) {
-    //         setOwner(event.target.value);
-    //     }
-    // };
-
-
     function toggleShowHide(): void {
         setShow(show ? false : true);
     }
@@ -65,7 +51,7 @@ const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
             <div>
                 <div className="flex flex-row pb-4 items-center">
                     <Link href={''} onClick={toggleShowHide}>
-                    { show ? '' : 'show my favorite followings' }
+                    { show ? '' : 'show my followings' }
                     </Link>
                     { show ?
                         <div>
@@ -80,20 +66,6 @@ const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
                 </div>
             </div>
             <div className='items-center'>
-                <div>
-                    {/* { show ?
-                        <div>
-                            <input
-                                className='basis-1/8 min-w-32 max-w-72 h-6'
-                                type="text"
-                                defaultValue={owner}
-                                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOwnerBlur(event) }
-                                placeholder="username"
-                            />
-                        </div>
-                        : <></>
-                    } */}
-                </div>
                 <div>
                     { show && followings ?.map(s => (
                         <div key={s.uid} className="flex flex-row gap-4 items-center">
