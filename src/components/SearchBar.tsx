@@ -75,7 +75,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
                     type="text"
                     value={debouncedInpout}
                     onChange={handleInputChange}
-                    placeholder="Search videos by title or channel"
+                    placeholder="Search videos by title"
                     onKeyUp={handleKeyup}
                 />
                 {/* <button className='basis-1/8' onClick={handleSearch}>Search</button> */}
