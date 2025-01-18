@@ -94,6 +94,10 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
                                 width={480}
                                 height={480} />
                         </Link>
+                        <Link className='view'
+                                href={`/video/${video.id}`}>
+                                <div className=''>view <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.title}`}</span></div>
+                        </Link>
                         <div className=''>
                             <div className='title font-extrabold text-xl text-wrap'>{video.title}</div>
                             <div className='description text-sm text-wrap'>{video.description}</div>
