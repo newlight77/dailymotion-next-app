@@ -188,7 +188,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
             <div>
                 {
                     show ?
-                    <div className='items-center min-w-72 bg-primary'>
+                    <div className='items-center min-w-72 bg-secondary'>
                         <button onClick={toggleEditFavorites}>edit</button>
                         <button onClick={resetFavorites}>reset</button>
                         {editMode ?
@@ -206,7 +206,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                         }
                         <div>
                             { favorites?.map(kw => (
-                                <div key={crypto.randomUUID().toString()} className="flex flex-wrap gap-4 items-center bg-background">
+                                <div key={crypto.randomUUID().toString()} className="flex flex-wrap gap-4 items-center">
                                     <Link href={''} className="basis-1/8" onClick={() => deleteFavorite(kw.uid)}>
                                         delete
                                     </Link>
