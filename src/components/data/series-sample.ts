@@ -147,7 +147,8 @@ const FAVORITES = [
     { uid: crypto.randomUUID().toString(),  order:  99999                     ,    title: 'Wild Fairyland'                                            , originalTitle: '荒蛮仙界'            , subtitle: ''                           , lastEpisode: '', total: 0 },
     { uid: crypto.randomUUID().toString(),  order:  99999                     ,    title: 'Tales of herding gods'                                     , originalTitle: '牧神记'              , subtitle: ''                           , lastEpisode: '12', total: 0 },
     { uid: crypto.randomUUID().toString(),  order:  99999                     ,    title: 'Adventure in subduing the demons'                          , originalTitle: '山海伏魔录'              , subtitle: ''                           , lastEpisode: '6', total: 0 },
-    { uid: crypto.randomUUID().toString(),  order:  99999                     ,    title: 'Every disciple is a Boss season 1'                         , originalTitle: '徒弟个个是大佬'               , subtitle: 'Over Goddess'                                            , lastEpisode: '24', total: 0 },
+    { uid: crypto.randomUUID().toString(),  order:  99999                     ,    title: 'Every disciple is a Boss season 1'                         , originalTitle: '徒弟个个是大佬'           , subtitle: 'Over Goddess'                                            , lastEpisode: '24', total: 0 },
+    { uid: crypto.randomUUID().toString(),  order:  99999                     ,    title: 'Legend of Soldier'                                         , originalTitle: '小兵传奇'               , subtitle: ''                                            , lastEpisode: '13', total: 0 },
 ]
 
 export default FAVORITES;
