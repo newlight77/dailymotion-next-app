@@ -58,14 +58,14 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
             <div>
                 <div className="flex flex-row pb-4 items-center">
                     <Link href={''} onClick={toggleShowHide}>
-                    { show ? '' : 'show recent searches' }
+                    { show ? '' : 'show my recent searches' }
                     </Link>
                     { show ?
                         <div>
                             <Link href={''} onClick={toggleShowHide}>
                                 <h3>My recent searches</h3>
                             </Link>
-                            <Link href={''} onClick={clearHistory}>clear history</Link>
+                            <Link href={''} onClick={clearHistory}>clear</Link>
                         </div>
                         :
                         ''

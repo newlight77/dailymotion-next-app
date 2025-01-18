@@ -175,7 +175,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
     return (
         <div className='p-1 md:p-2 w-96'>
             <div>
-                <div className="flex flex-row md:gap-4 md:p-4 items-center">
+                <div className="flex flex-row md:gap-1 md:pt-4 items-center">
                     <Link href={''} onClick={toggleShowHide}>
                     { show ?
                         <h3>My favorite titles</h3>
@@ -189,8 +189,10 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                 {
                     show ?
                     <div className='items-center min-w-72 bg-secondary'>
-                        <button onClick={toggleEditFavorites}>edit</button>
-                        <button onClick={resetFavorites}>reset</button>
+                        <div className="pb-4">
+                        <Link href={''} className="pr-4" onClick={toggleEditFavorites}>edit</Link>
+                        <Link href={''} className="pr-4" onClick={resetFavorites}>reset</Link>
+                        </div>
                         {editMode ?
                             <>
                                 <textarea
