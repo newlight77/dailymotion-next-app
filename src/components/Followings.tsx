@@ -10,7 +10,6 @@ interface ViewHistoryProps {
 export type Following = {
     uid: string,
     owner: string,
-    link: string,
 }
 
 const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
@@ -72,7 +71,7 @@ const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
                             <Link href={''} className="basis-1/8" onClick={() => deleteFollowing(s.uid)}>
                                 delete
                             </Link>
-                            <Link href={s.link} className="basis-1/2">
+                            <Link href={`https://www.dailymotion.com/${s.owner}`} target="_blank" className="basis-1/2">
                                 {`${s.owner}` }
                             </Link>
                         </div>

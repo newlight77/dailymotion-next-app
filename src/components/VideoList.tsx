@@ -30,7 +30,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowUser 
     }
 
     const followOwner = (following: Following) => {
-        onFollowUser({uid: following.uid, owner: following.owner, link: `https://www.dailymotion.com/${following.owner}`});
+        onFollowUser({uid: following.uid, owner: following.owner});
     }
 
     const dateTimeFormat: Intl.DateTimeFormatOptions = {
@@ -97,12 +97,15 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowUser 
                         <div className=''>
                             <div className='title font-extrabold text-xl text-wrap'>{video.title}</div>
                             <div className='description text-sm text-wrap'>{video.description}</div>
-                            <div className=''>duration: {displayDuration(video.duration)}</div>
-                            <div className=''>updated time: {displayDate(video.updated_time)}</div>
+                            <Link className='followinglink'
+                                href={''}
+                                onClick={() => followOwner({uid: video.id, owner: video.ownerUsername})}>
+                                <div className=''>follow <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.ownerUsername}`}</span></div>
+                            </Link>
                             <div className='flex flex-wrap items-center'>
                                 <Link className='followinglink basis-1/2'
                                     href={''}
-                                    onClick={() => followOwner({uid: video.id, owner: video.ownerUsername, link: ''})}>
+                                    onClick={() => followOwner({uid: video.id, owner: video.ownerUsername})}>
                                     <div className=''>follow <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.ownerUsername}`}</span></div>
                                 </Link>
                                 <div className='basis-1/2'>language: {video.language}</div>
