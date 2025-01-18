@@ -1,5 +1,4 @@
 import React from 'react';
-// import { IFrame } from '@iframe-resizer/react';
 
 interface VideoPlayerProps {
     videoId: string;
@@ -8,22 +7,14 @@ interface VideoPlayerProps {
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoTitle }) => {
     return (
-        <div className="video-player h-full w-full">
-            {/* <video controls autoPlay style={{ width: '100%', height: '100%' }}>
-                <source src={`${videoUrl}`} />
-                Your browser does not support the video tag.
-            </video> */}
+        <div className="video-player w-full h-full">
             <iframe allowFullScreen
-                    loading="eager"
-                    // sandbox='allow-scripts allow-modal'
-                    allow="autoplay; fullscreen; picture-in-picture; web-share"
-                    // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    className="dailymotion-player"
-                    src={`https://geo.dailymotion.com/player.html?video=${videoId}`}
-                    title={videoTitle}
-                    height="865px"
-                    width="1600px"
-                    >
+                allow="autoplay; fullscreen; picture-in-picture; web-share"
+                className="dailymotion-player"
+                src={`https://geo.dailymotion.com/player.html?video=${videoId}`}
+                title={videoTitle}
+                style={{ width: '100%',  height: '100vh'}}
+            >
             </iframe>
         </div>
     );

@@ -84,8 +84,8 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
                     <div key={video.id} className="basis-1/4 pt-4 pb-4 w-screen grow md:hover:border border-gold">
-                        <Link className='videolink'
-                                href={`https://www.dailymotion.com/video/${video.id}`}
+                        <Link className='view'
+                                href={`/video/${video.id}`}
                                 target="_blank"
                                 onClick={() => selectVideo(video)}>
                             <Image className='video'
@@ -94,9 +94,8 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
                                 width={480}
                                 height={480} />
                         </Link>
-                        <Link className='view'
-                                href={`/video/${video.id}`}>
-                                <div className=''>view <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.title}`}</span></div>
+                        <Link className='videoLink' href={`https://www.dailymotion.com/video/${video.id}`}>
+                            <div className=''>view on dailymotion</div>
                         </Link>
                         <div className=''>
                             <div className='title font-extrabold text-xl text-wrap'>{video.title}</div>
