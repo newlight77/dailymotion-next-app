@@ -173,7 +173,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
     )
 
     return (
-        <div className='p-1 md:p-2 w-96'>
+        <div className='p-1 md:p-2 w-1/8'>
             <div>
                 <div className="flex flex-row md:gap-1 md:pt-4 items-center">
                     <Link href={''} onClick={toggleShowHide}>
@@ -188,7 +188,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
             <div>
                 {
                     show ?
-                    <div className='items-center min-w-72 bg-secondary'>
+                    <div className='items-center min-w-80 bg-secondary'>
                         <div className="pb-4">
                         <Link href={''} className="pr-4" onClick={toggleEditFavorites}>edit</Link>
                         <Link href={''} className="pr-4" onClick={resetFavorites}>reset</Link>
@@ -208,27 +208,27 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                         }
                         <div>
                             { favorites?.map(kw => (
-                                <div key={crypto.randomUUID().toString()} className="flex flex-wrap gap-4 items-center">
+                                <div key={crypto.randomUUID().toString()} className="flex flex-wrap gap-4 mt-2 items-center hover:border rounded-md border-gold bg-secondaryVariant">
                                     <Link href={''} className="basis-1/8" onClick={() => deleteFavorite(kw.uid)}>
                                         delete
                                     </Link>
-                                    <Link href={''} className="basis-5/8" onClick={() => selectFavorite(kw)}>
+                                    <Link href={''} className={`basis-5/8 ${kw.order < 100 ? "text-gold" : ""}`} onClick={() => selectFavorite(kw)}>
                                         <div>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
-                                        { kw.originalTitle ? <div>{kw.originalTitle}</div> : <></>}
+                                        { kw.originalTitle ? <div className='pl-2 pr-2 w-fit border border-primaryVariant'>{kw.originalTitle}</div> : <></>}
                                         { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
                                     </Link>
 
                                     { editMode ?
                                         <div>
                                             <input
-                                                className='basis-1/8 min-w-8 max-w-28 h-6'
+                                                className='basis-1/8 min-w-8 max-w-36 h-6'
                                                 type="text"
                                                 defaultValue={kw.order || ''}
                                                 onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOrderBlur(event, kw) }
                                                 placeholder="order"
                                             />
                                             <input
-                                                className='basis-1/8 min-w-8 max-w-28 h-6'
+                                                className='basis-1/8 min-w-8 max-w-28 h-6 border'
                                                 type="text"
                                                 defaultValue={kw.originalTitle || ''}
                                                 onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOriginalTitleBlur(event, kw) }
