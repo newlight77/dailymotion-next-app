@@ -30,7 +30,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
     }
 
     const followOwner = (following: Following) => {
-        onFollowOwner({uid: following.uid, owner: following.owner});
+        onFollowOwner({uid: following.uid, owner: following.owner, order: 0});
     }
 
     const dateTimeFormat: Intl.DateTimeFormatOptions = {
@@ -99,7 +99,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
                             <div className='description text-sm text-wrap'>{video.description}</div>
                             <Link className='followinglink'
                                 href={''}
-                                onClick={() => followOwner({uid: video.id, owner: video.ownerUsername})}>
+                                onClick={() => followOwner({uid: video.id, owner: video.ownerUsername, order: 0})}>
                                 <div className=''>follow <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.ownerUsername}`}</span></div>
                             </Link>
                             <div className='flex flex-wrap items-center'>

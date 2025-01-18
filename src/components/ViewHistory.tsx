@@ -39,7 +39,7 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
     }
 
     const followOwner = async (lastView: LastView) => {
-        onFollowOwner({uid: crypto.randomUUID().toString(), owner: lastView.owner});
+        onFollowOwner({uid: crypto.randomUUID().toString(), owner: lastView.owner, order: 0});
     }
 
     const selectLastView = async (selected: LastView) => {

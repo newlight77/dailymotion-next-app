@@ -1,8 +1,19 @@
 import React, { useEffect } from 'react';
 import { useLocalStorage } from '@/shared/useLocalStorage';
 import Link from 'next/link'
+import followings from './data/followings';
 
-interface ViewHistoryProps {
+
+const LOWEST_ORDER = Number.MAX_VALUE;
+
+const FOLLOWINGS: Following[] = [
+    ...followings,
+]
+.reduce<Following[]>((acc, curr) => acc.some(item => item.owner === curr.owner) ? acc : [...acc, curr], [])
+.sort((a: Following, b: Following) => (a.order ?? LOWEST_ORDER) - (b.order ?? LOWEST_ORDER));
+
+
+interface ViewFollowingsProps {
     newFollowing?: Following,
     onSelected?: (following: Following) => void;
 }
@@ -10,10 +21,11 @@ interface ViewHistoryProps {
 export type Following = {
     uid: string,
     owner: string,
+    order: number,
 }
 
-const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
-    const [followings, setFollowings] = useLocalStorage<Following[]>(`followings`, []);
+const Followings: React.FC<ViewFollowingsProps> = ({ newFollowing }) => {
+    const [followings, setFollowings] = useLocalStorage<Following[]>(`followings`, FOLLOWINGS);
     const [show, setShow] = React.useState(false)
 
     const addNewFollowing = (following?: Following) => {
@@ -36,9 +48,12 @@ const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
         }
     }
 
-    const clearHistory = async () => {
+    const resetFollowings = () => {
+        setFollowings(FOLLOWINGS);
+    };
+
+    const clearFollowings = async () => {
         setFollowings([]);
-        console.log('clear follwoing followings', history);
     }
 
     function toggleShowHide(): void {
@@ -53,11 +68,12 @@ const Followings: React.FC<ViewHistoryProps> = ({ newFollowing }) => {
                     { show ? '' : 'show my followings' }
                     </Link>
                     { show ?
-                        <div>
+                        <div className='gap-4'>
                             <Link href={''} onClick={toggleShowHide}>
-                                <h3>My following followings</h3>
+                                <h3>My followings</h3>
                             </Link>
-                            <Link href={''} onClick={clearHistory}>clear followings</Link>
+                            <Link className='pr-4' href={''} onClick={clearFollowings}>clear</Link>
+                            <Link className='pr-4' href={''} onClick={resetFollowings}>reset</Link>
                         </div>
                         :
                         ''
