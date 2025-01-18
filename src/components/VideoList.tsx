@@ -9,10 +9,10 @@ import { Following } from './Followings';
 interface VideoListProps {
     videos: MetaVideo[];
     onSelected: (lastView: LastView) => void;
-    onFollowUser: (following: Following) => void;
+    onFollowOwner: (following: Following) => void;
 }
 
-const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowUser }) => {
+const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner }) => {
 
     const [filterKeywords, setFilterKeywords] = useState('');
     const [exclusions, setExclusions] = useState('');
@@ -30,7 +30,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowUser 
     }
 
     const followOwner = (following: Following) => {
-        onFollowUser({uid: following.uid, owner: following.owner});
+        onFollowOwner({uid: following.uid, owner: following.owner});
     }
 
     const dateTimeFormat: Intl.DateTimeFormatOptions = {
@@ -77,10 +77,10 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowUser 
 
             <div className="md:flex flex-wrap gap-4">
                 {videos
-                    .filter(v => filterKeywords !== '' ? v.title.includes(filterKeywords) || v.description.includes(filterKeywords) || v.ownerUsername.includes(filterKeywords): true)
-                    .filter(v => exclusions !== '' ? !v.title.includes(exclusions) : true)
-                    .filter(v => exclusions !== '' ? !v.description.includes(exclusions) : true)
-                    .filter(v => exclusions !== '' ? !v.ownerUsername.includes(exclusions) : true)
+                    .filter(v => filterKeywords !== '' ? v.title.toLowerCase().includes(filterKeywords.toLowerCase()) || v.description.toLowerCase().includes(filterKeywords.toLowerCase()) || v.ownerUsername.includes(filterKeywords.toLowerCase()): true)
+                    .filter(v => exclusions !== '' ? !v.title.toLowerCase().includes(exclusions.toLowerCase()) : true)
+                    .filter(v => exclusions !== '' ? !v.description.toLowerCase().includes(exclusions.toLowerCase()) : true)
+                    .filter(v => exclusions !== '' ? !v.ownerUsername.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
                     <div key={video.id} className="basis-1/4 pt-4 pb-4 w-screen grow md:hover:border border-gold">
@@ -103,19 +103,10 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowUser 
                                 <div className=''>follow <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.ownerUsername}`}</span></div>
                             </Link>
                             <div className='flex flex-wrap items-center'>
-                                <Link className='followinglink basis-1/2'
-                                    href={''}
-                                    onClick={() => followOwner({uid: video.id, owner: video.ownerUsername})}>
-                                    <div className=''>follow <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.ownerUsername}`}</span></div>
-                                </Link>
+                                <div className='basis-1/2'>duration: {displayDuration(video.duration)}</div>
+                                <div className='basis-1/2'>updated time: {displayDate(video.updated_time)}</div>
                                 <div className='basis-1/2'>language: {video.language}</div>
-                                {/* <div>following slug: {video.followingSlug}</div> */}
-                                {/* <div>following description: {video.followingDescription}</div> */}
                                 <div className='basis-1/2'>country: {video.country}</div>
-                                <div className='basis-1/2'>owner country: {video.ownerCountry}</div>
-                                {/* <div>owner language: {video.ownerLanguage}</div> */}
-                                <div className='basis-1/2'>owner username: {video.ownerUsername}</div>
-                                {/* <div className='basis-1/2'>owner url: {video.ownerUrl}</div> */}
                             </div>
                         </div>
                     </div>

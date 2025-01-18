@@ -79,7 +79,7 @@ const HomePage: React.FC = () => {
                                 <SearchHistory onSelected={handleSelectSearchHistory} onAddToFavorite={handleAddSearchToFavorite} newKeywords={newToHsitory} />
                             </div>
                             <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                                <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} onFollowUser={handleAddViewToFollowingUser} newLastView={newToLastview} />
+                                <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} onFollowOwner={handleAddViewToFollowingUser} newLastView={newToLastview} />
                             </div>
                             <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
                                 <Followings onSelected={handleSelectFollowing} newFollowing={newToFollowingFollowing} />
@@ -89,7 +89,7 @@ const HomePage: React.FC = () => {
                     </div>
 
                     <div className='search-results'>
-                        <VideoList videos={searchResults} onSelected={handleSelectVideo} onFollowUser={handleFollowUser}/>
+                        <VideoList videos={searchResults} onSelected={handleSelectVideo} onFollowOwner={handleFollowUser}/>
                     </div>
                 </div>
             </main>

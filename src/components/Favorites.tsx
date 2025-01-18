@@ -45,26 +45,26 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         }
     }
 
-    const shiftItems = (originalOrder: number, changedFavorite: FavoriteType, current: FavoriteType) => {
-        if (changedFavorite.order < originalOrder) {
-            if (changedFavorite.order <= current.order && current.order <= originalOrder) {
+    const shiftItems = (originalOrder: number, changed: FavoriteType, current: FavoriteType) => {
+        if (changed.order < originalOrder) {
+            if (changed.order <= current.order && current.order <= originalOrder) {
                 current.order += 1;
             }
         }
-        if (changedFavorite.order > originalOrder) {
-            if (changedFavorite.order >= current.order && current.order >= originalOrder) {
+        if (changed.order > originalOrder) {
+            if (changed.order >= current.order && current.order >= originalOrder) {
                 current.order -= 1;
             }
         }
     }
 
-    const insertAtAndShiftAllItemsOrder = (originalOrder: number, changedFavorite?: FavoriteType) => {
-        if (changedFavorite && favorites) {
-            const sortedFavorites = favorites.sort((a, b) => (a.order) - (b.order));
+    const insertAtAndShiftAllItemsOrder = (originalOrder: number, changed?: FavoriteType) => {
+        if (changed && favorites) {
+            const sortedItems = favorites.sort((a, b) => (a.order) - (b.order));
 
              // Adjust the order of all items that have an order greater than the new order
-            sortedFavorites.forEach(f => {
-                shiftItems(originalOrder, changedFavorite, f);
+            sortedItems.forEach(f => {
+                shiftItems(originalOrder, changed, f);
             });
 
             // Update the changed item with its new order (keep the existing title)
@@ -73,15 +73,15 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
             // .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
             // .sort((a, b) => (a.order) - (b.order));
 
-            const updatedFavorites = sortedFavorites
-            .map(favorite => {
-                if (favorite.uid === changedFavorite.uid) {
-                  return { ...favorite, order: changedFavorite.order };
+            const updatedItems = sortedItems
+            .map(f => {
+                if (f.uid === changed.uid) {
+                  return { ...f, order: changed.order };
                 }
-                return favorite;
+                return f;
             })
             .sort((a, b) => a.order - b.order);
-            setFavorites(updatedFavorites);
+            setFavorites(updatedItems);
         }
     }
 
