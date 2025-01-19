@@ -63,8 +63,6 @@ const HomePage: React.FC = () => {
     return (
         <div>
             <h1 className='title text-4xl p-1'>My favorites Videos</h1>
-            <video id="video" src="blob:https://geo.dailymotion.com/9f21066b-8ca8-4679-9e7f-d3a2c6b85880"></video>
-            <iframe id="ima_frame_sdk"></iframe>
 
             <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1">
                 <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />

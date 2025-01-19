@@ -196,7 +196,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                         {editMode ?
                             <>
                                 <textarea
-                                    className='flex w-full h-96'
+                                    className='flex w-full h-96 rounded-lg'
                                     defaultValue={data || ''}
                                     onBlur={(event: React.FocusEvent<HTMLTextAreaElement>) => handleReloadDataChange(event) }
                                     placeholder={`Example : \n ${sample}`}
@@ -208,52 +208,61 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                         }
                         <div>
                             { favorites?.map(kw => (
-                                <div key={crypto.randomUUID().toString()} className="flex flex-wrap gap-4 mt-2 items-center hover:border rounded-md border-gold bg-secondaryVariant">
-                                    <Link href={''} className="basis-1/8" onClick={() => deleteFavorite(kw.uid)}>
+                                <div key={crypto.randomUUID().toString()} className="flex flex-row gap-4 mt-2 items-center hover:border rounded-md border-tertiary bg-primaryVariant">
+                                    <Link href={''} className="basis-1/8 pl-1 left-0" onClick={() => deleteFavorite(kw.uid)}>
                                         delete
-                                    </Link>
-                                    <Link href={''} className={`basis-5/8 ${kw.order < 100 ? "text-gold" : ""}`} onClick={() => selectFavorite(kw)}>
-                                        <div>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
-                                        { kw.originalTitle ? <div className='pl-2 pr-2 w-fit border border-primaryVariant'>{kw.originalTitle}</div> : <></>}
-                                        { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
                                     </Link>
 
                                     { editMode ?
-                                        <div>
-                                            <input
-                                                className='basis-1/8 min-w-8 max-w-36 h-6'
+                                        <input
+                                                className='basis-1/8 min-w-8 max-w-28 h-6 w-10'
                                                 type="text"
                                                 defaultValue={kw.order || ''}
                                                 onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOrderBlur(event, kw) }
                                                 placeholder="order"
-                                            />
-                                            <input
-                                                className='basis-1/8 min-w-8 max-w-28 h-6 border'
-                                                type="text"
-                                                defaultValue={kw.originalTitle || ''}
-                                                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOriginalTitleBlur(event, kw) }
-                                                placeholder="original title"
-                                            />
-                                            <input
-                                                className='basis-1/8 min-w-8 max-w-28 h-6'
-                                                type="text"
-                                                defaultValue={kw.subtitle || ''}
-                                                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleSubtitleBlur(event, kw) }
-                                                placeholder="subtitle"
-                                            />
-                                            <input
-                                                className='basis-1/8 min-w-8 max-w-28 h-6 w-12'
-                                                type="text"
-                                                defaultValue={kw.lastEpisode || ''}
-                                                onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeBlur(event, kw) }
-                                                placeholder="episode"
-                                            />
+                                        />
+                                        : <></>
+                                    }
+
+                                    <Link href={''} className={`basis-3/8 text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => selectFavorite(kw)}>
+                                        <div className='underline underline-offset-4 decoration-primary'>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
+                                        { kw.originalTitle ? <div className='pr-2 w-fit'>{kw.originalTitle}</div> : <></>}
+                                        { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
+                                        { kw.lastEpisode ? <div>{kw.lastEpisode}</div> : <></>}
+                                    </Link>
+
+                                    { editMode ?
+                                        <div className='basis-3/8 right-0 items-center w-36'>
+                                            <div className='flex flex-col'>
+                                                <div className='h-6'></div>
+                                                <input
+                                                    className='min-w-8 max-w-48 h-6 w-36'
+                                                    type="text"
+                                                    defaultValue={kw.originalTitle || ''}
+                                                    onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOriginalTitleBlur(event, kw) }
+                                                    placeholder="original title"
+                                                />
+                                                <input
+                                                    className='min-w-8 max-w-48 h-6 w-36 '
+                                                    type="text"
+                                                    defaultValue={kw.subtitle || ''}
+                                                    onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleSubtitleBlur(event, kw) }
+                                                    placeholder="subtitle"
+                                                />
+                                                <input
+                                                    className='min-w-8 max-w-28 h-6 w-10'
+                                                    type="text"
+                                                    defaultValue={kw.lastEpisode || ''}
+                                                    onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleLastEpisodeBlur(event, kw) }
+                                                    placeholder="episode"
+                                                />
+                                            </div>
                                         </div>
                                     :
                                         <div>
-                                            <Link href={''} className="basis-1/8" onClick={() => selectFavorite(kw)}>
+                                            {/* <Link href={''} className="basis-3/8" onClick={() => selectFavorite(kw)}>
                                                 {`${ kw.lastEpisode ? kw.lastEpisode : ''}` }
-                                            </Link>
+                                            </Link> */}
                                         </div>
                                     }
                                 </div>

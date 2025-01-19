@@ -97,10 +97,15 @@
     --color-secondary: var(--color-darksteelblue);
     --color-secondary-variant: var(--color-darksteelblue-variant);
 
+    --color-tertiary: var(--color-gold);
+    --color-tertiary-variant: var(--color-gold-variant);
+
     --secondary: var(--color-secondary);
     --primary: var(--color-primary);
     --secondary-variant: var(--color-secondary-variant);
     --primary-variant: var(--color-primary-variant);
+    --tertiary: var(--color-tertiary);
+    --tertiary-variant: var(--color-tertiary-variant);
 
     --background: var(--color-secondary);
     --foreground: var(--color-primary);
@@ -112,14 +117,21 @@
     /* --background: #ffffff; */
     /* --foreground: #171717; */
 
-
-    /* foreground */
     --color-primary: var(--color-darkpapayawhip);
     --color-primary-variant: var(--color-darkpapayawhip-variant);
 
-    /* background */
-    --color-secondary: var(--color-peachpuff);
-    --color-secondary-variant: var(--color-peachpuff-variant);
+    --color-secondary: var(--color-lemonchiffon);
+    --color-secondary-variant: var(--color-lemonchiffon-variant);
+
+    --color-tertiary: var(--color-salmon);
+    --color-tertiary-variant: var(--color-salmon-variant);
+
+    --secondary: var(--color-secondary);
+    --primary: var(--color-primary);
+    --secondary-variant: var(--color-secondary-variant);
+    --primary-variant: var(--color-primary-variant);
+    --tertiary: var(--color-tertiary);
+    --tertiary-variant: var(--color-tertiary-variant);
 
     --background: var(--color-secondary);
     --foreground: var(--color-primary);
@@ -182,7 +194,7 @@ section {
 section > h2,
 section > h5 {
   text-align: center;
-  color: var(--color-light);
+  color: var(--color-primary);
 }
 
 section > h2 {
@@ -191,13 +203,13 @@ section > h2 {
 }
 
 article {
-  color: var(--color-light);
+  color: var(--color-primary);
   padding: 0.1rem 2.2rem;
 }
 
 input {
   background: var(--color-secondary);
-  color: var(--color-light);
+  color: var(--color-tertiary);
   padding: 0.25rem 0.33rem;
   margin: 0.25rem;
   border: 1px solid var(--color-primary);
@@ -205,8 +217,23 @@ input {
 }
 
 input:hover {
-  background: var(--color-white);
-  color: var(--color-secondary);
+  background: var(--color-secondary-variant);
+  color: var(--color-parimary-variant);
+  border-color: transparent;
+}
+
+textarea {
+  background: var(--color-secondary);
+  color: var(--color-tertiary);
+  padding: 0.25rem 0.33rem;
+  margin: 0.25rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.4rem;
+}
+
+textarea:hover {
+  background: var(--color-secondary-variant);
+  color: var(--color-parimary-variant);
   border-color: transparent;
 }
 
@@ -223,7 +250,7 @@ button {
 }
 
 button:hover {
-  background: var(--color-white);
+  background: var(--color-tertiary);
   color: var(--color-secondary);
   border-color: transparent;
 }
@@ -234,7 +261,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-white);
+  color: var(--color-tertiary);
 }
 
 img {
@@ -244,42 +271,9 @@ img {
 }
 
 
-
-
-
 .main {
   width: var(--container-width-lg);
   margin: 0 auto;
-}
-
-.text-white {
-  color: var(--color-white);
-}
-
-.text-light {
-  color: var(--color-light);
-}
-
-.btn {
-  width: max-content;
-  display: inline;
-  color: var(--color-primary);
-  padding: 0.75rem 1.2rem;
-  border-radius: 0.4rem;
-  cursor: pointer;
-  border: 1px solid var(--color-primary);
-  transition: var(--transition);
-}
-
-.btn:hover {
-  background: var(--color-white);
-  color: var(--color-secondary);
-  border-color: transparent;
-}
-
-.btn-primary {
-  background: var(--color-primary);
-  color: var(--color-secondary);
 }
 
 

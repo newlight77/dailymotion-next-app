@@ -57,7 +57,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
 
             {
                 videos.length !== 0 ?
-                <div className="flex pb-4">
+                <div className="flex pb-4 text-primary">
                     <input
                         type="text"
                         value={filterKeywords}
@@ -65,7 +65,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
                         placeholder="filter on title"
                     />
                     <input
-                        type="text"
+                        type="text text-primary"
                         value={exclusions}
                         onChange={onExclusionsInputChange}
                         placeholder="exclusions on title"
@@ -98,12 +98,17 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
                             <div className=''>view on dailymotion</div>
                         </Link>
                         <div className=''>
-                            <div className='title font-extrabold text-xl text-wrap'>{video.title}</div>
+                            <Link className='titlelink'
+                                href={`/video/${video.id}`}
+                                target="_blank"
+                                onClick={() => selectVideo(video)}>
+                                <div className='title font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
+                            </Link>
                             <div className='description text-sm text-wrap'>{video.description}</div>
                             <Link className='followinglink'
                                 href={''}
                                 onClick={() => followOwner({uid: video.id, owner: video.ownerUsername, order: 0})}>
-                                <div className=''>follow <span className='p-1 border border-primaryVariant bg-secondaryVariant'>{`${video.ownerUsername}`}</span></div>
+                                <div className=''>follow <span className='p-1 text-tertiary'>{`${video.ownerUsername}`}</span></div>
                             </Link>
                             <div className='flex flex-wrap items-center'>
                                 <div className='basis-1/2'>duration: {displayDuration(video.duration)}</div>
