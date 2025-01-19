@@ -61,7 +61,7 @@ const HomePage: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className='container'>
             <h1 className='title text-4xl p-1'>My favorites Videos</h1>
 
             <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1">
