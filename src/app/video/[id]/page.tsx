@@ -33,7 +33,7 @@ const VideoPage: React.FC = () => {
     }, [id]);
 
     return (
-        <div className='container'>
+        <div className='container w-full'>
             {video ? <VideoPlayer videoId={video.id} videoTitle={video.title} /> : <div>Loading...</div>}
         </div>
     );

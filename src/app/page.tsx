@@ -62,13 +62,13 @@ const HomePage: React.FC = () => {
 
     return (
         <div className='container'>
-            <h1 className='title text-4xl p-1'>My favorites Videos</h1>
+            <h2 className='title text-4xl p-1 md:p-4'>Search Videos</h2>
 
             <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1">
                 <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
             </div>
             <div className='search'>
-                <div className='search-bar md:p-4'>
+                <div className='search-bar'>
                     <div className='history md:flex flex-wrap'>
                         <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
                             <SearchHistory onSelected={handleSelectSearchHistory} onAddToFavorite={handleAddSearchToFavorite} newKeywords={newToHsitory} />

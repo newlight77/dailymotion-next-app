@@ -53,7 +53,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
     }
 
     return (
-        <div className="pt-4 md:p-4">
+        <div className="pt-4 md:p-2">
 
             {
                 videos.length !== 0 ?

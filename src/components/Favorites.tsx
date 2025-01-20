@@ -221,7 +221,8 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                                                 onBlur={(event: React.ChangeEvent<HTMLInputElement>) => handleOrderBlur(event, kw) }
                                                 placeholder="order"
                                         />
-                                        : <></>
+                                        :
+                                        <div>{kw.order < 100 ? kw.order : ''}</div>
                                     }
 
                                     <Link href={''} className={`basis-3/8 text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => selectFavorite(kw)}>
