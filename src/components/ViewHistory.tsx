@@ -20,7 +20,6 @@ export type LastView = {
 
 const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAddToFavorite, onFollowOwner }) => {
     const [history, setHistory] = useLocalStorage<LastView[]>(`view-history`, []);
-    const [show, setShow] = React.useState(false)
 
     const addToRecentViews = (lastView?: LastView) => {
         if (lastView && history) {
@@ -59,32 +58,11 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
         console.log('clear view history ', history);
     }
 
-    function toggleShowHide(): void {
-        setShow(show ? false : true);
-    }
-
     return (
         <div className="p-1 md:gap-4 md:p-4 sm:p-1 sm:gap-1">
-            <div>
-                <div className="flex flex-row pb-4 items-center">
-                    <Link href={''} onClick={toggleShowHide}>
-                    { show ? '' : 'show my recent views' }
-                    </Link>
-                    { show ?
-                        <div>
-                            <Link href={''} onClick={toggleShowHide}>
-                                <h3>My recent views</h3>
-                            </Link>
-                            <Link href={''} onClick={clearHistory}>clear</Link>
-                        </div>
-                        :
-                        ''
-                    }
-                </div>
-            </div>
             <div className='items-center'>
                 <div>
-                    { show && history ?.map(s => (
+                    { history ?.map(s => (
                         <div key={s.id} className="flex flex-row gap-4 items-center">
                             <Link href={''} className="basis-1/8" onClick={() => addToFavorites(s)}>
                                 add to favorite

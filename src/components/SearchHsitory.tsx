@@ -15,7 +15,6 @@ type SearchKeywords = {
 
 const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAddToFavorite }) => {
     const [history, setHistory] = useLocalStorage<SearchKeywords[]>(`search-history`, []);
-    const [show, setShow] = React.useState(false)
 
     const addToHistory = (newKeywords?: string) => {
         if (newKeywords && history) {
@@ -49,52 +48,26 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
         setHistory([]);
     }
 
-    function toggleShowHide(): void {
-        setShow(show ? false : true);
-    }
-
     return (
         <div className="p-1 md:gap-4 md:p-4 sm:p-1 sm:gap-1">
             <div>
-                <div className="flex flex-row pb-4 items-center">
-                    <Link href={''} onClick={toggleShowHide}>
-                    { show ? '' : 'show my recent searches' }
-                    </Link>
-                    { show ?
-                        <div>
-                            <Link href={''} onClick={toggleShowHide}>
-                                <h3>My recent searches</h3>
-                            </Link>
-                            <Link href={''} onClick={clearHistory}>clear</Link>
-                        </div>
-                        :
-                        ''
-                    }
-                </div>
-            </div>
-            <div>
-                {
-                    show ?
+                <div>
                     <div>
-                        <div>
-                        { history?.map(s => (
-                            <div key={s.uid} className="flex flex-row gap-4 items-center">
-                                <Link href={''} className="basis-1/8" onClick={() => addToFavorites(s.keywords)}>
-                                    add to favorite
-                                </Link>
-                                <Link href={''} className="basis-1/8" onClick={() => deleteFromHistory(s.uid)}>
-                                    delete
-                                </Link>
-                                <Link href={''} className="basis-1/2" onClick={() => selectKeywords(s.keywords)}>
-                                    {s.keywords}
-                                </Link>
-                            </div>
-                        ))}
+                    { history?.map(s => (
+                        <div key={s.uid} className="flex flex-row gap-4 items-center">
+                            <Link href={''} className="basis-1/8" onClick={() => addToFavorites(s.keywords)}>
+                                add to favorite
+                            </Link>
+                            <Link href={''} className="basis-1/8" onClick={() => deleteFromHistory(s.uid)}>
+                                delete
+                            </Link>
+                            <Link href={''} className="basis-1/2" onClick={() => selectKeywords(s.keywords)}>
+                                {s.keywords}
+                            </Link>
                         </div>
+                    ))}
                     </div>
-                    :
-                    <></>
-            }
+                </div>
             </div>
         </div>
     );

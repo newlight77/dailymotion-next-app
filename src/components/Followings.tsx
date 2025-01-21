@@ -26,7 +26,6 @@ export type Following = {
 
 const Followings: React.FC<ViewFollowingsProps> = ({ newFollowing }) => {
     const [followings, setFollowings] = useLocalStorage<Following[]>(`followings`, FOLLOWINGS);
-    const [show, setShow] = React.useState(false)
 
     const addNewFollowing = (following?: Following) => {
         if (following && followings) {
@@ -56,33 +55,11 @@ const Followings: React.FC<ViewFollowingsProps> = ({ newFollowing }) => {
         setFollowings([]);
     }
 
-    function toggleShowHide(): void {
-        setShow(show ? false : true);
-    }
-
     return (
         <div className="p-1 md:gap-4 md:p-4 sm:p-1 sm:gap-1">
-            <div>
-                <div className="flex flex-row pb-4 items-center">
-                    <Link href={''} onClick={toggleShowHide}>
-                    { show ? '' : 'show my followings' }
-                    </Link>
-                    { show ?
-                        <div className='gap-4'>
-                            <Link href={''} onClick={toggleShowHide}>
-                                <h3>My followings</h3>
-                            </Link>
-                            <Link className='pr-4' href={''} onClick={clearFollowings}>clear</Link>
-                            <Link className='pr-4' href={''} onClick={resetFollowings}>reset</Link>
-                        </div>
-                        :
-                        ''
-                    }
-                </div>
-            </div>
             <div className='items-center'>
                 <div>
-                    { show && followings ?.map(s => (
+                    { followings ?.map(s => (
                         <div key={s.uid} className="flex flex-row gap-4 items-center">
                             <Link href={''} className="basis-1/8" onClick={() => deleteFollowing(s.uid)}>
                                 delete

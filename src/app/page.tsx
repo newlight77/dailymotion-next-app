@@ -7,6 +7,7 @@ import Favorites, { FavoriteType } from '@/components/Favorites';
 import SearchHistory from '@/components/SearchHsitory';
 import ViewHistory, { LastView } from '@/components/ViewHistory';
 import Followings, { Following } from '@/components/Followings';
+import Collapsable from '@/components/Collapsable';
 
 
 const HomePage: React.FC = () => {
@@ -65,19 +66,27 @@ const HomePage: React.FC = () => {
             <h2 className='title text-4xl p-1 md:p-4'>Search Videos</h2>
 
             <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1">
-                <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
+                <Collapsable title={'My favorites'} collapsedLabel={'show my favorites'}>
+                    <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
+                </Collapsable>
             </div>
             <div className='search'>
                 <div className='search-bar'>
                     <div className='history md:flex flex-wrap'>
                         <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                            <SearchHistory onSelected={handleSelectSearchHistory} onAddToFavorite={handleAddSearchToFavorite} newKeywords={newToHsitory} />
+                            <Collapsable title={'My favorites'} collapsedLabel={'show my favorites'}>
+                                <SearchHistory onSelected={handleSelectSearchHistory} onAddToFavorite={handleAddSearchToFavorite} newKeywords={newToHsitory} />
+                            </Collapsable>
                         </div>
                         <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                            <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} onFollowOwner={handleAddViewToFollowingUser} newLastView={newToLastview} />
+                            <Collapsable title={'My recent searches'} collapsedLabel={'show my recent searches'}>
+                                <ViewHistory onSelected={handleSelectRecentView} onAddToFavorite={handleAddRecentViewToFavorite} onFollowOwner={handleAddViewToFollowingUser} newLastView={newToLastview} />
+                            </Collapsable>
                         </div>
                         <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                            <Followings onSelected={handleSelectFollowing} newFollowing={newToFollowingFollowing} />
+                            <Collapsable title={'My last views'} collapsedLabel={'show my followings'}>
+                                <Followings onSelected={handleSelectFollowing} newFollowing={newToFollowingFollowing} />
+                            </Collapsable>
                         </div>
                     </div>
                     <SearchBar onSearch={handleSearch} newKeywords={newKeywords}/>
