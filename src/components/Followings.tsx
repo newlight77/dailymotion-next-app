@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocalStorage } from '@/shared/useLocalStorage';
 import Link from 'next/link'
-import followings from './data/followings';
+import followings from '../data/followings';
 
 
 const LOWEST_ORDER = Number.MAX_VALUE;
