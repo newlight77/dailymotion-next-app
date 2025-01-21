@@ -60,6 +60,11 @@ const ViewHistory: React.FC<ViewHistoryProps> = ({ newLastView, onSelected, onAd
 
     return (
         <div className="p-1 md:gap-4 md:p-4 sm:p-1 sm:gap-1">
+            <div>
+                <div className="pb-4">
+                    <Link href={''} onClick={clearHistory}>clear</Link>
+                </div>
+            </div>
             <div className='items-center'>
                 <div>
                     { history ?.map(s => (

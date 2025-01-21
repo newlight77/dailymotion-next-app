@@ -51,6 +51,11 @@ const SearchHistory: React.FC<SearchBarProps> = ({ newKeywords, onSelected, onAd
     return (
         <div className="p-1 md:gap-4 md:p-4 sm:p-1 sm:gap-1">
             <div>
+                <div className="pb-4">
+                    <Link href={''} onClick={clearHistory}>clear</Link>
+                </div>
+            </div>
+            <div>
                 <div>
                     <div>
                     { history?.map(s => (

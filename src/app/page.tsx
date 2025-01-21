@@ -84,7 +84,7 @@ const HomePage: React.FC = () => {
                             </Collapsable>
                         </div>
                         <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                            <Collapsable title={'My last views'} collapsedLabel={'show my followings'}>
+                            <Collapsable title={'My last followings'} collapsedLabel={'show my followings'}>
                                 <Followings onSelected={handleSelectFollowing} newFollowing={newToFollowingFollowing} />
                             </Collapsable>
                         </div>

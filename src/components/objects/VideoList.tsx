@@ -4,7 +4,7 @@ import { MetaVideo } from '../../service/searchVideo';
 import Image from 'next/image';
 import { LastView } from './ViewHistory';
 import { Following } from './Followings';
-import VideoCard from '../molecules/VideoCard';
+import VideoCard from '../organisms/VideoCard';
 
 
 interface VideoListProps {
