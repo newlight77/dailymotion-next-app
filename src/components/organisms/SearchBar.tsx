@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SearchParams, SearchResponse, searchVideos } from '../service/searchVideo';
+import { SearchParams, SearchResponse, searchVideos } from '../../service/searchVideo';
 
 
 interface SearchBarProps {

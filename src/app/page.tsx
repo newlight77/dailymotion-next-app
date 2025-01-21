@@ -1,13 +1,13 @@
 "use client"
 import React, { useState } from 'react';
-import SearchBar from '../components/SearchBar';
-import VideoList from '../components/VideoList';
+import SearchBar from '../components/organisms/SearchBar';
+import VideoList from '../components/objects/VideoList';
 import { MetaVideo, SearchResponse } from '../service/searchVideo';
-import Favorites, { FavoriteType } from '@/components/Favorites';
-import SearchHistory from '@/components/SearchHsitory';
-import ViewHistory, { LastView } from '@/components/ViewHistory';
-import Followings, { Following } from '@/components/Followings';
-import Collapsable from '@/components/Collapsable';
+import Favorites, { FavoriteType } from '@/components/objects/Favorites';
+import SearchHistory from '@/components/objects/SearchHsitory';
+import ViewHistory, { LastView } from '@/components/objects/ViewHistory';
+import Followings, { Following } from '@/components/objects/Followings';
+import Collapsable from '@/components/molecules/Collapsable';
 
 
 const HomePage: React.FC = () => {

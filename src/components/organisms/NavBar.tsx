@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaTimes, FaBars } from 'react-icons/fa';
-import donghua from '../../public/donghua.png';
+import donghua from '../../../public/donghua.png';
 
 
 const links = [

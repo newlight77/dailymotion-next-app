@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
-import { MetaVideo } from '../service/searchVideo';
+import { MetaVideo } from '../../service/searchVideo';
 import Image from 'next/image';
 import { LastView } from './ViewHistory';
 import { Following } from './Followings';

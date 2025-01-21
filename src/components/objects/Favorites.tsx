@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from '@/shared/useLocalStorage';
 import Link from 'next/link'
-import serie from '../data/series';
+import serie from '../../data/series';
 
 const LOWEST_ORDER = Number.MAX_VALUE;
 
