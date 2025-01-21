@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
         <div className='container'>
             <h2 className='title text-4xl p-1 md:p-4'>Search Videos</h2>
 
-            <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1">
+            <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1 w-1/3">
                 <Collapsable title={'My favorites'} collapsedLabel={'show my favorites'}>
                     <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
                 </Collapsable>
