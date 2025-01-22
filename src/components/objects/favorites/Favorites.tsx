@@ -1,20 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useLocalStorage } from '@/shared/useLocalStorage';
+import React, { useState } from 'react';
 import Link from 'next/link'
-import serie from '../../data/series';
-
-const LOWEST_ORDER = Number.MAX_VALUE;
-
-const FAVORITES: FavoriteType[] = [
-    ...serie,
-]
-// dedup
-.reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
-// .sort((a: FavoriteType, b: FavoriteType) => a.title.localeCompare(b.title));
-.sort((a: FavoriteType, b: FavoriteType) => (a.order ?? LOWEST_ORDER) - (b.order ?? LOWEST_ORDER));
+import { useFavorites } from '@/components/objects/favorites/FavoritesProvider';
 
 interface FavoritesProps {
-    newFavorite?: FavoriteType,
     onSelected: (favorite: FavoriteType) => void;
 }
 
@@ -24,78 +12,24 @@ export type FavoriteType = {
     order: number,
     originalTitle?: string,
     subtitle?: string,
+    owner?: string,
     lastEpisode?: string,
     total?: number
 }
 
-const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
-    const [favorites, setFavorites] = useLocalStorage<FavoriteType[]>(`favorites`, FAVORITES);
+const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
+    const { items, remove, addOrUpdate, loadData, reset } = useFavorites();
+
     const [editMode, setEditMode] = useState(false);
     const [data, setData] = React.useState('')
 
-    const addOrUpdate = (favorite?: FavoriteType) => {
-        if (favorite && favorites) {
-            const newFavorite: FavoriteType = { ...favorite, uid: favorite.uid ? favorite.uid : crypto.randomUUID().toString() }
-            const newFavorites = [newFavorite, ...favorites]
-                // dedup
-                .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
-                .sort((a, b) => (a.order) - (b.order));
-            setFavorites(newFavorites);
-        }
-    }
-
-    const shiftItems = (originalOrder: number, changed: FavoriteType, current: FavoriteType) => {
-        if (changed.order < originalOrder) {
-            if (changed.order <= current.order && current.order <= originalOrder) {
-                current.order += 1;
-            }
-        }
-        if (changed.order > originalOrder) {
-            if (changed.order >= current.order && current.order >= originalOrder) {
-                current.order -= 1;
-            }
-        }
-    }
-
-    const insertAtAndShiftAllItemsOrder = (originalOrder: number, changed?: FavoriteType) => {
-        if (changed && favorites) {
-            const sortedItems = favorites.sort((a, b) => (a.order) - (b.order));
-
-             // Adjust the order of all items that have an order greater than the new order
-            sortedItems.forEach(f => {
-                shiftItems(originalOrder, changed, f);
-            });
-
-            // Update the changed item with its new order (keep the existing title)
-            // const updatedFavorite: FavoriteType = { ...changedFavorite, order: changedFavorite.order  }
-            // const updatedFavorites = [updatedFavorite, ...sortedFavorites]
-            // .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
-            // .sort((a, b) => (a.order) - (b.order));
-
-            const updatedItems = sortedItems
-            .map(f => {
-                if (f.uid === changed.uid) {
-                  return { ...f, order: changed.order };
-                }
-                return f;
-            })
-            .sort((a, b) => a.order - b.order);
-            setFavorites(updatedItems);
-        }
-    }
-
-    useEffect(() => {
-        addOrUpdate(newFavorite);
-    }, [newFavorite]);
-
-    const selectFavorite = async (selected: FavoriteType) => {
+    const handleSelectFavorite = async (selected: FavoriteType) => {
         onSelected(selected)
     }
 
-    const deleteFavorite = async (uid: string) => {
-        if (favorites) {
-            const newFavorites = favorites.filter(s => s.uid !== uid)
-            setFavorites(newFavorites);
+    const handleDeleteFavorite = async (uid: string) => {
+        if (items) {
+            remove(uid);
         }
     }
 
@@ -107,7 +41,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
 
     const handleOrderBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
         if (event.target.value !== selected.order?.toString() ) {
-            insertAtAndShiftAllItemsOrder(selected.order, { ...selected, order: Number(event.target.value) });
+            addOrUpdate({ ...selected, order: Number(event.target.value) });
         }
     };
 
@@ -129,22 +63,18 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
         }
     };
 
-    const loadData = () => {
+    const reloadData = () => {
         if (data) {
             try {
                 const newFavorites = (JSON.parse(data) as FavoriteType[])
                 .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
-                setFavorites(newFavorites);
+                loadData(newFavorites);
             } catch (error) {
                 // display error latet
                 alert(`there is an error with the json you try to load : ${error}`);
             }
         }
     };
-
-    function resetFavorites(): void {
-        setFavorites(FAVORITES);
-    }
 
     function toggleEditFavorites(): void {
         setEditMode(editMode ? false : true);
@@ -172,7 +102,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
             <div className='favorties-header'>
                 <div className="pb-4">
                     <Link href={''} className="pr-4" onClick={toggleEditFavorites}>edit</Link>
-                    <Link href={''} className="pr-4" onClick={resetFavorites}>reset</Link>
+                    <Link href={''} className="pr-4" onClick={reset}>reset</Link>
                 </div>
                 {editMode ?
                     <>
@@ -182,16 +112,16 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                             onBlur={(event: React.FocusEvent<HTMLTextAreaElement>) => handleReloadDataChange(event) }
                             placeholder={`Example : \n ${sample}`}
                         ></textarea>
-                        <button onClick={loadData}>load</button>
+                        <button onClick={reloadData}>load</button>
                     </>
                     :
                     <></>
                 }
             </div>
             <div className='favorites-list flex flex-col gap-2'>
-                { favorites?.map(kw => (
+                { items?.map(kw => (
                     <div key={crypto.randomUUID().toString()} className="grid grid-cols-8 gap-4 items-center hover:border rounded-md border-tertiary bg-primaryVariant">
-                        <Link href={''} className="col-span-1 pl-1 left-0" onClick={() => deleteFavorite(kw.uid)}>
+                        <Link href={''} className="col-span-1 pl-1 left-0" onClick={() => handleDeleteFavorite(kw.uid)}>
                             delete
                         </Link>
 
@@ -206,7 +136,7 @@ const Favorites: React.FC<FavoritesProps> = ({ newFavorite, onSelected }) => {
                             <div className='col-span-1 min-w-8 max-w-28 h-6 w-10'>{kw.order < 100 ? kw.order : ''}</div>
                         }
 
-                        <Link href={''} className={`col-span-3 text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => selectFavorite(kw)}>
+                        <Link href={''} className={`col-span-3 text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => handleSelectFavorite(kw)}>
                             <div className='underline underline-offset-4 decoration-primary'>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
                             { kw.originalTitle ? <div className='pr-2 w-fit'>{kw.originalTitle}</div> : <></>}
                             { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}

@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useLocalStorage } from '@/shared/useLocalStorage';
+import React from 'react';
 import Link from 'next/link'
 
 interface CollapsableProps {

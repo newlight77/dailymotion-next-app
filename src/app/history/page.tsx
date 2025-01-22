@@ -1,5 +1,5 @@
 "use client"
-import { FavoriteType } from '@/components/objects/Favorites';
+import { FavoriteType } from '@/components/objects/favorites/Favorites';
 import { Following } from '@/components/objects/Followings';
 import SearchHistory from '@/components/objects/SearchHsitory';
 import ViewHistory, { LastView } from '@/components/objects/ViewHistory';

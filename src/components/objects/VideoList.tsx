@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Link from 'next/link'
 import { MetaVideo } from '../../service/searchVideo';
-import Image from 'next/image';
 import { LastView } from './ViewHistory';
 import { Following } from './Followings';
 import VideoCard from '../organisms/VideoCard';
@@ -57,7 +55,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
                     .filter(v => exclusions !== '' ? !v.ownerUsername.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
-                        <VideoCard video={video} onAddLastView={onSelected} onFollowOwner={onFollowOwner}></VideoCard>
+                        <VideoCard key={video.id} video={video} onAddLastView={onSelected} onFollowOwner={onFollowOwner}></VideoCard>
                     ))
                 }
             </div>

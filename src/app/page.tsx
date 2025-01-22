@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import SearchBar from '../components/organisms/SearchBar';
 import VideoList from '../components/objects/VideoList';
 import { MetaVideo, SearchResponse } from '../service/searchVideo';
-import Favorites, { FavoriteType } from '@/components/objects/Favorites';
+import Favorites, { FavoriteType } from '@/components/objects/favorites/Favorites';
 import SearchHistory from '@/components/objects/SearchHsitory';
 import ViewHistory, { LastView } from '@/components/objects/ViewHistory';
 import Followings, { Following } from '@/components/objects/Followings';
@@ -67,7 +67,7 @@ const HomePage: React.FC = () => {
 
             <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1 w-1/3">
                 <Collapsable title={'My favorites'} collapsedLabel={'show my favorites'}>
-                    <Favorites onSelected={handleSelectFavorite} newFavorite={newToFavortie} />
+                    <Favorites onSelected={handleSelectFavorite} />
                 </Collapsable>
             </div>
             <div className='search'>
