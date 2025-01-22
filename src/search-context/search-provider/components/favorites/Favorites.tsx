@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
-import { useFavorites } from '@/components/objects/favorites/FavoritesProvider';
+import { useFavorites } from './FavoritesProvider';
 
 interface FavoritesProps {
     onSelected: (favorite: FavoriteType) => void;
@@ -19,7 +19,6 @@ export type FavoriteType = {
 
 const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
     const { items, remove, addOrUpdate, loadData, reset } = useFavorites();
-
     const [editMode, setEditMode] = useState(false);
     const [data, setData] = React.useState('')
 
@@ -76,7 +75,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
         }
     };
 
-    function toggleEditFavorites(): void {
+    function toggleEditMode(): void {
         setEditMode(editMode ? false : true);
     }
 
@@ -101,7 +100,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
         <div className='sm:p-1 md:p-2 min-w-80 bg-secondaryVariant'>
             <div className='favorties-header'>
                 <div className="pb-4">
-                    <Link href={''} className="pr-4" onClick={toggleEditFavorites}>edit</Link>
+                    <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
                     <Link href={''} className="pr-4" onClick={reset}>reset</Link>
                 </div>
                 {editMode ?

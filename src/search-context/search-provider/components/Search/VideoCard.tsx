@@ -1,26 +1,37 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { MetaVideo } from '@/service/searchVideo';
-import { LastView } from '../objects/ViewHistory';
-import { Following } from '../objects/Followings';
-
+import { MetaVideo, VideoType } from '../../service/searchVideo';
 
 
 interface VideoCardProps {
     video: MetaVideo;
-    onAddLastView: (lastView: LastView) => void;
-    onFollowOwner: (following: Following) => void;
+    onAddLastView: (lastView: VideoType) => void;
+    onFollowOwner: (following: VideoType) => void;
 }
 
 const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollowOwner}) => {
 
-    const addLastView = (video: MetaVideo) => {
-        onAddLastView({id: video.id, title: video.title, episode: '', owner: video.ownerUsername, link: `https://www.dailymotion.com/video/${video.id}`});
+    const handleAddLastView = (video: MetaVideo) => {
+        const v = {
+            videoId: video.id,
+            title: video.title,
+            episode: '',
+            owner: video.ownerUsername,
+            link: `https://www.dailymotion.com/video/${video.id}`
+        }
+        onAddLastView(v);
     }
 
-    const followOwner = (following: Following) => {
-        onFollowOwner({uid: following.uid, owner: following.owner, order: 0});
+    const handleFollowOwner = (video: MetaVideo) => {
+        const v = {
+            videoId: video.id,
+            title: video.title,
+            episode: '',
+            owner: video.ownerUsername,
+            link: `https://www.dailymotion.com/video/${video.id}`
+        }
+        onFollowOwner(v);
     }
 
     const dateTimeFormat: Intl.DateTimeFormatOptions = {
@@ -47,7 +58,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
             <Link className='view'
                     href={`/video/${video.id}`}
                     target="_blank"
-                    onClick={() => addLastView(video)}>
+                    onClick={() => handleAddLastView(video)}>
                 <Image className='video'
                     src={video.thumbnail_480_url}
                     alt={video.title}
@@ -61,13 +72,13 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                 <Link className='titlelink'
                     href={`/video/${video.id}`}
                     target="_blank"
-                    onClick={() => addLastView(video)}>
+                    onClick={() => handleAddLastView(video)}>
                     <div className='title font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
                 </Link>
                 <div className='description text-sm text-wrap'>{video.description}</div>
                 <Link className='followinglink'
                     href={''}
-                    onClick={() => followOwner({uid: video.id, owner: video.ownerUsername, order: 0})}>
+                    onClick={() => handleFollowOwner(video)}>
                     <div className=''>follow <span className='p-1 text-tertiary'>{`${video.ownerUsername}`}</span></div>
                 </Link>
                 <div className='flex flex-wrap items-center'>

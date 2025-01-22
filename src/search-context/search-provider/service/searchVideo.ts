@@ -1,4 +1,4 @@
-import { queryParamsToQueryString } from "../shared/httpUtil";
+import { queryParamsToQueryString } from "@/shared/httpUtil";
 
 // export interface MetaVideo {
 //   id: string;
@@ -21,6 +21,14 @@ import { queryParamsToQueryString } from "../shared/httpUtil";
 //   updated_time: number;
 //   duration: number;
 // }
+
+export type VideoType = {
+  videoId: string
+  title: string,
+  owner: string,
+  episode: string,
+  link: string,
+}
 
 export interface MetaVideo {
   id: string;

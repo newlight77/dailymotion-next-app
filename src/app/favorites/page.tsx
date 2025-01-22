@@ -1,6 +1,6 @@
 "use client"
 
-import Favorites, { FavoriteType } from "@/components/objects/favorites/Favorites";
+import Favorites, { FavoriteType } from "@/search-context/search-provider/components/favorites/Favorites";
 
 
 const FavoritesPage: React.FC = () => {

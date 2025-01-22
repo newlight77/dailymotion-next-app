@@ -1,9 +1,10 @@
 'use client'
 import React, { useContext, useMemo } from 'react';
-import { FavoriteType } from "@/components/objects/favorites/Favorites";
 import { createContext } from "react";
-import { useStorage } from '../../../shared/useStorage';
-import serie from '../../../data/series';
+import { useStorage } from '@/shared/useStorage';
+import serie from '@/data/series';
+
+import { FavoriteType } from "./Favorites";
 
 
 const LOWEST_ORDER = Number.MAX_VALUE;
@@ -13,7 +14,6 @@ const FAVORITES: FavoriteType[] = [
 ]
 // dedup
 // .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], [])
-// .sort((a: FavoriteType, b: FavoriteType) => a.title.localeCompare(b.title));
 .sort((a: FavoriteType, b: FavoriteType) => (a.order ?? LOWEST_ORDER) - (b.order ?? LOWEST_ORDER));
 
 
@@ -39,13 +39,13 @@ export const FavoritesContext = createContext<FavoriteContextType>({
 });
 
 
-type AuthProviderProps = {
+type Props = {
   children: React.ReactNode
 }
 
-export const FavoritesProvider = ({ children }: AuthProviderProps): JSX.Element => {
+export const FavoritesProvider = ({ children }: Props): React.ReactElement => {
 
-  const [item, items, remove, addOrUpdate, loadData, reset, clear] = useStorage<FavoriteType>(`favorites`, FAVORITES);
+  const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FavoriteType>(`favorites`, FAVORITES);
 
   const memoedValue = useMemo(
     () => ({

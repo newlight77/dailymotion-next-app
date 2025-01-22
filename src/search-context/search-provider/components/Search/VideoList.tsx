@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { MetaVideo } from '../../service/searchVideo';
-import { LastView } from './ViewHistory';
-import { Following } from './Followings';
-import VideoCard from '../organisms/VideoCard';
+import { MetaVideo, VideoType } from '../../service/searchVideo';
+import VideoCard from './VideoCard';
 
 
 interface VideoListProps {
     videos: MetaVideo[];
-    onSelected: (lastView: LastView) => void;
-    onFollowOwner: (following: Following) => void;
+    onAddLastView: (lastView: VideoType) => void;
+    onFollowOwner: (following: VideoType) => void;
 }
 
-const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner }) => {
+const VideoList: React.FC<VideoListProps> = ({ videos, onAddLastView, onFollowOwner }) => {
 
     const [filterKeywords, setFilterKeywords] = useState('');
     const [exclusions, setExclusions] = useState('');
@@ -55,7 +53,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onSelected, onFollowOwner
                     .filter(v => exclusions !== '' ? !v.ownerUsername.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
-                        <VideoCard key={video.id} video={video} onAddLastView={onSelected} onFollowOwner={onFollowOwner}></VideoCard>
+                        <VideoCard key={video.id} video={video} onAddLastView={onAddLastView} onFollowOwner={onFollowOwner}></VideoCard>
                     ))
                 }
             </div>

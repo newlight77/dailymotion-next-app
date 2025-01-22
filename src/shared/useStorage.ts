@@ -11,7 +11,7 @@ type Storage = {
 export type UseStorageType = typeof useStorage;
 
 export function useStorage<S extends Storage>(key: string, defaultValue: S[]):
-  [
+  {
     item: S | undefined,
     items: S[] | undefined,
     remove: (uid: string) => void,
@@ -19,7 +19,7 @@ export function useStorage<S extends Storage>(key: string, defaultValue: S[]):
     loadData: (data: S[]) => void,
     reset: () => void,
     clear: () => void,
-  ] {
+  } {
 
   const [item, setItem] = useState<S>();
   const [items, setItems] = useLocalStorage<S[]>(key, defaultValue);
@@ -118,5 +118,5 @@ export function useStorage<S extends Storage>(key: string, defaultValue: S[]):
     setItems(defaultValue);
   }
 
-  return [item, items, remove, addOrUpdate, loadData, reset, clear];
+  return {item, items, remove, addOrUpdate, loadData, reset, clear};
 };

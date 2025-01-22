@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { queryParamsToQueryString } from "../shared/httpUtil";
+import { queryParamsToQueryString } from "@/shared/httpUtil";
 
 export interface MetaVideo {
   id: string;

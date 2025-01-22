@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect } from 'react';
-import VideoPlayer from '../../../components/organisms/VideoPlayer';
-import { getVideo, VideoResponse } from '../../../service/getVideo';
 import { useParams } from 'next/navigation';
+import { getVideo, VideoResponse } from '@/search-context/search-provider/service/getVideo';
+import VideoPlayer from '@/components/organisms/VideoPlayer';
 
 
 type Video = {
@@ -15,7 +15,7 @@ type Video = {
 // }
 
 // const VideoPage: React.FC<ParamsType> = ({ params }: ParamsType) => {
-    // const { id } = React.use(params);
+// const { id } = React.use(params);
 const VideoPage: React.FC = () => {
     const { id } = useParams<{ id: string}>();
     const [video, setVideo] = React.useState<Video>();

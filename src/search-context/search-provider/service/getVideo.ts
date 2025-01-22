@@ -1,4 +1,4 @@
-import { queryParamsToQueryString } from "../shared/httpUtil";
+import { queryParamsToQueryString } from "@/shared/httpUtil";
 
 export type VideoResponse = {
   id: string,
