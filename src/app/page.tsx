@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Search from '@/search-context/search-provider/components/Search/Search';
+import Search from '@/search-context/search-provider/components/search/Search';
 
 
 const HomePage: React.FC = () => {

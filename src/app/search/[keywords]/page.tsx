@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import Search from '@/search-context/search-provider/components/Search/Search';
+import Search from '@/search-context/search-provider/components/search/Search';
 
 
 const SearchPage: React.FC = () => {

@@ -15,7 +15,7 @@ export interface SearchHistoryContextType {
   clear: () => void,
 }
 
-export const SearchHistorysContext = createContext<SearchHistoryContextType>({
+export const SearchHistoryContext = createContext<SearchHistoryContextType>({
   item: undefined,
   items: [],
   addOrUpdate: (value: SearchKeywordsType) => { console.log('add or update', value) },
@@ -28,7 +28,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const SearchHistorysProvider = ({ children }: Props): React.ReactElement => {
+export const SearchHistoryProvider = ({ children }: Props): React.ReactElement => {
 
   const {item, items, addOrUpdate, remove, clear} = useStorage<SearchKeywordsType>(`followings`, []);
 
@@ -40,14 +40,14 @@ export const SearchHistorysProvider = ({ children }: Props): React.ReactElement 
       remove,
       clear
     }),
-    [items, items, remove, clear]
+    [items, items, addOrUpdate, remove, clear]
   );
 
   return (
-      <SearchHistorysContext.Provider value={ memoedValue }>
+      <SearchHistoryContext.Provider value={ memoedValue }>
           { children }
-      </SearchHistorysContext.Provider>
+      </SearchHistoryContext.Provider>
   )
 }
 
-export const useSearchHistory = (): SearchHistoryContextType => useContext(SearchHistorysContext)
+export const useSearchHistory = (): SearchHistoryContextType => useContext(SearchHistoryContext)

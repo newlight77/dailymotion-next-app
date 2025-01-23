@@ -46,28 +46,26 @@ const LastViews: React.FC<Props> = ({ onSelected }) => {
                 </div>
             </div>
             <div className='items-center'>
-                <div>
-                    { items ?.map(s => (
-                        <div key={s.videoId} className="flex flex-row gap-4 items-center">
-                            <Link href={''} className="basis-1/8" onClick={() => handleAddToFavorites(s)}>
-                                add to favorite
-                            </Link>
-                            <Link href={''} className="basis-1/8" onClick={() => handleFollowOwner(s)}>
-                                 {`follow ${s.owner}` }
-                            </Link>
-                            <Link href={s.link} className="basis-1/8">
-                                view
-                            </Link>
-                            <Link href={''} className="basis-1/8" onClick={() => handleDelete(s.uid)}>
-                                delete
-                            </Link>
-                            <Link href={''} className="basis-1/2" onClick={() => selectLastView(s)}>
-                            {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
-                            </Link>
+                { items ?.map(s => (
+                    <div key={s.videoId} className="flex flex-row gap-4 items-center">
+                        <Link href={''} className="basis-1/8" onClick={() => handleAddToFavorites(s)}>
+                            add to favorite
+                        </Link>
+                        <Link href={''} className="basis-1/8" onClick={() => handleFollowOwner(s)}>
+                                {`follow ${s.owner}` }
+                        </Link>
+                        <Link href={s.link} className="basis-1/8">
+                            view
+                        </Link>
+                        <Link href={''} className="basis-1/8" onClick={() => handleDelete(s.uid)}>
+                            delete
+                        </Link>
+                        <Link href={''} className="basis-1/2" onClick={() => selectLastView(s)}>
+                        {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
+                        </Link>
 
-                        </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

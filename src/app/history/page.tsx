@@ -2,7 +2,7 @@
 import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 
-import SearchHistory from '../../search-context/search-provider/components/Search/SearchHistory';
+import SearchHistory from '../../search-context/search-provider/components/search/SearchHistory';
 import LastViews, { LastViewType } from '@/search-context/search-provider/components/lastviews/LastViews';
 
 
@@ -25,7 +25,7 @@ const HistoryPage: React.FC = () => {
                     <SearchHistory onSelected={handleSelectSearchHistory} />
                 </div>
                 <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                    <LastViews onSelected={handleSelectRecentView} />
+                    {/* <LastViews onSelected={handleSelectRecentView} /> */}
                 </div>
             </div>
 
