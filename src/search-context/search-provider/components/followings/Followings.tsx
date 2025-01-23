@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useFollowings } from './FollowingsProvider';
 
 
-interface ViewFollowingsProps {}
 
 export type FollowingType = {
     uid: string,
@@ -11,7 +10,7 @@ export type FollowingType = {
     order: number,
 }
 
-const Followings: React.FC<ViewFollowingsProps> = () => {
+const Followings: React.FC = () => {
     const { items, remove, loadData, reset, clear } = useFollowings();
     const [data, setData] = useState('')
     const [editMode, setEditMode] = useState(false);

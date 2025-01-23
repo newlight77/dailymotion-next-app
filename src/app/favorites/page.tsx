@@ -3,14 +3,13 @@
 import Favorites, { FavoriteType } from "@/search-context/search-provider/components/favorites/Favorites";
 import { useRouter } from "next/navigation";
 
-
 const FavoritesPage: React.FC = () => {
 
     const router = useRouter()
 
     const handleSelectFavorite = (favorite: FavoriteType) => {
-        console.log('selected favorite', favorite);
-        router.push(`?keywords=${favorite.title} ${favorite.originalTitle ? favorite.originalTitle : ''} ${favorite.originalTitle ? favorite.lastEpisode : ''}`);
+        const title = encodeURIComponent(`${favorite.title} ${favorite.originalTitle ? favorite.lastEpisode : ''}`)
+        router.push(`/?keywords=${title}`);
     };
 
     return (

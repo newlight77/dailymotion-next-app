@@ -1,7 +1,6 @@
 "use client"
-
 import React, { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation';
 import Search from '@/search-context/search-provider/components/search/Search';
 import Collapsable from '@/components/molecules/Collapsable';
 import Favorites, { FavoriteType } from '@/search-context/search-provider/components/favorites/Favorites';
@@ -20,8 +19,7 @@ const SearchWithParams: React.FC<Props> = ({keywords}) => {
     );
 }
 
-
-const HomePage: React.FC = () => {
+const SearchPage: React.FC = () => {
     const [keywords, setKeywords] = React.useState<string>();
 
     const handleSelectFavorite = (favorite: FavoriteType) => {
@@ -47,4 +45,4 @@ const HomePage: React.FC = () => {
     );
 };
 
-export default HomePage;
+export default SearchPage;

@@ -59,11 +59,11 @@ const LastViews: React.FC<Props> = ({ onSelected }) => {
                             view again
                         </Link>
                         <Link href={''} className="basis-1/8" onClick={() => handleDelete(s.uid)}>
-                            delete {s.uid} {s.videoId} {s.owner} {s.title} {s.episode}
+                            delete
                         </Link>
-                        <Link href={''} className="basis-1/2" onClick={() => selectLastView(s)}>
+                        <div className="basis-1/2" onClick={() => selectLastView(s)}>
                         {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
-                        </Link>
+                        </div>
 
                     </div>
                 ))}

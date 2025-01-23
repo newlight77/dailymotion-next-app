@@ -42,9 +42,9 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected }) => {
                             <Link href={''} className="basis-1/8" onClick={() => handleDeleteFromHistory(s.uid)}>
                                 delete
                             </Link>
-                            <Link href={''} className="basis-1/2" onClick={() => selectKeywords(s.keywords)}>
+                            <div className="basis-1/2" onClick={() => selectKeywords(s.keywords)}>
                                 {s.keywords}
-                            </Link>
+                            </div>
                         </div>
                     ))}
                     </div>

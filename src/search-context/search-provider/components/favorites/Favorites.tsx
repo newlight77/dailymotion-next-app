@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
 import { useFavorites } from './FavoritesProvider';
+import { useRouter } from 'next/navigation';
 
 interface FavoritesProps {
     onSelected: (favorite: FavoriteType) => void;
@@ -26,6 +27,14 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
         onSelected(selected)
         // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
     }
+
+    // const router = useRouter()
+    // const handleSelectFavorite = (favorite: FavoriteType) => {
+    //     const title = encodeURIComponent(`${favorite.title} ${favorite.originalTitle ? favorite.lastEpisode : ''}`)
+    //     console.log(`selected favorite, should navigate to /?keywords=${title}`);
+    //     router.push(`/?keywords=${title}`);
+    //     console.log(`selected favorite, should navigate to /?keywords=${title}`);
+    // };
 
     const handleDeleteFavorite = async (uid: string) => {
         if (items) {
@@ -136,12 +145,12 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
                             <div className='col-span-1 min-w-8 max-w-28 h-6 w-10'>{kw.order < 100 ? kw.order : ''}</div>
                         }
 
-                        <Link href={''} className={`col-span-3 text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => handleSelectFavorite(kw)}>
+                        <div className={`col-span-3 hover:text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => handleSelectFavorite(kw)}>
                             <div className='underline underline-offset-4 decoration-primary'>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
                             { kw.originalTitle ? <div className='pr-2 w-fit'>{kw.originalTitle}</div> : <></>}
                             { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
                             { kw.lastEpisode ? <div>{kw.lastEpisode}</div> : <></>}
-                        </Link>
+                        </div>
 
                         { editMode ?
                             <div className='col-span-3 right-0 items-center max-w-48'>
@@ -171,7 +180,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
                                 </div>
                             </div>
                         :
-                            <div className='col-span-4 right-0 items-center w-36'></div>
+                            <div className='col-span-3 right-0 items-center w-36'></div>
                         }
                     </div>
                 ))}

@@ -23,13 +23,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     useEffect(() => {
         console.log('SearchBar newKeywords', newKeywords);
         if (newKeywords && newKeywords !== '' && newKeywords !== keywords) {
-            console.log('SearchBar setKeywords 1', keywords);
             setKeywords(newKeywords);
             console.log('SearchBar setDebouncedInpout 1', newKeywords);
             setDebouncedInpout(newKeywords);
             return
         }
-        if (debouncedInpout !== '' && keywords === '') {
+        if (debouncedInpout !== '') {
             console.log('SearchBar setDebouncedInpout 2', localStorage.getItem('last-search') || '');
             setKeywords(debouncedInpout);
             setDebouncedInpout(debouncedInpout)
@@ -85,23 +84,20 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     };
 
     return (
-        <div className='p-1 md:p-2 md:w-1/5'>
-            <div className='flex flex-row gap-1'>
-                <input
-                    className='basis-1/4 min-w-96'
-                    type="text"
-                    value={debouncedInpout}
-                    onChange={handleInputChange}
-                    placeholder="Search videos by title"
-                    onKeyUp={handleKeyup}
-                />
-                {/* <button className='basis-1/8' onClick={handleSearch}>Search</button> */}
+        <div className='flex flex-row gap-1 sm:p-1 md:p-2 w-3/5'>
+            <input
+                className='basis-3/4 min-w-96'
+                type="text"
+                value={debouncedInpout}
+                onChange={handleInputChange}
+                placeholder="Search videos by title"
+                onKeyUp={handleKeyup}
+            />
+            {/* <button className='basis-1/8' onClick={handleSearch}>Search</button> */}
 
-                <div >
-                    {error && <p>Error: {error.message}</p>}
-                </div>
-
-            </div>
+            {/* <div > */}
+                {error && <p>Error: {error.message}</p>}
+            {/* </div> */}
         </div>
     );
 };

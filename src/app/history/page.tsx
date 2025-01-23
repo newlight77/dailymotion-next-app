@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 import SearchHistory from '../../search-context/search-provider/components/search/SearchHistory';
 import LastViews, { LastViewType } from '@/search-context/search-provider/components/lastviews/LastViews';
@@ -10,11 +10,13 @@ const HistoryPage: React.FC = () => {
     const router = useRouter()
 
     const handleSelectSearchHistory = (selectedKeywords: string) => {
-        router.push(`?keywords=${selectedKeywords}`)
+        const title = encodeURIComponent(selectedKeywords)
+        router.push(`/?keywords=${title}`);
     };
 
     const handleSelectRecentView = (selectedLastView: LastViewType) => {
-        router.push(`?keywords=${selectedLastView.title} ${selectedLastView.episode}`);
+        const title = encodeURIComponent(`${selectedLastView.title} ${selectedLastView.episode}`)
+        router.push(`/?keywords=${title}`);
     };
 
     return (

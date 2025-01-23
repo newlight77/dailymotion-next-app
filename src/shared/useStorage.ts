@@ -3,6 +3,7 @@ import { useState } from "react";
 
 type Storage = {
   uid: string,
+  keywords?: string,
   title?: string,
   owner?: string,
   order?: number,
@@ -25,9 +26,10 @@ export function useStorage<S extends Storage>(key: string, defaultValue: S[]):
   const [items, setItems] = useLocalStorage<S[]>(key, defaultValue);
 
   function isSame(a: S, b: S): boolean {
-    if (a.uid && b.uid) return a.uid === b.uid;
-    if (a.title && b.title) return a.title === b.title;
-    if (a.owner && b.owner) return a.owner === b.owner;
+    if (a.uid && b.uid && a.uid === b.uid) return true;
+    if (a.keywords && b.keywords && a.keywords === b.keywords) return true;
+    if (a.title && b.title && a.title === b.title) return true;
+    if (a.owner && b.owner && a.owner === b.owner) return true;
     return false
   }
 
