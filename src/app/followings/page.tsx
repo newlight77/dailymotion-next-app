@@ -11,6 +11,7 @@ const FollowingsPage: React.FC = () => {
 
             <div className='history md:flex flex-wrap'>
                 <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
+                    <h3 className='title text-4xl p-1 md:p-4 capitalize'>followings</h3>
                     <Followings />
                 </div>
             </div>

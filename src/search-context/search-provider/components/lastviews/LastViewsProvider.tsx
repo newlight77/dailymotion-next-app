@@ -30,7 +30,7 @@ type Props = {
 
 export const LastViewsProvider = ({ children }: Props): React.ReactElement => {
 
-  const {item, items, addOrUpdate, remove, clear} = useStorage<LastViewType>(`followings`, []);
+  const {item, items, addOrUpdate, remove, clear} = useStorage<LastViewType>(`last-views`, []);
 
   const memoedValue = useMemo(
     () => ({

@@ -34,7 +34,14 @@ const VideoPage: React.FC = () => {
 
     return (
         <div className='container w-full'>
-            {video ? <VideoPlayer videoId={video.id} videoTitle={video.title} /> : <div>Loading...</div>}
+
+            {video ?
+                <div>
+                    <h3 className='title text-4xl p-1 md:p-4 capitalize'>{video.title}</h3>
+                    <VideoPlayer videoId={video.id} videoTitle={video.title} />
+                </div>
+                :
+                <div>Loading...</div>}
         </div>
     );
 };

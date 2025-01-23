@@ -16,6 +16,7 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected }) => {
 
     const selectKeywords = async (selectedKeywords: string) => {
         onSelected(selectedKeywords)
+        // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
     }
 
     const handleDeleteFromHistory = async (uid: string) => {

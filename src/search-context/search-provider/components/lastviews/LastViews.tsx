@@ -32,6 +32,7 @@ const LastViews: React.FC<Props> = ({ onSelected }) => {
 
     const selectLastView = async (selected: LastViewType) => {
         onSelected(selected)
+        // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
     }
 
     const handleDelete = async (uid: string) => {
@@ -47,18 +48,18 @@ const LastViews: React.FC<Props> = ({ onSelected }) => {
             </div>
             <div className='items-center'>
                 { items ?.map(s => (
-                    <div key={s.videoId} className="flex flex-row gap-4 items-center">
+                    <div key={s.uid} className="flex flex-row gap-4 items-center">
                         <Link href={''} className="basis-1/8" onClick={() => handleAddToFavorites(s)}>
                             add to favorite
                         </Link>
                         <Link href={''} className="basis-1/8" onClick={() => handleFollowOwner(s)}>
-                                {`follow ${s.owner}` }
+                            {`follow ${s.owner}` }
                         </Link>
-                        <Link href={s.link} className="basis-1/8">
-                            view
+                        <Link href={s.link || ''} className="basis-1/8">
+                            view again
                         </Link>
                         <Link href={''} className="basis-1/8" onClick={() => handleDelete(s.uid)}>
-                            delete
+                            delete {s.uid} {s.videoId} {s.owner} {s.title} {s.episode}
                         </Link>
                         <Link href={''} className="basis-1/2" onClick={() => selectLastView(s)}>
                         {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }

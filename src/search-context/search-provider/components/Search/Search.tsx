@@ -11,18 +11,19 @@ import { useLastViews } from '../lastviews/LastViewsProvider';
 import { useSearchHistory } from './SearchHistoryProvider';
 
 type Props = {
-    keywords: string
+    keywords?: string
 }
 
-const HomePage: React.FC<Props> = ({keywords}) => {
+const Search: React.FC<Props> = ({keywords}) => {
     const [searchResults, setSearchResults] = useState<MetaVideo[]>([]);
-    const [newKeywords, setNewKeywords] = useState<string>('');
+    const [newKeywords, setNewKeywords] = useState<string>();
     const useFollowing = useFollowings();
     const useLastView = useLastViews();
     const useSearchHist = useSearchHistory();
 
     useEffect(() => {
-        setNewKeywords(keywords);
+        console.log('Search keywords', keywords);
+        if (keywords) setNewKeywords(keywords);
     }, [keywords]);
 
     const handleSearch = (searchResponse: SearchResponse) => {
@@ -65,4 +66,4 @@ const HomePage: React.FC<Props> = ({keywords}) => {
     );
 };
 
-export default HomePage;
+export default Search;

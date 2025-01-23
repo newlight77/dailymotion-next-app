@@ -30,7 +30,7 @@ type Props = {
 
 export const SearchHistoryProvider = ({ children }: Props): React.ReactElement => {
 
-  const {item, items, addOrUpdate, remove, clear} = useStorage<SearchKeywordsType>(`followings`, []);
+  const {item, items, addOrUpdate, remove, clear} = useStorage<SearchKeywordsType>(`last-searches`, []);
 
   const memoedValue = useMemo(
     () => ({

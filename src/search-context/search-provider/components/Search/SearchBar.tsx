@@ -21,21 +21,36 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     }
 
     useEffect(() => {
-        if (keywords === '') setKeywords(localStorage.getItem('lastSearch') || '');
-        if (debouncedInpout === '' && keywords === '') setDebouncedInpout(localStorage.getItem('lastSearch') || '')
-        if (newKeywords && newKeywords !== keywords) {
+        console.log('SearchBar newKeywords', newKeywords);
+        if (newKeywords && newKeywords !== '' && newKeywords !== keywords) {
+            console.log('SearchBar setKeywords 1', keywords);
             setKeywords(newKeywords);
+            console.log('SearchBar setDebouncedInpout 1', newKeywords);
             setDebouncedInpout(newKeywords);
+            return
+        }
+        if (debouncedInpout !== '' && keywords === '') {
+            console.log('SearchBar setDebouncedInpout 2', localStorage.getItem('last-search') || '');
+            setKeywords(debouncedInpout);
+            setDebouncedInpout(debouncedInpout)
+            return
+        }
+        if (keywords === '') {
+            console.log('SearchBar setKeywords 2', localStorage.getItem('last-search') || '');
+            setKeywords(localStorage.getItem('last-search') || '');
+            setDebouncedInpout(localStorage.getItem('last-search') || '')
+            return
         }
     }, [newKeywords]);
 
     useEffect(() => {
+        console.log('SearchBar keywords', keywords);
         if (keywords !== '') handleSearch()
     }, [keywords]);
 
-    useEffect(() => {
-        if (debouncedInpout !== '') setKeywords(keywords)
-    }, [debouncedInpout]);
+    // useEffect(() => {
+    //     if (debouncedInpout !== '') setKeywords(keywords)
+    // }, [debouncedInpout]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDebouncedInpout(event.target.value)
@@ -60,7 +75,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
         }
         const response = await searchVideos(params);
         onSearch(response);
-        localStorage.setItem('lastSearch', keywords);
+
+        console.log('SearchBar handleSearch with keywords', keywords);
+        localStorage.setItem('last-search', keywords);
 
         if (response.error) {
             setError(error);

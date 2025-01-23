@@ -24,6 +24,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
 
     const handleSelectFavorite = async (selected: FavoriteType) => {
         onSelected(selected)
+        // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
     }
 
     const handleDeleteFavorite = async (uid: string) => {
