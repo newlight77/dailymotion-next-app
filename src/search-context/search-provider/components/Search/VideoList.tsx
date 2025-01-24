@@ -4,12 +4,13 @@ import VideoCard from './VideoCard';
 
 
 interface VideoListProps {
-    videos: MetaVideo[];
-    onAddLastView: (lastView: VideoType) => void;
-    onFollowOwner: (following: VideoType) => void;
+    videos: MetaVideo[],
+    onAddLastView: (lastView: VideoType) => void,
+    onFollowOwner: (following: VideoType) => void,
+    className?: string
 }
 
-const VideoList: React.FC<VideoListProps> = ({ videos, onAddLastView, onFollowOwner }) => {
+const VideoList: React.FC<VideoListProps> = ({ videos, onAddLastView, onFollowOwner, className }) => {
 
     const [filterKeywords, setFilterKeywords] = useState('');
     const [exclusions, setExclusions] = useState('');
@@ -23,22 +24,22 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onAddLastView, onFollowOw
     };
 
     return (
-        <div className="pt-4 md:p-2">
+        <div className={className}>
 
             {
-                videos.length !== 0 ?
-                <div className="flex pb-4 text-primary">
+                videos.length > 0 ?
+                <div className="pt-4 pb-4 text-primary">
                     <input
                         type="text"
                         value={filterKeywords}
                         onChange={onFilterInputChange}
-                        placeholder="filter on title"
+                        placeholder="filter on title, description or owner"
                     />
                     <input
-                        type="text text-primary"
+                        type="text"
                         value={exclusions}
                         onChange={onExclusionsInputChange}
-                        placeholder="exclusions on title"
+                        placeholder="exclusions on title, description or owner"
                     />
                 </div>
                 :
@@ -46,14 +47,19 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onAddLastView, onFollowOw
             }
 
             <div className="md:flex flex-wrap gap-4">
-                {videos
+                { videos
                     .filter(v => filterKeywords !== '' ? v.title.toLowerCase().includes(filterKeywords.toLowerCase()) || v.description.toLowerCase().includes(filterKeywords.toLowerCase()) || v.ownerUsername.includes(filterKeywords.toLowerCase()): true)
                     .filter(v => exclusions !== '' ? !v.title.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.description.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.ownerUsername.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
                     .map(video => (
-                        <VideoCard key={video.id} video={video} onAddLastView={onAddLastView} onFollowOwner={onFollowOwner}></VideoCard>
+                        <VideoCard
+                            className="pt-4 pb-4 grow"
+                            key={video.id}
+                            video={video}
+                            onAddLastView={onAddLastView}
+                            onFollowOwner={onFollowOwner}></VideoCard>
                     ))
                 }
             </div>

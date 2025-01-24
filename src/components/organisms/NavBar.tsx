@@ -52,7 +52,7 @@ const VideoPage: React.FC = () => {
             <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500" >
               {links.map(({ id, label, route }) => (
                 <li key={id} className="px-4 cursor-pointer capitalize py-6 text-4xl" >
-                  <Link href={route} onClick={toggleShowNav} >sm {label}</Link>
+                  <Link href={route} onClick={toggleShowNav} >{label}</Link>
                 </li>
               ))}
             </ul>

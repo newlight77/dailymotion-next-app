@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { useSearchHistory } from './SearchHistoryProvider';
 
 interface SearchBarProps {
-    onSelected: (keywords: string) => void;
+    onSelected: (keywords: string) => void,
+    className?: string,
 }
 
 export type SearchKeywordsType = {
@@ -11,7 +12,7 @@ export type SearchKeywordsType = {
     keywords: string,
 }
 
-const SearchHistory: React.FC<SearchBarProps> = ({ onSelected }) => {
+const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
     const { items, remove, clear } = useSearchHistory();
 
     const selectKeywords = async (selectedKeywords: string) => {
@@ -28,7 +29,7 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected }) => {
     }
 
     return (
-        <div className="p-1 md:gap-4 md:p-4 sm:p-1 sm:gap-1">
+        <div className={className}>
             <div>
                 <div className="pb-4">
                     <Link href={''} onClick={clearHistory}>clear</Link>

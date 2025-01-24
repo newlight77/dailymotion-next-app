@@ -10,7 +10,11 @@ export type FollowingType = {
     order: number,
 }
 
-const Followings: React.FC = () => {
+type Props = {
+    className?: string,
+}
+
+const Followings: React.FC<Props> = ({className}) => {
     const { items, remove, loadData, reset, clear } = useFollowings();
     const [data, setData] = useState('')
     const [editMode, setEditMode] = useState(false);
@@ -53,7 +57,7 @@ const Followings: React.FC = () => {
     )
 
     return (
-        <div className="p-1 md:gap-4 md:p-4 sm:p-1 sm:gap-1">
+        <div className={className}>
             <div className='favorties-header'>
                 <div className="pb-4">
                     <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>

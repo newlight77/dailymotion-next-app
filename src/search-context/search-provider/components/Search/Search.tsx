@@ -9,10 +9,11 @@ import { useLastViews } from '../lastviews/LastViewsProvider';
 import { useSearchHistory } from './SearchHistoryProvider';
 
 type Props = {
-    keywords?: string
+    keywords?: string,
+    className?: string
 }
 
-const Search: React.FC<Props> = ({keywords}) => {
+const Search: React.FC<Props> = ({keywords, className}) => {
     const [searchResults, setSearchResults] = useState<MetaVideo[]>([]);
     const [newKeywords, setNewKeywords] = useState<string>();
     const useFollowing = useFollowings();
@@ -38,14 +39,16 @@ const Search: React.FC<Props> = ({keywords}) => {
     };
 
     return (
-        <div>
-            <div className='search-bar'>
-                <SearchBar onSearch={handleSearch} newKeywords={newKeywords}/>
-            </div>
-
-            <div className='search-results'>
-                <VideoList videos={searchResults} onAddLastView={handleAddLastView} onFollowOwner={handleFollowOwner}/>
-            </div>
+        <div className={className}>
+                <SearchBar
+                    className='search-bar p-1'
+                    onSearch={handleSearch}
+                    newKeywords={newKeywords}/>
+                <VideoList
+                    className='video-list p-1'
+                    videos={searchResults}
+                    onAddLastView={handleAddLastView}
+                    onFollowOwner={handleFollowOwner}/>
         </div>
     );
 };

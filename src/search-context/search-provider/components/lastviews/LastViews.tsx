@@ -5,7 +5,8 @@ import { useFollowings } from '../followings/FollowingsProvider';
 import { useFavorites } from '../favorites/FavoritesProvider';
 
 interface Props {
-    onSelected: (lastView: LastViewType) => void;
+    onSelected: (lastView: LastViewType) => void,
+    className?: string,
 }
 
 export type LastViewType = {
@@ -17,7 +18,7 @@ export type LastViewType = {
     link: string,
 }
 
-const LastViews: React.FC<Props> = ({ onSelected }) => {
+const LastViews: React.FC<Props> = ({ onSelected, className }) => {
     const { items, remove, clear } = useLastViews();
     const useFollowing = useFollowings();
     const useFavority = useFavorites();
@@ -40,7 +41,7 @@ const LastViews: React.FC<Props> = ({ onSelected }) => {
     }
 
     return (
-        <div className="p-1 md:gap-4 md:p-4 sm:p-1 sm:gap-1">
+        <div className={className}>
             <div>
                 <div className="pb-4">
                     <Link href={''} onClick={clear}>clear</Link>

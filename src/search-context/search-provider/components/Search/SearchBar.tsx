@@ -4,13 +4,14 @@ import { SearchParams, SearchResponse, searchVideos } from '../../service/search
 
 interface SearchBarProps {
     newKeywords?: string,
-    onSearch: (searchResponse: SearchResponse) => void;
+    className?: string,
+    onSearch: (searchResponse: SearchResponse) => void,
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className, onSearch }) => {
     const [keywords, setKeywords] = useState(newKeywords || '');
     const [debouncedInpout, setDebouncedInpout] = useState('');
-    const [error, setError] = useState<{ message: string } | undefined>(undefined);
+    const [error, setError] = useState<{ message: string } | undefined>({message: ''});
 
     const delay = 1100;
     let timerId: NodeJS.Timeout = setTimeout(() => {}, delay);;
@@ -84,20 +85,20 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, onSearch }) => {
     };
 
     return (
-        <div className='flex flex-row gap-1 sm:p-1 md:p-2 w-3/5'>
+        <div className={className}>
             <input
-                className='basis-3/4 min-w-96'
+                className='w-2/5'
                 type="text"
                 value={debouncedInpout}
                 onChange={handleInputChange}
                 placeholder="Search videos by title"
                 onKeyUp={handleKeyup}
             />
-            {/* <button className='basis-1/8' onClick={handleSearch}>Search</button> */}
+            <button className='' onClick={handleSearch}>Search</button>
 
-            {/* <div > */}
-                {error && <p>Error: {error.message}</p>}
-            {/* </div> */}
+            <div className='p-1'>
+                {error && error.message !== '' ? <p>Error: {error.message}</p> : <div></div>}
+            </div>
         </div>
     );
 };

@@ -33,12 +33,13 @@ export default function RootLayout({
           <header></header>
           <Navbar />
 
-          <main className='main min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'>
+          <main className='main'>
+          {/* <main className='main min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'> */}
           {children}
           </main>
 
           <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
-          
+
         </body>
       </html>
     </SearchProvider>

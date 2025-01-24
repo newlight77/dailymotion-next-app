@@ -5,12 +5,13 @@ import { MetaVideo, VideoType } from '../../service/searchVideo';
 
 
 interface VideoCardProps {
-    video: MetaVideo;
-    onAddLastView: (lastView: VideoType) => void;
-    onFollowOwner: (following: VideoType) => void;
+    video: MetaVideo,
+    onAddLastView: (lastView: VideoType) => void,
+    onFollowOwner: (following: VideoType) => void,
+    className?: string
 }
 
-const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollowOwner}) => {
+const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollowOwner, className}) => {
 
     const handleAddLastView = (video: MetaVideo) => {
         const v = {
@@ -54,7 +55,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
     }
 
     return (
-        <div key={video.id} className="basis-1/4 pt-4 pb-4 w-screen grow md:hover:border border-gold">
+        <div className={`${className} m-2 md:hover:border border-gold`}>
             <Link className='view'
                     href={`/video/${video.id}`}
                     target="_blank"
@@ -65,28 +66,30 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                     width={480}
                     height={480} />
             </Link>
-            <Link className='videoLink' href={`https://www.dailymotion.com/video/${video.id}`}>
-                <div className=''>view on dailymotion</div>
-            </Link>
-            <div className=''>
-                <Link className='titlelink'
+            <Link className='titlelink'
                     href={`/video/${video.id}`}
                     target="_blank"
                     onClick={() => handleAddLastView(video)}>
                     <div className='title font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
+            </Link>
+            <div className='content p-2'>
+                <div className='description text-sm text-wrap pt-1'>{video.description}</div>
+                <div className='grid grid-cols-2 pt-4 gap-2 items-center'>
+                    <div className='ml-4'>duration: {displayDuration(video.duration)}</div>
+                    <div className='ml-4'>updated time: {displayDate(video.updated_time)}</div>
+                    <div className='ml-4'>language: {video.language}</div>
+                    <div className='ml-4'>country: {video.country}</div>
+                </div>
+                <div className='grid grid-cols-2 pt-5 items-center'>
+                <Link className='videoLink ml-4' href={`https://www.dailymotion.com/video/${video.id}`}>
+                    <div className=''>view on dailymotion</div>
                 </Link>
-                <div className='description text-sm text-wrap'>{video.description}</div>
-                <Link className='followinglink'
+                <Link className='followinglink ml-4'
                     href={''}
                     onClick={() => handleFollowOwner(video)}>
-                    <div className=''>follow <span className='p-1 text-tertiary'>{`${video.ownerUsername}`}</span></div>
+                    <div className=''>follow <span className='p-1 text-tertiary bg-tertiaryVariant'>{`${video.ownerUsername}`}</span></div>
                 </Link>
-                <div className='flex flex-wrap items-center'>
-                    <div className='basis-1/2'>duration: {displayDuration(video.duration)}</div>
-                    <div className='basis-1/2'>updated time: {displayDate(video.updated_time)}</div>
-                    <div className='basis-1/2'>language: {video.language}</div>
-                    <div className='basis-1/2'>country: {video.country}</div>
-                </div>
+            </div>
             </div>
         </div>
     );

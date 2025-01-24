@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 interface FavoritesProps {
     onSelected: (favorite: FavoriteType) => void;
+    className?: string,
 }
 
 export type FavoriteType = {
@@ -18,7 +19,7 @@ export type FavoriteType = {
     total?: number
 }
 
-const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
+const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
     const { items, remove, addOrUpdate, loadData, reset } = useFavorites();
     const [editMode, setEditMode] = useState(false);
     const [data, setData] = React.useState('')
@@ -107,7 +108,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
     )
 
     return (
-        <div className='sm:p-1 md:p-2 min-w-80 bg-secondaryVariant'>
+        <div className={className}>
             <div className='favorties-header'>
                 <div className="pb-4">
                     <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
@@ -129,7 +130,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected }) => {
             </div>
             <div className='favorites-list flex flex-col gap-2'>
                 { items?.map(kw => (
-                    <div key={crypto.randomUUID().toString()} className="grid grid-cols-8 gap-4 items-center hover:border rounded-md border-tertiary bg-primaryVariant">
+                    <div key={crypto.randomUUID().toString()} className="basis-1/2 grid grid-cols-8 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
                         <Link href={''} className="col-span-1 pl-1 left-0" onClick={() => handleDeleteFavorite(kw.uid)}>
                             delete
                         </Link>

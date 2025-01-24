@@ -8,20 +8,24 @@ import Favorites, { FavoriteType } from '@/search-context/search-provider/compon
 
 
 type Props = {
-    keywords?: string
+    keywords?: string,
+    className?: string
 }
 
-const SearchWithParams: React.FC<Props> = ({keywords}) => {
+const SearchWithParams: React.FC<Props> = ({keywords, className}) => {
     const searchParams = useSearchParams()
     const newKeywords = searchParams.get('keywords') || keywords
 
     return (
-        <Search keywords={newKeywords}></Search>
+        <Search
+            className="search"
+            keywords={newKeywords}>
+        </Search>
     );
 }
 
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC<Props> = ({className}) => {
     const [keywords, setKeywords] = React.useState<string>();
 
     const handleSelectFavorite = (favorite: FavoriteType) => {
@@ -29,20 +33,19 @@ const HomePage: React.FC = () => {
     };
 
     return (
-        <div className='container w-full'>
+        <div className={className}>
             <h2 className='title p-1 md:p-3'>Search Videos</h2>
 
-            <div className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1 w-1/3">
-                <Collapsable title={'My favorites'} collapsedLabel={'show my favorites'}>
-                    <Favorites onSelected={handleSelectFavorite} />
-                </Collapsable>
-            </div>
+            <Collapsable
+                className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1 w-1/3"
+                title={'My favorites'}
+                collapsedLabel={'show my favorites'}>
+                <Favorites onSelected={handleSelectFavorite} />
+            </Collapsable>
 
-            <div className='search'>
-                <Suspense>
-                    <SearchWithParams keywords={keywords}></SearchWithParams>
-                </Suspense>
-            </div>
+            <Suspense>
+                <SearchWithParams keywords={keywords}></SearchWithParams>
+            </Suspense>
         </div>
     );
 };
