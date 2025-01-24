@@ -37,10 +37,10 @@ const HomePage: React.FC = () => {
             <h2 className='title text-3xl p-1 md:p-4 capitalize'>search videos</h2>
 
             <Collapsable
-                className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1 w-1/3"
+                className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1"
                 title={'My favorites'}
                 collapsedLabel={'show my favorites'}>
-                <Favorites onSelected={handleSelectFavorite} />
+                <Favorites className='max-w-screen-sm' onSelected={handleSelectFavorite} />
             </Collapsable>
 
             <Suspense>

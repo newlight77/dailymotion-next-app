@@ -22,7 +22,7 @@ const HistoryPage: React.FC = () => {
     return (
         <div className='w-full'>
             <h2 className='title text-3xl p-1 md:p-4 capitalize'>my recent searches and views</h2>
-            <div className='history md:grid grid-cols-2 gap-4'>
+            <div className='history md:grid grid-cols-2 gap-4 max-w-screen-sm'>
                 <div className="pt-2">
                     <h3 className='title text-2xl p-1 md:p-4 capitalize'>last views</h3>
                     <LastViews onSelected={handleSelectRecentView} />

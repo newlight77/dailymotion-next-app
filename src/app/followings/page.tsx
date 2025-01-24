@@ -9,7 +9,7 @@ const FollowingsPage: React.FC = () => {
         <div className='w-full'>
             <h2 className='title text-3xl p-1 md:p-4 capitalize'>my followings</h2>
 
-            <div className='pb-4 pt-4 md:absolute md:z-100 md:p-2 md:m-1 w-2/4'>
+            <div className='pb-4 pt-4 md:absolute md:z-100 md:p-2 md:m-1 max-w-screen-sm'>
                 <Followings />
             </div>
         </div>
