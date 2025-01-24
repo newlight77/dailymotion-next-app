@@ -60,7 +60,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                     href={`/video/${video.id}`}
                     target="_blank"
                     onClick={() => handleAddLastView(video)}>
-                <Image className='video'
+                <Image className='video h-96 '
                     src={video.thumbnail_480_url}
                     alt={video.title}
                     width={480}
@@ -70,17 +70,17 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                     href={`/video/${video.id}`}
                     target="_blank"
                     onClick={() => handleAddLastView(video)}>
-                    <div className='title font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
+                    <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
             </Link>
             <div className='content p-2'>
-                <div className='description text-sm text-wrap pt-1'>{video.description}</div>
                 <div className='grid grid-cols-2 pt-4 gap-2 items-center'>
                     <div className='ml-4'>duration: {displayDuration(video.duration)}</div>
                     <div className='ml-4'>updated time: {displayDate(video.updated_time)}</div>
                     <div className='ml-4'>language: {video.language}</div>
                     <div className='ml-4'>country: {video.country}</div>
                 </div>
-                <div className='grid grid-cols-2 pt-5 items-center'>
+            </div>
+            <div className='grid grid-cols-2 pt-5 items-center'>
                 <Link className='videoLink ml-4' href={`https://www.dailymotion.com/video/${video.id}`}>
                     <div className=''>view on dailymotion</div>
                 </Link>
@@ -90,7 +90,9 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                     <div className=''>follow <span className='p-1 text-tertiary bg-tertiaryVariant'>{`${video.ownerUsername}`}</span></div>
                 </Link>
             </div>
-            </div>
+
+            <div className='description text-sm text-wrap pt-1 h-10 m-2 hover:h-fit'>{video.description}</div>
+
         </div>
     );
 };

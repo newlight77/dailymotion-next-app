@@ -58,42 +58,42 @@ const Followings: React.FC<Props> = ({className}) => {
 
     return (
         <div className={className}>
-            <div className='favorties-header'>
-                <div className="pb-4">
-                    <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
-                    <Link className='pr-4' href={''} onClick={clear}>clear</Link>
-                    <Link href={''} className="pr-4" onClick={reset}>reset</Link>
-                </div>
+            <div className='followings-header p-4'>
+                <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
+                <Link className='pr-4' href={''} onClick={clear}>clear</Link>
+                <Link href={''} className="pr-4" onClick={reset}>reset</Link>
+
                 {editMode ?
                     <>
                         <textarea
-                            className='flex w-full h-96 rounded-lg'
+                            className='w-full h-96 rounded-lg'
                             defaultValue={data || ''}
                             onBlur={(event: React.FocusEvent<HTMLTextAreaElement>) => handleReloadDataChange(event) }
                             placeholder={`Example : \n ${sample}`}
                         ></textarea>
-                        <button onClick={reloadData}>load</button>
+                        <Link href={''} className="pl-4" onClick={reloadData}>load</Link>
                     </>
                     :
                     <></>
                 }
             </div>
 
-
-            <div className='items-center'>
-
-                <div>
-                    { items ?.map(s => (
-                        <div key={s.uid} className="flex flex-row gap-4 items-center">
-                            <Link href={''} className="basis-1/8" onClick={() => remove(s.uid)}>
-                                delete
-                            </Link>
-                            <Link href={`https://www.dailymotion.com/${s.owner}`} target="_blank" className="basis-1/2">
-                                {`${s.owner}` }
-                            </Link>
-                        </div>
-                    ))}
-                </div>
+            <div className='flex flex-col gap-2 p-4'>
+                { items ?.map(s => (
+                    <div key={s.uid} className="grid grid-cols-4 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
+                        <Link href={''}
+                            className="pl-2 col-span-1"
+                            onClick={() => remove(s.uid)}>
+                            delete
+                        </Link>
+                        <Link
+                            className="pl-2 col-span-1"
+                            href={`https://www.dailymotion.com/${s.owner}`}
+                            target="_blank">
+                            {`${s.owner}` }
+                        </Link>
+                    </div>
+                ))}
             </div>
         </div>
     );

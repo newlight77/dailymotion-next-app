@@ -6,14 +6,11 @@ import React from 'react';
 const FollowingsPage: React.FC = () => {
 
     return (
-        <div className='container w-full'>
-            <h2 className='title text-4xl p-1 md:p-4 capitalize'>my followings</h2>
+        <div className='w-full'>
+            <h2 className='title text-3xl p-1 md:p-4 capitalize'>my followings</h2>
 
-            <div className='history md:flex flex-wrap'>
-                <div className="basis-1/8 pt-2 md:w-1/4 sm:w-64">
-                    <h3 className='title text-4xl p-1 md:p-4 capitalize'>followings</h3>
-                    <Followings />
-                </div>
+            <div className='pb-4 pt-4 md:absolute md:z-100 md:p-2 md:m-1 w-2/4'>
+                <Followings />
             </div>
         </div>
     );

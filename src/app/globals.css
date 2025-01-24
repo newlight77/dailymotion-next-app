@@ -80,6 +80,7 @@
 
   --transition: all 400ms ease;
 
+  --container-width-4xl: 75%;
   --container-width-3xl: 80%;
   --container-width-2xl: 85%;
   --container-width-xl: 90%;

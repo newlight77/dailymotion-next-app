@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
 import { useFavorites } from './FavoritesProvider';
-import { useRouter } from 'next/navigation';
+
 
 interface FavoritesProps {
     onSelected: (favorite: FavoriteType) => void;
@@ -109,11 +109,10 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
 
     return (
         <div className={className}>
-            <div className='favorties-header'>
-                <div className="pb-4">
-                    <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
-                    <Link href={''} className="pr-4" onClick={reset}>reset</Link>
-                </div>
+            <div className='favorties-header pb-4'>
+                <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
+                <Link href={''} className="pr-4" onClick={reset}>reset</Link>
+
                 {editMode ?
                     <>
                         <textarea

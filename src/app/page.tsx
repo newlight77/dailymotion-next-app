@@ -18,14 +18,14 @@ const SearchWithParams: React.FC<Props> = ({keywords, className}) => {
 
     return (
         <Search
-            className="search"
+            className={className}
             keywords={newKeywords}>
         </Search>
     );
 }
 
 
-const HomePage: React.FC<Props> = ({className}) => {
+const HomePage: React.FC = () => {
     const [keywords, setKeywords] = React.useState<string>();
 
     const handleSelectFavorite = (favorite: FavoriteType) => {
@@ -33,8 +33,8 @@ const HomePage: React.FC<Props> = ({className}) => {
     };
 
     return (
-        <div className={className}>
-            <h2 className='title p-1 md:p-3'>Search Videos</h2>
+        <div className="w-full">
+            <h2 className='title text-3xl p-1 md:p-4 capitalize'>search videos</h2>
 
             <Collapsable
                 className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1 w-1/3"

@@ -42,27 +42,25 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
 
     return (
         <div className={className}>
-            <div>
-                <div className="pb-4">
-                    <Link href={''} onClick={clear}>clear</Link>
-                </div>
+            <div className='lastviews-header pb-4'>
+                <Link href={''} onClick={clear}>clear</Link>
             </div>
-            <div className='items-center'>
+            <div className='flex flex-col gap-2'>
                 { items ?.map(s => (
-                    <div key={s.uid} className="flex flex-row gap-4 items-center">
-                        <Link href={''} className="basis-1/8" onClick={() => handleAddToFavorites(s)}>
+                    <div key={s.uid} className="grid grid-cols-8 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
+                        <Link href={''} className="pl-2 col-span-1" onClick={() => handleAddToFavorites(s)}>
                             add to favorite
                         </Link>
-                        <Link href={''} className="basis-1/8" onClick={() => handleFollowOwner(s)}>
+                        <Link href={''} className="pl-2 col-span-1" onClick={() => handleFollowOwner(s)}>
                             {`follow ${s.owner}` }
                         </Link>
-                        <Link href={s.link || ''} className="basis-1/8">
+                        <Link href={`/video/${s.videoId}`} className="pl-2 col-span-1">
                             view again
                         </Link>
-                        <Link href={''} className="basis-1/8" onClick={() => handleDelete(s.uid)}>
+                        <Link href={''} className="pl-2 col-span-1" onClick={() => handleDelete(s.uid)}>
                             delete
                         </Link>
-                        <div className="basis-1/2" onClick={() => selectLastView(s)}>
+                        <div className="pl-2 col-span-4" onClick={() => selectLastView(s)}>
                         {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
                         </div>
 
