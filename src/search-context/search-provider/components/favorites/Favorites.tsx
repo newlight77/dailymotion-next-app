@@ -131,7 +131,9 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
             <div className='favorites-list flex flex-col gap-2'>
                 { items?.map(kw => (
                     <div key={crypto.randomUUID().toString()} className="basis-1/2 grid grid-cols-12 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <FaSquareMinus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(kw.uid)}/>
+                        <Link className='col-span-1 p-1' href=''>
+                            <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(kw.uid)}/>
+                        </Link>
 
                         { editMode ?
                             <input className='col-span-1 min-w-8 max-w-28 h-6 w-10'

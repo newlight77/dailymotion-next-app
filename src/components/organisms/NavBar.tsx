@@ -32,9 +32,10 @@ const VideoPage: React.FC = () => {
           <FaBars size={36} className="md:hidden" onClick={toggleShowNav}/>}
       </div>
 
-      <Link href={'/'} className="pl-4 text-3xl font-bold flex">
-        <img style={{ objectFit: 'scale-down', width: 60, height: 60 }} src={donghua.src} alt="donghua" />
-        <div className='p-3 underline underline-offset-4'>donghua</div>
+      <Link href={'/'} className="ml-2 px-2 flex">
+        <img className='p-1' style={{ objectFit: 'scale-down', width: 60, height: 60 }} src={donghua.src} alt="donghua" />
+        <div className='py-2 pl-4 pr-1 underline underline-offset-4 font-bold text-3xl '>donghua</div>
+        <div className='py-2 px-1 underline underline-offset-4 font-bold text-3xl '>animation</div>
       </Link>
 
       <div className='pl-8 justify-between items-center'>
@@ -42,7 +43,7 @@ const VideoPage: React.FC = () => {
         <ul className="hidden md:flex pt-4">
           {links.map(({ id, label, route }) => (
             <li key={id} className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline" >
-              <Link href={route} className='text-xl'>{label}</Link>
+              <Link className='text-xl' href={route}>{label}</Link>
             </li>
           ))}
         </ul>

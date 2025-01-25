@@ -49,15 +49,19 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
             <div className='flex flex-col gap-2'>
                 { items ?.map(s => (
                     <div key={s.uid} className="grid grid-cols-8 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <FaSquareMinus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(s.uid)}/>
-                        <FaHeartCirclePlus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
+                        <Link className='col-span-1 p-1' href=''>
+                            <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(s.uid)}/>
+                        </Link>
+                        <Link className='col-span-1 p-1' href=''>
+                            <FaHeartCirclePlus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
+                        </Link>
                         <Link href={`/video/${s.videoId}`} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant">
                             <FaCirclePlay size={18} className=""/>
                         </Link>
-                        <div className='col-span-5 p-1 flex gap-1 items-center'>
+                        <Link href={''} className="col-span-5 p-1 flex gap-1 items-center" onClick={() => handleFollowOwner(s)}>
                             <FaUserPlus size={20} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleFollowOwner(s)}/>
-                            <Link href={''} className="" onClick={() => handleFollowOwner(s)}>{s.owner}</Link>
-                        </div>
+                            <span className='p-1 text-tertiary'>{`${s.owner}`}</span>
+                        </Link>
 
                         <div className="col-span-8" onClick={() => selectLastView(s)}>
                         {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }

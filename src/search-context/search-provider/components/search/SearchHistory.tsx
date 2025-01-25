@@ -37,7 +37,9 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
             <div className='flex flex-col gap-2'>
                 { items?.map(s => (
                     <div key={s.uid} className="grid grid-cols-12 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <FaSquareMinus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(s.uid)}/>
+                        <Link className='col-span-1 p-1' href=''>
+                            <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(s.uid)}/>
+                        </Link>
 
                         <div className="pl-2 col-span-11" onClick={() => selectKeywords(s.keywords)}>
                             {s.keywords}

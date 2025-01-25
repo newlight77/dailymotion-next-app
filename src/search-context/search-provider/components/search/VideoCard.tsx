@@ -91,7 +91,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                     href={''}
                     onClick={() => handleFollowOwner(video)}>
                     <FaUserPlus size={20} className="hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                    <span className='p-1 text-tertiary bg-tertiaryVariant'>{`${video.ownerUsername}`}</span>
+                    <span className='p-1 text-tertiary'>{`${video.ownerUsername}`}</span>
                 </Link>
             </div>
 

@@ -82,7 +82,9 @@ const Followings: React.FC<Props> = ({className}) => {
             <div className='flex flex-col gap-2 p-2'>
                 { items ?.map(s => (
                     <div key={s.uid} className="grid grid-cols-12 items-center">
-                        <FaSquareMinus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => remove(s.uid)}/>
+                        <Link className='col-span-1 p-1' href=''>
+                            <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => remove(s.uid)}/>
+                        </Link>
                         <Link
                             className="col-span-11 pl-2 hover:border rounded-md border-tertiary bg-secondaryVariant"
                             href={`https://www.dailymotion.com/${s.owner}`}

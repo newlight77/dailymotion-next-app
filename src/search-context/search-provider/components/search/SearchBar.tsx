@@ -85,19 +85,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className, onSearch 
     };
 
     return (
-        <div className={className}>
+        <div className={`${className} pr-3`}>
             <input
-                className='w-2/5'
+                className='w-full md:w-2/5'
                 type="text"
                 value={debouncedInpout}
                 onChange={handleInputChange}
                 placeholder="Search videos by title"
                 onKeyUp={handleKeyup}
             />
-            <button className='' onClick={handleSearch}>Search</button>
+            {/* <button className='' onClick={handleSearch}>Search</button> */}
 
             <div className='p-1'>
-                {error && error.message !== '' ? <p>Error: {error.message}</p> : <div></div>}
+                {error && error.message !== '' ? <p className='text-pantone'>Error: {error.message}</p> : <div></div>}
             </div>
         </div>
     );
