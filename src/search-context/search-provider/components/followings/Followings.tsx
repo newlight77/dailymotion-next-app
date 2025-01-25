@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
+import { FaSquareMinus } from 'react-icons/fa6';
 import { useFollowings } from './FollowingsProvider';
 
 
@@ -78,16 +79,12 @@ const Followings: React.FC<Props> = ({className}) => {
                 }
             </div>
 
-            <div className='flex flex-col gap-2 p-4'>
+            <div className='flex flex-col gap-2 p-2'>
                 { items ?.map(s => (
-                    <div key={s.uid} className="grid grid-cols-4 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <Link href={''}
-                            className="pl-2 col-span-1"
-                            onClick={() => remove(s.uid)}>
-                            delete
-                        </Link>
+                    <div key={s.uid} className="grid grid-cols-12 items-center">
+                        <FaSquareMinus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => remove(s.uid)}/>
                         <Link
-                            className="pl-2 col-span-1"
+                            className="col-span-11 pl-2 hover:border rounded-md border-tertiary bg-secondaryVariant"
                             href={`https://www.dailymotion.com/${s.owner}`}
                             target="_blank">
                             {`${s.owner}` }

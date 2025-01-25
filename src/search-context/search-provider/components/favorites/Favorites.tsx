@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
+import { FaSquareMinus } from 'react-icons/fa6';
 import { useFavorites } from './FavoritesProvider';
 
 
@@ -24,7 +25,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
     const [editMode, setEditMode] = useState(false);
     const [data, setData] = React.useState('')
 
-    const handleSelectFavorite = async (selected: FavoriteType) => {
+    const handleSelect = async (selected: FavoriteType) => {
         onSelected(selected)
         // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
     }
@@ -37,7 +38,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
     //     console.log(`selected favorite, should navigate to /?keywords=${title}`);
     // };
 
-    const handleDeleteFavorite = async (uid: string) => {
+    const handleDelete = async (uid: string) => {
         if (items) {
             remove(uid);
         }
@@ -129,10 +130,8 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
             </div>
             <div className='favorites-list flex flex-col gap-2'>
                 { items?.map(kw => (
-                    <div key={crypto.randomUUID().toString()} className="basis-1/2 grid grid-cols-8 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <Link href={''} className="col-span-1 pl-1 left-0" onClick={() => handleDeleteFavorite(kw.uid)}>
-                            delete
-                        </Link>
+                    <div key={crypto.randomUUID().toString()} className="basis-1/2 grid grid-cols-12 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
+                        <FaSquareMinus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(kw.uid)}/>
 
                         { editMode ?
                             <input className='col-span-1 min-w-8 max-w-28 h-6 w-10'
@@ -145,7 +144,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
                             <div className='col-span-1 min-w-8 max-w-28 h-6 w-10'>{kw.order < 100 ? kw.order : ''}</div>
                         }
 
-                        <div className={`col-span-3 hover:text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => handleSelectFavorite(kw)}>
+                        <div className={`col-span-5 hover:text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => handleSelect(kw)}>
                             <div className='underline underline-offset-4 decoration-primary'>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
                             { kw.originalTitle ? <div className='pr-2 w-fit'>{kw.originalTitle}</div> : <></>}
                             { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
@@ -153,7 +152,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
                         </div>
 
                         { editMode ?
-                            <div className='col-span-3 right-0 items-center max-w-48'>
+                            <div className='col-span-5 right-0 items-center max-w-48'>
                                 <div className='flex flex-col'>
                                     <div className='h-6'></div>
                                     <input

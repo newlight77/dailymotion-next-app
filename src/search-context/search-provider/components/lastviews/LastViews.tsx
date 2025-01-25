@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link'
+import { FaSquareMinus, FaUserPlus, FaHeartCirclePlus, FaCirclePlay } from 'react-icons/fa6';
 import { useLastViews } from './LastViewsProvider';
 import { useFollowings } from '../followings/FollowingsProvider';
 import { useFavorites } from '../favorites/FavoritesProvider';
@@ -48,19 +49,17 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
             <div className='flex flex-col gap-2'>
                 { items ?.map(s => (
                     <div key={s.uid} className="grid grid-cols-8 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <Link href={''} className="pl-2 col-span-1" onClick={() => handleAddToFavorites(s)}>
-                            add to favorite
+                        <FaSquareMinus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(s.uid)}/>
+                        <FaHeartCirclePlus size={24} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
+                        <Link href={`/video/${s.videoId}`} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant">
+                            <FaCirclePlay size={18} className=""/>
                         </Link>
-                        <Link href={''} className="pl-2 col-span-1" onClick={() => handleFollowOwner(s)}>
-                            {`follow ${s.owner}` }
-                        </Link>
-                        <Link href={`/video/${s.videoId}`} className="pl-2 col-span-1">
-                            view again
-                        </Link>
-                        <Link href={''} className="pl-2 col-span-1" onClick={() => handleDelete(s.uid)}>
-                            delete
-                        </Link>
-                        <div className="pl-2 col-span-4" onClick={() => selectLastView(s)}>
+                        <div className='col-span-5 p-1 flex gap-1 items-center'>
+                            <FaUserPlus size={20} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleFollowOwner(s)}/>
+                            <Link href={''} className="" onClick={() => handleFollowOwner(s)}>{s.owner}</Link>
+                        </div>
+
+                        <div className="col-span-8" onClick={() => selectLastView(s)}>
                         {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
                         </div>
 

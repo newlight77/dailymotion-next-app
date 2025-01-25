@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { MetaVideo, VideoType } from '../../service/searchVideo';
+import { FaCirclePlay, FaUserPlus } from 'react-icons/fa6';
 
 
 interface VideoCardProps {
@@ -81,13 +82,16 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                 </div>
             </div>
             <div className='grid grid-cols-2 pt-5 items-center'>
-                <Link className='videoLink ml-4' href={`https://www.dailymotion.com/video/${video.id}`}>
-                    <div className=''>view on dailymotion</div>
+                <Link className='videoLink ml-4 flex items-center gap-2' href={`https://www.dailymotion.com/video/${video.id}`}>
+                    <FaCirclePlay size={20} className="hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <div className=''>on dailymotion</div>
                 </Link>
-                <Link className='followinglink ml-4'
+
+                <Link className='followinglink ml-4 flex items-center gap-2'
                     href={''}
                     onClick={() => handleFollowOwner(video)}>
-                    <div className=''>follow <span className='p-1 text-tertiary bg-tertiaryVariant'>{`${video.ownerUsername}`}</span></div>
+                    <FaUserPlus size={20} className="hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <span className='p-1 text-tertiary bg-tertiaryVariant'>{`${video.ownerUsername}`}</span>
                 </Link>
             </div>
 
