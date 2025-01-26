@@ -2,8 +2,8 @@
 import React from 'react';
 import { useRouter } from "next/navigation";
 
-import SearchHistory from '../../search-context/search-provider/components/search/SearchHistory';
-import LastViews from '@/search-context/search-provider/components/lastviews/LastViews';
+import SearchHistory from '../../search-context/search-provider/view/search/SearchHistory';
+import LastViews from '@/search-context/search-provider/view/lastviews/LastViews';
 import { LastViewType } from '@/search-context/search-provider/domain/anime';
 
 

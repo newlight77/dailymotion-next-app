@@ -1,6 +1,6 @@
 "use client"
 
-import Favorites from "@/search-context/search-provider/components/favorites/Favorites";
+import Favorites from "@/search-context/search-provider/view/favorites/Favorites";
 import { FavoriteType } from "@/search-context/search-provider/domain/anime";
 import { useRouter } from "next/navigation";
 

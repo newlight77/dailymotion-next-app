@@ -2,7 +2,7 @@
 import React, { useContext, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
-import { SearchKeywordsType } from '../components/search/SearchHistory';
+import { SearchKeywordsType } from '../view/search/SearchHistory';
 
 
 export interface SearchHistoryContextType {
