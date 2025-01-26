@@ -21,8 +21,8 @@ const VideoPage: React.FC = () => {
         <div className='w-full'>
 
             {anime ?
-                <div className='w-1/3 m-auto'>
-                    <Image className='video w-96'
+                <div className='m-auto p-2'>
+                    <Image className='anime w-96 m-auto'
                         src={anime.thumbnail}
                         alt={anime.title}
                         width={480}
@@ -30,12 +30,12 @@ const VideoPage: React.FC = () => {
                     <h3 className='title text-3xl p-1 md:p-4 capitalize'>{anime.title}</h3>
                     <div className='p-1 md:px-4'>{anime.originalTitle}</div>
                     <div className='p-1 md:px-4'>{anime.subtitle}</div>
-                    <div className='py-4'>{anime.summary}</div>
-                    <div className=''>publishedBy: {anime.publishedBy}</div>
-                    <div className=''>type: {anime.type}</div>
-                    <div className=''>status: {anime.status}</div>
-                    <div className=''>lastEpisode: {anime.lastEpisode}</div>
-                    <div className=''>totalEpisodes: {anime.totalEpisodes}</div>
+                    <div className='p-1 md:px-4'>{anime.summary}</div>
+                    <div className='p-1 md:px-4'>publishedBy: {anime.publishedBy}</div>
+                    <div className='p-1 md:px-4'>type: {anime.type}</div>
+                    <div className='p-1 md:px-4'>status: {anime.status}</div>
+                    <div className='p-1 md:px-4'>lastEpisode: {anime.lastEpisode}</div>
+                    <div className='p-1 md:px-4'>totalEpisodes: {anime.totalEpisodes}</div>
                 </div>
                 :
                 <div>Loading...</div>}

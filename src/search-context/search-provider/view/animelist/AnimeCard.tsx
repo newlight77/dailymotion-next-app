@@ -62,7 +62,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
                 href={`/anime/${anime.uid}`}
                 target="_blank"
                 onClick={() => handleAddToFavorites(anime)}>
-                <Image className='video h-96 '
+                <Image className='video w-96'
                     src={anime.thumbnail || ''}
                     alt={anime.title}
                     width={480}
