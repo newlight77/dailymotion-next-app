@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 import { SearchResponse } from '../../adapter/searchVideo-adapter';
-import { useLastViews } from '../../domain/LastViewsProvider';
-import { useFollowings } from '../../domain/FollowingsProvider';
-import { useSearchHistory } from '../../domain/SearchHistoryProvider';
+import { useLastViews } from '../../hooks/LastViewsProvider';
+import { useFollowings } from '../../hooks/FollowingsProvider';
+import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
 import { MetaVideo, VideoType } from '../../domain/anime';
 
 type Props = {

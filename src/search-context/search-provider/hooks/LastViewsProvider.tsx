@@ -2,7 +2,7 @@
 import React, { useContext, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
-import { LastViewType } from './anime';
+import { LastViewType } from '../domain/anime';
 
 
 export interface LastViewContextType {

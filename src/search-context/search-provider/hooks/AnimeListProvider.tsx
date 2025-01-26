@@ -3,7 +3,7 @@ import React, { useContext, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
 import animelist from '@/data/animelist';
-import { AnimeType } from './anime';
+import { AnimeType } from '../domain/anime';
 
 
 const ANIMELIST: AnimeType[] = [

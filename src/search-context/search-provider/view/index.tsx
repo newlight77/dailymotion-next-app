@@ -1,10 +1,10 @@
 'use client'
 import React from 'react';
-import { FavoritesProvider } from '../domain/FavoritesProvider';
-import { FollowingsProvider } from '../domain/FollowingsProvider';
-import { LastViewsProvider } from '../domain/LastViewsProvider';
-import { SearchHistoryProvider } from '../domain/SearchHistoryProvider';
-import { AnimeListProvider } from '../domain/AnimeListProvider';
+import { FavoritesProvider } from '../hooks/FavoritesProvider';
+import { FollowingsProvider } from '../hooks/FollowingsProvider';
+import { LastViewsProvider } from '../hooks/LastViewsProvider';
+import { SearchHistoryProvider } from '../hooks/SearchHistoryProvider';
+import { AnimeListProvider } from '../hooks/AnimeListProvider';
 
 
 type Props = {

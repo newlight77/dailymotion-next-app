@@ -1,17 +1,13 @@
 import React from 'react';
 import Link from 'next/link'
 import { FaSquareMinus } from 'react-icons/fa6';
-import { useSearchHistory } from '../../domain/SearchHistoryProvider';
+import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
 
 interface SearchBarProps {
     onSelected: (keywords: string) => void,
     className?: string,
 }
 
-export type SearchKeywordsType = {
-    uid: string,
-    keywords: string,
-}
 
 const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
     const { items, remove, clear } = useSearchHistory();

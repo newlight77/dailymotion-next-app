@@ -16,6 +16,11 @@ export type AnimeType = {
   totalEpisodes?: number
 }
 
+export type SearchKeywordsType = {
+    uid: string,
+    keywords: string,
+}
+
 export type FavoriteType = {
   uid: string,
   title: string,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
-import { useAnimelist } from '../../domain/AnimeListProvider';
+import { useAnimelist } from '../../hooks/AnimeListProvider';
 import { AnimeType } from '../../domain/anime';
 import AnimeCard from './AnimeCard';
 

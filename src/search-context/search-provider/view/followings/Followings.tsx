@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
 import { FaSquareMinus } from 'react-icons/fa6';
-import { useFollowings } from '../../domain/FollowingsProvider';
+import { useFollowings } from '../../hooks/FollowingsProvider';
 import { FollowingType } from '../../domain/anime';
 
 
