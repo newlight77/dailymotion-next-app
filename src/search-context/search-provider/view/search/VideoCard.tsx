@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link'
 import { FaCirclePlay, FaUserPlus } from 'react-icons/fa6';
 import { MetaVideo, VideoType } from '../../domain/anime';
+import { displayDate, displayDuration } from '@/shared/dateUtil';
 
 
 interface VideoCardProps {
@@ -36,24 +37,6 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
         onFollowOwner(v);
     }
 
-    const dateTimeFormat: Intl.DateTimeFormatOptions = {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    }
-
-    const displayDate = (time: number) => {
-        return new Date(time * 1000).toLocaleDateString('en-US', dateTimeFormat);
-        // return new Intl.DateTimeFormat('en-US', format).format(time * 1000);
-    }
-
-    const displayDuration = (time: number) => {
-        const date = new Date(time * 1000)
-        return `${date.getMinutes()}:${date.getSeconds()}`;
-    }
 
     return (
         <div className={`${className} m-2 md:hover:border border-gold`}>
