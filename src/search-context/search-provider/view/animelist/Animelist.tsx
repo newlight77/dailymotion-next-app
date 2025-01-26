@@ -11,18 +11,18 @@ type Props = {
 }
 
 const AnimeList: React.FC<Props> = ({className}) => {
-    const { items, remove, loadData, reset, clear } = useAnimelist();
+    const { items, loadData, reset, clear } = useAnimelist();
     const [data, setData] = useState('')
     const [editMode, setEditMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useState('');
     const [exclusions, setExclusions] = useState('');
 
     const handleAddToFavorites = (anime: AnimeType) => {
-
+        console.log('add to favorites', anime);
     };
 
     const handleFollowAnime = (anime: AnimeType) => {
-
+        console.log('follow anime', anime);
     };
 
     const onFilterInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
