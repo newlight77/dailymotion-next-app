@@ -8,6 +8,9 @@ const FOLLOWINGS = [
     { uid: crypto.randomUUID().toString(),  order: 1   ,  owner: 'DonghuafilmOfficial' },
     { uid: crypto.randomUUID().toString(),  order: 1   ,  owner: 'xiaobhai7' },
     { uid: crypto.randomUUID().toString(),  order: 1   ,  owner: 'animezone0603' },
+    { uid: crypto.randomUUID().toString(),  order: 1   ,  owner: 'keyboardmedia' },
+    { uid: crypto.randomUUID().toString(),  order: 1   ,  owner: 'donghua.animex.in' },
+    { uid: crypto.randomUUID().toString(),  order: 1   ,  owner: 'momoda888' },
 ]
 
 export default FOLLOWINGS;
