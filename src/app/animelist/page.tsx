@@ -10,7 +10,6 @@ const AnimelistPage: React.FC = () => {
             <div className='pb-4 pt-4 md:absolute md:z-100 md:p-2 md:m-1 sm:max-w-screen-sm md:max-w-screen-xl'>
                 <AnimeList />
             </div>
-
         </div>
     );
 };

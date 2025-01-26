@@ -12,7 +12,7 @@ interface AnimeCardProps {
     className?: string
 }
 
-const SearchHistory: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAnime, className}) => {
+const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAnime, className}) => {
 
     const handleAddToFavorites = (anime: AnimeType) => {
         const a = {
@@ -22,8 +22,10 @@ const SearchHistory: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFoll
             thumbnail: anime.thumbnail,
             title: anime.title,
             summary: anime.summary,
+            studio: anime.studio,
             publishedAt: anime.publishedAt,
             publishedBy: anime.publishedBy,
+            releaseDate: anime.releaseDate,
             updateAt: anime.updateAt,
             episode: anime.lastEpisode,
             totalEpisodes: anime.totalEpisodes,
@@ -41,8 +43,10 @@ const SearchHistory: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFoll
             thumbnail: anime.thumbnail,
             title: anime.title,
             summary: anime.summary,
+            studio: anime.studio,
             publishedAt: anime.publishedAt,
             publishedBy: anime.publishedBy,
+            releaseDate: anime.releaseDate,
             updateAt: anime.updateAt,
             episode: anime.lastEpisode,
             totalEpisodes: anime.totalEpisodes,
@@ -55,20 +59,20 @@ const SearchHistory: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFoll
     return (
         <div className={`${className} m-2 md:hover:border border-gold`}>
             <Link className='view'
-                    href={`/anime/${anime.uid}`}
-                    target="_blank"
-                    onClick={() => handleAddToFavorites(anime)}>
+                href={`/anime/${anime.uid}`}
+                target="_blank"
+                onClick={() => handleAddToFavorites(anime)}>
                 <Image className='video h-96 '
-                    src={anime.thumbnail}
+                    src={anime.thumbnail || ''}
                     alt={anime.title}
                     width={480}
                     height={480} />
             </Link>
             <Link className='titlelink'
-                    href={`/anime/${anime.uid}`}
-                    target="_blank"
-                    onClick={() => handleAddToFavorites(anime)}>
-                    <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{anime.title}</div>
+                href={`/anime/${anime.uid}`}
+                target="_blank"
+                onClick={() => handleAddToFavorites(anime)}>
+                <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{anime.title}</div>
             </Link>
             <div className='description text-sm text-wrap pt-1 h-10 m-2 hover:h-fit'>{anime.summary}</div>
             <div className='content p-2'>
@@ -87,4 +91,4 @@ const SearchHistory: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFoll
     );
 };
 
-export default SearchHistory;
+export default AnimeCard;

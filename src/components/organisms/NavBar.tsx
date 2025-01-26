@@ -7,11 +7,11 @@ import donghua from '../../../public/donghua.png';
 
 const links = [
   { id: 1, route: "/", label: 'home' },
-  { id: 2, route: 'animelist', label: "anime list" },
-  { id: 3, route: 'schedule', label: "schedule" },
-  { id: 4, route: 'history', label: "history" },
-  { id: 5, route: 'favorites', label: "favorites" },
-  { id: 6, route: 'followings', label: "followings" },
+  { id: 2, route: '/animelist', label: "anime list" },
+  { id: 3, route: '/schedule', label: "schedule" },
+  { id: 4, route: '/history', label: "history" },
+  { id: 5, route: '/favorites', label: "favorites" },
+  { id: 6, route: '/followings', label: "followings" },
 ];
 
 
