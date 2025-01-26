@@ -3,8 +3,7 @@ import React, { useContext, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
 import serie from '@/data/series';
-
-import { FavoriteType } from "./Favorites";
+import { FavoriteType } from '../../domain/anime';
 
 
 const LOWEST_ORDER = Number.MAX_VALUE;

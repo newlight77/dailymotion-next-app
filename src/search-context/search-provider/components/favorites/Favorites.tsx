@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link'
 import { FaSquareMinus } from 'react-icons/fa6';
 import { useFavorites } from './FavoritesProvider';
+import { FavoriteType } from '../../domain/anime';
 
 
 interface FavoritesProps {
@@ -9,16 +10,6 @@ interface FavoritesProps {
     className?: string,
 }
 
-export type FavoriteType = {
-    uid: string,
-    title: string,
-    order: number,
-    originalTitle?: string,
-    subtitle?: string,
-    owner?: string,
-    lastEpisode?: string,
-    total?: number
-}
 
 const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
     const { items, remove, addOrUpdate, loadData, reset } = useFavorites();

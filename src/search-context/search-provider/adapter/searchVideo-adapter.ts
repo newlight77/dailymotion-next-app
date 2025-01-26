@@ -1,4 +1,5 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
+import { MetaVideo } from "../domain/anime";
 
 // export interface MetaVideo {
 //   id: string;
@@ -22,39 +23,6 @@ import { queryParamsToQueryString } from "@/shared/httpUtil";
 //   duration: number;
 // }
 
-export type VideoType = {
-  videoId: string
-  title: string,
-  owner: string,
-  episode: string,
-  link: string,
-}
-
-export interface MetaVideo {
-  id: string;
-  title: string;
-  description: string;
-  channel: string;
-  channelId: string;
-  channelSlug: string;
-  channelName: string;
-  channelDescription: string;
-  country: string;
-  owner: string,
-  ownerId: string,
-  ownerUrl: string;
-  ownerUsername: string;
-  ownerCountry: string;
-  ownerLanguage: string;
-  language: string;
-  thumbnail_url: string;
-  thumbnail_180_url: string;
-  thumbnail_240_url: string;
-  thumbnail_360_url: string;
-  thumbnail_480_url: string;
-  updated_time: number;
-  duration: number;
-}
 
 export type SearchResponse = {
   search: string,

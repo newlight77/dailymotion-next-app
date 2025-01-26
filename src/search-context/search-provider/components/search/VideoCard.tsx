@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { MetaVideo, VideoType } from '../../adapter/searchVideo-adapter';
 import { FaCirclePlay, FaUserPlus } from 'react-icons/fa6';
+import { MetaVideo, VideoType } from '../../domain/anime';
 
 
 interface VideoCardProps {

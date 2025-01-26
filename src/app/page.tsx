@@ -4,7 +4,8 @@ import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'
 import Search from '@/search-context/search-provider/components/search/Search';
 import Collapsable from '@/components/molecules/Collapsable';
-import Favorites, { FavoriteType } from '@/search-context/search-provider/components/favorites/Favorites';
+import Favorites from '@/search-context/search-provider/components/favorites/Favorites';
+import { FavoriteType } from '@/search-context/search-provider/domain/anime';
 
 
 type Props = {

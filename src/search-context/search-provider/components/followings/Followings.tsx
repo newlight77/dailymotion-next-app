@@ -2,14 +2,9 @@ import React, { useState } from 'react';
 import Link from 'next/link'
 import { FaSquareMinus } from 'react-icons/fa6';
 import { useFollowings } from './FollowingsProvider';
+import { FollowingType } from '../../domain/anime';
 
 
-
-export type FollowingType = {
-    uid: string,
-    owner: string,
-    order: number,
-}
 
 type Props = {
     className?: string,

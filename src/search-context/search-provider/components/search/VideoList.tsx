@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { MetaVideo, VideoType } from '../../adapter/searchVideo-adapter';
 import VideoCard from './VideoCard';
+import { MetaVideo, VideoType } from '../../domain/anime';
 
 
 interface VideoListProps {

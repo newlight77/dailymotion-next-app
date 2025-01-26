@@ -4,20 +4,13 @@ import { FaSquareMinus, FaUserPlus, FaHeartCirclePlus, FaCirclePlay } from 'reac
 import { useLastViews } from './LastViewsProvider';
 import { useFollowings } from '../followings/FollowingsProvider';
 import { useFavorites } from '../favorites/FavoritesProvider';
+import { LastViewType } from '../../domain/anime';
 
 interface Props {
     onSelected: (lastView: LastViewType) => void,
     className?: string,
 }
 
-export type LastViewType = {
-    uid: string,
-    videoId: string,
-    title: string,
-    episode: string,
-    owner: string,
-    link: string,
-}
 
 const LastViews: React.FC<Props> = ({ onSelected, className }) => {
     const { items, remove, clear } = useLastViews();
