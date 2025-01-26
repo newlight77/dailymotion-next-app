@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MetaVideo, VideoType } from '../../service/searchVideo';
+import { MetaVideo, VideoType } from '../../adapter/searchVideo-adapter';
 import VideoCard from './VideoCard';
 
 

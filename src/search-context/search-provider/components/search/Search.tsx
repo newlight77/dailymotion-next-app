@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
-import { MetaVideo, SearchResponse, VideoType } from '../../service/searchVideo';
+import { MetaVideo, SearchResponse, VideoType } from '../../adapter/searchVideo-adapter';
 import { useFollowings } from '../followings/FollowingsProvider';
 import { useLastViews } from '../lastviews/LastViewsProvider';
 import { useSearchHistory } from './SearchHistoryProvider';

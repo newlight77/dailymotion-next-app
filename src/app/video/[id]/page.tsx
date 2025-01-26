@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { getVideo, VideoResponse } from '@/search-context/search-provider/service/getVideo';
+import { getVideo, VideoResponse } from '@/search-context/search-provider/adapter/getVideo-adapter';
 import VideoPlayer from '@/components/organisms/VideoPlayer';
 
 
