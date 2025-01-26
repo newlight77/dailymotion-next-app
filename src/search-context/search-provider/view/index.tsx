@@ -4,6 +4,7 @@ import { FavoritesProvider } from '../domain/FavoritesProvider';
 import { FollowingsProvider } from '../domain/FollowingsProvider';
 import { LastViewsProvider } from '../domain/LastViewsProvider';
 import { SearchHistoryProvider } from '../domain/SearchHistoryProvider';
+import { AnimeListProvider } from '../domain/AnimeListProvider';
 
 
 type Props = {
@@ -17,7 +18,9 @@ export const SearchProvider = ({ children }: Props): React.ReactElement => {
       <LastViewsProvider>
         <FollowingsProvider>
           <FavoritesProvider>
-            {children}
+            <AnimeListProvider>
+              {children}
+            </AnimeListProvider>
           </FavoritesProvider>
         </FollowingsProvider>
       </LastViewsProvider>

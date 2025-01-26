@@ -1,3 +1,19 @@
+export type AnimeType = {
+  uid: string,
+  type: 'movie' | 'series',
+  status: 'completed' | 'ongoing',
+  title: string,
+  summary: string,
+  thumbnail: string,
+  publishedBy: string,
+  publishedAt: Date,
+  updateAt: Date,
+  originalTitle?: string,
+  subtitle?: string,
+  lastEpisode?: number,
+  totalEpisodes?: number
+}
+
 export type FavoriteType = {
   uid: string,
   title: string,
