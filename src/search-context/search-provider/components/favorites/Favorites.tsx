@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
 import { FaSquareMinus } from 'react-icons/fa6';
-import { useFavorites } from './FavoritesProvider';
+import { useFavorites } from '../../domain/FavoritesProvider';
 import { FavoriteType } from '../../domain/anime';
 
 

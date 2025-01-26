@@ -3,7 +3,7 @@ import React, { useContext, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
 import followings from '@/data/followings';
-import { FollowingType } from '../../domain/anime';
+import { FollowingType } from './anime';
 
 
 const LOWEST_ORDER = Number.MAX_VALUE;

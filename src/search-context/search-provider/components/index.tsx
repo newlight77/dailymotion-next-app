@@ -1,9 +1,9 @@
 'use client'
 import React from 'react';
-import { FavoritesProvider } from './favorites/FavoritesProvider';
-import { FollowingsProvider } from './followings/FollowingsProvider';
-import { LastViewsProvider } from './lastviews/LastViewsProvider';
-import { SearchHistoryProvider } from './search/SearchHistoryProvider';
+import { FavoritesProvider } from '../domain/FavoritesProvider';
+import { FollowingsProvider } from '../domain/FollowingsProvider';
+import { LastViewsProvider } from '../domain/LastViewsProvider';
+import { SearchHistoryProvider } from '../domain/SearchHistoryProvider';
 
 
 type Props = {

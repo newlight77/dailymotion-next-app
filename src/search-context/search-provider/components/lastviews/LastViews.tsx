@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link'
 import { FaSquareMinus, FaUserPlus, FaHeartCirclePlus, FaCirclePlay } from 'react-icons/fa6';
-import { useLastViews } from './LastViewsProvider';
-import { useFollowings } from '../followings/FollowingsProvider';
-import { useFavorites } from '../favorites/FavoritesProvider';
+import { useLastViews } from '../../domain/LastViewsProvider';
+import { useFavorites } from '../../domain/FavoritesProvider';
 import { LastViewType } from '../../domain/anime';
+import { useFollowings } from '../../domain/FollowingsProvider';
 
 interface Props {
     onSelected: (lastView: LastViewType) => void,

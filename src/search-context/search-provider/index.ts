@@ -1,5 +1,5 @@
-export { FavoritesProvider } from "./components/favorites/FavoritesProvider";
-export { FollowingsProvider } from "./components/followings/FollowingsProvider";
-export { SearchHistoryProvider } from "./components/search/SearchHistoryProvider";
-export { LastViewsProvider } from "./components/lastviews/LastViewsProvider";
+export { FavoritesProvider } from "./domain/FavoritesProvider";
+export { FollowingsProvider } from "./domain/FollowingsProvider";
+export { SearchHistoryProvider } from "./domain/SearchHistoryProvider";
+export { LastViewsProvider } from "./domain/LastViewsProvider";
 export { getVideo } from "./adapter/getVideo-adapter";

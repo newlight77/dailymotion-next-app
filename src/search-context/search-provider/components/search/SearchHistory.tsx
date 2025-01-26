@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'
 import { FaSquareMinus } from 'react-icons/fa6';
-import { useSearchHistory } from './SearchHistoryProvider';
+import { useSearchHistory } from '../../domain/SearchHistoryProvider';
 
 interface SearchBarProps {
     onSelected: (keywords: string) => void,
