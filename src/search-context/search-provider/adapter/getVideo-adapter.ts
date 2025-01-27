@@ -1,20 +1,12 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
+import { VideoType } from "../domain/anime";
 
-export type VideoResponse = {
-  id: string,
-  title?: string,
-  embedUrl?: string,
-  error?: {
-    message: string
-  }
-}
-
-export const getVideo = async (id: string, onSuccess: (videoResponse: VideoResponse) => void ): Promise<VideoResponse> => {
+export const getVideo = async (id: string, onSuccess?: (video: VideoType) => void ): Promise<VideoType | undefined> => {
 
   try {
 
     const params = {
-      fields: 'id,title,embed_url'
+      fields: 'id,title,embed_url,owner'
     }
 
     const response = await fetch(`https://api.dailymotion.com/video/${id}?${queryParamsToQueryString(params)}`, {
@@ -24,29 +16,22 @@ export const getVideo = async (id: string, onSuccess: (videoResponse: VideoRespo
     const data = await response.json();
     if (!data) {
       console.error("Response body is null");
-      return {
-        id: id,
-        title: undefined,
-        embedUrl: undefined,
-        error: { message: "Response body is null"}
-      };
+      return undefined;
     }
 
-    const videoResponse: VideoResponse = {
-      id,
-      title: data.title,
-      embedUrl: data.embed_url,
-      error: undefined
+    const video: VideoType = {
+        videoId: id,
+        title: data.title,
+        owner: data.owner,
+        link: data.embed_url,
+        episode: 0
     };
-    onSuccess(videoResponse);
-    return data;
+    if (onSuccess ) {
+      onSuccess(video)
+    };
+    return undefined;
   } catch (error) {
       console.error("Error fetching data: ", error);
-      return {
-        id,
-        title: undefined,
-        embedUrl: undefined,
-        error: { message: `Error fetching data: ${error}`}
-      };
+      return undefined;
   }
 };

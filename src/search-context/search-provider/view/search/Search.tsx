@@ -26,8 +26,8 @@ const Search: React.FC<Props> = ({keywords, className}) => {
     }, [keywords]);
 
     const handleSearch = (searchResponse: SearchResponse) => {
-        const { results } = searchResponse;
-        setSearchResults(results?.list || []);
+        const { list } = searchResponse;
+        setSearchResults(list || []);
         useSearchHist.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: searchResponse.search});
     };
 

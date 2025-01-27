@@ -11,7 +11,6 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className, onSearch }) => {
     const [keywords, setKeywords] = useState(newKeywords || '');
     const [debouncedInpout, setDebouncedInpout] = useState('');
-    const [error, setError] = useState<{ message: string } | undefined>({message: ''});
 
     const delay = 1100;
     let timerId: NodeJS.Timeout = setTimeout(() => {}, delay);;
@@ -78,10 +77,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className, onSearch 
 
         console.log('SearchBar handleSearch with keywords', keywords);
         localStorage.setItem('last-search', keywords);
-
-        if (response.error) {
-            setError(error);
-        }
     };
 
     return (
@@ -95,10 +90,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className, onSearch 
                 onKeyUp={handleKeyup}
             />
             {/* <button className='' onClick={handleSearch}>Search</button> */}
-
-            <div className='p-1'>
-                {error && error.message !== '' ? <p className='text-pantone'>Error: {error.message}</p> : <div></div>}
-            </div>
         </div>
     );
 };

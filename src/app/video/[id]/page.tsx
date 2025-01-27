@@ -1,8 +1,9 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { getVideo, VideoResponse } from '@/search-context/search-provider/adapter/getVideo-adapter';
+import { getVideo } from '@/search-context/search-provider/adapter/getVideo-adapter';
 import VideoPlayer from '@/components/organisms/VideoPlayer';
+import { VideoType } from '@/search-context/search-provider/domain/anime';
 
 
 type Video = {
@@ -20,10 +21,10 @@ const VideoPage: React.FC = () => {
     const { id } = useParams<{ id: string}>();
     const [video, setVideo] = React.useState<Video>();
 
-    const onSuccess = (videoResponse: VideoResponse): void => {
-        console.log('on success', videoResponse);
-        if (videoResponse.id && videoResponse.title) {
-            setVideo({id: videoResponse.id, title: videoResponse.title});
+    const onSuccess = (video: VideoType): void => {
+        console.log('on success', video);
+        if (video) {
+            setVideo({id: video.videoId, title: video.title});
         }
     }
 

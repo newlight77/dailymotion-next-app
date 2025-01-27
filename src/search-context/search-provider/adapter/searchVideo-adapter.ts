@@ -26,16 +26,11 @@ import { MetaVideoType } from "../domain/anime";
 
 export type SearchResponse = {
   search: string,
-  results?: {
-    list: MetaVideoType[],
-    page: number,
-    hasMore: boolean,
-    total: number,
-    limit: number,
-  },
-  error?: {
-    message: string
-  },
+  page: number,
+  limit: number,
+  list: MetaVideoType[],
+  hasMore: boolean,
+  total: number,
 }
 
 export type SearchParams = {
@@ -89,7 +84,11 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
       console.error("Response body is null");
       return {
         search: searchParams.search,
-        error: { message: "Response body is null"}
+        page: searchParams.page,
+        limit: searchParams.limit,
+        list: [],
+        hasMore: false,
+        total: 0,
       };
     }
 
@@ -125,23 +124,23 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
       })
     }
 
-    const searchResponse: SearchResponse = {
+    return {
       search: searchParams.search,
-      results: {
-        list: list,
-        page: data.page,
-        hasMore: data.hasMore,
-        total: data.total,
-        limit: data.limit,
-      },
-      error: undefined
-    };
-    return searchResponse;
+      page: data.page,
+      limit: data.limit,
+      list: list,
+      hasMore: false,
+      total: 0,
+    }
   } catch (error) {
       console.error("Error fetching data: ", error);
       return {
         search: searchParams.search,
-        error: { message: `Error fetching data: ${error}`}
+        page: searchParams.page,
+        limit: searchParams.limit,
+        list: [],
+        hasMore: false,
+        total: 0,
       };
   }
 };

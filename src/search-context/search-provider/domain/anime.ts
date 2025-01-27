@@ -42,41 +42,41 @@ export type LastViewType = {
   uid: string,
   videoId: string,
   title: string,
-  episode: string,
+  episode: number,
   owner: string,
   link: string,
 }
 
 export type VideoType = {
-  videoId: string
+  videoId: string,
   title: string,
   owner: string,
-  episode: string,
+  episode: number,
   link: string,
 }
 
 export interface MetaVideoType {
-  id: string;
-  title: string;
-  description: string;
-  channel: string;
-  channelId: string;
-  channelSlug: string;
-  channelName: string;
-  channelDescription: string;
-  country: string;
+  id: string,
+  title: string,
+  description: string,
+  channel: string,
+  channelId: string,
+  channelSlug: string,
+  channelName: string,
+  channelDescription: string,
+  country: string,
   owner: string,
   ownerId: string,
-  ownerUrl: string;
-  ownerUsername: string;
-  ownerCountry: string;
-  ownerLanguage: string;
-  language: string;
-  thumbnail_url: string;
-  thumbnail_180_url: string;
-  thumbnail_240_url: string;
-  thumbnail_360_url: string;
-  thumbnail_480_url: string;
-  updated_time: number;
-  duration: number;
+  ownerUrl: string,
+  ownerUsername: string,
+  ownerCountry: string,
+  ownerLanguage: string,
+  language: string,
+  thumbnail_url: string,
+  thumbnail_180_url: string,
+  thumbnail_240_url: string,
+  thumbnail_360_url: string,
+  thumbnail_480_url: string,
+  updated_time: number,
+  duration: number,
 }
