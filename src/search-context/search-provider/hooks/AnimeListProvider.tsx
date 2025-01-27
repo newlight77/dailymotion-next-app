@@ -40,6 +40,8 @@ export const AnimeListProvider = ({ children }: Props): React.ReactElement => {
 
   const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<AnimeType>(`animelist`, ANIMELIST);
 
+  // todo: using adapter to get animelist
+
   const memoedValue = useMemo(
     () => ({
       item,
