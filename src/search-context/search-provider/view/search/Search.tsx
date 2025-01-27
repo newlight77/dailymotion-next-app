@@ -15,21 +15,13 @@ type Props = {
 }
 
 const Search: React.FC<Props> = ({keywords, className}) => {
-    const [searchResults, setSearchResults] = useState<MetaVideoType[]>([]);
     const [newKeywords, setNewKeywords] = useState<string>();
     const useFollowing = useFollowings();
     const useLastView = useLastViews();
-    const useSearchHist = useSearchHistory();
 
     useEffect(() => {
         if (keywords) setNewKeywords(keywords);
     }, [keywords]);
-
-    const handleSearch = (searchResponse: SearchResponse) => {
-        const { list } = searchResponse;
-        setSearchResults(list || []);
-        useSearchHist.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: searchResponse.search});
-    };
 
     const handleAddLastView = (video: VideoType) => {
         useLastView.addOrUpdate({uid: crypto.randomUUID().toString(), videoId: video.videoId, title: video.title, episode: video.episode, owner: video.owner, link: video.link});
@@ -43,11 +35,9 @@ const Search: React.FC<Props> = ({keywords, className}) => {
         <div className={className}>
                 <SearchBar
                     className='search-bar p-1'
-                    onSearch={handleSearch}
                     newKeywords={newKeywords}/>
                 <VideoList
                     className='video-list p-1'
-                    videos={searchResults}
                     onAddLastView={handleAddLastView}
                     onFollowOwner={handleFollowOwner}/>
         </div>

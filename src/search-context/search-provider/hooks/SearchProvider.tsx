@@ -25,7 +25,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const SearchHistoryProvider = ({ children }: Props): React.ReactElement => {
+export const SearchVideoProvider = ({ children }: Props): React.ReactElement => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(30);
   const [found, setFound] = useState<VideoType>();
@@ -71,4 +71,4 @@ export const SearchHistoryProvider = ({ children }: Props): React.ReactElement =
   )
 }
 
-export const useSearchHistory = (): SearchContextType => useContext(SearchContext)
+export const useSearchVideos = (): SearchContextType => useContext(SearchContext)

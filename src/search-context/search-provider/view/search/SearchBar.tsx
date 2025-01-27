@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { SearchParams, SearchResponse, searchVideos } from '../../adapter/searchVideo-adapter';
+import { useSearchVideos } from '../../hooks/SearchProvider';
+import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
 
 
 interface SearchBarProps {
     newKeywords?: string,
     className?: string,
-    onSearch: (searchResponse: SearchResponse) => void,
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className, onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     const [keywords, setKeywords] = useState(newKeywords || '');
     const [debouncedInpout, setDebouncedInpout] = useState('');
+    const { search } = useSearchVideos();
+    const useSearchHist = useSearchHistory();
 
     const delay = 1100;
     let timerId: NodeJS.Timeout = setTimeout(() => {}, delay);;
@@ -67,16 +69,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className, onSearch 
     };
 
     const handleSearch = async () => {
-        const params: SearchParams = {
-            search: keywords,
-            limit: 30,
-            page: 1
-        }
-        const response = await searchVideos(params);
-        onSearch(response);
+        search(keywords)
 
         console.log('SearchBar handleSearch with keywords', keywords);
         localStorage.setItem('last-search', keywords);
+        useSearchHist.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: keywords});
     };
 
     return (

@@ -5,6 +5,7 @@ import { FollowingsProvider } from '../hooks/FollowingsProvider';
 import { LastViewsProvider } from '../hooks/LastViewsProvider';
 import { SearchHistoryProvider } from '../hooks/SearchHistoryProvider';
 import { AnimeListProvider } from '../hooks/AnimeListProvider';
+import { SearchVideoProvider } from '../hooks/SearchProvider';
 
 
 type Props = {
@@ -14,16 +15,18 @@ type Props = {
 export const SearchProvider = ({ children }: Props): React.ReactElement => {
 
   return (
-    <SearchHistoryProvider>
-      <LastViewsProvider>
-        <FollowingsProvider>
-          <FavoritesProvider>
-            <AnimeListProvider>
-              {children}
-            </AnimeListProvider>
-          </FavoritesProvider>
-        </FollowingsProvider>
-      </LastViewsProvider>
-    </SearchHistoryProvider>
+    <SearchVideoProvider>
+      <SearchHistoryProvider>
+        <LastViewsProvider>
+          <FollowingsProvider>
+            <FavoritesProvider>
+              <AnimeListProvider>
+                {children}
+              </AnimeListProvider>
+            </FavoritesProvider>
+          </FollowingsProvider>
+        </LastViewsProvider>
+      </SearchHistoryProvider>
+    </SearchVideoProvider>
   )
 }
