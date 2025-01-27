@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import VideoCard from './VideoCard';
-import { MetaVideo, VideoType } from '../../domain/anime';
+import { MetaVideoType, VideoType } from '../../domain/anime';
 
 
 interface VideoListProps {
-    videos: MetaVideo[],
+    videos: MetaVideoType[],
     onAddLastView: (lastView: VideoType) => void,
     onFollowOwner: (following: VideoType) => void,
     className?: string
@@ -52,7 +52,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos, onAddLastView, onFollowOw
                     .filter(v => exclusions !== '' ? !v.title.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.description.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.ownerUsername.toLowerCase().includes(exclusions.toLowerCase()) : true)
-                    .sort((a: MetaVideo, b: MetaVideo)=> b.updated_time - a.updated_time)
+                    .sort((a: MetaVideoType, b: MetaVideoType)=> b.updated_time - a.updated_time)
                     .map(video => (
                         <VideoCard
                             className="pt-4 pb-4 grow md:max-w-screen-md"

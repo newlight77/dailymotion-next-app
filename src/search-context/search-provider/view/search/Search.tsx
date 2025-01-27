@@ -7,7 +7,7 @@ import { SearchResponse } from '../../adapter/searchVideo-adapter';
 import { useLastViews } from '../../hooks/LastViewsProvider';
 import { useFollowings } from '../../hooks/FollowingsProvider';
 import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
-import { MetaVideo, VideoType } from '../../domain/anime';
+import { MetaVideoType, VideoType } from '../../domain/anime';
 
 type Props = {
     keywords?: string,
@@ -15,7 +15,7 @@ type Props = {
 }
 
 const Search: React.FC<Props> = ({keywords, className}) => {
-    const [searchResults, setSearchResults] = useState<MetaVideo[]>([]);
+    const [searchResults, setSearchResults] = useState<MetaVideoType[]>([]);
     const [newKeywords, setNewKeywords] = useState<string>();
     const useFollowing = useFollowings();
     const useLastView = useLastViews();

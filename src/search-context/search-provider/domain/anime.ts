@@ -55,7 +55,7 @@ export type VideoType = {
   link: string,
 }
 
-export interface MetaVideo {
+export interface MetaVideoType {
   id: string;
   title: string;
   description: string;

@@ -2,12 +2,12 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaCirclePlay, FaUserPlus } from 'react-icons/fa6';
-import { MetaVideo, VideoType } from '../../domain/anime';
+import { MetaVideoType, VideoType } from '../../domain/anime';
 import { displayDate, displayDuration } from '@/shared/dateUtil';
 
 
 interface VideoCardProps {
-    video: MetaVideo,
+    video: MetaVideoType,
     onAddLastView: (lastView: VideoType) => void,
     onFollowOwner: (following: VideoType) => void,
     className?: string
@@ -15,7 +15,7 @@ interface VideoCardProps {
 
 const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollowOwner, className}) => {
 
-    const handleAddLastView = (video: MetaVideo) => {
+    const handleAddLastView = (video: MetaVideoType) => {
         const v = {
             videoId: video.id,
             title: video.title,
@@ -26,7 +26,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
         onAddLastView(v);
     }
 
-    const handleFollowOwner = (video: MetaVideo) => {
+    const handleFollowOwner = (video: MetaVideoType) => {
         const v = {
             videoId: video.id,
             title: video.title,

@@ -1,5 +1,5 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
-import { MetaVideo } from "../domain/anime";
+import { MetaVideoType } from "../domain/anime";
 
 // export interface MetaVideo {
 //   id: string;
@@ -27,7 +27,7 @@ import { MetaVideo } from "../domain/anime";
 export type SearchResponse = {
   search: string,
   results?: {
-    list: MetaVideo[],
+    list: MetaVideoType[],
     page: number,
     hasMore: boolean,
     total: number,
