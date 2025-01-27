@@ -22,8 +22,8 @@ const VideoPage: React.FC = () => {
 
     const onSuccess = (videoResponse: VideoResponse): void => {
         console.log('on success', videoResponse);
-        if (videoResponse.id && videoResponse.title) {
-            setVideo({id: videoResponse.id, title: videoResponse.title});
+        if (videoResponse.result) {
+            setVideo({id: videoResponse.result.id, title: videoResponse.result.title});
         }
     }
 
