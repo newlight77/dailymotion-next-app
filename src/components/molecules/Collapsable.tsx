@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link'
 
 interface CollapsableProps {
@@ -6,14 +6,19 @@ interface CollapsableProps {
     collapsedLabel: string,
     children: React.ReactNode,
     className?: string,
+    hideShow?: boolean
 }
 
-const SearchHistory: React.FC<CollapsableProps> = ({ title, collapsedLabel, children, className }) => {
+const Collapsable: React.FC<CollapsableProps> = ({ title, collapsedLabel, children, className, hideShow }) => {
     const [show, setShow] = React.useState(false)
 
     const toggleShowHide = () => {
         setShow(!show);
     }
+
+    useEffect(() => {
+        toggleShowHide()
+    }, [hideShow]);
 
     return (
         <div className={className}>
@@ -37,4 +42,4 @@ const SearchHistory: React.FC<CollapsableProps> = ({ title, collapsedLabel, chil
     );
 };
 
-export default SearchHistory;
+export default Collapsable;

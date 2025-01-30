@@ -28,8 +28,10 @@ const SearchWithParams: React.FC<Props> = ({keywords, className}) => {
 
 const HomePage: React.FC = () => {
     const [keywords, setKeywords] = React.useState<string>();
+    const [hideShow, toggleHideShow] = React.useState<boolean>();
 
     const handleSelectFavorite = (favorite: FavoriteType) => {
+        toggleHideShow(!hideShow);
         setKeywords(`${favorite.title} ${favorite.originalTitle ? favorite.originalTitle: ''} ${favorite.lastEpisode ? favorite.lastEpisode : ''}`);
     };
 
@@ -38,6 +40,7 @@ const HomePage: React.FC = () => {
             <h2 className='title text-3xl p-1 md:p-4 capitalize'>search videos</h2>
 
             <Collapsable
+                hideShow={hideShow}
                 className="pb-4 pt-4 right-0 md:absolute md:z-100 md:p-2 md:m-1"
                 title={'My favorites'}
                 collapsedLabel={'show my favorites'}>
