@@ -9,7 +9,7 @@ import { AnimeType } from '../domain/anime';
 const ANIMELIST: AnimeType[] = [
     ...animelist,
 ]
-.sort((a: AnimeType, b: AnimeType) => a.title.localeCompare(b.title));
+.sort((a: AnimeType, b: AnimeType) => b.releaseAt.getUTCMilliseconds() - a.releaseAt.getUTCMilliseconds());
 
 export interface AnimelistContextType {
   item: AnimeType | undefined,

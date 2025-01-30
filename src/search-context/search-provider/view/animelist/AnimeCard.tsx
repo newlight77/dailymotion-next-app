@@ -25,7 +25,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
             studio: anime.studio,
             publishedAt: anime.publishedAt,
             publishedBy: anime.publishedBy,
-            releaseDate: anime.releaseDate,
+            releaseAt: anime.releaseAt,
             updateAt: anime.updateAt,
             episode: anime.lastEpisode,
             totalEpisodes: anime.totalEpisodes,
@@ -46,7 +46,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
             studio: anime.studio,
             publishedAt: anime.publishedAt,
             publishedBy: anime.publishedBy,
-            releaseDate: anime.releaseDate,
+            releaseAt: anime.releaseAt,
             updateAt: anime.updateAt,
             episode: anime.lastEpisode,
             totalEpisodes: anime.totalEpisodes,
@@ -60,7 +60,6 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
         <div className={`${className} m-2 md:hover:border border-gold`}>
             <Link className='view'
                 href={`/anime/${anime.uid}`}
-                target="_blank"
                 onClick={() => handleAddToFavorites(anime)}>
                 <Image className='video w-96'
                     src={anime.thumbnail || ''}
@@ -70,7 +69,6 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
             </Link>
             <Link className='titlelink'
                 href={`/anime/${anime.uid}`}
-                target="_blank"
                 onClick={() => handleAddToFavorites(anime)}>
                 <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{anime.title}</div>
             </Link>

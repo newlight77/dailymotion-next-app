@@ -8,7 +8,7 @@ export type AnimeType = {
   studio: string,
   publishedBy: string,
   publishedAt: Date,
-  releaseDate: Date,
+  releaseAt: Date,
   updateAt: Date,
   originalTitle?: string,
   subtitle?: string,
