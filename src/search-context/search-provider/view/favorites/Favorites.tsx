@@ -36,8 +36,8 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
     }
 
     const handleLastEpisodeBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
-        if (event.target.value !== selected.lastEpisode ) {
-            addOrUpdate({ ...selected, lastEpisode: event.target.value });
+        if (Number.parseInt(event.target.value) !== selected.lastEpisode ) {
+            addOrUpdate({ ...selected, lastEpisode: Number.parseInt(event.target.value) });
         }
     };
 
