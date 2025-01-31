@@ -4,7 +4,7 @@ const ANIME_LIST: AnimeType[] = [
   { uid: crypto.randomUUID().toString(),
     type: 'series',
     status: 'ongoing',
-    thumbnail: 'https://cdn.myanimelist.net/images/anime/1643/102418.jpg',
+    thumbnail: 'https://donghuaworld.com/wp-content/uploads/2023/01/673mx8s4flp_4j84ou0q_021015.webp',
     title: 'Battle through the Heaven',
     summary: '',
     originalTitle: '斗破苍穹年番',
