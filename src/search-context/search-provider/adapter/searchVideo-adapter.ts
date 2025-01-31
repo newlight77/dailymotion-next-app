@@ -30,7 +30,6 @@ export type SearchResponse = {
   limit: number,
   list: MetaVideoType[],
   hasMore: boolean,
-  total: number,
 }
 
 export type SearchParams = {
@@ -88,7 +87,6 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
         limit: searchParams.limit,
         list: [],
         hasMore: false,
-        total: 0,
       };
     }
 
@@ -130,7 +128,6 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
       limit: data.limit,
       list: list,
       hasMore: false,
-      total: 0,
     }
   } catch (error) {
       console.error("Error fetching data: ", error);
@@ -140,7 +137,6 @@ export const searchVideos = async (searchParams: SearchParams ): Promise<SearchR
         limit: searchParams.limit,
         list: [],
         hasMore: false,
-        total: 0,
       };
   }
 };

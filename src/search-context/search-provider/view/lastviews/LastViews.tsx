@@ -18,7 +18,7 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
     const useFavority = useFavorites();
 
     const handleAddToFavorites = async (lastView: LastViewType) => {
-        useFavority.addOrUpdate({uid: crypto.randomUUID().toString(), completed: false, title: lastView.title, order: 0});
+        useFavority.addOrUpdate({uid: crypto.randomUUID().toString(), title: lastView.title, order: 0});
     }
 
     const handleFollowOwner = async (lastView: LastViewType) => {

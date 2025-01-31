@@ -21,14 +21,6 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
         // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
     }
 
-    // const router = useRouter()
-    // const handleSelectFavorite = (favorite: FavoriteType) => {
-    //     const title = encodeURIComponent(`${favorite.title} ${favorite.originalTitle ? favorite.lastEpisode : ''}`)
-    //     console.log(`selected favorite, should navigate to /?keywords=${title}`);
-    //     router.push(`/?keywords=${title}`);
-    //     console.log(`selected favorite, should navigate to /?keywords=${title}`);
-    // };
-
     const handleDelete = async (uid: string) => {
         if (items) {
             remove(uid);
@@ -88,13 +80,11 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
             "uid": "910906a2-95eb-4c8b-b560-91fe65754252",
             "title": "divine lord of the heavens",
             "lastEpisode": "28",
-            "total": 0
         },
         {
             "uid": "7526bc07-7eb1-41df-afd2-67b1bbeb94b0",
             "title": "martial peak",
             "lastEpisode": "19",
-            "total": 0
         }
     ], null, 4
     )
@@ -138,7 +128,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
                         }
 
                         <div className={`col-span-5 hover:text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => handleSelect(kw)}>
-                            <div className='underline underline-offset-4 decoration-primary'>{`${kw.title} ${kw.total ? '(' + kw.total + ')': ''}` }</div>
+                            <div className='underline underline-offset-4 decoration-primary'>{kw.title}</div>
                             { kw.originalTitle ? <div className='pr-2 w-fit'>{kw.originalTitle}</div> : <></>}
                             { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
                             { kw.lastEpisode ? <div>{kw.lastEpisode}</div> : <></>}

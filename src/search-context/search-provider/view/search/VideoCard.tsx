@@ -18,7 +18,6 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
     const handleAddLastView = (video: MetaVideoType) => {
         const v = {
             videoId: video.id,
-            completed: false,
             title: video.title,
             episode: 0,
             owner: video.ownerUsername,
@@ -31,7 +30,6 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
         const v = {
             videoId: video.id,
             title: video.title,
-            completed: false,
             episode: 0,
             owner: video.ownerUsername,
             link: `https://www.dailymotion.com/video/${video.id}`

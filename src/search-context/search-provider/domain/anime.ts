@@ -25,12 +25,10 @@ export type FavoriteType = {
   uid: string,
   title: string,
   order: number,
-  completed: false,
   originalTitle?: string,
   subtitle?: string,
   owner?: string,
   lastEpisode?: number,
-  total?: number
 }
 
 export type FollowingType = {
