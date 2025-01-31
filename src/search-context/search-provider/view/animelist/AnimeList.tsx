@@ -104,10 +104,10 @@ const AnimeList: React.FC<Props> = ({className}) => {
                 }
             </div>
 
-            <div className="md:flex flex-wrap gap-4 md:max-w-screen-xl">
+            <div className="md:flex flex-wrap">
                 { items ?.map(anime => (
                         <AnimeCard
-                            className="pt-4 pb-4 grow sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 h-screen"
+                            className="pt-4 pb-4 xs:w-screen sm:w-screen md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 3xl:w-1/6 4xl:w-1/7 5xl:w-1/8 h-auto"
                             key={anime.uid}
                             anime={anime}
                             onAddToFavorite={handleAddToFavorites}

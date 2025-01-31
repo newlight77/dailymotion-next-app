@@ -41,12 +41,12 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
 
 
     return (
-        <div className={`${className} m-2 md:hover:border border-gold`}>
+        <div className={`${className} p-2 md:hover:border border-gold`}>
             <Link className='view'
                     href={`/video/${video.id}`}
                     target="_blank"
                     onClick={() => handleAddLastView(video)}>
-                <Image className='video h-96 '
+                <Image className='video h-96 w-148'
                     src={video.thumbnail_480_url}
                     alt={video.title}
                     width={480}

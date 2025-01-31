@@ -57,7 +57,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
     }
 
     return (
-        <div className={`${className} m-2 md:hover:border border-gold`}>
+        <div className={`${className} p-2 md:hover:border border-gold`}>
             <Link className='view'
                 href={`/anime/${anime.uid}`}
                 onClick={() => handleAddToFavorites(anime)}>
