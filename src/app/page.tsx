@@ -1,25 +1,19 @@
 "use client"
 
 import React, { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Search from '@/search-context/search-provider/view/search/Search';
 import Collapsable from '@/components/molecules/Collapsable';
 import Favorites from '@/search-context/search-provider/view/favorites/Favorites';
 import { FavoriteType } from '@/search-context/search-provider/domain/anime';
 
 
-type Props = {
-    keywords?: string,
-    className?: string
-}
-
-const SearchWithParams: React.FC<Props> = ({keywords, className}) => {
+const SearchWithParams: React.FC = () => {
     const searchParams = useSearchParams()
-    const newKeywords = searchParams.get('keywords') || keywords
+    const newKeywords = searchParams.get('keywords') || ''
 
     return (
         <Search
-            className={className}
             keywords={newKeywords}>
         </Search>
     );
@@ -27,13 +21,15 @@ const SearchWithParams: React.FC<Props> = ({keywords, className}) => {
 
 
 const HomePage: React.FC = () => {
-    const [keywords, setKeywords] = React.useState<string>();
     const [hideShow, toggleHideShow] = React.useState<boolean>();
+    const router = useRouter()
 
     const handleSelectFavorite = (favorite: FavoriteType) => {
         toggleHideShow(!hideShow);
-        setKeywords(`${favorite.title} ${favorite.originalTitle ? favorite.originalTitle: ''} ${favorite.lastEpisode ? favorite.lastEpisode : ''}`);
+        const title = encodeURIComponent(`${favorite.title} ${favorite.originalTitle ? favorite.lastEpisode : ''}`)
+        router.push(`/?keywords=${title}`);
     };
+
 
     return (
         <div className="w-full">
@@ -48,7 +44,7 @@ const HomePage: React.FC = () => {
             </Collapsable>
 
             <Suspense>
-                <SearchWithParams keywords={keywords}></SearchWithParams>
+                <SearchWithParams></SearchWithParams>
             </Suspense>
         </div>
     );
