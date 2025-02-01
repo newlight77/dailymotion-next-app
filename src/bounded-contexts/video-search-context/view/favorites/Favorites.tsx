@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link'
 import { FaSquareMinus } from 'react-icons/fa6';
 import { useFavorites } from '../../hooks/FavoritesProvider';
-import { FavoriteType } from '../../domain/anime';
+import { FavoriteType } from '../../domain/model/anime';
 
 
 interface FavoritesProps {

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { FaSquareMinus, FaUserPlus, FaHeartCirclePlus, FaCirclePlay } from 'react-icons/fa6';
 import { useLastViews } from '../../hooks/LastViewsProvider';
 import { useFavorites } from '../../hooks/FavoritesProvider';
-import { LastViewType } from '../../domain/anime';
+import { LastViewType } from '../../domain/model/anime';
 import { useFollowings } from '../../hooks/FollowingsProvider';
 
 interface Props {

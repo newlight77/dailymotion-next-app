@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaCirclePlay, FaUserPlus } from 'react-icons/fa6';
-import { MetaVideoType, VideoType } from '../../domain/anime';
+import { MetaVideoType, VideoType } from '../../domain/model/anime';
 import { displayDate, displayDuration } from '@/shared/dateUtil';
 
 

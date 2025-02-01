@@ -2,10 +2,10 @@
 
 import React, { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'
-import Search from '@/search-context/search-provider/view/search/Search';
+import Search from '@/bounded-contexts/video-search-context/view/search/Search';
 import Collapsable from '@/components/molecules/Collapsable';
-import Favorites from '@/search-context/search-provider/view/favorites/Favorites';
-import { FavoriteType } from '@/search-context/search-provider/domain/anime';
+import Favorites from '@/bounded-contexts/video-search-context/view/favorites/Favorites';
+import { FavoriteType } from '@/bounded-contexts/video-search-context/domain/model/anime';
 
 
 const SearchWithParams: React.FC = () => {

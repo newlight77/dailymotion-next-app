@@ -1,5 +1,5 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
-import { VideoType } from "../domain/anime";
+import { VideoType } from "../domain/model/anime";
 
 export const getVideo = async (id: string, onSuccess?: (video: VideoType) => void ): Promise<VideoType | undefined> => {
 

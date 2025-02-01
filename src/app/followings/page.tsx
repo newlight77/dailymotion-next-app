@@ -1,5 +1,5 @@
 "use client"
-import Followings from '../../search-context/search-provider/view/followings/Followings';
+import Followings from '../../bounded-contexts/video-search-context/view/followings/Followings';
 import React from 'react';
 
 

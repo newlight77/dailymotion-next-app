@@ -1,7 +1,7 @@
 'use client'
 import React, { useContext, useMemo, useState } from 'react';
 import { createContext } from "react";
-import { MetaVideoType, VideoType } from '../domain/anime';
+import { MetaVideoType, VideoType } from '../domain/model/anime';
 import { SearchResponse, searchVideos } from '../adapter/searchVideo-adapter';
 import { getVideo } from '../adapter/getVideo-adapter';
 

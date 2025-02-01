@@ -1,5 +1,5 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
-import { MetaVideoType } from "../domain/anime";
+import { MetaVideoType } from "../domain/model/anime";
 
 // export interface MetaVideo {
 //   id: string;

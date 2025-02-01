@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 import { useLastViews } from '../../hooks/LastViewsProvider';
 import { useFollowings } from '../../hooks/FollowingsProvider';
-import { VideoType } from '../../domain/anime';
+import { VideoType } from '../../domain/model/anime';
 
 type Props = {
     keywords?: string,

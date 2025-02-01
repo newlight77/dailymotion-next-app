@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaUserPlus } from 'react-icons/fa6';
-import { AnimeType } from '../../domain/anime';
+import { AnimeType } from '../../domain/model/anime';
 
 
 interface AnimeCardProps {

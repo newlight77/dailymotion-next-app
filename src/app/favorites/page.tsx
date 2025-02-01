@@ -1,7 +1,7 @@
 "use client"
 
-import Favorites from "@/search-context/search-provider/view/favorites/Favorites";
-import { FavoriteType } from "@/search-context/search-provider/domain/anime";
+import Favorites from "@/bounded-contexts/video-search-context/view/favorites/Favorites";
+import { FavoriteType } from "@/bounded-contexts/video-search-context/domain/model/anime";
 import { useRouter } from "next/navigation";
 
 const FavoritesPage: React.FC = () => {

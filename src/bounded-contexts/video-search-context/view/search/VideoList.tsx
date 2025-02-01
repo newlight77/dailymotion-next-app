@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import VideoCard from './VideoCard';
-import { MetaVideoType, VideoType } from '../../domain/anime';
+import { MetaVideoType, VideoType } from '../../domain/model/anime';
 import { useSearchVideos } from '../../hooks/SearchProvider';
 
 

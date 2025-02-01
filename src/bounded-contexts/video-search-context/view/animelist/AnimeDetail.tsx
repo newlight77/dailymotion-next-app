@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import { AnimeType } from '@/search-context/search-provider/domain/anime';
-import { getAnime } from '@/search-context/search-provider/adapter/getAnime-adapter';
+import { AnimeType } from '@/bounded-contexts/video-search-context/domain/model/anime';
+import { getAnime } from '@/bounded-contexts/video-search-context/adapter/getAnime-adapter';
 // import { useAnimelist } from '../../hooks/AnimeListProvider';
 
 type Props = {

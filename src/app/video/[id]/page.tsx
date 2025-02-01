@@ -1,9 +1,9 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { getVideo } from '@/search-context/search-provider/adapter/getVideo-adapter';
+import { getVideo } from '@/bounded-contexts/video-search-context/adapter/getVideo-adapter';
 import VideoPlayer from '@/components/organisms/VideoPlayer';
-import { VideoType } from '@/search-context/search-provider/domain/anime';
+import { VideoType } from '@/bounded-contexts/video-search-context/domain/model/anime';
 
 
 type Video = {

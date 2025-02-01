@@ -1,4 +1,4 @@
-import { AnimeType } from "../domain/anime";
+import { AnimeType } from "../domain/model/anime";
 
 export type AnimeResponse = {
   payload: AnimeType,
