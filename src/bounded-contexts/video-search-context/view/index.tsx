@@ -6,6 +6,7 @@ import { LastViewsProvider } from '../hooks/LastViewsProvider';
 import { SearchHistoryProvider } from '../hooks/SearchHistoryProvider';
 import { AnimeListProvider } from '../hooks/AnimeListProvider';
 import { SearchVideoProvider } from '../hooks/SearchProvider';
+import animeListAdapter from '../adapter/getAnime-adapter';
 
 
 type Props = {
@@ -20,7 +21,7 @@ export const SearchProvider = ({ children }: Props): React.ReactElement => {
         <LastViewsProvider>
           <FollowingsProvider>
             <FavoritesProvider>
-              <AnimeListProvider>
+              <AnimeListProvider adapter={animeListAdapter}>
                 {children}
               </AnimeListProvider>
             </FavoritesProvider>

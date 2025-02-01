@@ -2,8 +2,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { AnimeType } from '@/bounded-contexts/video-search-context/domain/model/anime';
-import { getAnime } from '@/bounded-contexts/video-search-context/adapter/getAnime-adapter';
-// import { useAnimelist } from '../../hooks/AnimeListProvider';
+import { useAnimelist } from '../../hooks/AnimeListProvider';
 
 type Props = {
     id: string
@@ -11,13 +10,13 @@ type Props = {
 }
 
 const AnimeDetail: React.FC<Props> = ({id}) => {
-    // const { findById } = useAnimelist();
+    const { adapter } = useAnimelist();
 
     const [item, setAnime] = React.useState<AnimeType>();
 
     useEffect(() => {
         console.log('params.id', id);
-        getAnime(id).then((anime) => { // todo move to storage provider : add findById and
+        adapter.findById(id).then((anime) => { // todo move to storage provider : add findById and
             setAnime(anime);
         });
     }, [id]);

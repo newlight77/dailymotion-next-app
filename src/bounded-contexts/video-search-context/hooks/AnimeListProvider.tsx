@@ -1,58 +1,54 @@
 'use client'
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
-import animelist from '@/data/animelist';
 import { AnimeType } from '../domain/model/anime';
+import { AnimeListPort } from '@/bounded-contexts/video-search-context/domain/usecases/animelist-usecase';
 
 
-const ANIMELIST: AnimeType[] = [
-    ...animelist,
-]
-.sort((a: AnimeType, b: AnimeType) => b.releaseAt.getUTCMilliseconds() - a.releaseAt.getUTCMilliseconds());
 
-export interface AnimelistContextType {
-  item: AnimeType | undefined,
+interface AnimelistContextType {
+  adapter: AnimeListPort,
   items: AnimeType[] | undefined,
-  remove: (uid: string) => void,
-  addOrUpdate: (value: AnimeType) => void,
   loadData: (data: AnimeType[]) => void,
   reset: () => void,
-  clear: () => void,
 }
 
-export const AnimelistContext = createContext<AnimelistContextType>({
-  item: undefined,
+const AnimelistContext = createContext<AnimelistContextType>({
+  adapter: {} as AnimeListPort,
   items: [],
-  remove: (uid: string) => { console.log('remove', uid) },
-  addOrUpdate: (value: AnimeType) => { console.log('add or update', value) },
   loadData: (data: AnimeType[]) => { console.log('load data', data) },
   reset: () => {},
-  clear: () => {},
 });
 
 
 type Props = {
+  adapter: AnimeListPort,
   children: React.ReactNode
 }
 
-export const AnimeListProvider = ({ children }: Props): React.ReactElement => {
+export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElement => {
 
-  const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<AnimeType>(`animelist`, ANIMELIST);
+  const {items, loadData} = useStorage<AnimeType>(`animelist`, []);
 
-  // todo: using adapter to get animelist
+  useEffect(() => {
+    reset();
+  }, [adapter])
+
+  const reset = async () => {
+    console.log('AnimeListProvider useEffect, fetchData');
+    const all = await adapter.findAll();
+    loadData(all);
+  }
 
   const memoedValue = useMemo(
     () => ({
-      item,
+      adapter,
       items,
-      remove,
-      addOrUpdate,
       loadData,
       reset,
-      clear
     }),
-    [items, items, addOrUpdate, loadData, reset, reset, clear]
+    [items, loadData, reset, reset]
   );
 
   return (

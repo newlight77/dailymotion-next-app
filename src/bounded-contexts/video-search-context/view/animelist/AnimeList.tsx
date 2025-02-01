@@ -11,7 +11,7 @@ type Props = {
 }
 
 const AnimeList: React.FC<Props> = ({className}) => {
-    const { items, loadData, reset, clear } = useAnimelist();
+    const { items, loadData, reset } = useAnimelist();
     const [data, setData] = useState('')
     const [editMode, setEditMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useState('');
@@ -86,7 +86,6 @@ const AnimeList: React.FC<Props> = ({className}) => {
 
             <div className='animelist-header p-4'>
                 <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
-                <Link className='pr-4' href={''} onClick={clear}>clear</Link>
                 <Link href={''} className="pr-4" onClick={reset}>reset</Link>
 
                 {editMode ?
