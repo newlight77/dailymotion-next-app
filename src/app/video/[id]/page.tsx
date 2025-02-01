@@ -1,9 +1,8 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { getVideo } from '@/bounded-contexts/video-search-context/adapter/getVideo-adapter';
 import VideoPlayer from '@/components/organisms/VideoPlayer';
-import { VideoType } from '@/bounded-contexts/video-search-context/domain/model/anime';
+import { useSearchVideos } from '@/bounded-contexts/video-search-context/hooks/VideoSearchProvider';
 
 
 type Video = {
@@ -11,27 +10,20 @@ type Video = {
     title: string
 }
 
-// type ParamsType = {
-//     params: Promise<{ id: string }>
-// }
-
-// const VideoPage: React.FC<ParamsType> = ({ params }: ParamsType) => {
-// const { id } = React.use(params);
 const VideoPage: React.FC = () => {
     const { id } = useParams<{ id: string}>();
     const [video, setVideo] = React.useState<Video>();
-
-    const onSuccess = (video: VideoType): void => {
-        console.log('on success', video);
-        if (video) {
-            setVideo({id: video.videoId, title: video.title});
-        }
-    }
+    const { found, findById } = useSearchVideos();
 
     useEffect(() => {
         console.log('params.id', id);
-        getVideo(id, onSuccess);
+        getById(id);
     }, [id]);
+
+    const getById = async (id: string) => {
+        await findById(id);
+        if (found) setVideo({id: found.videoId, title: found.title});
+    }
 
     return (
         <div className='w-full'>

@@ -6,18 +6,18 @@ export interface AnimeListPort {
   findAll: () => Promise<AnimeType[]>
 }
 
-export const AnimeListUsecase = (port: AnimeListPort) => {
+// export const AnimeListUsecase = (port: AnimeListPort) => {
 
-  const findById = async (uid: string): Promise<AnimeType | undefined> => {
-    return await port.findById(uid);
-  }
+//   const findById = async (uid: string): Promise<AnimeType | undefined> => {
+//     return await port.findById(uid);
+//   }
 
-  const findAll = async (): Promise<AnimeType[]> => {
-    return await port.findAll();
-  }
+//   const findAll = async (): Promise<AnimeType[]> => {
+//     return await port.findAll();
+//   }
 
-  return {
-    findAll,
-    findById
-  }
-}
+//   return {
+//     findAll,
+//     findById
+//   }
+// }

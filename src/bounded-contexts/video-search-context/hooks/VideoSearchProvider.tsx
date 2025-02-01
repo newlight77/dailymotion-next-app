@@ -2,18 +2,17 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { createContext } from "react";
 import { MetaVideoType, VideoType } from '../domain/model/anime';
-import { SearchResponse, searchVideos } from '../adapter/searchVideo-adapter';
-import { getVideo } from '../adapter/getVideo-adapter';
+import { VideoSearchResponse, VideoSearchPort } from '../domain/usecases/video-search-usecase';
 
 
-export interface SearchContextType {
+export interface VideoSearchContextType {
   found: VideoType | undefined,
   searchResults: MetaVideoType[] | undefined,
   search: (keywords: string) => void,
   findById: (value: string) => void,
 }
 
-export const SearchContext = createContext<SearchContextType>({
+export const VideoSearchContext = createContext<VideoSearchContextType>({
   found: undefined,
   searchResults: [],
   search: (keywords: string) : MetaVideoType[] => { console.log('remove', keywords); return [] },
@@ -22,10 +21,11 @@ export const SearchContext = createContext<SearchContextType>({
 
 
 type Props = {
+  adapter: VideoSearchPort,
   children: React.ReactNode
 }
 
-export const SearchVideoProvider = ({ children }: Props): React.ReactElement => {
+export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactElement => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(30);
   const [found, setFound] = useState<VideoType>();
@@ -38,37 +38,40 @@ export const SearchVideoProvider = ({ children }: Props): React.ReactElement => 
         page: page
     }
 
-    const response: SearchResponse = await searchVideos(params);
+    const response: VideoSearchResponse = await adapter.search(params);
+    console.log('VideoSearchProvider adapter.search', response);
 
     setSearchResults(response.list || []);
     setPage(response.page || 1)
     setLimit(response.limit || 30)
   }
 
-  const findById = async (id: string) => {
-    const result: VideoType | undefined = await getVideo(id)
+  const findById = async (id: string): Promise<VideoType | undefined> => {
+    const result: VideoType | undefined = await adapter.getById(id)
 
     console.log('on success', result);
     if (result) {
       setFound(result);
     }
+
+    return result;
   }
 
   const memoedValue = useMemo(
     () => ({
-      found,
       searchResults,
       search,
+      found,
       findById
     }),
     [found, searchResults, search, findById]
   );
 
   return (
-      <SearchContext.Provider value={ memoedValue }>
+      <VideoSearchContext.Provider value={ memoedValue }>
           { children }
-      </SearchContext.Provider>
+      </VideoSearchContext.Provider>
   )
 }
 
-export const useSearchVideos = (): SearchContextType => useContext(SearchContext)
+export const useSearchVideos = (): VideoSearchContextType => useContext(VideoSearchContext)

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchVideos } from '../../hooks/SearchProvider';
+import { useSearchVideos } from '../../hooks/VideoSearchProvider';
 import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
 
 

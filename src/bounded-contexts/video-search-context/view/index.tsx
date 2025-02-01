@@ -5,8 +5,9 @@ import { FollowingsProvider } from '../hooks/FollowingsProvider';
 import { LastViewsProvider } from '../hooks/LastViewsProvider';
 import { SearchHistoryProvider } from '../hooks/SearchHistoryProvider';
 import { AnimeListProvider } from '../hooks/AnimeListProvider';
-import { SearchVideoProvider } from '../hooks/SearchProvider';
+import { VideoSearchProvider } from '../hooks/VideoSearchProvider';
 import animeListAdapter from '../adapter/getAnime-adapter';
+import videoSearchAdapter from '../adapter/video-search-adapter';
 
 
 type Props = {
@@ -16,7 +17,7 @@ type Props = {
 export const SearchProvider = ({ children }: Props): React.ReactElement => {
 
   return (
-    <SearchVideoProvider>
+    <VideoSearchProvider adapter={videoSearchAdapter}>
       <SearchHistoryProvider>
         <LastViewsProvider>
           <FollowingsProvider>
@@ -28,6 +29,6 @@ export const SearchProvider = ({ children }: Props): React.ReactElement => {
           </FollowingsProvider>
         </LastViewsProvider>
       </SearchHistoryProvider>
-    </SearchVideoProvider>
+    </VideoSearchProvider>
   )
 }
