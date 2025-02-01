@@ -78,7 +78,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                 </Link>
             </div>
 
-            <div className='description text-sm text-wrap pt-1 h-10 m-2 hover:h-fit'>{video.description}</div>
+            <div className='description text-sm text-wrap pt-1 h-10 m-2'>{video.description}</div>
 
         </div>
     );
