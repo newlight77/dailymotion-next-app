@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
-import { FaSquareMinus } from 'react-icons/fa6';
 import { useFavorites } from '../../hooks/FavoritesProvider';
 import { FavoriteType } from '../../domain/model/anime';
+import RemovableItem from '@/components/molecules/RemovableItem';
 
 
 interface FavoritesProps {
@@ -111,12 +111,8 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
             </div>
             <div className='favorites-list flex flex-col gap-2'>
                 { items?.map(kw => (
-                    <div key={crypto.randomUUID().toString()} className="basis-1/2 grid grid-cols-12 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <Link className='col-span-1 p-1' href=''>
-                            <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(kw.uid)}/>
-                        </Link>
-
-                        { editMode ?
+                    <RemovableItem onDelete={handleDelete} id={kw.uid}>
+                                                { editMode ?
                             <input className='col-span-1 min-w-8 max-w-28 h-6 w-10'
                                     type="text"
                                     defaultValue={kw.order || ''}
@@ -164,7 +160,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
                         :
                             <div className='col-span-3 right-0 items-center w-36'></div>
                         }
-                    </div>
+                    </RemovableItem>
                 ))}
             </div>
         </div>

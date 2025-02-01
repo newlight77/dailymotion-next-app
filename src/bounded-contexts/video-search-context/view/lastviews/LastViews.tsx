@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'next/link'
-import { FaSquareMinus, FaUserPlus, FaHeartCirclePlus, FaCirclePlay } from 'react-icons/fa6';
+import { FaUserPlus, FaHeartCirclePlus, FaCirclePlay } from 'react-icons/fa6';
 import { useLastViews } from '../../hooks/LastViewsProvider';
 import { useFavorites } from '../../hooks/FavoritesProvider';
 import { LastViewType } from '../../domain/model/anime';
 import { useFollowings } from '../../hooks/FollowingsProvider';
+import RemovableItem from '@/components/molecules/RemovableItem';
 
 interface Props {
     onSelected: (lastView: LastViewType) => void,
@@ -41,10 +42,7 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
             </div>
             <div className='flex flex-col gap-2'>
                 { items ?.map(s => (
-                    <div key={s.uid} className="grid grid-cols-8 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <Link className='col-span-1 p-1' href=''>
-                            <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(s.uid)}/>
-                        </Link>
+                    <RemovableItem onDelete={handleDelete} id={s.uid}>
                         <Link className='col-span-1 p-1' href=''>
                             <FaHeartCirclePlus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
                         </Link>
@@ -60,7 +58,7 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
                         {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
                         </div>
 
-                    </div>
+                    </RemovableItem>
                 ))}
             </div>
         </div>

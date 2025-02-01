@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'
-import { FaSquareMinus } from 'react-icons/fa6';
 import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
+import RemovableItem from '@/components/molecules/RemovableItem';
 
 interface SearchBarProps {
     onSelected: (keywords: string) => void,
@@ -32,15 +32,11 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
             </div>
             <div className='flex flex-col gap-2'>
                 { items?.map(s => (
-                    <div key={s.uid} className="grid grid-cols-12 gap-4 items-center hover:border rounded-md border-tertiary bg-secondaryVariant">
-                        <Link className='col-span-1 p-1' href=''>
-                            <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(s.uid)}/>
-                        </Link>
-
+                    <RemovableItem onDelete={handleDelete} id={s.uid}>
                         <div className="pl-2 col-span-11" onClick={() => selectKeywords(s.keywords)}>
                             {s.keywords}
                         </div>
-                    </div>
+                    </RemovableItem>
                 ))}
             </div>
         </div>

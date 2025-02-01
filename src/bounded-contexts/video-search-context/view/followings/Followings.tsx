@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
-import { FaSquareMinus } from 'react-icons/fa6';
 import { useFollowings } from '../../hooks/FollowingsProvider';
 import { FollowingType } from '../../domain/model/anime';
+import RemovableItem from '@/components/molecules/RemovableItem';
 
 
 
@@ -76,17 +76,14 @@ const Followings: React.FC<Props> = ({className}) => {
 
             <div className='flex flex-col gap-2 p-2'>
                 { items ?.map(s => (
-                    <div key={s.uid} className="grid grid-cols-12 items-center">
-                        <Link className='col-span-1 p-1' href=''>
-                            <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => remove(s.uid)}/>
-                        </Link>
+                    <RemovableItem onDelete={remove} id={s.uid}>
                         <Link
                             className="col-span-11 pl-2 hover:border rounded-md border-tertiary bg-secondaryVariant"
                             href={`https://www.dailymotion.com/${s.owner}`}
                             target="_blank">
                             {`${s.owner}` }
                         </Link>
-                    </div>
+                    </RemovableItem>
                 ))}
             </div>
         </div>
