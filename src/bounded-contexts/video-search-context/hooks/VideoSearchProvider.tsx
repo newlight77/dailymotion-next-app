@@ -9,14 +9,14 @@ export interface VideoSearchContextType {
   found: VideoType | undefined,
   searchResults: MetaVideoType[] | undefined,
   search: (keywords: string) => void,
-  findById: (value: string) => void,
+  findById: (id: string) => Promise<VideoType | undefined>,
 }
 
 export const VideoSearchContext = createContext<VideoSearchContextType>({
   found: undefined,
   searchResults: [],
-  search: (keywords: string) : MetaVideoType[] => { console.log('remove', keywords); return [] },
-  findById: (value: string) => { console.log('add or update', value) },
+  search: (keywords: string) : MetaVideoType[] => { console.log('search', keywords); return [] },
+  findById: async (id: string) => { console.log('findById', id); return undefined },
 })
 
 

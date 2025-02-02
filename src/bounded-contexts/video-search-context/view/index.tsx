@@ -1,11 +1,11 @@
 'use client'
 import React from 'react';
-import { FavoritesProvider } from '../hooks/FavoritesProvider';
-import { FollowingsProvider } from '../hooks/FollowingsProvider';
-import { LastViewsProvider } from '../hooks/LastViewsProvider';
-import { SearchHistoryProvider } from '../hooks/SearchHistoryProvider';
-import { AnimeListProvider } from '../hooks/AnimeListProvider';
-import { VideoSearchProvider } from '../hooks/VideoSearchProvider';
+import { FavoritesProvider } from '../hooks';
+import { FollowingsProvider } from '../hooks';
+import { LastViewsProvider } from '../hooks';
+import { SearchHistoryProvider } from '../hooks';
+import { AnimeListProvider } from '../hooks';
+import { VideoSearchProvider } from '../hooks';
 import animeListAdapter from '../adapter/getAnime-adapter';
 import videoSearchAdapter from '../adapter/video-search-adapter';
 

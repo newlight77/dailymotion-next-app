@@ -17,13 +17,10 @@ const VideoPage: React.FC = () => {
 
     useEffect(() => {
         console.log('params.id', id);
-        getById(id);
+        findById(id).then((v) => {
+            if (v) setVideo({id: v.videoId, title: v.title});
+        });
     }, [id]);
-
-    const getById = async (id: string) => {
-        await findById(id);
-        if (found) setVideo({id: found.videoId, title: found.title});
-    }
 
     return (
         <div className='w-full'>
