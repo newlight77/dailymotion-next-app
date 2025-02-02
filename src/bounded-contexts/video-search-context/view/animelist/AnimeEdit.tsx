@@ -62,10 +62,10 @@ const AnimeEdit: React.FC<Props> = ({editedAnime}) => {
                 <input className='col-span-12' type="text" name="title" value={anime.title} onChange={handleChange} placeholder="Title" required />
                 <input className='col-span-12' type="text" name="originalTitle" value={anime.originalTitle} onChange={handleChange} placeholder="Original Title" />
                 <input className='col-span-12' type="text" name="subtitle" value={anime.subtitle} onChange={handleChange} placeholder="Subtitle" />
-                <input className='col-span-12' type="text" name="summary" value={anime.summary} onChange={handleChange} placeholder="Summary" required />
+                <input className='col-span-12' type="text" name="summary" value={anime.summary} onChange={handleChange} placeholder="Summary" />
                 <input className='col-span-12' type="text" name="thumbnail" value={anime.thumbnail} onChange={handleChange} placeholder="Thumbnail" required />
-                <input className='col-span-6' type="text" name="studio" value={anime.studio} onChange={handleChange} placeholder="Studio" required />
-                <input className='col-span-6' type="text" name="publishedBy" value={anime.publishedBy} onChange={handleChange} placeholder="Published By" required />
+                <input className='col-span-6' type="text" name="studio" value={anime.studio} onChange={handleChange} placeholder="Studio" />
+                <input className='col-span-6' type="text" name="publishedBy" value={anime.publishedBy} onChange={handleChange} placeholder="Published By" />
                 <input className='col-span-6' type="date" name="publishedAt" value={anime.publishedAt.toISOString().split('T')[0]} onChange={handleChange} required />
                 <input className='col-span-6' type="date" name="releaseAt" value={anime.releaseAt.toISOString().split('T')[0]} onChange={handleChange} required />
                 <input className='col-span-6' type="date" name="updateAt" value={anime.updateAt.toISOString().split('T')[0]} onChange={handleChange} required />

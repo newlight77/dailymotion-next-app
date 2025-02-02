@@ -74,16 +74,18 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
                 </Modal>
             }
 
-            <div className='grid grid-cols-2 pt-5 items-center absolute'>
-                <Link className='followinglink ml-4 flex items-center gap-2 pr-4'
-                    href={''}
-                    onClick={() => handleFollowAnime(anime)}>
-                    <FaUserPlus size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                </Link>
-                <Link href={''} className="pr-4" onClick={toggleEditModal}>
-                    <FaPenToSquare size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                </Link>
-            </div>
+            { !editModal &&
+                <div className='grid grid-cols-2 pt-5 items-center absolute'>
+                    <Link className='followinglink ml-4 flex items-center gap-2 pr-4'
+                        href={''}
+                        onClick={() => handleFollowAnime(anime)}>
+                        <FaUserPlus size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    </Link>
+                    <Link href={''} className="pr-4" onClick={toggleEditModal}>
+                        <FaPenToSquare size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    </Link>
+                </div>
+            }
 
             <Link className='view'
                 href={`/anime/${anime.uid}`}

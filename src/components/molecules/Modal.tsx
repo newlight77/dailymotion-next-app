@@ -32,8 +32,8 @@ const Modal: React.FC<Props> = ({ title, children, className, onClose }) => {
     };
 
     const modalContent = (
-        <div className={`${className} modal-overlay absolute p-4 w-full rounded-lg bg-secondaryVariant`}>
-              <div className="modal border rounded-lg border-tertiary bg-secondary p-4">
+        <div className={`${className} modal-overlay fixed z-999 p-4 w-full rounded-lg bg-secondaryVariant bottom-0`}>
+              <div className="modal z-1000 border rounded-lg border-tertiary bg-secondary p-4">
                   <div className="modal-header flex text-xl">
                       <FaXmark size={28} className="close hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={handleCloseClick}/>
                       {title && <h3 className="px-4 bg-secondaryVariant rounded-md">{title}</h3>}
