@@ -10,6 +10,21 @@ const ANIMELIST: AnimeType[] = [
 
 
 class AnimeListAdapter implements AnimeListPort {
+
+  upsert = async (anime: AnimeType): Promise<void> => {
+    try {
+      const found = ANIMELIST.find(f => f.uid === anime.uid && f.title !== anime.title)
+      if (found) {
+        const updated = {...found, ...anime}
+        ANIMELIST.push(updated)
+      } else {
+        ANIMELIST.push(anime)
+      }
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  }
+
   findById = async (uid: string): Promise<AnimeType | undefined> => {
     try {
       return ANIMELIST.find(f => f.uid === uid)

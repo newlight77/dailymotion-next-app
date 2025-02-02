@@ -13,11 +13,11 @@ type Props = {
 const Followings: React.FC<Props> = ({className}) => {
     const { items, remove, loadData, reset, clear } = useFollowings();
     const [data, setData] = useState('')
-    const [editMode, setEditMode] = useState(false);
+    const [loadMode, setLoadMode] = useState(false);
 
 
-    function toggleEditMode(): void {
-        setEditMode(editMode ? false : true);
+    function toggleLoadMode(): void {
+        setLoadMode(loadMode ? false : true);
     }
 
     const handleReloadDataChange = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -55,11 +55,11 @@ const Followings: React.FC<Props> = ({className}) => {
     return (
         <div className={className}>
             <div className='followings-header p-4'>
-                <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
+                <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
                 <Link className='pr-4' href={''} onClick={clear}>clear</Link>
                 <Link href={''} className="pr-4" onClick={reset}>reset</Link>
 
-                {editMode ?
+                {loadMode ?
                     <>
                         <textarea
                             className='w-full h-96 rounded-lg'

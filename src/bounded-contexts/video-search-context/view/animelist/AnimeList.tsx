@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { useAnimelist } from '../../hooks/AnimeListProvider';
 import { AnimeType } from '../../domain/model/anime';
 import AnimeCard from './AnimeCard';
+import Modal from '@/components/molecules/Modal';
+import AnimeEdit from './AnimeEdit';
 
 
 
@@ -13,7 +15,8 @@ type Props = {
 const AnimeList: React.FC<Props> = ({className}) => {
     const { items, loadData, reset } = useAnimelist();
     const [data, setData] = useState('')
-    const [editMode, setEditMode] = useState(false);
+    const [addModal, setAddModal] = useState(false);
+    const [loadMode, setLoadMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useState('');
     const [exclusions, setExclusions] = useState('');
 
@@ -33,8 +36,12 @@ const AnimeList: React.FC<Props> = ({className}) => {
         setExclusions(event.target.value);
     };
 
-    function toggleEditMode(): void {
-        setEditMode(editMode ? false : true);
+    function toggleLoadMode(): void {
+        setLoadMode(loadMode ? false : true);
+    }
+
+    function toggleAddModal(): void {
+        setAddModal(addModal ? false : true);
     }
 
     const handleReloadDataChange = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -64,6 +71,14 @@ const AnimeList: React.FC<Props> = ({className}) => {
     return (
         <div className={className}>
 
+            <div id="modal-root"></div>
+
+            {addModal &&
+                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 ' onClose={() => setAddModal(false)} title={'New Amine'}>
+                    <AnimeEdit></AnimeEdit>
+                </Modal>
+            }
+
             {
                 items && items?.length > 0 ?
                 <div className="pt-4 pb-4 text-primary">
@@ -85,10 +100,11 @@ const AnimeList: React.FC<Props> = ({className}) => {
             }
 
             <div className='animelist-header p-4'>
-                <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
+                <Link href={''} className="pr-4" onClick={toggleAddModal}>add</Link>
+                <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
                 <Link href={''} className="pr-4" onClick={reset}>reset</Link>
 
-                {editMode ?
+                {loadMode ?
                     <>
                         <textarea
                             className='w-full h-96 rounded-lg'

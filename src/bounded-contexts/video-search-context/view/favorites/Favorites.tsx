@@ -14,6 +14,7 @@ interface FavoritesProps {
 
 const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
     const { items, remove, addOrUpdate, loadData, reset } = useFavorites();
+    const [loadMode, setLoadMode] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [data, setData] = React.useState('')
 
@@ -71,6 +72,10 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
         }
     };
 
+    function toggleLoadMode(): void {
+        setLoadMode(loadMode ? false : true);
+    }
+
     function toggleEditMode(): void {
         setEditMode(editMode ? false : true);
     }
@@ -93,10 +98,11 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
     return (
         <div className={className}>
             <div className='favorties-header pb-4'>
-                <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
+            <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
+            <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
                 <Link href={''} className="pr-4" onClick={reset}>reset</Link>
 
-                {editMode ?
+                {loadMode ?
                     <>
                         <textarea
                             className='flex w-full h-96 rounded-lg'

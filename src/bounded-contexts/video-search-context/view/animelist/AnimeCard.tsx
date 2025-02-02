@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaUserPlus } from 'react-icons/fa6';
 import { AnimeType } from '../../domain/model/anime';
+import Modal from '@/components/molecules/Modal';
+import AnimeEdit from './AnimeEdit';
 
 
 interface AnimeCardProps {
@@ -13,6 +15,8 @@ interface AnimeCardProps {
 }
 
 const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAnime, className}) => {
+
+    const [editModal, setEditModal] = useState(false);
 
     const handleAddToFavorites = (anime: AnimeType) => {
         const a = {
@@ -56,8 +60,20 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
         onFollowAnime(a);
     }
 
+    function toggleEditModal(): void {
+        setEditModal(editModal ? false : true);
+    }
+
     return (
         <div className={`${className} p-2 md:hover:border border-gold`}>
+
+            <div id="modal-root"></div>
+            { editModal &&
+                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 ' onClose={() => setEditModal(false)} title={anime.title}>
+                    <AnimeEdit editedAnime={anime}></AnimeEdit>
+                </Modal>
+            }
+
             <Link className='view'
                 href={`/anime/${anime.uid}`}
                 onClick={() => handleAddToFavorites(anime)}>
@@ -87,6 +103,9 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
                     </Link>
                 </div>
             </div>
+
+            <Link href={''} className="pr-4" onClick={toggleEditModal}>edit</Link>
+
         </div>
     );
 };

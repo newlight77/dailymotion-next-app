@@ -11,6 +11,7 @@ interface AnimelistContextType {
   adapter: AnimeListPort,
   items: AnimeType[] | undefined,
   loadData: (data: AnimeType[]) => void,
+  upsert: (value: AnimeType) => void,
   reset: () => void,
 }
 
@@ -18,6 +19,7 @@ const AnimelistContext = createContext<AnimelistContextType>({
   adapter: {} as AnimeListPort,
   items: [],
   loadData: (data: AnimeType[]) => { console.log('load data', data) },
+  upsert: (value: AnimeType) => { console.log('add data', value) },
   reset: () => {},
 });
 
@@ -29,7 +31,7 @@ type Props = {
 
 export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElement => {
 
-  const {items, loadData} = useStorage<AnimeType>(`animelist`, []);
+  const {items, loadData, addOrUpdate} = useStorage<AnimeType>(`animelist`, []);
 
   useEffect(() => {
     reset();
@@ -41,11 +43,17 @@ export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElem
     loadData(all);
   }
 
+  const upsert = async (anime: AnimeType) => {
+    await adapter.upsert(anime);
+    addOrUpdate(anime)
+  }
+
   const memoedValue = useMemo(
     () => ({
       adapter,
       items,
       loadData,
+      upsert,
       reset,
     }),
     [items, loadData, reset, reset]

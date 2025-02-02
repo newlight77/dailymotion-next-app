@@ -6,7 +6,7 @@ import { LastViewsProvider } from '../hooks';
 import { SearchHistoryProvider } from '../hooks';
 import { AnimeListProvider } from '../hooks';
 import { VideoSearchProvider } from '../hooks';
-import animeListAdapter from '../adapter/getAnime-adapter';
+import animeListAdapter from '../adapter/animelist-adapter';
 import videoSearchAdapter from '../adapter/video-search-adapter';
 
 

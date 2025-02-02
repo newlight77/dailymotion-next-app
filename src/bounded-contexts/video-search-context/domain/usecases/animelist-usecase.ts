@@ -2,6 +2,7 @@ import { AnimeType } from "@/bounded-contexts/video-search-context/domain/model/
 
 
 export interface AnimeListPort {
+  upsert: (anime: AnimeType) => Promise<void>
   findById: (id: string) => Promise<AnimeType | undefined>
   findAll: () => Promise<AnimeType[]>
 }
