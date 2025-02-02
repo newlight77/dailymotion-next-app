@@ -14,7 +14,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const SearchProvider = ({ children }: Props): React.ReactElement => {
+export const SearchModule = ({ children }: Props): React.ReactElement => {
 
   return (
     <VideoSearchProvider adapter={videoSearchAdapter}>
