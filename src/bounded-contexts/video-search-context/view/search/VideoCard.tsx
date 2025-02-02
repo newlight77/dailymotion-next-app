@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link'
 import { FaCirclePlay, FaUserPlus } from 'react-icons/fa6';
 import { MetaVideoType, VideoType } from '../../domain/model/anime';
-import { displayDate, displayDuration } from '@/shared/dateUtil';
+import { displayDate, displayDurationInHMS } from '@/shared/dateUtil';
 
 
 interface VideoCardProps {
@@ -44,6 +44,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                     href={`/video/${video.id}`}
                     target="_blank"
                     onClick={() => handleAddLastView(video)}>
+                <div className='p-4 ml-4 absolute'>{displayDurationInHMS(video.duration)}</div>
                 <Image className='video h-96 w-148'
                     src={video.thumbnail_480_url}
                     alt={video.title}
@@ -58,7 +59,6 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
             </Link>
             <div className='content p-2'>
                 <div className='grid grid-cols-2 pt-4 gap-2 items-center'>
-                    <div className='ml-4'>duration: {displayDuration(video.duration)}</div>
                     <div className='ml-4'>updated time: {displayDate(video.updated_time)}</div>
                     <div className='ml-4'>language: {video.language}</div>
                     <div className='ml-4'>country: {video.country}</div>

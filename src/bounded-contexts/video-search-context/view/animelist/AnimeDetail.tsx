@@ -6,6 +6,7 @@ import { useAnimelist } from '../../hooks/AnimeListProvider';
 import Modal from '@/components/molecules/Modal';
 import AnimeEdit from './AnimeEdit';
 import Link from 'next/link';
+import { FaPenToSquare } from 'react-icons/fa6';
 
 type Props = {
     id: string
@@ -40,6 +41,11 @@ const AnimeDetail: React.FC<Props> = ({id}) => {
 
             {anime ?
                 <div className='flex flex-wrap p-2'>
+                    { !editModal &&
+                        <Link href={''} className="p-4 pr-4 absolute" onClick={toggleEditModal}>
+                            <FaPenToSquare size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                        </Link>
+                    }
                     <Image className='anime md:w-1/2 md:max-w-screen-sm center justify-center items-center'
                         src={anime.thumbnail}
                         alt={anime.title}
@@ -59,7 +65,6 @@ const AnimeDetail: React.FC<Props> = ({id}) => {
                             {/* <div className='p-1 md:px-4'>number of episodes: {item.totalEpisodes}</div> */}
                         </div>
                     </div>
-                    <Link href={''} className="pr-4" onClick={toggleEditModal}>edit</Link>
                 </div>
                 :
                 <div>Loading...</div>}
