@@ -76,7 +76,7 @@ const Followings: React.FC<Props> = ({className}) => {
 
             <div className='flex flex-col gap-2 p-2'>
                 { items ?.map(s => (
-                    <RemovableItem onDelete={remove} id={s.uid}>
+                    <RemovableItem onDelete={remove} key={s.uid} id={s.uid}>
                         <Link
                             className="col-span-11 pl-2 hover:border rounded-md border-tertiary bg-secondaryVariant"
                             href={`https://www.dailymotion.com/${s.owner}`}

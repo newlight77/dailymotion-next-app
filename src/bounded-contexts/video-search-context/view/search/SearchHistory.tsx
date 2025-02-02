@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link'
 import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
 import RemovableItem from '@/components/molecules/RemovableItem';
+import SelactableItem from '@/components/molecules/Selectable';
 
 interface SearchBarProps {
     onSelected: (keywords: string) => void,
@@ -32,10 +33,10 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
             </div>
             <div className='flex flex-col gap-2'>
                 { items?.map(s => (
-                    <RemovableItem onDelete={handleDelete} id={s.uid}>
-                        <div className="pl-2 col-span-11" onClick={() => selectKeywords(s.keywords)}>
+                    <RemovableItem onDelete={handleDelete} key={s.uid} id={s.uid}>
+                        <SelactableItem className="pl-2 col-span-11" onSelect={() => selectKeywords(s.keywords)} >
                             {s.keywords}
-                        </div>
+                        </SelactableItem>
                     </RemovableItem>
                 ))}
             </div>

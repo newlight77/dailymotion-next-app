@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useFavorites } from '../../hooks/FavoritesProvider';
 import { FavoriteType } from '../../domain/model/anime';
 import RemovableItem from '@/components/molecules/RemovableItem';
+import SelactableItem from '@/components/molecules/Selectable';
 
 
 interface FavoritesProps {
@@ -111,7 +112,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
             </div>
             <div className='favorites-list flex flex-col gap-2'>
                 { items?.map(kw => (
-                    <RemovableItem onDelete={handleDelete} id={kw.uid}>
+                    <RemovableItem onDelete={handleDelete} key={kw.uid} id={kw.uid}>
                                                 { editMode ?
                             <input className='col-span-1 min-w-8 max-w-28 h-6 w-10'
                                     type="text"
@@ -123,12 +124,12 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
                             <div className='col-span-1 min-w-8 max-w-28 h-6 w-10'>{kw.order < 100 ? kw.order : ''}</div>
                         }
 
-                        <div className={`col-span-5 hover:text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onClick={() => handleSelect(kw)}>
+                        <SelactableItem className={`col-span-5 hover:text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onSelect={() => handleSelect(kw)} >
                             <div className='underline underline-offset-4 decoration-primary'>{kw.title}</div>
                             { kw.originalTitle ? <div className='pr-2 w-fit'>{kw.originalTitle}</div> : <></>}
                             { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
                             { kw.lastEpisode ? <div>{kw.lastEpisode}</div> : <></>}
-                        </div>
+                        </SelactableItem>
 
                         { editMode ?
                             <div className='col-span-5 right-0 items-center max-w-48'>

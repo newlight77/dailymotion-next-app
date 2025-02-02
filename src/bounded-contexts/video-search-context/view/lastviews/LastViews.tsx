@@ -6,6 +6,7 @@ import { useFavorites } from '../../hooks/FavoritesProvider';
 import { LastViewType } from '../../domain/model/anime';
 import { useFollowings } from '../../hooks/FollowingsProvider';
 import RemovableItem from '@/components/molecules/RemovableItem';
+import SelactableItem from '@/components/molecules/Selectable';
 
 interface Props {
     onSelected: (lastView: LastViewType) => void,
@@ -42,7 +43,7 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
             </div>
             <div className='flex flex-col gap-2'>
                 { items ?.map(s => (
-                    <RemovableItem onDelete={handleDelete} id={s.uid}>
+                    <RemovableItem onDelete={handleDelete} key={s.uid} id={s.uid}>
                         <Link className='col-span-1 p-1' href=''>
                             <FaHeartCirclePlus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
                         </Link>
@@ -54,9 +55,9 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
                             <span className='p-1 text-tertiary'>{`${s.owner}`}</span>
                         </Link>
 
-                        <div className="col-span-8" onClick={() => selectLastView(s)}>
+                        <SelactableItem className="col-span-8" onSelect={() => selectLastView(s)} >
                         {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
-                        </div>
+                        </SelactableItem>
 
                     </RemovableItem>
                 ))}

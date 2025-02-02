@@ -11,8 +11,8 @@ interface Props {
 
 const RemovableItem: React.FC<Props> = ({ id, children, onDelete, className }) => {
 
-    const handleDelete = async (uid: string) => {
-        onDelete(uid)
+    const handleDelete = async (id: string) => {
+        onDelete(id)
     }
 
     return (
