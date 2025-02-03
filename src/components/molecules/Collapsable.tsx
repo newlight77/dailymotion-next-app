@@ -18,7 +18,7 @@ const Collapsable: React.FC<CollapsableProps> = ({ title, collapsedLabel, childr
 
     useEffect(() => {
         toggleShowHide()
-    }, [hideShow]);
+    }, [setShow, hideShow]);
 
     return (
         <div className={className}>

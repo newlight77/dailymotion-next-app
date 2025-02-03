@@ -8,18 +8,28 @@ const ANIMELIST: AnimeType[] = [
 ]
 .sort((a: AnimeType, b: AnimeType) => b.releaseAt.getUTCMilliseconds() - a.releaseAt.getUTCMilliseconds());
 
+const mapAnimeListToDictionary = (animeList: AnimeType[]): { [key: string]: AnimeType } => {
+  return animeList.reduce((acc, anime) => {
+    acc[anime.uid] = anime;
+    return acc;
+  }, {} as { [key: string]: AnimeType });
+};
 
 class AnimeListAdapter implements AnimeListPort {
 
+  private readonly db: { [key: string]: AnimeType } = mapAnimeListToDictionary(ANIMELIST)
+
   upsert = async (anime: AnimeType): Promise<void> => {
     try {
-      const found = ANIMELIST.find(f => f.uid === anime.uid && f.title !== anime.title)
+      // console.log('before adapter upsert', anime)
+      const found = this.db[anime.uid]
       if (found) {
         const updated = {...found, ...anime}
-        ANIMELIST.push(updated)
+        this.db[anime.uid] = updated
       } else {
-        ANIMELIST.push(anime)
+        this.db[anime.uid] = anime
       }
+      // console.log('after adapter upsert', this.db)
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -27,7 +37,7 @@ class AnimeListAdapter implements AnimeListPort {
 
   findById = async (uid: string): Promise<AnimeType | undefined> => {
     try {
-      return ANIMELIST.find(f => f.uid === uid)
+      return this.db[uid]
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -35,7 +45,7 @@ class AnimeListAdapter implements AnimeListPort {
 
   findAll = async (): Promise<AnimeType[]> => {
     try {
-      return ANIMELIST
+      return Object.values(this.db)
     } catch (error) {
         console.error("Error fetching data: ", error);
         return []

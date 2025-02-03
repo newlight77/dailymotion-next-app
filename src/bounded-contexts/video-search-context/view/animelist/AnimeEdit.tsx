@@ -6,7 +6,8 @@ import { useAnimelist } from '../../hooks/AnimeListProvider';
 type Props = {
     edit: boolean,
     editedAnime?: AnimeType
-    children?: React.ReactNode
+    onApply?: (anime: AnimeType) => void
+    children?: React.ReactNode,
 }
 
 const blankAnime: AnimeType = {
@@ -27,7 +28,7 @@ const blankAnime: AnimeType = {
     totalEpisodes: undefined
   }
 
-const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAnime}) => {
+const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAnime, onApply}) => {
     const { upsert } = useAnimelist();
     const [ anime, setAnime ] = useState<AnimeType>(editedAnime);
 
@@ -42,6 +43,7 @@ const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAnime}) =>
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         upsert(anime)
+        if (onApply) onApply(anime)
     };
 
     return (

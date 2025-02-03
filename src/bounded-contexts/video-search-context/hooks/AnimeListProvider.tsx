@@ -34,18 +34,21 @@ export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElem
   const {items, loadData, addOrUpdate} = useStorage<AnimeType>(`animelist`, []);
 
   useEffect(() => {
+    // required to update the storage to refresh UI
     reset();
   }, [adapter])
 
   const reset = async () => {
-    console.log('AnimeListProvider useEffect, fetchData');
+    // console.log('AnimeListProvider useEffect, fetchData');
     const all = await adapter.findAll();
     loadData(all);
   }
 
   const upsert = async (anime: AnimeType) => {
+    // console.log('AnimeListProvider before upsert', anime);
     await adapter.upsert(anime);
     addOrUpdate(anime)
+    // console.log('AnimeListProvider post upsert', items)
   }
 
   const memoedValue = useMemo(

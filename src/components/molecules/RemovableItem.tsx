@@ -18,7 +18,7 @@ const RemovableItem: React.FC<Props> = ({ id, children, onDelete, className }) =
     return (
         <div key={id} className={`${className} grid grid-cols-12 items-center hover:border rounded-md border-tertiary bg-secondaryVariant`}>
             <Link className='col-span-1 p-1' href=''>
-                <FaSquareMinus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(id)}/>
+                <FaSquareMinus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleDelete(id)}/>
             </Link>
 
             {children}

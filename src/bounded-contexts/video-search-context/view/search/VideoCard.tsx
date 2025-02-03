@@ -40,11 +40,24 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
 
     return (
         <div className={`${className} p-2 md:hover:border border-gold`}>
-            <Link className='view'
+            <div className='grid grid-rows-2 pt-5 absolute w-full translate-y-8'>
+                <Link className='videoLink mb-4 flex gap-2 px-4' href={`https://www.dailymotion.com/video/${video.id}`}>
+                    <FaCirclePlay size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <div className='bg-secondaryVariant rounded-md px-2 content-center'>on dailymotion</div>
+                </Link>
+                <Link className='followinglink mb-4 flex gap-2 px-4'
+                    href={''}
+                    onClick={() => handleFollowOwner(video)}>
+                    <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <span className='p-1 bg-secondaryVariant rounded-md px-2 content-center'>{`${video.ownerUsername}`}</span>
+                </Link>
+            </div>
+
+            <Link className='thumbnaillink'
                     href={`/video/${video.id}`}
                     target="_blank"
                     onClick={() => handleAddLastView(video)}>
-                <div className='p-4 ml-4 absolute'>{displayDurationInHMS(video.duration)}</div>
+                <div className='px-2 py-1 ml-6 absolute translate-y-80 bg-secondaryVariant rounded-lg'>{displayDurationInHMS(video.duration)}</div>
                 <Image className='video h-96 w-148'
                     src={video.thumbnail_480_url}
                     alt={video.title}
@@ -58,28 +71,12 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                     <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
             </Link>
             <div className='content p-2'>
-                <div className='grid grid-cols-2 pt-4 gap-2 items-center'>
+                <div className='grid grid-cols-2 pt-4 gap-2'>
                     <div className='ml-4'>updated time: {displayDate(video.updated_time)}</div>
                     <div className='ml-4'>language: {video.language}</div>
                     <div className='ml-4'>country: {video.country}</div>
                 </div>
             </div>
-            <div className='grid grid-cols-2 pt-5 items-center'>
-                <Link className='videoLink ml-4 flex items-center gap-2' href={`https://www.dailymotion.com/video/${video.id}`}>
-                    <FaCirclePlay size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                    <div className=''>on dailymotion</div>
-                </Link>
-
-                <Link className='followinglink ml-4 flex items-center gap-2'
-                    href={''}
-                    onClick={() => handleFollowOwner(video)}>
-                    <FaThumbtack size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                    <span className='p-1 text-tertiary'>{`${video.ownerUsername}`}</span>
-                </Link>
-            </div>
-
-            {/* <div className='description text-sm text-wrap pt-1 h-10 m-2'>{video.description}</div> */}
-
         </div>
     );
 };

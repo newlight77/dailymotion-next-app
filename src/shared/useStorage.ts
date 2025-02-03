@@ -53,8 +53,11 @@ export function useStorage<S extends Storage>(key: string, defaultValue: S[]):
   }
 
   const addOrUpdate = (item: S) => {
+    // console.log('useStorage before addOrUpdate', items)
+
     if (item && items) {
       const found = items.find(f => isSame(f, item));
+      console.log('found', found)
       if (found) {
         const updatedItem = {...found, ...item, uid: found.uid ? found.uid : crypto.randomUUID().toString()};
         // let updatedItems = data.filter(f => !isSame(f, item));
@@ -72,6 +75,7 @@ export function useStorage<S extends Storage>(key: string, defaultValue: S[]):
           .reduce<S[]>((acc, curr) => acc.some(item => isSame(item, curr)) ? acc : [...acc, curr], [])
           .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
+        insertAtAndShiftAllItemsOrder(updatedItems.length, newItem);
         setItems(updatedItems);
         setItem(newItem);
       }

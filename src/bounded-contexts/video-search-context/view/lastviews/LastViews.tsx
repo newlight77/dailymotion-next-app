@@ -44,14 +44,14 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
             <div className='flex flex-col gap-2'>
                 { items ?.map(s => (
                     <RemovableItem onDelete={handleDelete} key={s.uid} id={s.uid}>
-                        <Link className='col-span-1 p-1' href=''>
-                            <FaHeartCirclePlus size={24} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
+                        <Link className='col-span-1' href=''>
+                            <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
                         </Link>
-                        <Link href={`/video/${s.videoId}`} className="col-span-1 p-1 hover:border rounded-md border-tertiary bg-secondaryVariant">
-                            <FaCirclePlay size={18} className=""/>
+                        <Link href={`/video/${s.videoId}`} className="col-span-1">
+                            <FaCirclePlay size={32} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
                         </Link>
-                        <Link href={''} className="col-span-5 p-1 flex gap-1 items-center" onClick={() => handleFollowOwner(s)}>
-                            <FaUserPlus size={20} className="hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleFollowOwner(s)}/>
+                        <Link href={''} className="col-span-5 flex" onClick={() => handleFollowOwner(s)}>
+                            <FaUserPlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleFollowOwner(s)}/>
                             <span className='p-1 text-tertiary'>{`${s.owner}`}</span>
                         </Link>
 
