@@ -29,16 +29,16 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
 
             <div className='grid grid-rows-4 pt-5 absolute translate-y-8'>
                 <Link href={`/?keywords=${anime.title} ${anime.originalTitle ? anime.lastEpisode : ''}`} className="searchlink gap-2 p-4">
-                    <FaMagnifyingGlass size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <FaMagnifyingGlass size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                 </Link>
                 <Link href={''} className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                    <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                 </Link>
                 <Link href={''} className='favoritelink gap-2 p-4' onClick={() => handleAddToFavorites(anime)}>
-                    <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                 </Link>
                 <Link href={`/anime/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
-                    <FaPenToSquare size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <FaPenToSquare size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                 </Link>
             </div>
 

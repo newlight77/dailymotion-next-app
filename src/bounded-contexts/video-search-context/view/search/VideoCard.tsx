@@ -40,24 +40,24 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
 
     return (
         <div className={`${className} p-2 md:hover:border border-gold`}>
-            <div className='grid grid-rows-2 pt-5 absolute w-full translate-y-8'>
+            <div className='grid grid-rows-2 pt-5 absolute translate-y-44'>
                 <Link className='videoLink mb-4 flex gap-2 px-4' href={`https://www.dailymotion.com/video/${video.id}`}>
-                    <FaCirclePlay size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                    <div className='bg-secondaryVariant rounded-md px-2 content-center'>on dailymotion</div>
+                    <FaCirclePlay size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                    <div className='bg-secondaryVariant rounded-md px-2 content-center border border-tertiaryVariant outline outline-tertiaryVariant'>on dailymotion</div>
                 </Link>
                 <Link className='followinglink mb-4 flex gap-2 px-4'
                     href={''}
                     onClick={() => handleFollowOwner(video)}>
-                    <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                    <span className='p-1 bg-secondaryVariant rounded-md px-2 content-center'>{`${video.ownerUsername}`}</span>
+                    <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                    <span className='p-1 bg-secondaryVariant rounded-md px-2 content-center border border-tertiaryVariant outline outline-tertiaryVariant'>{`${video.ownerUsername}`}</span>
                 </Link>
+                <div className='px-2 py-1 ml-4 mb-4 gap-2 w-fit bg-secondaryVariant rounded-lg border border-tertiaryVariant outline outline-tertiaryVariant'>{displayDurationInHMS(video.duration)}</div>
             </div>
 
             <Link className='thumbnaillink'
                     href={`/video/${video.id}`}
                     target="_blank"
                     onClick={() => handleAddLastView(video)}>
-                <div className='px-2 py-1 ml-6 absolute translate-y-80 bg-secondaryVariant rounded-lg'>{displayDurationInHMS(video.duration)}</div>
                 <Image className='video h-96 w-148'
                     src={video.thumbnail_480_url}
                     alt={video.title}

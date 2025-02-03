@@ -62,19 +62,19 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
 
             {anime ?
                 <div className='flex flex-wrap p-2'>
-                    <div className='grid grid-cols-4 pt-5 absolute'>
-                        <Link href={`/?keywords=${anime.title} ${anime.originalTitle ? anime.lastEpisode : ''}`} className="searchlink gap-2 px-4">
-                            <FaMagnifyingGlass size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <div className='grid grid-rows-4 pt-5 absolute translate-y-8'>
+                        <Link href={`/?keywords=${anime.title} ${anime.originalTitle ? anime.lastEpisode : ''}`} className="searchlink gap-2 p-4">
+                            <FaMagnifyingGlass size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                         </Link>
-                        <Link href={''} className='followinglink gap-2 px-4' onClick={() => handleFollowAnime(anime)}>
-                            <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                        <Link href={''} className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
+                            <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                         </Link>
-                        <Link href={''} className='favoritelink gap-2 px-4' onClick={() => handleAddToFavorites(anime)}>
-                            <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                        <Link href={''} className='favoritelink gap-2 p-4' onClick={() => handleAddToFavorites(anime)}>
+                            <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                         </Link>
                         { !editModal &&
-                            <Link href={''} className="gap-2 px-4" onClick={toggleEditModal}>
-                                <FaPenToSquare size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                            <Link href={''} className="gap-2 p-4" onClick={toggleEditModal}>
+                                <FaPenToSquare size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                             </Link>
                         }
                     </div>
