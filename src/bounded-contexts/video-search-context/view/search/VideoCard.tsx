@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { FaCirclePlay, FaUserPlus } from 'react-icons/fa6';
+import { FaCirclePlay, FaThumbtack } from 'react-icons/fa6';
 import { MetaVideoType, VideoType } from '../../domain/model/anime';
 import { displayDate, displayDurationInHMS } from '@/shared/dateUtil';
 
@@ -66,14 +66,14 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
             </div>
             <div className='grid grid-cols-2 pt-5 items-center'>
                 <Link className='videoLink ml-4 flex items-center gap-2' href={`https://www.dailymotion.com/video/${video.id}`}>
-                    <FaCirclePlay size={20} className="hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <FaCirclePlay size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
                     <div className=''>on dailymotion</div>
                 </Link>
 
                 <Link className='followinglink ml-4 flex items-center gap-2'
                     href={''}
                     onClick={() => handleFollowOwner(video)}>
-                    <FaUserPlus size={20} className="hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                    <FaThumbtack size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
                     <span className='p-1 text-tertiary'>{`${video.ownerUsername}`}</span>
                 </Link>
             </div>

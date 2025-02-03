@@ -25,6 +25,7 @@ const AnimeList: React.FC<Props> = ({className}) => {
     };
 
     const handleFollowAnime = (anime: AnimeType) => {
+        // TODO: display followed animes on following page
         console.log('follow anime', anime);
     };
 
@@ -75,7 +76,7 @@ const AnimeList: React.FC<Props> = ({className}) => {
 
             {addModal &&
                 <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 ' onClose={() => setAddModal(false)} title={'New Amine'}>
-                    <AnimeEdit></AnimeEdit>
+                    <AnimeEdit edit={false}></AnimeEdit>
                 </Modal>
             }
 
@@ -100,7 +101,11 @@ const AnimeList: React.FC<Props> = ({className}) => {
             }
 
             <div className='animelist-header p-4'>
-                <Link href={''} className="pr-4" onClick={toggleAddModal}>add</Link>
+                { addModal ?
+                    <span className="pr-4">add</span>
+                    :
+                    <Link href={''} className="pr-4" onClick={toggleAddModal}>add</Link>
+                }
                 <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
                 <Link href={''} className="pr-4" onClick={reset}>reset</Link>
 

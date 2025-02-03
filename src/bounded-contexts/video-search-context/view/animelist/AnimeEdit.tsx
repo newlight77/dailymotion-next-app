@@ -1,9 +1,10 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { AnimeType } from '@/bounded-contexts/video-search-context/domain/model/anime';
 import { useAnimelist } from '../../hooks/AnimeListProvider';
 
 type Props = {
+    edit: boolean,
     editedAnime?: AnimeType
     children?: React.ReactNode
 }
@@ -26,14 +27,9 @@ const blankAnime: AnimeType = {
     totalEpisodes: undefined
   }
 
-const AnimeEdit: React.FC<Props> = ({editedAnime}) => {
+const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAnime}) => {
     const { upsert } = useAnimelist();
-    const [ anime, setAnime ] = useState<AnimeType>(blankAnime);
-
-    useEffect(() => {
-        console.log('AnimeEdit', editedAnime);
-        if (editedAnime) setAnime(editedAnime)
-    }, [editedAnime]);
+    const [ anime, setAnime ] = useState<AnimeType>(editedAnime);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -71,7 +67,7 @@ const AnimeEdit: React.FC<Props> = ({editedAnime}) => {
                 <input className='col-span-6' type="date" name="updateAt" value={anime.updateAt.toISOString().split('T')[0]} onChange={handleChange} required />
                 <input className='col-span-6' type="number" name="lastEpisode" value={anime.lastEpisode} onChange={handleChange} placeholder="Last Episode" />
                 <input className='col-span-6' type="number" name="totalEpisodes" value={anime.totalEpisodes} onChange={handleChange} placeholder="Total Episodes" />
-                <button className='col-span-5' type="submit">Create</button>
+                <button className='col-span-5' type="submit">{ edit ? 'Apply changes' : 'Create'} </button>
             </form>
         </div>
     );

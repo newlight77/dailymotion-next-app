@@ -10,20 +10,22 @@ import { FaPenToSquare } from 'react-icons/fa6';
 
 type Props = {
     id: string
+    mode?: string
     children?: React.ReactNode
 }
 
-const AnimeDetail: React.FC<Props> = ({id}) => {
+const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const { adapter } = useAnimelist();
 
     const [anime, setAnime] = useState<AnimeType>();
     const [editModal, setEditModal] = useState(false);
 
     useEffect(() => {
-        console.log('params.id', id);
+        console.log('params:', id, mode);
         adapter.findById(id).then((a) => { // todo move to storage provider : add findById and
             setAnime(a);
         });
+        if (mode === 'edit') toggleEditModal()
     }, [id]);
 
     function toggleEditModal(): void {
@@ -35,7 +37,7 @@ const AnimeDetail: React.FC<Props> = ({id}) => {
             <div id="modal-root"></div>
             { editModal && anime &&
                 <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 ' onClose={() => setEditModal(false)} title={anime.title}>
-                    <AnimeEdit editedAnime={anime}></AnimeEdit>
+                    <AnimeEdit editedAnime={anime} edit={true}></AnimeEdit>
                 </Modal>
             }
 

@@ -1,17 +1,20 @@
 "use client"
 import React from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import AnimeDetail from '@/bounded-contexts/video-search-context/view/animelist/AnimeDetail';
 
 
-const VideoPage: React.FC = () => {
+const AnimePage: React.FC = () => {
     const { id } = useParams<{ id: string}>();
+    const mode = useSearchParams().get('mode') || '';
+
+    console.log('AnimePage', id, mode)
 
     return (
         <div className='w-full'>
-            <AnimeDetail id={id}></AnimeDetail>
+            <AnimeDetail id={id} mode={mode}></AnimeDetail>
         </div>
     );
 };
 
-export default VideoPage;
+export default AnimePage;

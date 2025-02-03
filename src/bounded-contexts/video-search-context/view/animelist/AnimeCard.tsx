@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { FaUserPlus, FaPenToSquare } from 'react-icons/fa6';
+import { FaThumbtack, FaPenToSquare, FaHeartCirclePlus } from 'react-icons/fa6';
 import { AnimeType } from '../../domain/model/anime';
-import Modal from '@/components/molecules/Modal';
-import AnimeEdit from './AnimeEdit';
 
 
 interface AnimeCardProps {
@@ -15,8 +13,6 @@ interface AnimeCardProps {
 }
 
 const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAnime, className}) => {
-
-    const [editModal, setEditModal] = useState(false);
 
     const handleAddToFavorites = (anime: AnimeType) => {
         const a = {
@@ -60,36 +56,27 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
         onFollowAnime(a);
     }
 
-    function toggleEditModal(): void {
-        setEditModal(editModal ? false : true);
-    }
-
     return (
         <div className={`${className} p-2 md:hover:border border-gold`}>
 
-            <div id="modal-root"></div>
-            { editModal &&
-                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 ' onClose={() => setEditModal(false)} title={anime.title}>
-                    <AnimeEdit editedAnime={anime}></AnimeEdit>
-                </Modal>
-            }
-
-            { !editModal &&
-                <div className='grid grid-cols-2 pt-5 items-center absolute'>
-                    <Link className='followinglink ml-4 flex items-center gap-2 pr-4'
-                        href={''}
-                        onClick={() => handleFollowAnime(anime)}>
-                        <FaUserPlus size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                    </Link>
-                    <Link href={''} className="pr-4" onClick={toggleEditModal}>
-                        <FaPenToSquare size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
-                    </Link>
-                </div>
-            }
+            <div className='grid grid-cols-3 pt-5 items-center absolute'>
+                <Link className='followinglink items-center gap-2 px-4'
+                    href={''}
+                    onClick={() => handleFollowAnime(anime)}>
+                    <FaThumbtack size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                </Link>
+                <Link className='favoritelink items-center gap-2 px-4'
+                    href={''}
+                    onClick={() => handleAddToFavorites(anime)}>
+                    <FaHeartCirclePlus size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                </Link>
+                <Link href={`/anime/${anime.uid}?mode=edit`} className="editlink items-center gap-2 px-4">
+                    <FaPenToSquare size={32} className="p-1 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                </Link>
+            </div>
 
             <Link className='view'
-                href={`/anime/${anime.uid}`}
-                onClick={() => handleAddToFavorites(anime)}>
+                href={`/anime/${anime.uid}`}>
                 <Image className='video max-h-screen h-2/3'
                     src={anime.thumbnail || ''}
                     alt={anime.title}
@@ -98,8 +85,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, onAddToFavorite, onFollowAn
             </Link>
             <div className=''>
                 <Link className='titlelink'
-                    href={`/anime/${anime.uid}`}
-                    onClick={() => handleAddToFavorites(anime)}>
+                    href={`/anime/${anime.uid}`}>
                     <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{anime.title}</div>
                 </Link>
                 <div className='description text-sm text-wrap pt-1 h-10 m-2'>{`${anime.summary.substring(0, 140)} ...`}</div>
