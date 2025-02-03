@@ -18,7 +18,7 @@ type Props = {
 
 const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const { adapter } = useAnimelist();
-    const useFavority = useFavorites();
+    const useFavorite = useFavorites();
 
     const isMounted = useIsMounted();
     const [anime, setAnime] = useState<AnimeType>();
@@ -42,7 +42,7 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     }
 
     const handleAddToFavorites = async (anime: AnimeType) => {
-        useFavority.addOrUpdate({uid: crypto.randomUUID().toString(), title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
+        useFavorite.addOrUpdate({uid: crypto.randomUUID().toString(), title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
     }
 
     const handleFollowAnime = async (anime: AnimeType) => {

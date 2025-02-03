@@ -12,10 +12,10 @@ interface AnimeCardProps {
 }
 
 const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
-    const useFavority = useFavorites();
+    const useFavorite = useFavorites();
 
     const handleAddToFavorites = async (anime: AnimeType) => {
-        useFavority.addOrUpdate({uid: crypto.randomUUID().toString(), title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
+        useFavorite.addOrUpdate({uid: crypto.randomUUID().toString(), title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
     }
 
     const handleFollowAnime = async (anime: AnimeType) => {

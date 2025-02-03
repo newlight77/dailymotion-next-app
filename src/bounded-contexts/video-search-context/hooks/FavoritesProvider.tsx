@@ -56,7 +56,7 @@ export const FavoritesProvider = ({ children }: Props): React.ReactElement => {
       reset,
       clear
     }),
-    [items, items, addOrUpdate, loadData, reset, reset, clear]
+    [item, items, addOrUpdate, loadData, reset, reset, clear]
   );
 
   return (

@@ -17,10 +17,10 @@ interface Props {
 const LastViews: React.FC<Props> = ({ onSelected, className }) => {
     const { items, remove, clear } = useLastViews();
     const useFollowing = useFollowings();
-    const useFavority = useFavorites();
+    const useFavorite = useFavorites();
 
     const handleAddToFavorites = async (lastView: LastViewType) => {
-        useFavority.addOrUpdate({uid: crypto.randomUUID().toString(), title: lastView.title, order: 0});
+        useFavorite.addOrUpdate({uid: crypto.randomUUID().toString(), title: lastView.title, order: 0});
     }
 
     const handleFollowOwner = async (lastView: LastViewType) => {

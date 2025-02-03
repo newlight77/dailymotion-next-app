@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FaCirclePlay, FaThumbtack } from 'react-icons/fa6';
 import { MetaVideoType, VideoType } from '../../domain/model/anime';
 import { displayDate, displayDurationInHMS } from '@/shared/dateUtil';
+import { useFollowings } from '../../hooks';
 
 
 interface VideoCardProps {
@@ -14,6 +15,8 @@ interface VideoCardProps {
 }
 
 const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollowOwner, className}) => {
+
+    const followings = useFollowings();
 
     const handleAddLastView = (video: MetaVideoType) => {
         const v = {
@@ -37,6 +40,10 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
         onFollowOwner(v);
     }
 
+    const isFollowed = (video: MetaVideoType): boolean => {
+        const results = followings.items?.filter(f => f.owner === video.ownerUsername)
+        return results?.length === 1
+    }
 
     return (
         <div className={`${className} p-2 md:hover:border border-gold`}>
@@ -48,7 +55,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                 <Link className='followinglink mb-4 flex gap-2 px-4'
                     href={''}
                     onClick={() => handleFollowOwner(video)}>
-                    <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                    <FaThumbtack size={36} className={`${isFollowed(video) ? 'text-tertiary' : ''} p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                     <span className='p-1 bg-secondaryVariant rounded-md px-2 content-center border border-tertiaryVariant outline outline-tertiaryVariant'>{`${video.ownerUsername}`}</span>
                 </Link>
                 <div className='px-2 py-1 ml-4 mb-4 gap-2 w-fit bg-secondaryVariant rounded-lg border border-tertiaryVariant outline outline-tertiaryVariant'>{displayDurationInHMS(video.duration)}</div>

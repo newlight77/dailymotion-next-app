@@ -31,12 +31,14 @@ const VideoList: React.FC<VideoListProps> = ({ onAddLastView, onFollowOwner, cla
                 searchResults.length > 0 ?
                 <div className="pt-4 pb-4 text-primary">
                     <input
+                        className='w-80'
                         type="text"
                         value={filterKeywords}
                         onChange={onFilterInputChange}
                         placeholder="filter on title, description or owner"
                     />
                     <input
+                        className='w-80'
                         type="text"
                         value={exclusions}
                         onChange={onExclusionsInputChange}

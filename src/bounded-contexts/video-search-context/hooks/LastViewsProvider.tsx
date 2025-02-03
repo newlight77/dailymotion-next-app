@@ -38,7 +38,7 @@ export const LastViewsProvider = ({ children }: Props): React.ReactElement => {
       remove,
       clear
     }),
-    [items, items, addOrUpdate, remove, clear]
+    [item, items, addOrUpdate, remove, clear]
   );
 
   return (
