@@ -18,14 +18,9 @@ const AnimeList: React.FC<Props> = ({className}) => {
     const [addModal, setAddModal] = useState(false);
     const [loadMode, setLoadMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useState('');
-    const [exclusions, setExclusions] = useState('');
 
     const onFilterInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilterKeywords(event.target.value);
-    };
-
-    const onExclusionsInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setExclusions(event.target.value);
     };
 
     function toggleLoadMode(): void {
@@ -75,16 +70,11 @@ const AnimeList: React.FC<Props> = ({className}) => {
                 items && items?.length > 0 ?
                 <div className="pt-4 pb-4 text-primary">
                     <input
+                        className='w-96'
                         type="text"
                         value={filterKeywords}
                         onChange={onFilterInputChange}
-                        placeholder="filter on title, description or owner"
-                    />
-                    <input
-                        type="text"
-                        value={exclusions}
-                        onChange={onExclusionsInputChange}
-                        placeholder="exclusions on title, description or owner"
+                        placeholder="filter on title, subtile original title or summary"
                     />
                 </div>
                 :
@@ -116,7 +106,15 @@ const AnimeList: React.FC<Props> = ({className}) => {
             </div>
 
             <div className="md:flex flex-wrap">
-                { items ?.map(anime => (
+                {
+                    items?.filter(
+                        v => filterKeywords !== '' ?
+                            v.title.toLowerCase().includes(filterKeywords.toLowerCase())
+                            || v.originalTitle!.includes(filterKeywords.toLowerCase())
+                            || v.subtitle!.includes(filterKeywords.toLowerCase())
+                            || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
+                        : true)
+                    .map(anime => (
                         <AnimeCard
                             className="pt-4 pb-4 xs:w-screen sm:w-screen md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 3xl:w-1/6 4xl:w-1/7 5xl:w-1/8 h-auto"
                             key={anime.uid}
