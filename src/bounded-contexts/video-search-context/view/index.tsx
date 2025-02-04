@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import { FavoritesProvider } from '../hooks';
-import { FollowingsProvider } from '../hooks';
+import { FollowedVideoOwnersProvider } from '../hooks';
 import { LastViewsProvider } from '../hooks';
 import { SearchHistoryProvider } from '../hooks';
 import { AnimeListProvider } from '../hooks';
@@ -22,13 +22,13 @@ export const SearchModule = ({ children }: Props): React.ReactElement => {
       <SearchHistoryProvider>
         <LastViewsProvider>
           <FollowedAnimesProvider>
-          <FollowingsProvider>
+          <FollowedVideoOwnersProvider>
             <FavoritesProvider>
               <AnimeListProvider adapter={animeListAdapter}>
                 {children}
               </AnimeListProvider>
             </FavoritesProvider>
-          </FollowingsProvider>
+          </FollowedVideoOwnersProvider>
           </FollowedAnimesProvider>
         </LastViewsProvider>
       </SearchHistoryProvider>

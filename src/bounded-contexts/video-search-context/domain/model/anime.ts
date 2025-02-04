@@ -41,7 +41,7 @@ export type FavoriteType = {
   lastEpisode?: number,
 }
 
-export type FollowingType = {
+export type FollowedVideoOwnerType = {
   uid: string,
   owner: string,
   order: number,

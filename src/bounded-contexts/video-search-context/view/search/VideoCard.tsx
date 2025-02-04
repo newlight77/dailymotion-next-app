@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FaCirclePlay, FaThumbtack } from 'react-icons/fa6';
 import { MetaVideoType, VideoType } from '../../domain/model/anime';
 import { displayDate, displayDurationInHMS } from '@/shared/dateUtil';
-import { useFollowings } from '../../hooks';
+import { useFollowedVideoOwners } from '../../hooks';
 
 
 interface VideoCardProps {
@@ -16,7 +16,7 @@ interface VideoCardProps {
 
 const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollowOwner, className}) => {
 
-    const followings = useFollowings();
+    const followings = useFollowedVideoOwners();
 
     const handleAddLastView = (video: MetaVideoType) => {
         const v = {

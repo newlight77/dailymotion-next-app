@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
-import { useFollowings } from '../../hooks/FollowingsProvider';
-import { FollowingType } from '../../domain/model/anime';
+import { useFollowedVideoOwners } from '../../hooks/FollowedVideoOwnersProvider';
+import { FollowedVideoOwnerType } from '../../domain/model/anime';
 import RemovableItem from '@/components/molecules/RemovableItem';
 
 
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const Followings: React.FC<Props> = ({className}) => {
-    const { items, remove, loadData, reset, clear } = useFollowings();
+    const { items, remove, loadData, reset, clear } = useFollowedVideoOwners();
     const [data, setData] = useState('')
     const [loadMode, setLoadMode] = useState(false);
 
@@ -29,8 +29,8 @@ const Followings: React.FC<Props> = ({className}) => {
     const reloadData = () => {
         if (data) {
             try {
-                const newFollowings = (JSON.parse(data) as FollowingType[])
-                .reduce<FollowingType[]>((acc, curr) => acc.some(item => item.owner === curr.owner) ? acc : [...acc, curr], []);
+                const newFollowings = (JSON.parse(data) as FollowedVideoOwnerType[])
+                .reduce<FollowedVideoOwnerType[]>((acc, curr) => acc.some(item => item.owner === curr.owner) ? acc : [...acc, curr], []);
                 loadData(newFollowings);
             } catch (error) {
                 // display error latet

@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Followings from '@/bounded-contexts/video-search-context/view/followings/Followings';
+import Followings from '@/bounded-contexts/video-search-context/view/followings/FollowedOwners';
 import FollowedAnimes from '@/bounded-contexts/video-search-context/view/followings/FollowedAnimes';
 
 

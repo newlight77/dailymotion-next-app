@@ -4,7 +4,7 @@ import { FaUserPlus, FaHeartCirclePlus, FaCirclePlay } from 'react-icons/fa6';
 import { useLastViews } from '../../hooks/LastViewsProvider';
 import { useFavorites } from '../../hooks/FavoritesProvider';
 import { LastViewType } from '../../domain/model/anime';
-import { useFollowings } from '../../hooks/FollowingsProvider';
+import { useFollowedVideoOwners } from '../../hooks/FollowedVideoOwnersProvider';
 import RemovableItem from '@/components/molecules/RemovableItem';
 import SelactableItem from '@/components/molecules/Selectable';
 
@@ -16,7 +16,7 @@ interface Props {
 
 const LastViews: React.FC<Props> = ({ onSelected, className }) => {
     const { items, remove, clear } = useLastViews();
-    const useFollowing = useFollowings();
+    const useFollowing = useFollowedVideoOwners();
     const useFavorite = useFavorites();
 
     const handleAddToFavorites = async (lastView: LastViewType) => {

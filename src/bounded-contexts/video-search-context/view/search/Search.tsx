@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 import { useLastViews } from '../../hooks/LastViewsProvider';
-import { useFollowings } from '../../hooks/FollowingsProvider';
+import { useFollowedVideoOwners } from '../../hooks/FollowedVideoOwnersProvider';
 import { VideoType } from '../../domain/model/anime';
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 
 const Search: React.FC<Props> = ({keywords, className}) => {
     const [newKeywords, setNewKeywords] = useState<string>();
-    const useFollowing = useFollowings();
+    const useFollowedVideoOwner = useFollowedVideoOwners();
     const useLastView = useLastViews();
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const Search: React.FC<Props> = ({keywords, className}) => {
     };
 
     const handleFollowOwner = (video: VideoType) => {
-        useFollowing.addOrUpdate({uid: crypto.randomUUID().toString(), owner: video.owner, order: 0});
+        useFollowedVideoOwner.addOrUpdate({uid: crypto.randomUUID().toString(), owner: video.owner, order: 0});
     };
 
     return (
