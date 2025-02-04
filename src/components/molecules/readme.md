@@ -10,3 +10,7 @@ Examples of molecules include:
 - A search input field and its associated button
 
 Molecules are reusable and can be combined to form more complex components.
+
+## DON'T
+
+No Feature specificity
