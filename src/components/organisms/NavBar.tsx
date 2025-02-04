@@ -15,7 +15,7 @@ const links = [
 ];
 
 
-const VideoPage: React.FC = () => {
+const NavBar: React.FC = () => {
   const [nav, setNav] = useState(false);
 
   function toggleShowNav(): void {
@@ -23,7 +23,7 @@ const VideoPage: React.FC = () => {
 }
 
   return (
-    <div className="flex py-2">
+    <div className="flex py-2 relative z-100">
 
       <div className="cursor-pointer pl-3 pt-3 z-10 text-gray-500" >
         {nav ?
@@ -35,7 +35,7 @@ const VideoPage: React.FC = () => {
       <Link href={'/'} className="ml-2 px-2 flex">
         <img className='p-1' style={{ objectFit: 'scale-down', width: 60, height: 60 }} src={donghua.src} alt="donghua" />
         <div className='py-2 pl-4 pr-1 underline underline-offset-4 font-bold text-3xl '>donghua</div>
-        <div className='py-2 px-1 underline underline-offset-4 font-bold text-3xl '>animation</div>
+        {/* <div className='py-2 px-1 underline underline-offset-4 font-bold text-3xl '>animation</div> */}
       </Link>
 
       <div className='pl-8 justify-between items-center'>
@@ -68,4 +68,4 @@ const VideoPage: React.FC = () => {
 };
 
 
-export default VideoPage;
+export default NavBar;
