@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
 
     return (
         <div className="w-full">
-            <h2 className='title text-3xl p-1 md:p-4 capitalize'>search videos</h2>
+            <h2 className='title text-3xl m-1 md:p-4 capitalize'>search videos</h2>
 
             <Suspense>
                 <SearchWithParams></SearchWithParams>

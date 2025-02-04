@@ -19,6 +19,15 @@ export const metadata: Metadata = {
   description: "This web site allows to search videos and series with filters, and save search history and favorites",
 };
 
+const routes = [
+  { id: 1, route: "/", label: 'home' },
+  { id: 2, route: '/animelist', label: "anime list" },
+  { id: 3, route: '/schedule', label: "schedule" },
+  { id: 4, route: '/history', label: "history" },
+  { id: 5, route: '/favorites', label: "favorites" },
+  { id: 6, route: '/followings', label: "followings" },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,7 +40,7 @@ export default function RootLayout({
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
           <header></header>
-          <Navbar />
+          <Navbar routes={routes} />
 
           <main className='main'>
           {/* <main className='main min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'> */}
