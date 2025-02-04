@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FaThumbtack, FaPenToSquare, FaHeartCirclePlus, FaMagnifyingGlass } from 'react-icons/fa6';
 import { AnimeType } from '../../domain/model/anime';
 import { useFavorites } from '../../hooks';
+import { useFollowedAnimes } from '../../hooks/FollowedAnimesProvider';
 
 
 interface AnimeCardProps {
@@ -13,6 +14,7 @@ interface AnimeCardProps {
 
 const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
     const useFavorite = useFavorites();
+    const useFollowedAnime = useFollowedAnimes();
 
     const handleAddToFavorites = async (anime: AnimeType) => {
         useFavorite.addOrUpdate({uid: crypto.randomUUID().toString(), title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
@@ -21,7 +23,16 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
     const handleFollowAnime = async (anime: AnimeType) => {
         console.log('handleFollowAnime', anime)
         // TODO : follow anime, add list of following anime
-        // TODO: display followed animes on following page
+        // TODO : display followed animes on following page
+        useFollowedAnime.addOrUpdate({
+            uid: crypto.randomUUID().toString(),
+            animeId: anime.uid,
+            title: anime.title,
+            subtitle: anime.subtitle,
+            originalTitle: anime.originalTitle,
+            lastEpisode: anime.lastEpisode,
+            updateAt: anime.updateAt
+        })
     }
 
     return (

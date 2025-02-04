@@ -20,7 +20,8 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
 
     const handleSelect = async (selected: FavoriteType) => {
         onSelected(selected)
-        // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
+        // notice: intentionaly no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
+        // but is it worth it to keep that principle? what about Link href?
     }
 
     const handleDelete = async (uid: string) => {
@@ -119,7 +120,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
             <div className='favorites-list flex flex-col gap-2'>
                 { items?.map(kw => (
                     <RemovableItem onDelete={handleDelete} key={kw.uid} id={kw.uid}>
-                                                { editMode ?
+                        { editMode ?
                             <input className='col-span-1 min-w-8 max-w-28 h-6 w-10'
                                     type="text"
                                     defaultValue={kw.order || ''}
