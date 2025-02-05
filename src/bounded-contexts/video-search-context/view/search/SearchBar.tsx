@@ -79,7 +79,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     return (
         <div className={`${className} pr-3`}>
             <input
-                className='w-full md:w-2/5'
+                className='w-80 md:w-2/5'
                 type="text"
                 value={debouncedInpout}
                 onChange={handleInputChange}

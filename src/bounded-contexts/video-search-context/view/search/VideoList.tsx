@@ -58,7 +58,7 @@ const VideoList: React.FC<VideoListProps> = ({ onAddLastView, onFollowOwner, cla
                     .sort((a: MetaVideoType, b: MetaVideoType)=> b.updated_time - a.updated_time)
                     .map(video => (
                         <VideoCard
-                            className="pt-4 pb-4 xs:w-screen sm:w-screen lg:w-1/2 2xl:w-1/3 4xl:w-1/4 h-auto w-144"
+                            className="video-card pt-4 pb-4 xs:w-screen sm:w-screen lg:w-1/2 2xl:w-1/3 4xl:w-1/4 h-auto"
                             key={video.id}
                             video={video}
                             onAddLastView={onAddLastView}

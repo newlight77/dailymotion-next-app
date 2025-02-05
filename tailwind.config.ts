@@ -8,8 +8,8 @@ export default {
   ],
   theme: {
     screens: {
-      'xs': '30rem',
-      'sm': '40rem',
+      'xs': '28rem',
+      'sm': '36rem',
       'md': '48rem',
       'lg': '64rem',
       'xl': '80rem',

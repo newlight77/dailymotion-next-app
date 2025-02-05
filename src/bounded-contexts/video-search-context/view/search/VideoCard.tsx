@@ -16,7 +16,7 @@ interface VideoCardProps {
 
 const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollowOwner, className}) => {
 
-    const followings = useFollowedVideoOwners();
+    const useFollowedVideo = useFollowedVideoOwners();
 
     const handleAddLastView = (video: MetaVideoType) => {
         const v = {
@@ -41,7 +41,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
     }
 
     const isFollowed = (video: MetaVideoType): boolean => {
-        const results = followings.items?.filter(f => f.owner === video.ownerUsername)
+        const results = useFollowedVideo.items?.filter(f => f.owner === video.ownerUsername)
         return results?.length === 1
     }
 
@@ -62,17 +62,17 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollow
                     </Link>
                 </div>
                 <Link className='thumbnaillink' href={`/video/${video.id}`} target="_blank" onClick={() => handleAddLastView(video)}>
-                    <Image className='video md:h-96' src={video.thumbnail_480_url} alt={video.title} width={480} height={480} />
+                    <Image className='video sm:w-112 md:w-full md:h-96' src={video.thumbnail_480_url} alt={video.title} width={480} height={480} />
                     <FaCirclePlay size={52} className="absolute inset-0 m-auto"/>
                     <div className='absolute -translate-y-14 px-2 py-1 ml-4 mb-4 gap-2 w-fit bg-secondaryVariant rounded-lg border border-tertiaryVariant outline outline-tertiaryVariant'>{displayDurationInHMS(video.duration)}</div>
                 </Link>
             </div>
 
-            <Link className='titlelink'
+            <Link className='titlelink '
                     href={`/video/${video.id}`}
                     target="_blank"
                     onClick={() => handleAddLastView(video)}>
-                    <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
+                    <div className='title sm:w-112 md:w-full h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
             </Link>
             <div className='content md:p-2'>
                 <div className='grid grid-cols-2 pt-4 gap-2'>
