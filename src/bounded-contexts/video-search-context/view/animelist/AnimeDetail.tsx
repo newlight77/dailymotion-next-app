@@ -62,6 +62,16 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         })
     }
 
+    const isFollowed = (anime: AnimeType): boolean => {
+        const results = useFollowedAnime.items?.filter(f => f.title === anime.title)
+        return results?.length === 1
+    }
+
+    const isFavorite = (anime: AnimeType): boolean => {
+        const results = useFavorite.items?.filter(f => f.title === anime.title)
+        return results?.length === 1
+    }
+
     return (
         <div className='w-full'>
             <div id="modal-root"></div>
@@ -75,17 +85,17 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                 <div className='flex flex-wrap p-2'>
                     <div className='grid grid-rows-4 pt-5 absolute translate-y-8'>
                         <Link href={`/?keywords=${anime.title} ${anime.originalTitle ? anime.lastEpisode : ''}`} className="searchlink gap-2 p-4">
-                            <FaMagnifyingGlass size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                            <FaMagnifyingGlass size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                         </Link>
                         <Link href={''} className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                            <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                            <FaThumbtack size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                         </Link>
                         <Link href={''} className='favoritelink gap-2 p-4' onClick={() => handleAddToFavorites(anime)}>
-                            <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                            <FaHeartCirclePlus size={36} className={`${isFavorite(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                         </Link>
                         { !editModal &&
                             <Link href={''} className="gap-2 p-4" onClick={toggleEditModal}>
-                                <FaPenToSquare size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                                <FaPenToSquare size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                             </Link>
                         }
                     </div>

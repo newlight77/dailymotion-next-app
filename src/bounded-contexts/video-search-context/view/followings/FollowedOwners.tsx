@@ -79,7 +79,7 @@ const Followings: React.FC<Props> = ({className}) => {
                 { items ?.map(s => (
                     <RemovableItem onDelete={remove} key={s.uid} id={s.uid}>
                         <Link
-                            className="col-span-11 pl-2 hover:border rounded-md border-tertiary bg-secondaryVariant"
+                            className="col-span-11 pl-2"
                             href={`https://www.dailymotion.com/${s.owner}`}
                             target="_blank">
                             {`${s.owner}` }
