@@ -35,6 +35,12 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
         })
     }
 
+    const isFollowed = (anime: AnimeType): boolean => {
+        const results = useFollowedAnime.items?.filter(f => f.title === anime.title)
+        return results?.length === 1
+    }
+
+
     return (
         <div className={`${className} p-2 md:hover:border border-gold rounded-md`}>
             <div className='relative'>
@@ -43,7 +49,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                         <FaMagnifyingGlass size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
                     </Link>
                     <Link href={''} className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                        <FaThumbtack size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                        <FaThumbtack size={36} className={`${isFollowed(anime) ? 'text-tertiary' : ''} p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                     </Link>
                     <Link href={''} className='favoritelink gap-2 p-4' onClick={() => handleAddToFavorites(anime)}>
                         <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
@@ -54,7 +60,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                 </div>
 
                 <Link className='thumbnaillink' href={`/anime/${anime.uid}`}>
-                    <Image className='anime max-h-screen h-3/4' src={anime.thumbnail || ''} alt={anime.title} width={480} height={480} />
+                    <Image className='anime max-h-screen h-128' src={anime.thumbnail || ''} alt={anime.title} width={480} height={480} />
                 </Link>
             </div>
             <div className=''>

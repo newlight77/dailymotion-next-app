@@ -54,6 +54,7 @@ const Followings: React.FC<Props> = ({className}) => {
 
     return (
         <div className={className}>
+            <div className='text-md pl-4'>Follow an owner in order trigger latest updates on that anime from that owner</div>
             <div className='followings-header p-4'>
                 <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
                 <Link className='pr-4' href={''} onClick={clear}>clear</Link>

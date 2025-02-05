@@ -66,6 +66,7 @@ const FollowedAnimes: React.FC<Props> = ({className}) => {
 
     return (
         <div className={className}>
+            <div className='text-md pl-4'>Follow an anime in order trigger latest updates on that anime</div>
             <div className='followings-header p-4'>
                 <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
                 <Link className='pr-4' href={''} onClick={clear}>clear</Link>
@@ -95,7 +96,7 @@ const FollowedAnimes: React.FC<Props> = ({className}) => {
                             <div className="col-span-5 hover:text-tertiary" >
                                 <div className='underline underline-offset-4 decoration-primary'>{s.title}</div>
                                 { s.originalTitle ? <div className='pr-2 w-fit'>{s.originalTitle}</div> : <></>}
-                                { s.subtitle ? <div>{s.subtitle}</div> : <></>}
+                                {/* { s.subtitle ? <div>{s.subtitle}</div> : <></>} */}
                                 { s.lastEpisode ? <div>{s.lastEpisode}</div> : <></>}
                             </div>
                         </Link>

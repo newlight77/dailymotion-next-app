@@ -28,6 +28,7 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
 
     return (
         <div className={className}>
+            <div className='text-md pl-4'>Last search history keep track of you searching keywords</div>
             <div className="pb-4">
                 <Link href={''} onClick={clearHistory}>clear</Link>
             </div>

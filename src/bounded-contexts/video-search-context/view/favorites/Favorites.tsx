@@ -98,6 +98,7 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
 
     return (
         <div className={className}>
+            <div className='text-md pl-4'>Favorite animes serve the matching algorithm on the search page</div>
             <div className='favorties-header pb-4'>
             <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
             <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>

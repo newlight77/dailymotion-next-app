@@ -38,6 +38,7 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
 
     return (
         <div className={className}>
+            <div className='text-md pl-4'>Last viewed videos keep track of what you have watched</div>
             <div className='lastviews-header pb-4'>
                 <Link href={''} onClick={clear}>clear</Link>
             </div>
