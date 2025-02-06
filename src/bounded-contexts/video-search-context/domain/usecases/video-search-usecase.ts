@@ -15,22 +15,25 @@ export type VideoSearchResponse = {
   hasMore: boolean,
 }
 
+type SearchParamsType = { search: string, limit: number, page: number }
+
 export interface VideoSearchPort {
   search: (keywords: VideoSearchParams) => Promise<VideoSearchResponse>
   getById: (id: string) => Promise<VideoType | undefined>
 }
 
-// export const VideoSearchUsecase = (port: VideoSearchPort) => {
+export const VideoSearchUsecase = (port: VideoSearchPort) => {
 
-//   const search = async (keywords: string): Promise<VideoSearchResponse> => {
-//     return {} as VideoSearchResponse
-//   }
+  const search = async (searchParams: SearchParamsType): Promise<VideoSearchResponse> => {
+    return await port.search(searchParams)
+  }
 
-//   const getById = async (id: string): Promise<VideoType | undefined> => {
-//     return undefined
-//   }
+  const getById = async (id: string): Promise<VideoType | undefined> => {
+    return await port.getById(id)
+  }
 
-//   return {
-//     search,
-//   }
-// }
+  return {
+    search,
+    getById
+  }
+}

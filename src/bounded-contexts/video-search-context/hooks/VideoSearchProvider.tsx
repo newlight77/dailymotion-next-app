@@ -2,7 +2,7 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { createContext } from "react";
 import { MetaVideoType, VideoType } from '../domain/model/anime';
-import { VideoSearchResponse, VideoSearchPort } from '../domain/usecases/video-search-usecase';
+import { VideoSearchResponse, VideoSearchPort, VideoSearchUsecase } from '../domain/usecases/video-search-usecase';
 
 
 export interface VideoSearchContextType {
@@ -26,6 +26,9 @@ type Props = {
 }
 
 export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactElement => {
+
+  const usecase = VideoSearchUsecase(adapter)
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(30);
   const [found, setFound] = useState<VideoType>();
@@ -38,7 +41,7 @@ export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactEl
         page: page
     }
 
-    const response: VideoSearchResponse = await adapter.search(params);
+    const response: VideoSearchResponse = await usecase.search(params);
     console.log('VideoSearchProvider adapter.search', response);
 
     setSearchResults(response.list || []);
@@ -47,7 +50,7 @@ export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactEl
   }
 
   const findById = async (id: string): Promise<VideoType | undefined> => {
-    const result: VideoType | undefined = await adapter.getById(id)
+    const result: VideoType | undefined = await usecase.getById(id)
 
     console.log('on success', result);
     if (result) {
