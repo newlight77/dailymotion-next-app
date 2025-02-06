@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
 import { AnimeType } from '../domain/model/anime';
-import { AnimeListPort } from '@/bounded-contexts/video-search-context/domain/usecases/animelist-usecase';
+import { AnimeListPort, AnimeListUsecase } from '../domain/usecases/animelist-usecase';
 
 
 
@@ -31,22 +31,24 @@ type Props = {
 
 export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElement => {
 
+  const usecase = AnimeListUsecase(adapter)
+
   const {items, loadData, addOrUpdate} = useStorage<AnimeType>(`animelist`, []);
 
   useEffect(() => {
     // required to update the storage to refresh UI
     reset();
-  }, [adapter])
+  }, [usecase])
 
   const reset = async () => {
     // console.log('AnimeListProvider useEffect, fetchData');
-    const all = await adapter.findAll();
+    const all = await usecase.findAll();
     loadData(all);
   }
 
   const upsert = async (anime: AnimeType) => {
     // console.log('AnimeListProvider before upsert', anime);
-    await adapter.upsert(anime);
+    await usecase.upsert(anime);
     addOrUpdate(anime)
     // console.log('AnimeListProvider post upsert', items)
   }
