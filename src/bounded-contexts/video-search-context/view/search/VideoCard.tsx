@@ -18,12 +18,12 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, className}) => {
     const useLastView = useLastViews();
 
     useEffect(() => {
-        
+
     }, [useFollowedVideo.remove])
 
     const handleAddLastView = (video: MetaVideoType) => {
         const l: LastViewType = {
-            uid: crypto.randomUUID().toString(),
+            uid: video.id,
             videoId: video.id,
             title: video.title,
             episode: 0,

@@ -24,7 +24,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
         if (isFavorite(anime)) {
             useFavorite.remove(anime.uid)
         } else {
-            useFavorite.addOrUpdate({uid: crypto.randomUUID().toString(), title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
+            useFavorite.addOrUpdate({uid: anime.uid, title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
         }
     }
 
@@ -37,7 +37,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
             useFollowedAnime.remove(anime.uid)
         } else {
             useFollowedAnime.addOrUpdate({
-                uid: crypto.randomUUID().toString(),
+                uid: anime.uid,
                 animeId: anime.uid,
                 title: anime.title,
                 subtitle: anime.subtitle,
