@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import VideoCard from './VideoCard';
-import { MetaVideoType } from '../../domain/model/anime';
 import { useSearchVideos } from '../../hooks/VideoSearchProvider';
 
 
@@ -53,7 +52,7 @@ const VideoList: React.FC<VideoListProps> = ({ className }) => {
                     .filter(v => exclusions !== '' ? !v.title.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.description.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.ownerUsername.toLowerCase().includes(exclusions.toLowerCase()) : true)
-                    .sort((a: MetaVideoType, b: MetaVideoType)=> b.updated_time - a.updated_time)
+                    // .sort((a: MetaVideoType, b: MetaVideoType)=> b.updated_time - a.updated_time)
                     .map(video => (
                         <VideoCard
                             className="video-card pt-4 pb-4 xs:w-screen sm:w-screen lg:w-1/2 2xl:w-1/3 4xl:w-1/4 h-auto"

@@ -16,7 +16,15 @@ export type VideoSearchResponse = {
   hasMore: boolean,
 }
 
-type VideoWithScoreType = MetaVideoType & { score: number}
+export type VideoSearchWithScoreResponse = {
+  search: string,
+  page: number,
+  limit: number,
+  list: VideoWithScoreType[],
+  hasMore: boolean,
+}
+
+export type VideoWithScoreType = MetaVideoType & { score: number}
 
 export type VideoSearchParamsType = {
   search: string,
@@ -25,26 +33,27 @@ export type VideoSearchParamsType = {
 };
 
 export interface VideoSearchPort {
-  search: (searchParams: VideoSearchParamsType, prefs?: PreferencesType) => Promise<VideoSearchResponse>
+  search: (searchParams: VideoSearchParamsType) => Promise<VideoSearchResponse>
   getById: (id: string) => Promise<VideoType | undefined>
 }
 
 export const VideoSearchUsecase = (port: VideoSearchPort) => {
 
-  const search = async (searchParams: VideoSearchParamsType, prefs?: PreferencesType): Promise<VideoSearchResponse> => {
+  const search = async (searchParams: VideoSearchParamsType, prefs?: PreferencesType): Promise<VideoSearchWithScoreResponse> => {
     const response = await port.search(searchParams);
 
-    let { list } = response;
+    const { list } = response;
+    let scoredList: VideoWithScoreType[] = []
 
     if (prefs) {
       // Reorder the results based on user preferences
-      const scoredList = list.map((video: MetaVideoType) => scoreVideo(video, searchParams.search, prefs));
-      list = scoredList.sort((a, b) => b.score - a.score).map(v => v as MetaVideoType)
+      scoredList = list.map((video: MetaVideoType) => scoreVideo(video, searchParams.search, prefs)).map(v => v as VideoWithScoreType)
+      scoredList = scoredList.sort((a, b) => b.score - a.score).map(v => v as VideoWithScoreType)
     }
 
     return {
       ...response,
-      list: list
+      list: scoredList
     };
   }
 
@@ -62,10 +71,10 @@ const scoreVideo = ( video: MetaVideoType, searchKeywords: string, prefs: Prefer
   const { followedAnimes, lastViews, favorites, followedOwners, lastSearches } = prefs;
 
   let score = 0;
-  if (followedAnimes && followedAnimeMatched(followedAnimes, video)) score += 10;
-  if (lastViews && lastviewMatched(lastViews, video)) score += 7;
-  if (favorites && favoriteMatched(favorites, video)) score += 5;
-  if (followedOwners && followedOwnerMatched(followedOwners, video)) score += 3;
+  if (followedAnimes && followedAnimeMatched(followedAnimes, video)) score += 15;
+  if (lastViews && lastviewMatched(lastViews, video)) score += 5;
+  if (favorites && favoriteMatched(favorites, video)) score += 7;
+  if (followedOwners && followedOwnerMatched(followedOwners, video)) score += 10;
   if (lastSearches && lastSearcheMatch(lastSearches, searchKeywords)) score += 1;
 
   return { ...video, score };
