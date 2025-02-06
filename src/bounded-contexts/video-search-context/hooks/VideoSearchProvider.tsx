@@ -2,20 +2,20 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { createContext } from "react";
 import { MetaVideoType, VideoType } from '../domain/model/anime';
-import { VideoSearchResponse, VideoSearchPort, VideoSearchUsecase } from '../domain/usecases/video-search-usecase';
+import { VideoSearchResponse, VideoSearchPort, VideoSearchUsecase, PreferencesType } from '../domain/usecases/video-search-usecase';
 
 
 export interface VideoSearchContextType {
   found: VideoType | undefined,
   searchResults: MetaVideoType[] | undefined,
-  search: (keywords: string) => void,
+  search: (keywords: string, prefs: PreferencesType) => void,
   findById: (id: string) => Promise<VideoType | undefined>,
 }
 
 export const VideoSearchContext = createContext<VideoSearchContextType>({
   found: undefined,
   searchResults: [],
-  search: (keywords: string) : MetaVideoType[] => { console.log('search', keywords); return [] },
+  search: (keywords: string, prefs: PreferencesType) : MetaVideoType[] => { console.log('search with prefs', keywords, prefs); return [] },
   findById: async (id: string) => { console.log('findById', id); return undefined },
 })
 
@@ -34,14 +34,14 @@ export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactEl
   const [found, setFound] = useState<VideoType>();
   const [searchResults, setSearchResults] = useState<MetaVideoType[]>([]);
 
-  const search = async (keywords: string) => {
+  const search = async (keywords: string, prefs: PreferencesType) => {
     const params = {
         search: keywords,
         limit: limit,
         page: page
     }
 
-    const response: VideoSearchResponse = await usecase.search(params);
+    const response: VideoSearchResponse = await usecase.search(params, prefs);
     console.log('VideoSearchProvider adapter.search', response);
 
     setSearchResults(response.list || []);

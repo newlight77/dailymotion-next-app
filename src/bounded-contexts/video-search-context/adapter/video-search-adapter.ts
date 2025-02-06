@@ -1,6 +1,6 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
 import { MetaVideoType, VideoType } from "../domain/model/anime";
-import { VideoSearchResponse, VideoSearchParams, VideoSearchPort } from "../domain/usecases/video-search-usecase";
+import { VideoSearchResponse, VideoSearchParamsType, VideoSearchPort } from "../domain/usecases/video-search-usecase";
 
 
 const fields = [
@@ -60,7 +60,7 @@ function mapToVideo(d: any): MetaVideoType {
 
 
 class VideoSearchAdapter implements VideoSearchPort {
-  search = async (params: VideoSearchParams): Promise<VideoSearchResponse> => {
+  search = async (params: VideoSearchParamsType): Promise<VideoSearchResponse> => {
 
     const searchParams = {
       search: params.search,
@@ -75,7 +75,6 @@ class VideoSearchAdapter implements VideoSearchPort {
       });
 
       const data = await response.json();
-      console.log('searchVideos 2 data', data)
       if (!data) {
         console.error("Response body is null");
         return {

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchVideos } from '../../hooks/VideoSearchProvider';
 import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
+import { PreferencesType } from '../../domain/usecases/video-search-usecase';
+import { useLastViews, useFavorites, useFollowedVideoOwners } from '../../hooks';
+import { useFollowedAnimes } from '../../hooks/FollowedAnimesProvider';
 
 
 interface SearchBarProps {
@@ -13,6 +16,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     const [debouncedInpout, setDebouncedInpout] = useState('');
     const { search } = useSearchVideos();
     const useSearchHist = useSearchHistory();
+    const useFollowedAnime = useFollowedAnimes();
+    const useLastView = useLastViews();
+    const useFavorite = useFavorites();
+    const useFollowedVideoOwner = useFollowedVideoOwners();
 
     const delay = 1100;
     let timerId: NodeJS.Timeout = setTimeout(() => {}, delay);;
@@ -23,21 +30,21 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     }
 
     useEffect(() => {
-        console.log('SearchBar newKeywords', newKeywords);
+        // console.log('SearchBar newKeywords', newKeywords);
         if (newKeywords && newKeywords !== '' && newKeywords !== keywords) {
             setKeywords(newKeywords);
-            console.log('SearchBar setDebouncedInpout 1', newKeywords);
+            // console.log('SearchBar setDebouncedInpout 1', newKeywords);
             setDebouncedInpout(newKeywords);
             return
         }
         if (debouncedInpout !== '') {
-            console.log('SearchBar setDebouncedInpout 2', localStorage.getItem('last-search') || '');
+            // console.log('SearchBar setDebouncedInpout 2', localStorage.getItem('last-search') || '');
             setKeywords(debouncedInpout);
             setDebouncedInpout(debouncedInpout)
             return
         }
         if (keywords === '') {
-            console.log('SearchBar setKeywords 2', localStorage.getItem('last-search') || '');
+            // console.log('SearchBar setKeywords 2', localStorage.getItem('last-search') || '');
             setKeywords(localStorage.getItem('last-search') || '');
             setDebouncedInpout(localStorage.getItem('last-search') || '')
             return
@@ -45,7 +52,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     }, [newKeywords]);
 
     useEffect(() => {
-        console.log('SearchBar keywords', keywords);
+        // console.log('SearchBar keywords', keywords);
         if (keywords !== '') handleSearch()
     }, [keywords]);
 
@@ -69,9 +76,18 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     };
 
     const handleSearch = async () => {
-        search(keywords)
 
-        console.log('SearchBar handleSearch with keywords', keywords);
+        const prefs: PreferencesType = {
+            followedAnimes: useFollowedAnime.items,
+            lastViews: useLastView.items,
+            favorites: useFavorite.items,
+            followedOwners: useFollowedVideoOwner.items,
+            lastSearches: useSearchHist.items
+        }
+
+        search(keywords, prefs)
+
+        // console.log('SearchBar handleSearch with keywords', keywords);
         localStorage.setItem('last-search', keywords);
         useSearchHist.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: keywords});
     };

@@ -57,7 +57,6 @@ export function useStorage<S extends Storage>(key: string, defaultValue: S[]):
 
     if (item && items) {
       const found = items.find(f => isSame(f, item));
-      console.log('found', found)
       if (found) {
         const updatedItem = {...found, ...item, uid: found.uid ? found.uid : crypto.randomUUID().toString()};
         // let updatedItems = data.filter(f => !isSame(f, item));
