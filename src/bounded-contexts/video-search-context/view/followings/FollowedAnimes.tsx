@@ -64,6 +64,8 @@ const FollowedAnimes: React.FC<Props> = ({className}) => {
         ], null, 4
     )
 
+    const keywords = (anime: FollowedAnimeType) => encodeURIComponent(`${anime.title} ${anime.lastEpisode ? anime.lastEpisode : ''}`)
+
     return (
         <div className={className}>
             <div className='text-md pl-4'>Follow an anime in order trigger latest updates on that anime</div>
@@ -91,8 +93,7 @@ const FollowedAnimes: React.FC<Props> = ({className}) => {
                     <RemovableItem onDelete={remove} key={s.uid} id={s.uid}>
                         <Link
                             className="col-span-11"
-                            href={`https://www.dailymotion.com/anime/${s.animeId}`}
-                            target="_blank">
+                            href={`/?keywords=${keywords(s)}`} >
                             <div className="col-span-5 hover:text-tertiary" >
                                 <div className='underline underline-offset-4 decoration-primary'>{s.title}</div>
                                 { s.originalTitle ? <div className='pr-2 w-fit'>{s.originalTitle}</div> : <></>}
