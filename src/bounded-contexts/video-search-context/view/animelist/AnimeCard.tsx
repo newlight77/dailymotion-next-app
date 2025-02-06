@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaThumbtack, FaPenToSquare, FaHeartCirclePlus, FaMagnifyingGlass } from 'react-icons/fa6';
@@ -16,23 +16,36 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
     const useFavorite = useFavorites();
     const useFollowedAnime = useFollowedAnimes();
 
+    useEffect(() => {
+
+    }, [useFavorite.remove, useFollowedAnime.remove])
+
     const handleAddToFavorites = async (anime: AnimeType) => {
-        useFavorite.addOrUpdate({uid: crypto.randomUUID().toString(), title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
+        if (isFavorite(anime)) {
+            useFavorite.remove(anime.uid)
+        } else {
+            useFavorite.addOrUpdate({uid: crypto.randomUUID().toString(), title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
+        }
     }
 
     const handleFollowAnime = async (anime: AnimeType) => {
         console.log('handleFollowAnime', anime)
         // TODO : follow anime, add list of following anime
         // TODO : display followed animes on following page
-        useFollowedAnime.addOrUpdate({
-            uid: crypto.randomUUID().toString(),
-            animeId: anime.uid,
-            title: anime.title,
-            subtitle: anime.subtitle,
-            originalTitle: anime.originalTitle,
-            lastEpisode: anime.lastEpisode,
-            updateAt: anime.updateAt
-        })
+
+        if (isFollowed(anime)) {
+            useFollowedAnime.remove(anime.uid)
+        } else {
+            useFollowedAnime.addOrUpdate({
+                uid: crypto.randomUUID().toString(),
+                animeId: anime.uid,
+                title: anime.title,
+                subtitle: anime.subtitle,
+                originalTitle: anime.originalTitle,
+                lastEpisode: anime.lastEpisode,
+                updateAt: anime.updateAt
+            })
+        }
     }
 
     const isFollowed = (anime: AnimeType): boolean => {

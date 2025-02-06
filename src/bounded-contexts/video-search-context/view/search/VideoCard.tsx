@@ -1,43 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaCirclePlay, FaThumbtack } from 'react-icons/fa6';
-import { MetaVideoType, VideoType } from '../../domain/model/anime';
+import { FollowedVideoOwnerType, LastViewType, MetaVideoType } from '../../domain/model/anime';
 import { displayDate, displayDurationInHMS } from '@/shared/dateUtil';
-import { useFollowedVideoOwners } from '../../hooks';
+import { useFollowedVideoOwners, useLastViews } from '../../hooks';
 
 
 interface VideoCardProps {
     video: MetaVideoType,
-    onAddLastView: (lastView: VideoType) => void,
-    onFollowOwner: (following: VideoType) => void,
     className?: string
 }
 
-const SearchHistory: React.FC<VideoCardProps> = ({video, onAddLastView, onFollowOwner, className}) => {
+const SearchHistory: React.FC<VideoCardProps> = ({video, className}) => {
 
     const useFollowedVideo = useFollowedVideoOwners();
+    const useLastView = useLastViews();
+
+    useEffect(() => {
+        
+    }, [useFollowedVideo.remove])
 
     const handleAddLastView = (video: MetaVideoType) => {
-        const v = {
+        const l: LastViewType = {
+            uid: crypto.randomUUID().toString(),
             videoId: video.id,
             title: video.title,
             episode: 0,
             owner: video.ownerUsername,
             link: `https://www.dailymotion.com/video/${video.id}`
+
         }
-        onAddLastView(v);
+        useLastView.addOrUpdate(l);
     }
 
     const handleFollowOwner = (video: MetaVideoType) => {
-        const v = {
-            videoId: video.id,
-            title: video.title,
-            episode: 0,
-            owner: video.ownerUsername,
-            link: `https://www.dailymotion.com/video/${video.id}`
+        if (isFollowed(video)) {
+            useFollowedVideo.remove(video.id)
+        } else {
+            const f: FollowedVideoOwnerType = {
+                uid: video.id,
+                owner: video.ownerUsername,
+                order: 0
+            }
+            useFollowedVideo.addOrUpdate(f)
         }
-        onFollowOwner(v);
     }
 
     const isFollowed = (video: MetaVideoType): boolean => {

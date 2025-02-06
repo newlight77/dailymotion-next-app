@@ -325,7 +325,7 @@ const ANIME_LIST: AnimeType[] = [
   { uid: crypto.randomUUID().toString(),
     type: 'series',
     status: 'ongoing',
-    thumbnail: 'https://cdn.myanimelist.net/images/anime/1643/102418.jpg',
+    thumbnail: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDPrpz0EJXKKL9QFv4BpMNlA5vhznIhw3Lg-lFG0anHov4pS7vBXLXzxOZhWWroSYqeapZR9QFP1pDGMveYMf6c1mptVrR_G-6hc3EAvCxiiBJjorsDyYY8l3NC7D50DTQoYLUWPynfQlOM2jSH8s625uK0JdK0xEJyVE61ggVrncOVbVVQuFUSPKmRZmg/w600/p2900256576.webp',
     title: 'Ling Long',
     summary: '',
     originalTitle: '灵笼',

@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import VideoCard from './VideoCard';
-import { MetaVideoType, VideoType } from '../../domain/model/anime';
+import { MetaVideoType } from '../../domain/model/anime';
 import { useSearchVideos } from '../../hooks/VideoSearchProvider';
 
 
 interface VideoListProps {
-    onAddLastView: (lastView: VideoType) => void,
-    onFollowOwner: (following: VideoType) => void,
     className?: string
 }
 
-const VideoList: React.FC<VideoListProps> = ({ onAddLastView, onFollowOwner, className }) => {
+const VideoList: React.FC<VideoListProps> = ({ className }) => {
 
     const [filterKeywords, setFilterKeywords] = useState('');
     const [exclusions, setExclusions] = useState('');
@@ -60,9 +58,7 @@ const VideoList: React.FC<VideoListProps> = ({ onAddLastView, onFollowOwner, cla
                         <VideoCard
                             className="video-card pt-4 pb-4 xs:w-screen sm:w-screen lg:w-1/2 2xl:w-1/3 4xl:w-1/4 h-auto"
                             key={video.id}
-                            video={video}
-                            onAddLastView={onAddLastView}
-                            onFollowOwner={onFollowOwner}></VideoCard>
+                            video={video} />
                     ))
                 }
             </div>
