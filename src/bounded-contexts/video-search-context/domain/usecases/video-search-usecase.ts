@@ -55,7 +55,7 @@ export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePor
       scoredList = list.map((video: MetaVideoType) => scoreVideo(video, searchParams.search, prefs)).map(v => v as VideoWithScoreType)
       scoredList = scoredList
         .sort((a, b) => b.score - a.score)
-        .filter(v => v.score >= searchParams.search.split(" ").length - 1)
+        .filter(v => v.score >= searchParams.search.split(" ").length -1)
         .map(v => v as VideoWithScoreType)
     }
 

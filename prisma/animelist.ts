@@ -54,7 +54,7 @@ const ANIME_LIST: AnimeType[] = [
     type: 'series',
     status: 'ongoing',
     thumbnail: 'https://donghuaworld.com/wp-content/uploads/2023/09/0-2.jpeg_065033.webp',
-    title: 'Renegate Immortal',
+    title: 'Renegade Immortal',
     summary: '',
     originalTitle: '仙逆',
     subtitle: '',
