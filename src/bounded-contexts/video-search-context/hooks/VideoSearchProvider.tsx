@@ -30,7 +30,7 @@ export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactEl
   const usecase = VideoSearchUsecase(adapter)
 
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(30);
+  const [limit, setLimit] = useState(50);
   const [found, setFound] = useState<VideoType>();
   const [searchResults, setSearchResults] = useState<VideoWithScoreType[]>([]);
 

@@ -47,8 +47,11 @@ export const VideoSearchUsecase = (port: VideoSearchPort) => {
 
     if (prefs) {
       // Reorder the results based on user preferences
-      scoredList = list.map((video: MetaVideoType) => scoreVideo(video, prefs)).map(v => v as VideoWithScoreType)
-      scoredList = scoredList.sort((a, b) => b.score - a.score).map(v => v as VideoWithScoreType)
+      scoredList = list.map((video: MetaVideoType) => scoreVideo(video, searchParams.search, prefs)).map(v => v as VideoWithScoreType)
+      scoredList = scoredList
+        .sort((a, b) => b.score - a.score)
+        .filter(v => v.score >= searchParams.search.split(" ").length)
+        .map(v => v as VideoWithScoreType)
     }
 
     return {
@@ -67,40 +70,31 @@ export const VideoSearchUsecase = (port: VideoSearchPort) => {
   }
 }
 
-const scoreVideo = ( video: MetaVideoType, prefs: PreferencesType) : VideoWithScoreType => {
+const scoreVideo = ( video: MetaVideoType, keywords: string, prefs: PreferencesType) : VideoWithScoreType => {
   const { followedAnimes, followedOwners } = prefs;
 
   let score = 0;
-  if (followedAnimes && followedAnimeMatched(followedAnimes, video)) score += 15;
-  if (followedOwners && followedOwnerMatched(followedOwners, video)) score += 10;
-  // if (lastViews && lastviewMatched(lastViews, video)) score += 5;
-  // if (favorites && favoriteMatched(favorites, video)) score += 7;
-  // if (lastSearches && lastSearcheMatch(lastSearches, searchKeywords)) score += 1;
-
+  score += scoreFollowedAnimeMatched(video, followedAnimes)
+  score += scoreFollowedOwnerMatched(video, followedOwners)
+  score += scoreSearchKeywordsMatched(video, keywords)
   return { ...video, score };
 }
 
-const followedAnimeMatched = (followedAnimes: FollowedAnimeType[], video: MetaVideoType): boolean => {
-    const results = followedAnimes.filter(f => f.title === video.title)
-    return results?.length === 1
+const scoreFollowedAnimeMatched = (video: MetaVideoType, followedAnimes?: FollowedAnimeType[]): number => {
+    const results = followedAnimes?.filter(f => f.title === video.title)
+    return results?.length === 1 ? 10 : 0
 }
 
-// const lastviewMatched = (lastviews: LastViewType[], video: MetaVideoType): boolean => {
-//   const results = lastviews.filter(f => f.title === video.title)
-//   return results?.length === 1
-// }
-
-// const favoriteMatched = (favorites: FavoriteType[], video: MetaVideoType): boolean => {
-//     const results = favorites.filter(f => f.title === video.title)
-//     return results?.length === 1
-// }
-
-const followedOwnerMatched = (followedOwners: FollowedVideoOwnerType[], video: MetaVideoType): boolean => {
-  const results = followedOwners.filter(f => f.owner === video.ownerUsername)
-  return results?.length === 1
+const scoreFollowedOwnerMatched = (video: MetaVideoType, followedOwners?: FollowedVideoOwnerType[]): number => {
+  const results = followedOwners?.filter(f => f.owner === video.ownerUsername)
+  return results?.length === 1 ? 5 : 0
 }
 
-// const lastSearcheMatch = (lastSearches: SearchKeywordsType[], searchKeywords: string): boolean => {
-//   const results = lastSearches.filter(f => f.keywords.includes(searchKeywords) || searchKeywords.includes(f.keywords))
-//   return results?.length === 1
-// }
+const scoreSearchKeywordsMatched = (video: MetaVideoType, keywords: string) : number => {
+  let score = 0
+  keywords.split(" ").forEach((w) => {
+    if (video.title.toLocaleLowerCase().includes(w.toLocaleLowerCase())) score += 1
+  })
+
+  return score
+}

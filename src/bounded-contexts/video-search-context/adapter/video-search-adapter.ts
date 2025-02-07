@@ -64,7 +64,7 @@ class VideoSearchAdapter implements VideoSearchPort {
 
     const searchParams = {
       search: params.search,
-      limit: params.limit || 10,
+      limit: params.limit || 50,
       page: params.page || 1,
       fields: fields,
     }
