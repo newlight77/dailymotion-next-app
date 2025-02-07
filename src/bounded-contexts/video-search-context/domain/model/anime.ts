@@ -9,7 +9,7 @@ export type AnimeType = {
   publishedBy: string,
   publishedAt: Date,
   releaseAt: Date,
-  updateAt: Date,
+  updatedAt: Date,
   originalTitle?: string,
   subtitle?: string,
   lastEpisode?: number,
@@ -23,7 +23,7 @@ export type FollowedAnimeType = {
   originalTitle?: string,
   subtitle?: string,
   lastEpisode?: number,
-  updateAt: Date,
+  updatedAt: Date,
 }
 
 export type SearchKeywordsType = {

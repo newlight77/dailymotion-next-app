@@ -43,7 +43,7 @@ const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                 subtitle: anime.subtitle,
                 originalTitle: anime.originalTitle,
                 lastEpisode: anime.lastEpisode,
-                updateAt: anime.updateAt
+                updatedAt: anime.updatedAt
             })
         }
     }

@@ -1,33 +1,21 @@
 import { AnimeListPort } from "@/bounded-contexts/video-search-context/domain/usecases/animelist-usecase";
 import { AnimeType } from "../domain/model/anime";
-import animelist from '@/data/animelist';
 
-
-const ANIMELIST: AnimeType[] = [
-  ...animelist,
-]
-.sort((a: AnimeType, b: AnimeType) => b.releaseAt.getUTCMilliseconds() - a.releaseAt.getUTCMilliseconds());
-
-const mapAnimeListToDictionary = (animeList: AnimeType[]): { [key: string]: AnimeType } => {
-  return animeList.reduce((acc, anime) => {
-    acc[anime.uid] = anime;
-    return acc;
-  }, {} as { [key: string]: AnimeType });
-};
 
 class AnimeListAdapter implements AnimeListPort {
 
-  private readonly db: { [key: string]: AnimeType } = mapAnimeListToDictionary(ANIMELIST)
-
   upsert = async (anime: AnimeType): Promise<void> => {
     try {
-      // console.log('before adapter upsert', anime)
-      const found = this.db[anime.uid]
-      if (found) {
-        const updated = {...found, ...anime}
-        this.db[anime.uid] = updated
-      } else {
-        this.db[anime.uid] = anime
+      const response = await fetch(`/api/animelist/${anime.uid}`, {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(anime)
+      });
+
+      if (response.status > 400) {
+        throw new Error(`an error occurred when sending ${anime} to the api: code=${response.status} message=${response.body}`)
       }
       // console.log('after adapter upsert', this.db)
     } catch (error) {
@@ -37,7 +25,7 @@ class AnimeListAdapter implements AnimeListPort {
 
   findById = async (uid: string): Promise<AnimeType | undefined> => {
     try {
-      const response = await fetch(`/api/anime/${uid}`, { method: "GET" });
+      const response = await fetch(`/api/animelist/${uid}`, { method: "GET" });
       // console.log('AnimeListAdapter findById', response);
       if (!response.ok) {
         throw new Error(`Error fetching anime with uid ${uid}: ${response.statusText}`);
@@ -45,7 +33,7 @@ class AnimeListAdapter implements AnimeListPort {
       const anime: AnimeType = await response.json();
       anime.publishedAt = new Date(anime.publishedAt)
       anime.releaseAt = new Date(anime.releaseAt)
-      anime.updateAt = new Date(anime.updateAt)
+      anime.updatedAt = new Date(anime.updatedAt)
       // console.log('AnimeListAdapter findById', anime);
       return anime;
     } catch (error) {
@@ -66,7 +54,7 @@ class AnimeListAdapter implements AnimeListPort {
       return result.map(a => {
         a.publishedAt = new Date(a.publishedAt)
         a.releaseAt = new Date(a.releaseAt)
-        a.updateAt = new Date(a.updateAt)
+        a.updatedAt = new Date(a.updatedAt)
         return a
       });
     } catch (error) {

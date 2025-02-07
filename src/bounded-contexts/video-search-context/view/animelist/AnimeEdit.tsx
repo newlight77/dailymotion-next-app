@@ -21,7 +21,7 @@ const blankAnime: AnimeType = {
     publishedBy: '',
     publishedAt: new Date(),
     releaseAt: new Date(),
-    updateAt: new Date(),
+    updatedAt: new Date(),
     originalTitle: '',
     subtitle: '',
     lastEpisode: undefined,
@@ -66,7 +66,7 @@ const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAnime, onA
                 <input className='col-span-6' type="text" name="publishedBy" value={anime.publishedBy} onChange={handleChange} placeholder="Published By" />
                 <input className='col-span-6' type="date" name="publishedAt" value={anime.publishedAt.toISOString().split('T')[0]} onChange={handleChange} required />
                 <input className='col-span-6' type="date" name="releaseAt" value={anime.releaseAt.toISOString().split('T')[0]} onChange={handleChange} required />
-                <input className='col-span-6' type="date" name="updateAt" value={anime.updateAt.toISOString().split('T')[0]} onChange={handleChange} required />
+                <input className='col-span-6' type="date" name="updatedAt" value={anime.updatedAt.toISOString().split('T')[0]} onChange={handleChange} required />
                 <input className='col-span-6' type="number" name="lastEpisode" value={anime.lastEpisode} onChange={handleChange} placeholder="Last Episode" />
                 <input className='col-span-6' type="number" name="totalEpisodes" value={anime.totalEpisodes} onChange={handleChange} placeholder="Total Episodes" />
                 <button className='col-span-5' type="submit">{ edit ? 'Apply changes' : 'Create'} </button>

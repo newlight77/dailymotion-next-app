@@ -70,7 +70,7 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                 subtitle: anime.subtitle,
                 originalTitle: anime.originalTitle,
                 lastEpisode: anime.lastEpisode,
-                updateAt: anime.updateAt
+                updatedAt: anime.updatedAt
             })
         }
     }

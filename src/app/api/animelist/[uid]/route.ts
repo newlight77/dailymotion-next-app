@@ -1,12 +1,7 @@
-import { AnimeType } from '@/bounded-contexts/video-search-context/domain/model/anime';
-import animelist from '@/data/animelist';
 import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
 
-const ANIMELIST: AnimeType[] = [
-  ...animelist,
-]
-.sort((a: AnimeType, b: AnimeType) => b.releaseAt.getUTCMilliseconds() - a.releaseAt.getUTCMilliseconds());
-
+const prisma = new PrismaClient();
 
 type ParamType = {
   params: Promise<{ uid: string }>
@@ -17,8 +12,13 @@ export async function GET(request: NextRequest, { params }: ParamType) {
 
   const uid = (await params).uid
 
-  const anime = ANIMELIST.find(anime => anime.uid === uid);
-  // console.log(`found`, anime);
+  const anime = await prisma.anime.findFirst({
+    where: {
+      uid: uid
+    }
+  })
+  // const anime = ANIMELIST.find(anime => anime.uid === uid);
+  console.log(`found`, anime);
 
   if (!anime) {
     // console.log(`Anime with UID ${uid} not found`);

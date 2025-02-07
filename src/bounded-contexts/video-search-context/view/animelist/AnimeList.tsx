@@ -114,7 +114,7 @@ const AnimeList: React.FC<Props> = ({className}) => {
                             || v.subtitle!.includes(filterKeywords.toLowerCase())
                             || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
                         : true)
-                    // .sort((a: AnimeType, b: AnimeType) => b.updateAt.getTime() - a.updateAt.getTime())
+                    // .sort((a: AnimeType, b: AnimeType) => b.updatedAt.getTime() - a.updatedAt.getTime())
                     .map(anime => (
                         <AnimeCard
                             className="pt-4 pb-4 xs:w-screen sm:w-screen md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 3xl:w-1/6 4xl:w-1/7 5xl:w-1/8 h-auto"

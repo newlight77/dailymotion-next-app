@@ -49,7 +49,7 @@ const FollowedAnimes: React.FC<Props> = ({className}) => {
                 "originalTitle": "test 1",
                 "thumbnail": "url",
                 "lastEpisode": 122,
-                "updateAt": new Date(),
+                "updatedAt": new Date(),
             },
             {
                 "uid": "7526bc07-7eb1-41df-afd2-67b1bbeb94b0",
@@ -59,7 +59,7 @@ const FollowedAnimes: React.FC<Props> = ({className}) => {
                 "originalTitle": "test 2",
                 "thumbnail": "url",
                 "lastEpisode": 122,
-                "updateAt": new Date(),
+                "updatedAt": new Date(),
             }
         ], null, 4
     )
