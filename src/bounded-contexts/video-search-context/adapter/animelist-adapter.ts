@@ -37,6 +37,7 @@ class AnimeListAdapter implements AnimeListPort {
 
   findById = async (uid: string): Promise<AnimeType | undefined> => {
     try {
+      console.log('AnimeListAdapter findById:', uid);
       return this.db[uid]
     } catch (error) {
       console.error("Error fetching data: ", error);

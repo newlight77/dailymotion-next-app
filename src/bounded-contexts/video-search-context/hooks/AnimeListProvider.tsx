@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
 import { AnimeType } from '../domain/model/anime';
-import { AnimeListPort, AnimeListUsecase } from '../domain/usecases/animelist-usecase';
+import { AnimeListPort, AnimeListUsecase, AnimeListUsecasePort } from '../domain/usecases/animelist-usecase';
 
 
 
 interface AnimelistContextType {
-  adapter: AnimeListPort,
+  usecase: AnimeListUsecasePort,
   items: AnimeType[] | undefined,
   loadData: (data: AnimeType[]) => void,
   upsert: (value: AnimeType) => void,
@@ -16,7 +16,7 @@ interface AnimelistContextType {
 }
 
 const AnimelistContext = createContext<AnimelistContextType>({
-  adapter: {} as AnimeListPort,
+  usecase: {} as AnimeListUsecasePort,
   items: [],
   loadData: (data: AnimeType[]) => { console.log('load data', data) },
   upsert: (value: AnimeType) => { console.log('add data', value) },
@@ -55,13 +55,13 @@ export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElem
 
   const memoedValue = useMemo(
     () => ({
-      adapter,
+      usecase,
       items,
       loadData,
       upsert,
       reset,
     }),
-    [items, loadData, reset, reset]
+    [usecase, items, loadData, reset, reset]
   );
 
   return (

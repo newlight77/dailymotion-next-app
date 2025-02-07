@@ -37,7 +37,12 @@ export interface VideoSearchPort {
   getById: (id: string) => Promise<VideoType | undefined>
 }
 
-export const VideoSearchUsecase = (port: VideoSearchPort) => {
+export interface VideoSearchUsecasePort {
+  search: (searchParams: VideoSearchParamsType, prefs?: PreferencesType) => Promise<VideoSearchWithScoreResponse>
+  getById: (id: string) => Promise<VideoType | undefined>
+}
+
+export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePort => {
 
   const search = async (searchParams: VideoSearchParamsType, prefs?: PreferencesType): Promise<VideoSearchWithScoreResponse> => {
     const response = await port.search(searchParams);

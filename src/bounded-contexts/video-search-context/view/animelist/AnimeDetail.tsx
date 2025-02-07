@@ -18,7 +18,7 @@ type Props = {
 }
 
 const AnimeDetail: React.FC<Props> = ({id, mode}) => {
-    const { adapter } = useAnimelist();
+    const { usecase } = useAnimelist();
     const useFavorite = useFavorites();
     const useFollowedAnime = useFollowedAnimes();
 
@@ -28,7 +28,7 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
 
     useEffect(() => {
         console.log('AnimeDetail useEffect params:', id, mode);
-        adapter.findById(id).then((a) => { // todo move to storage provider : add findById and
+        usecase.findById(id).then((a) => { // todo move to storage provider : add findById and
             console.log('AnimeDetail useEffect params:', id, a);
             if (isMounted()) setAnime(a);
         });
