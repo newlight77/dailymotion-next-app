@@ -2,9 +2,9 @@ import { FavoriteType, FollowedAnimeType, FollowedVideoOwnerType, LastViewType, 
 
 export type PreferencesType = {
   followedAnimes?: FollowedAnimeType[], // Array of followed anime IDs
+  followedOwners?: FollowedVideoOwnerType[], // Array of followed owner usernames
   lastViews?: LastViewType[] // Array of last search keywords
   favorites?: FavoriteType[], // Array of favorite video IDs
-  followedOwners?: FollowedVideoOwnerType[], // Array of followed owner usernames
   lastSearches?: SearchKeywordsType[] // Array of last search keywords
 }
 
@@ -47,7 +47,7 @@ export const VideoSearchUsecase = (port: VideoSearchPort) => {
 
     if (prefs) {
       // Reorder the results based on user preferences
-      scoredList = list.map((video: MetaVideoType) => scoreVideo(video, searchParams.search, prefs)).map(v => v as VideoWithScoreType)
+      scoredList = list.map((video: MetaVideoType) => scoreVideo(video, prefs)).map(v => v as VideoWithScoreType)
       scoredList = scoredList.sort((a, b) => b.score - a.score).map(v => v as VideoWithScoreType)
     }
 
@@ -67,15 +67,15 @@ export const VideoSearchUsecase = (port: VideoSearchPort) => {
   }
 }
 
-const scoreVideo = ( video: MetaVideoType, searchKeywords: string, prefs: PreferencesType) : VideoWithScoreType => {
-  const { followedAnimes, lastViews, favorites, followedOwners, lastSearches } = prefs;
+const scoreVideo = ( video: MetaVideoType, prefs: PreferencesType) : VideoWithScoreType => {
+  const { followedAnimes, followedOwners } = prefs;
 
   let score = 0;
   if (followedAnimes && followedAnimeMatched(followedAnimes, video)) score += 15;
-  if (lastViews && lastviewMatched(lastViews, video)) score += 5;
-  if (favorites && favoriteMatched(favorites, video)) score += 7;
   if (followedOwners && followedOwnerMatched(followedOwners, video)) score += 10;
-  if (lastSearches && lastSearcheMatch(lastSearches, searchKeywords)) score += 1;
+  // if (lastViews && lastviewMatched(lastViews, video)) score += 5;
+  // if (favorites && favoriteMatched(favorites, video)) score += 7;
+  // if (lastSearches && lastSearcheMatch(lastSearches, searchKeywords)) score += 1;
 
   return { ...video, score };
 }
@@ -85,22 +85,22 @@ const followedAnimeMatched = (followedAnimes: FollowedAnimeType[], video: MetaVi
     return results?.length === 1
 }
 
-const lastviewMatched = (lastviews: LastViewType[], video: MetaVideoType): boolean => {
-  const results = lastviews.filter(f => f.title === video.title)
-  return results?.length === 1
-}
+// const lastviewMatched = (lastviews: LastViewType[], video: MetaVideoType): boolean => {
+//   const results = lastviews.filter(f => f.title === video.title)
+//   return results?.length === 1
+// }
 
-const favoriteMatched = (favorites: FavoriteType[], video: MetaVideoType): boolean => {
-    const results = favorites.filter(f => f.title === video.title)
-    return results?.length === 1
-}
+// const favoriteMatched = (favorites: FavoriteType[], video: MetaVideoType): boolean => {
+//     const results = favorites.filter(f => f.title === video.title)
+//     return results?.length === 1
+// }
 
 const followedOwnerMatched = (followedOwners: FollowedVideoOwnerType[], video: MetaVideoType): boolean => {
   const results = followedOwners.filter(f => f.owner === video.ownerUsername)
   return results?.length === 1
 }
 
-const lastSearcheMatch = (lastSearches: SearchKeywordsType[], searchKeywords: string): boolean => {
-  const results = lastSearches.filter(f => f.keywords.includes(searchKeywords) || searchKeywords.includes(f.keywords))
-  return results?.length === 1
-}
+// const lastSearcheMatch = (lastSearches: SearchKeywordsType[], searchKeywords: string): boolean => {
+//   const results = lastSearches.filter(f => f.keywords.includes(searchKeywords) || searchKeywords.includes(f.keywords))
+//   return results?.length === 1
+// }

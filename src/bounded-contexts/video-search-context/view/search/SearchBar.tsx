@@ -79,9 +79,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
 
         const prefs: PreferencesType = {
             followedAnimes: useFollowedAnime.items,
+            followedOwners: useFollowedVideoOwner.items,
             lastViews: useLastView.items,
             favorites: useFavorite.items,
-            followedOwners: useFollowedVideoOwner.items,
             lastSearches: useSearchHist.items
         }
 

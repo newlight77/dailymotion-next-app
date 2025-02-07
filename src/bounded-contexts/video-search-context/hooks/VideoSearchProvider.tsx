@@ -46,7 +46,7 @@ export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactEl
 
     setSearchResults(response.list || []);
     setPage(response.page || 1)
-    setLimit(response.limit || 30)
+    setLimit(response.limit || 50)
   }
 
   const findById = async (id: string): Promise<VideoType | undefined> => {
