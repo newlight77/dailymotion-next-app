@@ -27,8 +27,9 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const [editModal, setEditModal] = useState(false);
 
     useEffect(() => {
-        // console.log('params:', id, mode);
+        console.log('AnimeDetail useEffect params:', id, mode);
         adapter.findById(id).then((a) => { // todo move to storage provider : add findById and
+            console.log('AnimeDetail useEffect params:', id, a);
             if (isMounted()) setAnime(a);
         });
 
@@ -90,7 +91,7 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         <div className='w-full'>
             <div id="modal-root"></div>
             { editModal && anime &&
-                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 ' onClose={() => setEditModal(false)} title={anime.title}>
+                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 z-40' onClose={() => setEditModal(false)} title={anime.title}>
                     <AnimeEdit editedAnime={anime} edit={true} onApply={handleAnimeUpdate}></AnimeEdit>
                 </Modal>
             }

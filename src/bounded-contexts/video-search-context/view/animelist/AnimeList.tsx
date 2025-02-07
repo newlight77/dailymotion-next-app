@@ -61,7 +61,7 @@ const AnimeList: React.FC<Props> = ({className}) => {
             <div id="modal-root"></div>
 
             {addModal &&
-                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 ' onClose={() => setAddModal(false)} title={'New Amine'}>
+                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 z-40' onClose={() => setAddModal(false)} title={'New Amine'}>
                     <AnimeEdit edit={false}></AnimeEdit>
                 </Modal>
             }

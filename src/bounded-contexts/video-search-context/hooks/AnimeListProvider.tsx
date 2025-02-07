@@ -37,7 +37,7 @@ export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElem
 
   useEffect(() => {
     // required to update the storage to refresh UI
-    reset();
+    // reset();
   }, [usecase])
 
   const reset = async () => {
