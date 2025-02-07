@@ -110,8 +110,8 @@ const AnimeList: React.FC<Props> = ({className}) => {
                     items?.filter(
                         v => filterKeywords !== '' ?
                             v.title.toLowerCase().includes(filterKeywords.toLowerCase())
-                            || v.originalTitle!.includes(filterKeywords.toLowerCase())
-                            || v.subtitle!.includes(filterKeywords.toLowerCase())
+                            || v.originalTitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
+                            || v.subtitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
                             || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
                         : true)
                     // .sort((a: AnimeType, b: AnimeType) => b.updatedAt.getTime() - a.updatedAt.getTime())

@@ -55,7 +55,7 @@ export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePor
       scoredList = list.map((video: MetaVideoType) => scoreVideo(video, searchParams.search, prefs)).map(v => v as VideoWithScoreType)
       scoredList = scoredList
         .sort((a, b) => b.score - a.score)
-        .filter(v => v.score >= searchParams.search.split(" ").length)
+        .filter(v => v.score >= searchParams.search.split(" ").length - 1)
         .map(v => v as VideoWithScoreType)
     }
 
@@ -86,12 +86,12 @@ const scoreVideo = ( video: MetaVideoType, keywords: string, prefs: PreferencesT
 }
 
 const scoreFollowedAnimeMatched = (video: MetaVideoType, followedAnimes?: FollowedAnimeType[]): number => {
-    const results = followedAnimes?.filter(f => f.title === video.title)
+    const results = followedAnimes?.filter(f => f.title.toLocaleLowerCase() === video.title.toLocaleLowerCase())
     return results?.length === 1 ? 10 : 0
 }
 
 const scoreFollowedOwnerMatched = (video: MetaVideoType, followedOwners?: FollowedVideoOwnerType[]): number => {
-  const results = followedOwners?.filter(f => f.owner === video.ownerUsername)
+  const results = followedOwners?.filter(f => f.owner.toLocaleLowerCase() === video.ownerUsername.toLocaleLowerCase())
   return results?.length === 1 ? 5 : 0
 }
 

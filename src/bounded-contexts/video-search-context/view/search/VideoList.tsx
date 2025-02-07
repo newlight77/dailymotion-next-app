@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import VideoCard from './VideoCard';
 import { useSearchVideos } from '../../hooks/VideoSearchProvider';
+import { MetaVideoType } from '../../domain/model/anime';
 
 
 interface VideoListProps {
@@ -48,7 +49,7 @@ const VideoList: React.FC<VideoListProps> = ({ className }) => {
 
             <div className="md:flex flex-wrap">
                 {
-                    searchResults.filter(v => filterKeywords !== '' ? v.title.toLowerCase().includes(filterKeywords.toLowerCase()) || v.description.toLowerCase().includes(filterKeywords.toLowerCase()) || v.ownerUsername.includes(filterKeywords.toLowerCase()): true)
+                    searchResults.filter(v => matchingTitleOrDescriptionOrOwner(v))
                     .filter(v => exclusions !== '' ? !v.title.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.description.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.ownerUsername.toLowerCase().includes(exclusions.toLowerCase()) : true)
@@ -63,6 +64,13 @@ const VideoList: React.FC<VideoListProps> = ({ className }) => {
             </div>
         </div>
     );
+
+    function matchingTitleOrDescriptionOrOwner(v: MetaVideoType): unknown {
+        if (filterKeywords === '') return true;
+        return v.title.toLowerCase().includes(filterKeywords.toLowerCase())
+            || v.description.toLowerCase().includes(filterKeywords.toLowerCase())
+            || v.ownerUsername.includes(filterKeywords.toLowerCase());
+    }
 };
 
 export default VideoList;
