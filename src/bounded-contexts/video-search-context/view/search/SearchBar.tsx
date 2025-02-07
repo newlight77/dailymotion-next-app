@@ -14,6 +14,7 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     const [keywords, setKeywords] = useState(newKeywords || '');
     const [debouncedInpout, setDebouncedInpout] = useState('');
+    const [strictSearch, setStrictSearch] = useState(true);
     const { search } = useSearchVideos();
     const useSearchHist = useSearchHistory();
     const useFollowedAnime = useFollowedAnimes();
@@ -54,7 +55,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     useEffect(() => {
         // console.log('SearchBar keywords', keywords);
         if (keywords !== '') handleSearch()
-    }, [keywords]);
+    }, [keywords, strictSearch]);
 
     // useEffect(() => {
     //     if (debouncedInpout !== '') setKeywords(keywords)
@@ -69,6 +70,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
         }, delay)
     };
 
+    const handleStrictSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setStrictSearch(event.target.checked)
+    };
+
     const handleKeyup = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             handleSearch();
@@ -78,6 +83,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     const handleSearch = async () => {
 
         const prefs: PreferencesType = {
+            strictSearch: strictSearch,
             followedAnimes: useFollowedAnime.items,
             followedOwners: useFollowedVideoOwner.items,
             lastViews: useLastView.items,
@@ -102,6 +108,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
                 placeholder="Search videos by title"
                 onKeyUp={handleKeyup}
             />
+            <label className='px-2 w-12'>strict search</label>
+            <input className='px-2 w-4'
+                type="checkbox"
+                checked={strictSearch}
+                onChange={handleStrictSearchChange} />
             {/* <button className='' onClick={handleSearch}>Search</button> */}
         </div>
     );

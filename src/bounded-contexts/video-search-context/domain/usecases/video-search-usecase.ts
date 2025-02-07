@@ -1,6 +1,7 @@
 import { FavoriteType, FollowedAnimeType, FollowedVideoOwnerType, LastViewType, MetaVideoType, SearchKeywordsType, VideoType } from "@/bounded-contexts/video-search-context/domain/model/anime";
 
 export type PreferencesType = {
+  strictSearch: boolean,
   followedAnimes?: FollowedAnimeType[], // Array of followed anime IDs
   followedOwners?: FollowedVideoOwnerType[], // Array of followed owner usernames
   lastViews?: LastViewType[] // Array of last search keywords
@@ -50,12 +51,14 @@ export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePor
     const { list } = response;
     let scoredList: VideoWithScoreType[] = []
 
+    const strictValue = prefs?.strictSearch ? 0 : 1
+
     if (prefs) {
       // Reorder the results based on user preferences
       scoredList = list.map((video: MetaVideoType) => scoreVideo(video, searchParams.search, prefs)).map(v => v as VideoWithScoreType)
       scoredList = scoredList
         .sort((a, b) => b.score - a.score)
-        .filter(v => v.score >= searchParams.search.split(" ").length -1)
+        .filter(v => v.score >= searchParams.search.split(" ").length - strictValue)
         .map(v => v as VideoWithScoreType)
     }
 
