@@ -33,6 +33,7 @@ export type SearchKeywordsType = {
 
 export type FavoriteType = {
   uid: string,
+  animeId: string,
   title: string,
   order: number,
   originalTitle?: string,

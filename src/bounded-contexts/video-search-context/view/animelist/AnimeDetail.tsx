@@ -27,9 +27,9 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const [editModal, setEditModal] = useState(false);
 
     useEffect(() => {
-        console.log('AnimeDetail useEffect params:', id, mode);
+        // console.log('AnimeDetail useEffect params:', id, mode);
         usecase.findById(id).then((a) => { // todo move to storage provider : add findById and
-            console.log('AnimeDetail useEffect params:', id, a);
+            // console.log('AnimeDetail useEffect params:', id, a);
             if (isMounted()) setAnime(a);
         });
 
@@ -52,12 +52,12 @@ const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         if (isFavorite(anime)) {
             useFavorite.remove(anime.uid)
         } else {
-            useFavorite.addOrUpdate({uid: anime.uid, title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
+            useFavorite.addOrUpdate({uid: anime.uid, animeId: anime.uid, title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
         }
     }
 
     const handleFollowAnime = async (anime: AnimeType) => {
-        console.log('handleFollowAnime', anime)
+        // console.log('handleFollowAnime', anime)
         // TODO : follow anime, add list of following anime
         // TODO: display followed animes on following page
         if (isFollowed(anime)) {

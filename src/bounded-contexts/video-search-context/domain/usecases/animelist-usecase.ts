@@ -19,11 +19,12 @@ export const AnimeListUsecase = (port: AnimeListPort): AnimeListUsecasePort => {
   }
 
   const findById = async (uid: string): Promise<AnimeType | undefined> => {
-    console.log('AnimeListUsecase findById:', uid);
+    // console.log('AnimeListUsecase findById:', uid);
     return await port.findById(uid);
   }
 
   const findAll = async (): Promise<AnimeType[]> => {
+    // console.log('AnimeListUsecase findAll:', port.findAll());
     return await port.findAll();
   }
 

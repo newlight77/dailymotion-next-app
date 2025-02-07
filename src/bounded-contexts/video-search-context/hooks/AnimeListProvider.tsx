@@ -41,8 +41,8 @@ export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElem
   }, [usecase])
 
   const reset = async () => {
-    // console.log('AnimeListProvider useEffect, fetchData');
     const all = await usecase.findAll();
+    // console.log('AnimeListProvider reset', all);
     loadData(all);
   }
 

@@ -2,17 +2,7 @@
 import React, { useContext, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
-import followedVideoOwners from '@/data/followed-owners';
 import { FollowedVideoOwnerType } from '../domain/model/anime';
-
-
-const LOWEST_ORDER = Number.MAX_VALUE;
-
-const FOLLOWINGS: FollowedVideoOwnerType[] = [
-    ...followedVideoOwners,
-]
-// .reduce<FollowedVideoOwnerType[]>((acc, curr) => acc.some(item => item.owner === curr.owner) ? acc : [...acc, curr], [])
-.sort((a: FollowedVideoOwnerType, b: FollowedVideoOwnerType) => (a.order ?? LOWEST_ORDER) - (b.order ?? LOWEST_ORDER));
 
 
 export interface FollowedVideoOwnersContextType {
@@ -42,7 +32,7 @@ type Props = {
 
 export const FollowedVideoOwnersProvider = ({ children }: Props): React.ReactElement => {
 
-  const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FollowedVideoOwnerType>(`followed-video-owners`, FOLLOWINGS);
+  const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FollowedVideoOwnerType>(`followed-video-owners`, []);
 
   const memoedValue = useMemo(
     () => ({

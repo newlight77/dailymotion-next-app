@@ -37,19 +37,41 @@ class AnimeListAdapter implements AnimeListPort {
 
   findById = async (uid: string): Promise<AnimeType | undefined> => {
     try {
-      console.log('AnimeListAdapter findById:', uid);
-      return this.db[uid]
+      const response = await fetch(`/api/anime/${uid}`, { method: "GET" });
+      // console.log('AnimeListAdapter findById', response);
+      if (!response.ok) {
+        throw new Error(`Error fetching anime with uid ${uid}: ${response.statusText}`);
+      }
+      const anime: AnimeType = await response.json();
+      anime.publishedAt = new Date(anime.publishedAt)
+      anime.releaseAt = new Date(anime.releaseAt)
+      anime.updateAt = new Date(anime.updateAt)
+      // console.log('AnimeListAdapter findById', anime);
+      return anime;
     } catch (error) {
       console.error("Error fetching data: ", error);
+      return undefined;
     }
   }
 
   findAll = async (): Promise<AnimeType[]> => {
     try {
-      return Object.values(this.db)
+      const response = await fetch(`/api/animelist`, { method: "GET" });
+      // console.log('AnimeListAdapter findAll', response);
+      if (!response.ok) {
+        throw new Error(`Error fetching anime list: ${response.statusText}`);
+      }
+      const result: AnimeType[] = await response.json();
+      // console.log('AnimeListAdapter findAll:', result);
+      return result.map(a => {
+        a.publishedAt = new Date(a.publishedAt)
+        a.releaseAt = new Date(a.releaseAt)
+        a.updateAt = new Date(a.updateAt)
+        return a
+      });
     } catch (error) {
-        console.error("Error fetching data: ", error);
-        return []
+      console.error("Error fetching data: ", error);
+      return [];
     }
   }
 }
