@@ -1,24 +1,11 @@
 "use client"
 import React from 'react';
-import { useRouter } from "next/navigation";
 
 import SearchHistory from '../../bounded-contexts/video-search-context/view/search/SearchHistory';
 import LastViews from '@/bounded-contexts/video-search-context/view/lastviews/LastViews';
-import { LastViewType } from '@/bounded-contexts/video-search-context/domain/model/anime';
 
 
 const HistoryPage: React.FC = () => {
-    const router = useRouter()
-
-    const handleSelectSearchHistory = (selectedKeywords: string) => {
-        const title = encodeURIComponent(selectedKeywords)
-        router.push(`/?keywords=${title}`);
-    };
-
-    const handleSelectRecentView = (selectedLastView: LastViewType) => {
-        const title = encodeURIComponent(`${selectedLastView.title} ${selectedLastView.episode}`)
-        router.push(`/?keywords=${title}`);
-    };
 
     return (
         <div className='w-full'>
@@ -26,11 +13,11 @@ const HistoryPage: React.FC = () => {
             <div className='history md:grid grid-cols-2 gap-4 sm:max-w-screen-sm md:max-w-screen-xl'>
                 <div className="pt-2">
                     <h3 className='title text-2xl p-1 md:p-4 capitalize'>last views</h3>
-                    <LastViews onSelected={handleSelectRecentView} />
+                    <LastViews />
                 </div>
                 <div className="pt-2">
                     <h3 className='title text-2xl p-1 md:p-4 capitalize'>last searches</h3>
-                    <SearchHistory onSelected={handleSelectSearchHistory} />
+                    <SearchHistory />
                 </div>
             </div>
         </div>

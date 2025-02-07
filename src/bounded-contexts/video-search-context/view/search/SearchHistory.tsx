@@ -2,21 +2,15 @@ import React from 'react';
 import Link from 'next/link'
 import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
 import RemovableItem from '@/components/molecules/RemovableItem';
-import SelactableItem from '@/components/molecules/Selectable';
+
 
 interface SearchBarProps {
-    onSelected: (keywords: string) => void,
     className?: string,
 }
 
 
-const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
+const SearchHistory: React.FC<SearchBarProps> = ({ className }) => {
     const { items, remove, clear } = useSearchHistory();
-
-    const selectKeywords = async (selectedKeywords: string) => {
-        onSelected(selectedKeywords)
-        // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
-    }
 
     const handleDelete = async (uid: string) => {
         remove(uid)
@@ -25,6 +19,8 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
     const clearHistory = async () => {
         clear();
     }
+
+    const keywords = (k: string) => encodeURIComponent(k)
 
     return (
         <div className={className}>
@@ -35,9 +31,11 @@ const SearchHistory: React.FC<SearchBarProps> = ({ onSelected, className }) => {
             <div className='flex flex-col gap-2'>
                 { items?.map(s => (
                     <RemovableItem onDelete={handleDelete} key={s.uid} id={s.uid}>
-                        <SelactableItem className="pl-2 col-span-11" onSelect={() => selectKeywords(s.keywords)} >
-                            {s.keywords}
-                        </SelactableItem>
+                        <Link className="pl-2 col-span-11" href={`/?keywords=${keywords(s.keywords)}`} >
+                            <div className="col-span-5 hover:text-tertiary" >
+                                <div className='underline underline-offset-4 decoration-primary'>{s.keywords}</div>
+                            </div>
+                        </Link>
                     </RemovableItem>
                 ))}
             </div>

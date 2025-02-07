@@ -6,15 +6,14 @@ import { useFavorites } from '../../hooks/FavoritesProvider';
 import { LastViewType } from '../../domain/model/anime';
 import { useFollowedVideoOwners } from '../../hooks/FollowedVideoOwnersProvider';
 import RemovableItem from '@/components/molecules/RemovableItem';
-import SelactableItem from '@/components/molecules/Selectable';
+
 
 interface Props {
-    onSelected: (lastView: LastViewType) => void,
     className?: string,
 }
 
 
-const LastViews: React.FC<Props> = ({ onSelected, className }) => {
+const LastViews: React.FC<Props> = ({ className }) => {
     const { items, remove, clear } = useLastViews();
     const useFollowing = useFollowedVideoOwners();
     const useFavorite = useFavorites();
@@ -27,14 +26,11 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
         useFollowing.addOrUpdate({uid: lastView.uid, owner: lastView.owner, order: 0});
     }
 
-    const selectLastView = async (selected: LastViewType) => {
-        onSelected(selected)
-        // no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
-    }
-
     const handleDelete = async (uid: string) => {
         remove(uid)
     }
+
+    const keywords = (l: LastViewType) => encodeURIComponent(`${l.title} ${l.episode ? l.episode : ''}`)
 
     return (
         <div className={className}>
@@ -56,9 +52,12 @@ const LastViews: React.FC<Props> = ({ onSelected, className }) => {
                             <span className='p-1 text-tertiary'>{`${s.owner}`}</span>
                         </Link>
 
-                        <SelactableItem className="col-span-8" onSelect={() => selectLastView(s)} >
-                        {`${s.title} ${s.episode ? '(' + s.episode + ')': ''}` }
-                        </SelactableItem>
+                        <Link className="col-span-8" href={`/?keywords=${keywords(s)}`} >
+                            <div className="col-span-5 hover:text-tertiary" >
+                                <div className='underline underline-offset-4 decoration-primary'>{s.title}</div>
+                                { s.episode ? <div>{s.episode}</div> : <></>}
+                            </div>
+                        </Link>
 
                     </RemovableItem>
                 ))}

@@ -1,24 +1,15 @@
 "use client"
 
 import Favorites from "@/bounded-contexts/video-search-context/view/favorites/Favorites";
-import { FavoriteType } from "@/bounded-contexts/video-search-context/domain/model/anime";
-import { useRouter } from "next/navigation";
 
 const FavoritesPage: React.FC = () => {
-
-    const router = useRouter()
-
-    const handleSelectFavorite = (favorite: FavoriteType) => {
-        const title = encodeURIComponent(`${favorite.title} ${favorite.originalTitle ? favorite.lastEpisode : ''}`)
-        router.push(`/?keywords=${title}`);
-    };
 
     return (
         <div className='w-full'>
             <h2 className='title text-3xl p-1 md:p-4 capitalize'>my favorites videos</h2>
 
             <div className="pb-4 pt-4 md:absolute md:z-100 md:p-2 md:m-1 sm:max-w-screen-sm md:max-w-screen-xl">
-                <Favorites onSelected={handleSelectFavorite} />
+                <Favorites />
             </div>
 
         </div>

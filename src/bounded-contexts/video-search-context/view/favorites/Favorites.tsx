@@ -3,26 +3,24 @@ import Link from 'next/link'
 import { useFavorites } from '../../hooks/FavoritesProvider';
 import { FavoriteType } from '../../domain/model/anime';
 import RemovableItem from '@/components/molecules/RemovableItem';
-import SelactableItem from '@/components/molecules/Selectable';
 
 
 interface FavoritesProps {
-    onSelected: (favorite: FavoriteType) => void;
     className?: string,
 }
 
 
-const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
+const Favorites: React.FC<FavoritesProps> = ({ className }) => {
     const { items, remove, addOrUpdate, loadData, reset } = useFavorites();
     const [loadMode, setLoadMode] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [data, setData] = React.useState('')
 
-    const handleSelect = async (selected: FavoriteType) => {
-        onSelected(selected)
-        // notice: intentionaly no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
-        // but is it worth it to keep that principle? what about Link href?
-    }
+    // const handleSelect = async (selected: FavoriteType) => {
+    //     onSelected(selected)
+    //     // notice: intentionaly no navigate to /search/keywords or other pages, because here we should not know about how pages are structured
+    //     // but is it worth it to keep that principle? what about Link href?
+    // }
 
     const handleDelete = async (uid: string) => {
         if (items) {
@@ -82,19 +80,22 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
     }
 
     const sample = JSON.stringify(
-    [
-        {
-            "uid": "910906a2-95eb-4c8b-b560-91fe65754252",
-            "title": "divine lord of the heavens",
-            "lastEpisode": "28",
-        },
-        {
-            "uid": "7526bc07-7eb1-41df-afd2-67b1bbeb94b0",
-            "title": "martial peak",
-            "lastEpisode": "19",
-        }
-    ], null, 4
+        [
+            {
+                "uid": "910906a2-95eb-4c8b-b560-91fe65754252",
+                "title": "divine lord of the heavens",
+                "lastEpisode": "28",
+            },
+            {
+                "uid": "7526bc07-7eb1-41df-afd2-67b1bbeb94b0",
+                "title": "martial peak",
+                "lastEpisode": "19",
+            }
+        ],
+        null, 4
     )
+
+    const keywords = (fav: FavoriteType) => encodeURIComponent(`${fav.title} ${fav.lastEpisode ? fav.lastEpisode : ''}`)
 
     return (
         <div className={className}>
@@ -132,12 +133,14 @@ const Favorites: React.FC<FavoritesProps> = ({ onSelected, className }) => {
                             <div className='col-span-1 min-w-8 max-w-28 h-6 w-10'>{kw.order < 100 ? kw.order : ''}</div>
                         }
 
-                        <SelactableItem className={`col-span-5 hover:text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} onSelect={() => handleSelect(kw)} >
-                            <div className='underline underline-offset-4 decoration-primary'>{kw.title}</div>
-                            { kw.originalTitle ? <div className='pr-2 w-fit'>{kw.originalTitle}</div> : <></>}
-                            { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
-                            { kw.lastEpisode ? <div>{kw.lastEpisode}</div> : <></>}
-                        </SelactableItem>
+                        <Link className={`col-span-5 hover:text-tertiary ${kw.order < 100 ? "font-semibold" : ""}`} href={`/?keywords=${keywords(kw)}`} >
+                            <div className="col-span-5 hover:text-tertiary" >
+                                <div className='underline underline-offset-4 decoration-primary'>{kw.title}</div>
+                                { kw.originalTitle ? <div className='pr-2 w-fit'>{kw.originalTitle}</div> : <></>}
+                                { kw.subtitle ? <div>{kw.subtitle}</div> : <></>}
+                                { kw.lastEpisode ? <div>{kw.lastEpisode}</div> : <></>}
+                            </div>
+                        </Link>
 
                         { editMode ?
                             <div className='col-span-5 right-0 items-center max-w-48'>
