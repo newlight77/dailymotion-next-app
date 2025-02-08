@@ -72,18 +72,18 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                     <Link href={''} className='favoritelink gap-2 p-4' onClick={() => handleAddToFavorites(anime)}>
                         <FaHeartCirclePlus size={36} className={`${isFavorite(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                     </Link>
-                    <Link href={`/anime/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
+                    <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
                         <FaPenToSquare size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                     </Link>
                 </div>
 
-                <Link className='thumbnaillink' href={`/anime/${anime.uid}`}>
+                <Link className='thumbnaillink' href={`/animelist/${anime.uid}`}>
                     <Image className='anime max-h-screen h-128' src={anime.thumbnail || ''} alt={anime.title} width={480} height={480} />
                 </Link>
             </div>
             <div className=''>
                 <Link className='titlelink'
-                    href={`/anime/${anime.uid}`}>
+                    href={`/animelist/${anime.uid}`}>
                     <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{anime.title}</div>
                 </Link>
                 <div className='description text-sm text-wrap pt-1 h-10 m-2'>{`${anime.summary.substring(0, 140)} ...`}</div>
