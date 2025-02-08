@@ -30,8 +30,3 @@ export async function POST(request: NextRequest) {
     status: 200,
   });
 }
-
-type ParamType = {
-  params: Promise<{ uid: string }>
-}
-

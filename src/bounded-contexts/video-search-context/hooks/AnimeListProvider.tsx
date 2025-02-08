@@ -48,7 +48,11 @@ export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElem
 
   const upsert = async (anime: AnimeType) => {
     // console.log('AnimeListProvider before upsert', anime);
-    await usecase.upsert(anime);
+    const result = await usecase.upsert(anime);
+    if (!result) {
+      console.error('failed to upsert anime', anime)
+      return
+    }
     addOrUpdate(anime)
     // console.log('AnimeListProvider post upsert', items)
   }

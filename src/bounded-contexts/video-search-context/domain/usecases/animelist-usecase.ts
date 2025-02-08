@@ -1,20 +1,20 @@
 import { AnimeType } from "@/bounded-contexts/video-search-context/domain/model/anime";
 
 export interface AnimeListPort {
-  upsert: (anime: AnimeType) => Promise<void>
+  upsert: (anime: AnimeType) => Promise<AnimeType |undefined>
   findById: (id: string) => Promise<AnimeType | undefined>
   findAll: () => Promise<AnimeType[]>
 }
 
 export interface AnimeListUsecasePort {
-  upsert: (anime: AnimeType) => Promise<void>
+  upsert: (anime: AnimeType) => Promise<AnimeType | undefined>
   findById: (id: string) => Promise<AnimeType | undefined>
   findAll: () => Promise<AnimeType[]>
 }
 
 export const AnimeListUsecase = (port: AnimeListPort): AnimeListUsecasePort => {
 
-  const upsert = async (anime: AnimeType): Promise<void> => {
+  const upsert = async (anime: AnimeType): Promise<AnimeType | undefined> => {
     return await port.upsert(anime)
   }
 

@@ -4,7 +4,7 @@ import { AnimeType } from "../domain/model/anime";
 
 class AnimeListAdapter implements AnimeListPort {
 
-  upsert = async (anime: AnimeType): Promise<void> => {
+  upsert = async (anime: AnimeType): Promise<AnimeType | undefined> => {
     try {
       const response = await fetch(`/api/animelist/${anime.uid}`, {
         method: "PUT",
@@ -17,10 +17,14 @@ class AnimeListAdapter implements AnimeListPort {
       if (response.status > 400) {
         throw new Error(`an error occurred when sending ${anime} to the api: code=${response.status} message=${response.body}`)
       }
+
+      const result: AnimeType = await response.json()
+      return result
       // console.log('after adapter upsert', this.db)
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
+    return undefined
   }
 
   findById = async (uid: string): Promise<AnimeType | undefined> => {
