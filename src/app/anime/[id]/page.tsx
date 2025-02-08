@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
-import AnimeDetail from '@/bounded-contexts/video-search-context/view/animelist/AnimeDetail';
+import AnimeDetail from '@/bounded-contexts/videosearch-context/view/animelist/AnimeDetail';
 
 
 const AnimePage: React.FC = () => {

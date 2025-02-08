@@ -1,4 +1,4 @@
-import { AnimeListPort } from "@/bounded-contexts/video-search-context/domain/usecases/animelist-usecase";
+import { AnimeListPort } from "@/bounded-contexts/videosearch-context/domain/usecases/animelist-usecase";
 import { AnimeType } from "../domain/model/anime";
 
 

@@ -1,4 +1,4 @@
-import { FavoriteType, FollowedAnimeType, FollowedVideoOwnerType, LastViewType, MetaVideoType, SearchKeywordsType, VideoType } from "@/bounded-contexts/video-search-context/domain/model/anime";
+import { FavoriteType, FollowedAnimeType, FollowedVideoOwnerType, LastViewType, MetaVideoType, SearchKeywordsType, VideoType } from "@/bounded-contexts/videosearch-context/domain/model/anime";
 
 export type PreferencesType = {
   strictSearch: boolean,

@@ -1,8 +1,8 @@
 "use client"
 import React from 'react';
 
-import VideoSearchHistory from '../../bounded-contexts/video-search-context/view/search/VideoSearchHistory';
-import LastViews from '@/bounded-contexts/video-search-context/view/lastviews/LastViews';
+import VideoSearchHistory from '../../bounded-contexts/videosearch-context/view/search/VideoSearchHistory';
+import LastViews from '@/bounded-contexts/videosearch-context/view/lastviews/LastViews';
 
 
 const HistoryPage: React.FC = () => {

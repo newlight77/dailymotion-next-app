@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { AnimeType } from '@/bounded-contexts/video-search-context/domain/model/anime';
+import { AnimeType } from '@/bounded-contexts/videosearch-context/domain/model/anime';
 import { useAnimelist } from '../../hooks/AnimeListProvider';
 import Modal from '@/components/molecules/Modal';
 import AnimeEdit from './AnimeEdit';

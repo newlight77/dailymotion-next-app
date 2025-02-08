@@ -1,5 +1,5 @@
 "use client"
-import AnimeList from '@/bounded-contexts/video-search-context/view/animelist/AnimeList';
+import AnimeList from '@/bounded-contexts/videosearch-context/view/animelist/AnimeList';
 import React from 'react';
 
 

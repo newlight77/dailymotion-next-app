@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { AnimeType } from '@/bounded-contexts/video-search-context/domain/model/anime';
+import { AnimeType } from '@/bounded-contexts/videosearch-context/domain/model/anime';
 import { useAnimelist } from '../../hooks/AnimeListProvider';
 
 type Props = {

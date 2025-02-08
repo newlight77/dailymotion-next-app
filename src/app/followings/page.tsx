@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
-import Followings from '@/bounded-contexts/video-search-context/view/followings/FollowedOwners';
-import FollowedAnimes from '@/bounded-contexts/video-search-context/view/followings/FollowedAnimes';
+import Followings from '@/bounded-contexts/videosearch-context/view/followings/FollowedOwners';
+import FollowedAnimes from '@/bounded-contexts/videosearch-context/view/followings/FollowedAnimes';
 
 
 const FollowingsPage: React.FC = () => {
