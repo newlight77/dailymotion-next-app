@@ -2,16 +2,16 @@
 
 import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'
-import Search from '@/bounded-contexts/video-search-context/view/search/Search';
+import VideoSearch from '@/bounded-contexts/video-search-context/view/search/VideoSearch';
 
 const SearchWithParams: React.FC = () => {
     const searchParams = useSearchParams()
     const newKeywords = searchParams.get('keywords') || ''
 
     return (
-        <Search
+        <VideoSearch
             keywords={newKeywords}>
-        </Search>
+        </VideoSearch>
     );
 }
 

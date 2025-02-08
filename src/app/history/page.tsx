@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 
-import SearchHistory from '../../bounded-contexts/video-search-context/view/search/SearchHistory';
+import VideoSearchHistory from '../../bounded-contexts/video-search-context/view/search/VideoSearchHistory';
 import LastViews from '@/bounded-contexts/video-search-context/view/lastviews/LastViews';
 
 
@@ -17,7 +17,7 @@ const HistoryPage: React.FC = () => {
                 </div>
                 <div className="pt-2">
                     <h3 className='title text-2xl p-1 md:p-4 capitalize'>last searches</h3>
-                    <SearchHistory />
+                    <VideoSearchHistory />
                 </div>
             </div>
         </div>

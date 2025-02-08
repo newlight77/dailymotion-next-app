@@ -5,7 +5,7 @@ import { useStorage } from '@/shared/useStorage';
 import { SearchKeywordsType } from '../domain/model/anime';
 
 
-export interface SearchHistoryContextType {
+export interface VideoSearchHistoryContextType {
   item: SearchKeywordsType | undefined,
   items: SearchKeywordsType[] | undefined,
   addOrUpdate: (value: SearchKeywordsType) => void,
@@ -13,7 +13,7 @@ export interface SearchHistoryContextType {
   clear: () => void,
 }
 
-export const SearchHistoryContext = createContext<SearchHistoryContextType>({
+export const VideoSearchHistoryContext = createContext<VideoSearchHistoryContextType>({
   item: undefined,
   items: [],
   addOrUpdate: (value: SearchKeywordsType) => { console.log('add or update', value) },
@@ -26,7 +26,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const SearchHistoryProvider = ({ children }: Props): React.ReactElement => {
+export const VideoSearchHistoryProvider = ({ children }: Props): React.ReactElement => {
 
   const {item, items, addOrUpdate, remove, clear} = useStorage<SearchKeywordsType>(`last-searches`, []);
 
@@ -42,10 +42,10 @@ export const SearchHistoryProvider = ({ children }: Props): React.ReactElement =
   );
 
   return (
-      <SearchHistoryContext.Provider value={ memoedValue }>
+      <VideoSearchHistoryContext.Provider value={ memoedValue }>
           { children }
-      </SearchHistoryContext.Provider>
+      </VideoSearchHistoryContext.Provider>
   )
 }
 
-export const useSearchHistory = (): SearchHistoryContextType => useContext(SearchHistoryContext)
+export const useVideoSearchHistory = (): VideoSearchHistoryContextType => useContext(VideoSearchHistoryContext)

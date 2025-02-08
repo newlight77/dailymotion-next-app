@@ -2,7 +2,7 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { createContext } from "react";
 import { MetaVideoType, VideoType } from '../domain/model/anime';
-import { VideoSearchPort, VideoSearchUsecase, PreferencesType, VideoSearchWithScoreResponse, VideoWithScoreType } from '../domain/usecases/video-search-usecase';
+import { VideoSearchPort, VideoSearchUsecase, PreferencesType, VideoSearchWithScoreResponse, VideoWithScoreType } from '../domain/usecases/videosearch-usecase';
 
 
 export interface VideoSearchContextType {

@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 
-import SearchBar from './SearchBar';
+import VideoSearchBar from './VideoSearchBar';
 import VideoList from './VideoList';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
     className?: string
 }
 
-const Search: React.FC<Props> = ({keywords, className}) => {
+const VideoSearch: React.FC<Props> = ({keywords, className}) => {
     const [newKeywords, setNewKeywords] = useState<string>();
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const Search: React.FC<Props> = ({keywords, className}) => {
 
     return (
         <div className={className}>
-                <SearchBar
+                <VideoSearchBar
                     className='search-bar p-1'
                     newKeywords={newKeywords}/>
                 <VideoList
@@ -27,4 +27,4 @@ const Search: React.FC<Props> = ({keywords, className}) => {
     );
 };
 
-export default Search;
+export default VideoSearch;

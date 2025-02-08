@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link'
-import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
+import { useVideoSearchHistory } from '../../hooks/VideoSearchHistoryProvider';
 import RemovableItem from '@/components/molecules/RemovableItem';
 
 
@@ -9,8 +9,8 @@ interface SearchBarProps {
 }
 
 
-const SearchHistory: React.FC<SearchBarProps> = ({ className }) => {
-    const { items, remove, clear } = useSearchHistory();
+const VideoSearchHistory: React.FC<SearchBarProps> = ({ className }) => {
+    const { items, remove, clear } = useVideoSearchHistory();
 
     const handleDelete = async (uid: string) => {
         remove(uid)
@@ -43,4 +43,4 @@ const SearchHistory: React.FC<SearchBarProps> = ({ className }) => {
     );
 };
 
-export default SearchHistory;
+export default VideoSearchHistory;

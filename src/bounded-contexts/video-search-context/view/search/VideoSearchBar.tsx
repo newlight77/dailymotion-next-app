@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchVideos } from '../../hooks/VideoSearchProvider';
-import { useSearchHistory } from '../../hooks/SearchHistoryProvider';
-import { PreferencesType } from '../../domain/usecases/video-search-usecase';
+import { useVideoSearchHistory } from '../../hooks/VideoSearchHistoryProvider';
+import { PreferencesType } from '../../domain/usecases/videosearch-usecase';
 import { useLastViews, useFavorites, useFollowedVideoOwners } from '../../hooks';
 import { useFollowedAnimes } from '../../hooks/FollowedAnimesProvider';
 
 
-interface SearchBarProps {
+interface VideoSearchBarProps {
     newKeywords?: string,
     className?: string,
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
+const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, className }) => {
     const [keywords, setKeywords] = useState(newKeywords || '');
     const [debouncedInpout, setDebouncedInpout] = useState('');
     const [strictSearch, setStrictSearch] = useState(true);
     const { search } = useSearchVideos();
-    const useSearchHist = useSearchHistory();
+    const useSearchHist = useVideoSearchHistory();
     const useFollowedAnime = useFollowedAnimes();
     const useLastView = useLastViews();
     const useFavorite = useFavorites();
@@ -118,4 +118,4 @@ const SearchBar: React.FC<SearchBarProps> = ({ newKeywords, className }) => {
     );
 };
 
-export default SearchBar;
+export default VideoSearchBar;
