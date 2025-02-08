@@ -35,32 +35,3 @@ type ParamType = {
   params: Promise<{ uid: string }>
 }
 
-export async function PUT(request: NextRequest, { params }: ParamType) {
-  const uid = (await params).uid
-  const anime = await request.json()
-
-  const found = await prisma.anime.findFirst({
-    where: {
-      uid: uid
-    }
-  })
-
-  if (found) {
-    const updated = await prisma.anime.update({
-      where: { uid: uid },
-      data: anime
-    })
-
-    return new NextResponse(JSON.stringify(updated), {
-      status: 200,
-    });
-  }
-
-  const created = await prisma.anime.create({
-    data: anime
-  })
-
-  return new NextResponse(JSON.stringify(created), {
-    status: 201,
-  });
-}
