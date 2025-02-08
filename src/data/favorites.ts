@@ -1,4 +1,4 @@
-import { FavoriteType } from "@/bounded-contexts/videosearch-context/domain/model/anime";
+import { FavoriteType } from "@/bounded-contexts/videosearch-context/domain/model";
 
 const FAVORITES: FavoriteType[] = [
     // { uid: crypto.randomUUID().toString(),  order: 1     , title: 'Battle through the Heaven'                        , originalTitle: '斗破苍穹年番'     , subtitle: ''                                                    , lastEpisode: 131},

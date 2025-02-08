@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { AnimeType } from '@/bounded-contexts/videosearch-context/domain/model/anime';
+import { AnimeType } from '@/bounded-contexts/animelist-context';
 
 const prisma = new PrismaClient();
 

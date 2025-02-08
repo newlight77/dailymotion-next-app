@@ -1,14 +1,7 @@
 'use client'
 import React from 'react';
-import { FavoritesProvider } from '../hooks';
-import { FollowedVideoOwnersProvider } from '../hooks';
-import { LastViewsProvider } from '../hooks';
-import { VideoSearchHistoryProvider } from '../hooks';
-import { AnimeListProvider } from '../hooks';
+import { videoSearchAdapter } from '../adapter';
 import { VideoSearchProvider } from '../hooks';
-import animeListAdapter from '../adapter/animelist-adapter';
-import videoSearchAdapter from '../adapter/videosearch-adapter';
-import { FollowedAnimesProvider } from '../hooks/FollowedAnimesProvider';
 
 
 type Props = {
@@ -19,19 +12,12 @@ export const SearchModule = ({ children }: Props): React.ReactElement => {
 
   return (
     <VideoSearchProvider videoSearchAdapter={videoSearchAdapter}>
-      <VideoSearchHistoryProvider>
-        <LastViewsProvider>
-          <FollowedAnimesProvider>
-          <FollowedVideoOwnersProvider>
-            <FavoritesProvider>
-              <AnimeListProvider animeListAdapter={animeListAdapter}>
                 {children}
-              </AnimeListProvider>
-            </FavoritesProvider>
-          </FollowedVideoOwnersProvider>
-          </FollowedAnimesProvider>
-        </LastViewsProvider>
-      </VideoSearchHistoryProvider>
     </VideoSearchProvider>
   )
 }
+
+export * from './videosearch/VideoCard'
+export * from './videosearch/VideoList'
+export * from './videosearch/VideoSearch'
+export * from './videosearch/VideoSearchBar'

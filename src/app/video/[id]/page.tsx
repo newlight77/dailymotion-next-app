@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import VideoPlayer from '@/components/organisms/VideoPlayer';
-import { useSearchVideos } from '@/bounded-contexts/videosearch-context/hooks';
+import { useSearchVideos } from '@/bounded-contexts/videosearch-context';
 
 
 type Video = {

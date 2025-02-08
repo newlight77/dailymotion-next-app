@@ -1,6 +1,6 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
-import { MetaVideoType, VideoType } from "../domain/model/anime";
-import { VideoSearchResponse, VideoSearchParamsType, VideoSearchPort } from "../domain/usecases/videosearch-usecase";
+import { MetaVideoType, VideoType } from "../domain";
+import { VideoSearchResponse, VideoSearchParamsType, VideoSearchPort } from "../domain";
 
 
 const fields = [
@@ -140,5 +140,4 @@ class VideoSearchAdapter implements VideoSearchPort {
 }
 
 
-const videoSearchAdapter = new VideoSearchAdapter();
-export default videoSearchAdapter;
+export const videoSearchAdapter = new VideoSearchAdapter();

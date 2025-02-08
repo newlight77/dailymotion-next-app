@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import animelist from './animelist';
-import { AnimeType } from '@/bounded-contexts/videosearch-context/domain/model/anime';
+import { AnimeType } from '@/bounded-contexts/animelist-context';
 
 
 const prisma = new PrismaClient();

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { AnimeType } from '@/bounded-contexts/animelist-context';
 
 const prisma = new PrismaClient();
 
@@ -18,7 +19,7 @@ export async function GET() {
 /** create many from a list */
 export async function POST(request: NextRequest) {
 
-  const animelist = await request.json()
+  const animelist: AnimeType[] = await request.json()
 
   if (animelist) {
     await prisma.anime.createMany({

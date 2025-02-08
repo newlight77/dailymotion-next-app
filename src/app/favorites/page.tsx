@@ -1,6 +1,7 @@
 "use client"
 
-import Favorites from "@/bounded-contexts/videosearch-context/view/favorites/Favorites";
+import { Favorites } from "@/bounded-contexts/user-preferences-context";
+
 
 const FavoritesPage: React.FC = () => {
 

@@ -1,4 +1,4 @@
-import { AnimeType } from "@/bounded-contexts/videosearch-context/domain/model/anime";
+import { AnimeType } from "@/bounded-contexts/animelist-context";
 
 const ANIME_LIST: AnimeType[] = [
   { uid: crypto.randomUUID().toString(),

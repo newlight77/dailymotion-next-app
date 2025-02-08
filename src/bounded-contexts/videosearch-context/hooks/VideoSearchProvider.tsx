@@ -1,8 +1,8 @@
 'use client'
 import React, { useContext, useMemo, useState } from 'react';
 import { createContext } from "react";
-import { MetaVideoType, VideoType } from '../domain/model/anime';
-import { VideoSearchPort, VideoSearchUsecase, PreferencesType, VideoSearchWithScoreResponse, VideoWithScoreType } from '../domain/usecases/videosearch-usecase';
+import { MetaVideoType, VideoType } from '../domain';
+import { VideoSearchPort, VideoSearchUsecase, PreferencesType, VideoSearchWithScoreResponse, VideoWithScoreType } from '../domain';
 
 
 export interface VideoSearchContextType {
