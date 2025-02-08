@@ -21,13 +21,13 @@ export const VideoSearchContext = createContext<VideoSearchContextType>({
 
 
 type Props = {
-  adapter: VideoSearchPort,
+  videoSearchAdapter: VideoSearchPort,
   children: React.ReactNode
 }
 
-export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactElement => {
+export const VideoSearchProvider = ({ videoSearchAdapter, children }: Props): React.ReactElement => {
 
-  const usecase = VideoSearchUsecase(adapter)
+  const usecase = VideoSearchUsecase(videoSearchAdapter)
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(50);
@@ -43,6 +43,8 @@ export const VideoSearchProvider = ({ adapter, children }: Props): React.ReactEl
 
     const response: VideoSearchWithScoreResponse = await usecase.search(params, prefs);
     console.log('VideoSearchProvider adapter.search', response);
+
+    // TODO : do I have the title and last episode here so I can update the anime
 
     setSearchResults(response.list || []);
     setPage(response.page || 1)

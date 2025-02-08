@@ -21,7 +21,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, className}) => {
 
     }, [useFollowedVideo.remove])
 
-    const handleAddLastView = (video: MetaVideoType) => {
+    const handleViewVideo = (video: MetaVideoType) => {
         const l: LastViewType = {
             uid: video.id,
             videoId: video.id,
@@ -31,6 +31,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, className}) => {
             link: `https://www.dailymotion.com/video/${video.id}`
 
         }
+        // TODO : update anime last episode
         useLastView.addOrUpdate(l);
     }
 
@@ -68,7 +69,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, className}) => {
                         <span className='p-1 bg-secondaryVariant rounded-md px-2 content-center border border-tertiaryVariant outline outline-tertiaryVariant'>{`${video.ownerUsername}`}</span>
                     </Link>
                 </div>
-                <Link className='thumbnaillink' href={`/video/${video.id}`} target="_blank" onClick={() => handleAddLastView(video)}>
+                <Link className='thumbnaillink' href={`/video/${video.id}`} target="_blank" onClick={() => handleViewVideo(video)}>
                     <Image className='video sm:w-112 md:w-full md:h-96' src={video.thumbnail_480_url} alt={video.title} width={480} height={480} />
                     <FaCirclePlay size={52} className="absolute inset-0 m-auto"/>
                     <div className='absolute -translate-y-14 px-2 py-1 ml-4 mb-4 gap-2 w-fit bg-secondaryVariant rounded-lg border border-tertiaryVariant outline outline-tertiaryVariant'>{displayDurationInHMS(video.duration)}</div>
@@ -78,7 +79,7 @@ const SearchHistory: React.FC<VideoCardProps> = ({video, className}) => {
             <Link className='titlelink '
                     href={`/video/${video.id}`}
                     target="_blank"
-                    onClick={() => handleAddLastView(video)}>
+                    onClick={() => handleViewVideo(video)}>
                     <div className='title sm:w-112 md:w-full h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{video.title}</div>
             </Link>
             <div className='content md:p-2'>

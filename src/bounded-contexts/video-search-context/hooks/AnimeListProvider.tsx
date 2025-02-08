@@ -25,13 +25,13 @@ const AnimelistContext = createContext<AnimelistContextType>({
 
 
 type Props = {
-  adapter: AnimeListPort,
+  animeListAdapter: AnimeListPort,
   children: React.ReactNode
 }
 
-export const AnimeListProvider = ({ adapter, children }: Props): React.ReactElement => {
+export const AnimeListProvider = ({ animeListAdapter, children }: Props): React.ReactElement => {
 
-  const usecase = AnimeListUsecase(adapter)
+  const usecase = AnimeListUsecase(animeListAdapter)
 
   const {items, loadData, addOrUpdate} = useStorage<AnimeType>(`animelist`, []);
 

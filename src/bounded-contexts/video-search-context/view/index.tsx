@@ -18,13 +18,13 @@ type Props = {
 export const SearchModule = ({ children }: Props): React.ReactElement => {
 
   return (
-    <VideoSearchProvider adapter={videoSearchAdapter}>
+    <VideoSearchProvider videoSearchAdapter={videoSearchAdapter}>
       <VideoSearchHistoryProvider>
         <LastViewsProvider>
           <FollowedAnimesProvider>
           <FollowedVideoOwnersProvider>
             <FavoritesProvider>
-              <AnimeListProvider adapter={animeListAdapter}>
+              <AnimeListProvider animeListAdapter={animeListAdapter}>
                 {children}
               </AnimeListProvider>
             </FavoritesProvider>

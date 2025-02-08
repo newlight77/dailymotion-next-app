@@ -68,5 +68,5 @@ class AnimeListAdapter implements AnimeListPort {
   }
 }
 
-const adapter = new AnimeListAdapter();
-export default adapter;
+const animeListAdapter = new AnimeListAdapter();
+export default animeListAdapter;

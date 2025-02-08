@@ -140,5 +140,5 @@ class VideoSearchAdapter implements VideoSearchPort {
 }
 
 
-const adapter = new VideoSearchAdapter();
-export default adapter;
+const videoSearchAdapter = new VideoSearchAdapter();
+export default videoSearchAdapter;

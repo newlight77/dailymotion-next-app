@@ -54,7 +54,7 @@ const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, className 
 
     useEffect(() => {
         // console.log('SearchBar keywords', keywords);
-        if (keywords !== '') handleSearch()
+        if (keywords !== '') handleVideoSearch()
     }, [keywords, strictSearch]);
 
     // useEffect(() => {
@@ -76,11 +76,11 @@ const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, className 
 
     const handleKeyup = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-            handleSearch();
+            handleVideoSearch();
         }
     };
 
-    const handleSearch = async () => {
+    const handleVideoSearch = async () => {
 
         const prefs: PreferencesType = {
             strictSearch: strictSearch,
