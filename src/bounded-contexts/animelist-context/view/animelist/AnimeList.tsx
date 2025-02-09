@@ -6,7 +6,9 @@ import { AnimeType } from '../../domain';
 import { AnimeCard } from './AnimeCard';
 import { AnimeEdit } from './AnimeEdit';
 
-
+type AnimeWithOrderScore = AnimeType & {
+    orderScore: number
+}
 
 type Props = {
     className?: string,
@@ -51,9 +53,52 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     };
 
     const sample = JSON.stringify(
-        [
-        ], null, 4
+        [], null, 4
     )
+
+    // function orderScore(anime: AnimeType): number {
+    //     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    //     const todayWeekDay = new Date().getDay();
+
+    //     if (anime.updateDays) {
+    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 0) % 7].toLowerCase())) return 7;
+    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 1) % 7].toLowerCase())) return 6;
+    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 2) % 7].toLowerCase())) return 5;
+    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 3) % 7].toLowerCase())) return 4;
+    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 4) % 7].toLowerCase())) return 3;
+    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 5) % 7].toLowerCase())) return 2;
+    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 6) % 7].toLowerCase())) return 1;
+    //     }
+    //     return 0;
+    // }
+
+    function orderScore(anime: AnimeType): number {
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const todayWeekDay = new Date().getDay();
+
+        if (!anime.updateDays) {
+          return 0;
+        }
+
+        for (let i = 0; i < 7; i++) {
+          const day = daysOfWeek[(todayWeekDay + i) % 7].toLowerCase();
+          if (anime.updateDays.toLowerCase().includes(day)) {
+            return 7 - i;
+          }
+        }
+
+        return 0;
+      }
+
+    function withOrderScore(anime: AnimeType): AnimeWithOrderScore {
+        const score = orderScore(anime);
+        console.log('score updateDays', anime.updateDays, score)
+        return {
+            ...anime,
+            orderScore: score
+        }
+    }
+
 
     return (
         <div className={className}>
@@ -114,7 +159,8 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                             || v.subtitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
                             || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
                         : true)
-                    // .sort((a: AnimeType, b: AnimeType) => b.updatedAt.getTime() - a.updatedAt.getTime())
+                    .map(anime => withOrderScore(anime))
+                    .sort((a: AnimeWithOrderScore, b: AnimeWithOrderScore) => b.orderScore - a.orderScore)
                     .map(anime => (
                         <AnimeCard
                             className="pt-4 pb-4 xs:w-screen sm:w-screen md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 3xl:w-1/6 4xl:w-1/7 5xl:w-1/8 h-auto"
