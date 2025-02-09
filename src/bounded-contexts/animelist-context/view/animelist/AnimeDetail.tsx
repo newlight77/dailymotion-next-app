@@ -128,8 +128,9 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                         <div className='grid grid-cols-2 gap-2 p-4 md:px-4'>
                             <div className='p-1 md:px-4'>type: {anime.type}</div>
                             <div className='p-1 md:px-4'>status: {anime.status}</div>
-                            <div className='p-1 md:px-4'>published by: {anime.publishedBy}</div>
-                            <div className='p-1 md:px-4'>published: {anime.publishedAt.toISOString().split('T')[0]}</div>
+                            <div className='p-1 md:px-4'>update every: { anime.updateDays }</div>
+                            {/* <div className='p-1 md:px-4'>published by: {anime.publishedBy}</div> */}
+                            {/* <div className='p-1 md:px-4'>published: {anime.publishedAt.toISOString().split('T')[0]}</div> */}
                             <div className='p-1 md:px-4'>last episode: {anime.lastEpisode}</div>
                             {/* <div className='p-1 md:px-4'>number of episodes: {item.totalEpisodes}</div> */}
                         </div>

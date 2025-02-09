@@ -6,6 +6,7 @@ export type AnimeType = {
   summary: string,
   thumbnail: string,
   studio: string,
+  updateDays: string,
   publishedBy: string,
   publishedAt: Date,
   releaseAt: Date,

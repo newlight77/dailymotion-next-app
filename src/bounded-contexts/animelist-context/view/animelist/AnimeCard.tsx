@@ -89,7 +89,10 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                 <div className='description text-sm text-wrap pt-1 h-10 m-2'>{`${anime.summary.substring(0, 140)} ...`}</div>
                 <div className='content pt-12'>
                     <div className='grid grid-cols-2 gap-2 items-center'>
-                        <div className='ml-2'>published by: {anime.publishedBy}</div>
+                        <div className='ml-2'>update every </div>
+                        <div className='ml-2'>{anime.updateDays}</div>
+                        <div className='ml-2'>last episode:</div>
+                        <div className='ml-2'>{anime.lastEpisode}</div>
                     </div>
                 </div>
             </div>

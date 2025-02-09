@@ -18,6 +18,7 @@ const blankAnime: AnimeType = {
     summary: '',
     thumbnail: '',
     studio: '',
+    updateDays: '',
     publishedBy: '',
     publishedAt: new Date(),
     releaseAt: new Date(),
@@ -63,6 +64,7 @@ export const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAni
                 <input className='col-span-12' type="text" name="summary" value={anime.summary} onChange={handleChange} placeholder="Summary" />
                 <input className='col-span-12' type="text" name="thumbnail" value={anime.thumbnail} onChange={handleChange} placeholder="Thumbnail" required />
                 <input className='col-span-6' type="text" name="studio" value={anime.studio} onChange={handleChange} placeholder="Studio" />
+                <input className='col-span-6' type="text" name="updateDays" value={anime.updateDays} onChange={handleChange} placeholder="Update days of week e.g. Monday,Friday" />
                 <input className='col-span-6' type="text" name="publishedBy" value={anime.publishedBy} onChange={handleChange} placeholder="Published By" />
                 <input className='col-span-6' type="date" name="publishedAt" value={anime.publishedAt.toISOString().split('T')[0]} onChange={handleChange} required />
                 <input className='col-span-6' type="date" name="releaseAt" value={anime.releaseAt.toISOString().split('T')[0]} onChange={handleChange} required />

@@ -22,6 +22,7 @@ model Anime {
   summary    String
   thumbnail  String
   studio     String
+  updateDays String
 
   releaseAt    DateTime
   updatedAt    DateTime

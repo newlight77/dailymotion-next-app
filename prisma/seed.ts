@@ -15,7 +15,11 @@ const load = async () => {
     await prisma.anime.deleteMany();
     console.log('Deleted records in product table');
     await prisma.anime.createMany({
-      data: ANIMELIST.map(anime => ({ ...anime, updatedAt: new Date() }))
+      data: ANIMELIST.map(anime => ({
+        ...anime,
+        updateDays: anime.updateDays,
+        updatedAt: new Date(),
+      }))
     });
     console.log('Added category data');
   } catch (e) {
