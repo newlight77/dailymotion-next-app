@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 export async function GET() {
 
   const animelist = await prisma.anime.findMany({
-    take: 100,
+    take: 200,
   });
 
   return new NextResponse(JSON.stringify(animelist), {

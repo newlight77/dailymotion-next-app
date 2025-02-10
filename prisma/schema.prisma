@@ -17,12 +17,12 @@ datasource db {
 model Anime {
   uid        String   @id @default(uuid())
   title      String
+  updateDays String
   type       String
   status     String
   summary    String
   thumbnail  String
   studio     String
-  updateDays String
 
   releaseAt    DateTime
   updatedAt    DateTime

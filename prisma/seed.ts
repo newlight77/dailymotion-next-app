@@ -13,7 +13,7 @@ const ANIMELIST: AnimeType[] = [
 const load = async () => {
   try {
     await prisma.anime.deleteMany();
-    console.log('Deleted records in product table');
+    console.log('insert records in anime table');
     await prisma.anime.createMany({
       data: ANIMELIST.map(anime => ({
         ...anime,
@@ -21,7 +21,7 @@ const load = async () => {
         updatedAt: new Date(),
       }))
     });
-    console.log('Added category data');
+    console.log('populate data completed');
   } catch (e) {
     console.error(e);
     process.exit(1);
