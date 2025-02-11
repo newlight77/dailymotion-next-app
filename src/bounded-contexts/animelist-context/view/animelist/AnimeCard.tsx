@@ -92,7 +92,7 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                         <div className='ml-2'>update every </div>
                         <div className='ml-2'>{anime.updateDays}</div>
                         <div className='ml-2'>last episode:</div>
-                        <div className='ml-2'>{anime.lastEpisode}</div>
+                        <div className='ml-2'>{anime.lastEpisode} {`${anime.status === 'completed' ? '/ ' + anime.totalEpisodes : ''}`}</div>
                     </div>
                 </div>
             </div>

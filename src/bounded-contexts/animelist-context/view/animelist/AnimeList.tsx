@@ -20,6 +20,10 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const [addModal, setAddModal] = useState(false);
     const [loadMode, setLoadMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useState('');
+    const [excludeCompleted, setExcludeCompleted] = useState(true);
+
+    // useEffect(() => {
+    // }, [onlyCompleted]);
 
     const onFilterInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilterKeywords(event.target.value);
@@ -34,9 +38,13 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     }
 
     const handleReloadDataChange = (event: React.FocusEvent<HTMLTextAreaElement>) => {
-    if (event.target.value !== data) {
-        setData(event.target.value);
-    }
+        if (event.target.value !== data) {
+            setData(event.target.value);
+        }
+    };
+
+    const handleExcludeCompletedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setExcludeCompleted(event.target.checked)
     };
 
     const reloadData = () => {
@@ -121,6 +129,12 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                         onChange={onFilterInputChange}
                         placeholder="filter on title, subtile original title or summary"
                     />
+                    <label className='px-2 w-12'>exclude completed</label>
+                    <input className='px-2 w-4'
+                        type="checkbox"
+                        checked={excludeCompleted}
+                        onChange={handleExcludeCompletedChange} />
+
                 </div>
                 :
                 <></>
@@ -160,6 +174,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                             || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
                         : true)
                     .filter(v => v.thumbnail !== '')
+                    .filter(v => excludeCompleted ? v.status !== 'completed' : true )
                     .map(anime => withOrderScore(anime))
                     .sort((a: AnimeWithOrderScore, b: AnimeWithOrderScore) => b.orderScore - a.orderScore)
                     .map(anime => (
