@@ -159,6 +159,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                             || v.subtitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
                             || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
                         : true)
+                    .filter(v => v.thumbnail !== '')
                     .map(anime => withOrderScore(anime))
                     .sort((a: AnimeWithOrderScore, b: AnimeWithOrderScore) => b.orderScore - a.orderScore)
                     .map(anime => (

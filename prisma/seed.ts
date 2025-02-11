@@ -18,6 +18,8 @@ const load = async () => {
       data: ANIMELIST.map(anime => ({
         ...anime,
         updateDays: anime.updateDays,
+        // publishedAt: new Date(anime.publishedAt),
+        // releaseAt: new Date(anime.releaseAt),
         updatedAt: new Date(),
       }))
     });
