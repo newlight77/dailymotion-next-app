@@ -122,6 +122,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                     || v.originalTitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
                     || v.subtitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
                     || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
+                    || v.updateDays.toLowerCase().includes(filterKeywords.toLowerCase())
                 : true)
             .filter(v => onlyWithThumbnail ? v.thumbnail !== '' : true)
             .filter(v => excludeCompleted ? v.status !== 'completed' : true )
