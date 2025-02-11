@@ -21,6 +21,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const [loadMode, setLoadMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useState('');
     const [excludeCompleted, setExcludeCompleted] = useState(true);
+    const [onlyWithThumbnail, setOnlyWithThumbnail] = useState(true);
 
     // useEffect(() => {
     // }, [onlyCompleted]);
@@ -45,6 +46,10 @@ export const AnimeList: React.FC<Props> = ({className}) => {
 
     const handleExcludeCompletedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setExcludeCompleted(event.target.checked)
+    };
+
+    const handleOnlyWithThumbnailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setOnlyWithThumbnail(event.target.checked)
     };
 
     const reloadData = () => {
@@ -107,6 +112,20 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         }
     }
 
+    function filterList(items: AnimeType[] | undefined): AnimeType[] {
+        if (!items) return []
+
+        return items
+            .filter(
+                v => filterKeywords !== '' ?
+                    v.title.toLowerCase().includes(filterKeywords.toLowerCase())
+                    || v.originalTitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
+                    || v.subtitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
+                    || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
+                : true)
+            .filter(v => onlyWithThumbnail ? v.thumbnail !== '' : true)
+            .filter(v => excludeCompleted ? v.status !== 'completed' : true )
+    }
 
     return (
         <div className={className}>
@@ -135,10 +154,18 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                         checked={excludeCompleted}
                         onChange={handleExcludeCompletedChange} />
 
+                    <label className='px-2 w-12'>only with thumbnail</label>
+                    <input className='px-2 w-4'
+                        type="checkbox"
+                        checked={onlyWithThumbnail}
+                        onChange={handleOnlyWithThumbnailChange} />
+
                 </div>
                 :
                 <></>
             }
+
+            <label className='px-4 w-12'>total: {filterList(items).length} / {items?.length}</label>
 
             <div className='animelist-header p-4'>
                 { addModal ?
@@ -166,15 +193,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
 
             <div className="md:flex flex-wrap">
                 {
-                    items?.filter(
-                        v => filterKeywords !== '' ?
-                            v.title.toLowerCase().includes(filterKeywords.toLowerCase())
-                            || v.originalTitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
-                            || v.subtitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
-                            || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
-                        : true)
-                    .filter(v => v.thumbnail !== '')
-                    .filter(v => excludeCompleted ? v.status !== 'completed' : true )
+                    filterList(items)
                     .map(anime => withOrderScore(anime))
                     .sort((a: AnimeWithOrderScore, b: AnimeWithOrderScore) => b.orderScore - a.orderScore)
                     .map(anime => (
