@@ -36,7 +36,7 @@ const Modal: React.FC<Props> = ({ title, children, className, onClose }) => {
               <div className="modal z-1000 border rounded-lg border-tertiary bg-secondary p-4">
                   <div className="modal-header flex text-xl">
                       <FaXmark size={36} className="p-1 close hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={handleCloseClick}/>
-                      {title && <h3 className="px-4 bg-secondaryVariant rounded-md">{title}</h3>}
+                      {title && <h3 className="px- py-1 mx-2 bg-secondaryVariant rounded-md w-full">{title}</h3>}
                     </div>
                   <div className="modal-body pt-4">{children}</div>
               </div>
