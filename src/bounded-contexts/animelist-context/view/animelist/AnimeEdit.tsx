@@ -4,11 +4,14 @@ import { AnimeType } from '../../domain';
 import { useAnimelist } from '../../hooks';
 
 type Props = {
-    edit: boolean,
+    mode: ModeType,
     editedAnime?: AnimeType
-    onApply?: (anime: AnimeType) => void
+    onEdit?: (anime: AnimeType) => void
+    onCopy?: (anime: AnimeType) => void
     children?: React.ReactNode,
 }
+
+type ModeType = 'edit' | 'add'
 
 const blankAnime: AnimeType = {
     uid: crypto.randomUUID().toString(),
@@ -29,7 +32,7 @@ const blankAnime: AnimeType = {
     totalEpisodes: undefined
   }
 
-export const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAnime, onApply}) => {
+export const AnimeEdit: React.FC<Props> = ({mode = 'new', editedAnime = blankAnime, onEdit, onCopy}) => {
     const { upsert } = useAnimelist();
     const [ anime, setAnime ] = useState<AnimeType>(editedAnime);
 
@@ -44,7 +47,16 @@ export const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAni
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         upsert(anime)
-        if (onApply) onApply(anime)
+        if (onEdit) onEdit(anime)
+    };
+
+    const handleCopy = (e: React.FormEvent) => {
+        e.preventDefault();
+        const newAnime = {
+            ...anime,
+            uid: crypto.randomUUID().toString()
+        }
+        if (onCopy) onCopy(newAnime)
     };
 
     return (
@@ -71,7 +83,8 @@ export const AnimeEdit: React.FC<Props> = ({edit = false, editedAnime = blankAni
                 <input className='col-span-6' type="date" name="updatedAt" value={anime.updatedAt.toISOString().split('T')[0]} onChange={handleChange} required />
                 <input className='col-span-6' type="number" name="lastEpisode" value={anime.lastEpisode} onChange={handleChange} placeholder="Last Episode" />
                 <input className='col-span-6' type="number" name="totalEpisodes" value={anime.totalEpisodes} onChange={handleChange} placeholder="Total Episodes" />
-                <button className='col-span-5' type="submit">{ edit ? 'Apply changes' : 'Create'} </button>
+                <button className='col-span-5' type="submit">{ mode === 'edit' ? 'Apply changes' : 'Create'} </button>
+                { onCopy ? <button className='col-span-5' type="button" onClick={handleCopy}>{ 'Copy'} </button> : <></> }
             </form>
         </div>
     );

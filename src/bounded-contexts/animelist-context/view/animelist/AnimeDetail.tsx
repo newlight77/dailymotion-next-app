@@ -25,6 +25,7 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const isMounted = useIsMounted();
     const [anime, setAnime] = useState<AnimeType>();
     const [editModal, setEditModal] = useState(false);
+    const [addModal, setAddModal] = useState(false);
 
     useEffect(() => {
         // console.log('AnimeDetail useEffect params:', id, mode);
@@ -87,12 +88,27 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
 
     const keywords = (anime: AnimeType) => encodeURIComponent(`${anime.title} ${anime.lastEpisode ? anime.lastEpisode : ''}`)
 
+    const handleAdd = async (anime: AnimeType) => {
+        try {
+            setEditModal(false)
+            setAddModal(true)
+            setAnime(anime);
+        } catch (error) {
+            console.error('Failed to add anime:', error);
+        }
+    }
+
     return (
         <div className='w-full'>
             <div id="modal-root"></div>
             { editModal && anime &&
                 <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 z-40' onClose={() => setEditModal(false)} title={anime.title}>
-                    <AnimeEdit editedAnime={anime} edit={true} onApply={handleAnimeUpdate}></AnimeEdit>
+                    <AnimeEdit editedAnime={anime} mode={'edit'} onEdit={handleAnimeUpdate} onCopy={handleAdd}></AnimeEdit>
+                </Modal>
+            }
+            { addModal && anime &&
+                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 z-40' onClose={() => setAddModal(false)} title={`Copy of ${anime.title}`}>
+                    <AnimeEdit editedAnime={anime} mode={'add'}></AnimeEdit>
                 </Modal>
             }
 
