@@ -1,27 +1,24 @@
 import { PrismaClient } from '@prisma/client'
-import animelist from './animelist';
+import animelist from './animelist.json';
 import { AnimeType } from '@/bounded-contexts/animelist-context';
 
 
 const prisma = new PrismaClient();
-const ANIMELIST: AnimeType[] = [
-  ...animelist,
-]
-.sort((a: AnimeType, b: AnimeType) => b.releaseAt.getUTCMilliseconds() - a.releaseAt.getUTCMilliseconds());
-
 
 const load = async () => {
   try {
     await prisma.anime.deleteMany();
     console.log('insert records in anime table');
     await prisma.anime.createMany({
-      data: ANIMELIST.map(anime => ({
-        ...anime,
-        updateDays: anime.updateDays,
-        // publishedAt: new Date(anime.publishedAt),
-        // releaseAt: new Date(anime.releaseAt),
+      data: animelist.map(item => ({
+        ...item,
+        uid: item.uid ? item.uid : crypto.randomUUID().toString(),
+        type: item.type === 'movie' ? 'movie' : 'series',
+        status: item.status === 'completed' ? 'completed' : 'ongoing',
+        publishedAt: new Date(item.publishedAt),
+        releaseAt: new Date(item.releaseAt),
         updatedAt: new Date(),
-      }))
+      })) as AnimeType[]
     });
     console.log('populate data completed');
   } catch (e) {
