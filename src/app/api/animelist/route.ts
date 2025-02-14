@@ -9,9 +9,11 @@ export async function GET() {
 
   const animelist = await prisma.anime.findMany({
     take: 200,
-  });
+  })
 
-  return new NextResponse(JSON.stringify(animelist), {
+  const sorted = animelist.sort((a, b) => b.title.localeCompare(a.title))
+
+  return new NextResponse(JSON.stringify(sorted), {
     status: 200,
   });
 }
