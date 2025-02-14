@@ -147,8 +147,11 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                             <div className='p-1 md:px-4'>update every: { anime.updateDays }</div>
                             {/* <div className='p-1 md:px-4'>published by: {anime.publishedBy}</div> */}
                             {/* <div className='p-1 md:px-4'>published: {anime.publishedAt.toISOString().split('T')[0]}</div> */}
+                            <div className='p-1 md:px-4'>first episode of season: {anime.firstSeasonEpisode}</div>
+                            <div className='p-1 md:px-4'>last episode of season: {anime.lastSeasonEpisode}</div>
+                            <div className='p-1 md:px-4'>total episode of season: {anime.totalSeasonEpisodes}</div>
                             <div className='p-1 md:px-4'>last episode: {anime.lastEpisode}</div>
-                            {/* <div className='p-1 md:px-4'>number of episodes: {item.totalEpisodes}</div> */}
+                            <div className='p-1 md:px-4'>total episodes: {anime.totalEpisodes}</div>
                         </div>
                     </div>
                 </div>

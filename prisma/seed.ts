@@ -18,6 +18,9 @@ const load = async () => {
         publishedAt: new Date(item.publishedAt),
         releaseAt: new Date(item.releaseAt),
         updatedAt: new Date(),
+        firstSeasonEpisode: item.firstSeasonEpisode ?? 0,
+        lastSeasonEpisode: item.lastSeasonEpisode ?? 0,
+        totalSeasonEpisodes: item.totalSeasonEpisodes ?? 0,
       })) as AnimeType[]
     });
     console.log('populate data completed');

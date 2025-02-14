@@ -13,6 +13,9 @@ export type AnimeType = {
   updatedAt: Date,
   originalTitle?: string,
   subtitle?: string,
+  firstSeasonEpisode?: number,
+  lastSeasonEpisode?: number,
+  totalSeasonEpisodes?: number,
   lastEpisode?: number,
   totalEpisodes?: number
 }

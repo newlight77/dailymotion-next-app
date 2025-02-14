@@ -39,6 +39,9 @@ export async function PUT(request: NextRequest, { params }: ParamType) {
 
   const playload = {
     ...anime,
+    firstSeasonEpisode: anime.firstSeasonEpisode? Number(anime.firstSeasonEpisode) : 0,
+    lastSeasonEpisode: anime.lastSeasonEpisode? Number(anime.lastSeasonEpisode) : 0,
+    totalSeasonEpisodes: anime.totalSeasonEpisodes? Number(anime.totalSeasonEpisodes) : 0,
     lastEpisode: Number(anime.lastEpisode),
     totalEpisodes: anime.totalEpisodes? Number(anime.totalEpisodes) : 0,
     publishedAt: new Date(anime.publishedAt),
