@@ -7,6 +7,7 @@ CREATE TABLE "Anime" (
     "status" TEXT NOT NULL,
     "summary" TEXT NOT NULL,
     "thumbnail" TEXT NOT NULL,
+    "thumbnailFilename" TEXT,
     "studio" TEXT NOT NULL,
     "releaseAt" TIMESTAMP(3) NOT NULL,
     "publishedAt" TIMESTAMP(3) NOT NULL,

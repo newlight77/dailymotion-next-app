@@ -22,6 +22,7 @@ model Anime {
   status     String
   summary    String
   thumbnail  String
+  thumbnailFilename  String
   studio     String
 
   releaseAt    DateTime
