@@ -21,7 +21,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const [loadMode, setLoadMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useState('');
     const [excludeCompleted, setExcludeCompleted] = useState(true);
-    const [onlyWithoutThumbnail, setOnlyWithoutThumbnail] = useState(false);
     const [onlyWithUpdates, setOnlyWithUpdates] = useState(true);
 
     // useEffect(() => {
@@ -47,12 +46,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
 
     const handleExcludeCompletedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setExcludeCompleted(event.target.checked)
-    };
-
-    const handleOnlyWithoutThumbnailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setOnlyWithoutThumbnail(event.target.checked)
-        if (event.target.checked) setOnlyWithUpdates(false)
-        if (event.target.checked) setExcludeCompleted(false)
     };
 
     const handleOnlyWithUpdatesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -131,7 +124,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                     || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
                     || v.updateDays.toLowerCase().includes(filterKeywords.toLowerCase())
                 : true)
-            .filter(v => onlyWithoutThumbnail ? onlyWithoutThumbnail && v.thumbnail === '' : true )
             .filter(v => onlyWithUpdates ? v.updateDays !== '' : true)
             .filter(v => excludeCompleted ? v.status !== 'completed' : true )
     }
@@ -167,12 +159,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                         type="checkbox"
                         checked={onlyWithUpdates}
                         onChange={handleOnlyWithUpdatesChange} />
-
-                    <label className='px-2 w-12'>only without thumbnail</label>
-                    <input className='px-2 w-4'
-                        type="checkbox"
-                        checked={onlyWithoutThumbnail}
-                        onChange={handleOnlyWithoutThumbnailChange} />
 
                 </div>
                 :
