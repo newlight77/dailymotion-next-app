@@ -12,7 +12,7 @@ interface VideoSearchBarProps {
 export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, className }) => {
     const [keywords, setKeywords] = useState(newKeywords || '');
     const [debouncedInpout, setDebouncedInpout] = useState('');
-    const [strictSearch, setStrictSearch] = useState(true);
+    const [strictSearch, setStrictSearch] = useState(false);
     const { search } = useSearchVideos();
     const useSearchHist = useVideoSearchHistory();
     const useFollowedAnime = useFollowedAnimes();
