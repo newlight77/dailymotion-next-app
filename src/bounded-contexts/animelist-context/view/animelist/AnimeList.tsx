@@ -5,6 +5,7 @@ import { useAnimelist } from '../../hooks';
 import { AnimeType } from '../../domain';
 import { AnimeCard } from './AnimeCard';
 import { AnimeEdit } from './AnimeEdit';
+import { useLocalStorage } from '@/shared/useLocalStorage';
 
 type AnimeWithOrderScore = AnimeType & {
     orderScore: number
@@ -19,7 +20,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const [data, setData] = useState('')
     const [addModal, setAddModal] = useState(false);
     const [loadMode, setLoadMode] = useState(false);
-    const [filterKeywords, setFilterKeywords] = useState('');
+    const [filterKeywords, setFilterKeywords] = useLocalStorage<string>('filterKeywords', '');
     const [excludeCompleted, setExcludeCompleted] = useState(true);
     const [onlyWithUpdates, setOnlyWithUpdates] = useState(true);
 
@@ -117,7 +118,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
 
         return items
             .filter(
-                v => filterKeywords !== '' ?
+                v => filterKeywords && filterKeywords !== '' ?
                     v.title.toLowerCase().includes(filterKeywords.toLowerCase())
                     || v.originalTitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
                     || v.subtitle!.toLocaleLowerCase().includes(filterKeywords.toLowerCase())
