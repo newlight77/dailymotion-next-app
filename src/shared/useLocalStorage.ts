@@ -24,6 +24,7 @@ export function useLocalStorage<S> (key: string, defaultValue?: S):
     useEffect(() => {
         // console.log(`useLocalStorage ${key} new value=`, value);
         if (value && typeof window !== 'undefined') localStorage.setItem(key, JSON.stringify(value))
+        if (!value && typeof window !== 'undefined') localStorage.setItem(key, '')
     }, [key, value, setValue]);
 
     return [value, setValue];
