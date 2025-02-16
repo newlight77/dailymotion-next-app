@@ -4,7 +4,7 @@ import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'
 import { VideoSearch } from '@/bounded-contexts/videosearch-context';
 
-const SearchWithParams: React.FC = () => {
+const VideoSearchWithParams: React.FC = () => {
     const searchParams = useSearchParams()
     const newKeywords = searchParams.get('keywords') || ''
 
@@ -16,17 +16,17 @@ const SearchWithParams: React.FC = () => {
 }
 
 
-const HomePage: React.FC = () => {
+const VideoSearchPage: React.FC = () => {
 
     return (
         <div className="w-full">
             <h2 className='title text-3xl m-1 md:p-4 capitalize'>search videos</h2>
 
             <Suspense>
-                <SearchWithParams></SearchWithParams>
+                <VideoSearchWithParams></VideoSearchWithParams>
             </Suspense>
         </div>
     );
 };
 
-export default HomePage;
+export default VideoSearchPage;
