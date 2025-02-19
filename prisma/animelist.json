@@ -259,7 +259,7 @@
     "originalTitle": "神墓 第二季",
     "firstSeasonEpisode": 17,
     "lastSeasonEpisode": 44,
-    "totalSeasonEpisodes": 0,
+    "totalSeasonEpisodes": 27,
     "lastEpisode": 44,
     "totalEpisodes": 44
   },
@@ -281,7 +281,7 @@
     "originalTitle": "神墓",
     "firstSeasonEpisode": 1,
     "lastSeasonEpisode": 17,
-    "totalSeasonEpisodes": 0,
+    "totalSeasonEpisodes": 17,
     "lastEpisode": 44,
     "totalEpisodes": 44
   },
@@ -477,11 +477,11 @@
     "publishedBy": "Tencent Penguin Pictures",
     "subtitle": "Xi Xing Ji - Journey to the West, Westbound, Westbound Discipline",
     "originalTitle": "西行纪",
-    "firstSeasonEpisode": 0,
-    "lastSeasonEpisode": 0,
-    "totalSeasonEpisodes": 0,
+    "firstSeasonEpisode": 59,
+    "lastSeasonEpisode": 64,
+    "totalSeasonEpisodes": 6,
     "lastEpisode": 64,
-    "totalEpisodes": 0
+    "totalEpisodes": 64
   },
   {
     "uid": "4650bd51-9f8b-4bf5-a3a0-44bd95bbef59",
@@ -499,11 +499,11 @@
     "publishedBy": "Tencent Penguin Pictures",
     "subtitle": "Xi Xing Ji - Journey to the West, Westbound, Westbound Discipline",
     "originalTitle": "西行纪 第4季",
-    "firstSeasonEpisode": 0,
-    "lastSeasonEpisode": 0,
+    "firstSeasonEpisode": 58,
+    "lastSeasonEpisode": 70,
     "totalSeasonEpisodes": 12,
-    "lastEpisode": 12,
-    "totalEpisodes": 12
+    "lastEpisode": 70,
+    "totalEpisodes": 70
   },
   {
     "uid": "2a8da872-b9f6-4756-a566-b3b0c7c6b32d",
@@ -522,10 +522,10 @@
     "subtitle": "Xi Xing Ji - Journey to the West, Westbound, Westbound Discipline",
     "originalTitle": "西行纪",
     "firstSeasonEpisode": 39,
-    "lastSeasonEpisode": 59,
+    "lastSeasonEpisode": 58,
     "totalSeasonEpisodes": 20,
-    "lastEpisode": 20,
-    "totalEpisodes": 20
+    "lastEpisode": 58,
+    "totalEpisodes": 58
   },
   {
     "uid": "9b385649-b27a-4ef8-8f0b-bf8d1abb63df",
@@ -546,8 +546,8 @@
     "firstSeasonEpisode": 17,
     "lastSeasonEpisode": 38,
     "totalSeasonEpisodes": 22,
-    "lastEpisode": 22,
-    "totalEpisodes": 22
+    "lastEpisode": 38,
+    "totalEpisodes": 38
   },
   {
     "uid": "c7789f10-605d-4a9b-bfa1-d46a91c3a265",
@@ -569,7 +569,7 @@
     "lastSeasonEpisode": 16,
     "totalSeasonEpisodes": 16,
     "lastEpisode": 16,
-    "totalEpisodes": 16
+    "totalEpisodes": 38
   },
   {
     "uid": "936bfe8a-124c-4edb-86c0-31cc488612a5",
