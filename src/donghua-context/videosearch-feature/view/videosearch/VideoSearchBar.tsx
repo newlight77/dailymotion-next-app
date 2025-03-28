@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useFavorites, useFollowedAnimes, useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/bounded-contexts/user-preferences-context';
+import { useFavorites, useFollowedAnimes, useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/donghua-context/user-preferences-feature';
 import { useSearchVideos } from '../../hooks';
 import { PreferencesType } from '../../domain';
 

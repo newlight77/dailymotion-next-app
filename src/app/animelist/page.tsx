@@ -1,5 +1,5 @@
 "use client"
-import { AnimeList } from '@/bounded-contexts/animelist-context';
+import { AnimeList } from '@/donghua-context/animelist-feature';
 import React from 'react';
 
 

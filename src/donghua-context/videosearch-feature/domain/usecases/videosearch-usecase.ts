@@ -1,4 +1,4 @@
-import { FavoriteType, FollowedAnimeType, FollowedVideoOwnerType, LastViewType, MetaVideoType, SearchKeywordsType, VideoType } from "../../domain";
+import { FavoriteType, FollowedAnimeType, FollowedVideoOwnerType, LastViewType, MetaVideoType, SearchKeywordsType, VideoType } from "..";
 
 export type PreferencesType = {
   strictSearch: boolean,

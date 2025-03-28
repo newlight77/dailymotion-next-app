@@ -2,7 +2,7 @@
 
 import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'
-import { VideoSearch } from '@/bounded-contexts/videosearch-context';
+import { VideoSearch } from '@/donghua-context/videosearch-feature';
 
 const VideoSearchWithParams: React.FC = () => {
     const searchParams = useSearchParams()

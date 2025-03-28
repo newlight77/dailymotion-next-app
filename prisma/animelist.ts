@@ -1,4 +1,4 @@
-import { AnimeType } from "@/bounded-contexts/animelist-context";
+import { AnimeType } from "@/donghua-context/animelist-feature";
 
 const ANIME_LIST: AnimeType[] = [
 

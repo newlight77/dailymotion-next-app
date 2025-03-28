@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { AnimeType } from '@/bounded-contexts/animelist-context';
+import { AnimeType } from '@/donghua-context/animelist-feature';
 
 const prisma = new PrismaClient();
 

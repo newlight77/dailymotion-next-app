@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link'
 import { FaCirclePlay, FaThumbtack } from 'react-icons/fa6';
 import { displayDate, displayDurationInHMS } from '@/shared/dateUtil';
-import { useFollowedVideoOwners, useLastViews } from '@/bounded-contexts/user-preferences-context';
+import { useFollowedVideoOwners, useLastViews } from '@/donghua-context/user-preferences-feature';
 import { FollowedVideoOwnerType, LastViewType, MetaVideoType } from '../../domain';
 
 

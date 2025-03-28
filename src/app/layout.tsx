@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/organisms/NavBar";
-import { SearchModule } from "@/bounded-contexts/videosearch-context/view";
-import { AnimeListModule } from "@/bounded-contexts/animelist-context/view";
-import { UserPreferenceshModule } from "@/bounded-contexts/user-preferences-context";
+import { SearchModule } from "@/donghua-context/videosearch-feature/view";
+import { AnimeListModule } from "@/donghua-context/animelist-feature/view";
+import { UserPreferenceshModule } from "@/donghua-context/user-preferences-feature";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

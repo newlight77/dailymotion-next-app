@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
-import { AnimeDetail } from '@/bounded-contexts/animelist-context';
+import { AnimeDetail } from '@/donghua-context/animelist-feature';
 
 
 const AnimePage: React.FC = () => {

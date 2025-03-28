@@ -1,5 +1,5 @@
 "use client"
-import { FollowedAnimes, Followings } from '@/bounded-contexts/user-preferences-context';
+import { FollowedAnimes, Followings } from '@/donghua-context/user-preferences-feature';
 import React from 'react';
 
 

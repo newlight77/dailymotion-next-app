@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 
-import { LastViews, VideoSearchHistory } from '../../bounded-contexts/user-preferences-context';
+import { LastViews, VideoSearchHistory } from '@/donghua-context/user-preferences-feature';
 
 
 const HistoryPage: React.FC = () => {

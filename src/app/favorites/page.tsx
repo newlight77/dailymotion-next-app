@@ -1,6 +1,6 @@
 "use client"
 
-import { Favorites } from "@/bounded-contexts/user-preferences-context";
+import { Favorites } from "@/donghua-context/user-preferences-feature";
 
 
 const FavoritesPage: React.FC = () => {

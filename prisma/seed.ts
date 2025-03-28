@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import animelist from './animelist.json';
-import { AnimeType } from '@/bounded-contexts/animelist-context';
+import { AnimeType } from '@/donghua-context/animelist-feature';
 
 
 const prisma = new PrismaClient();

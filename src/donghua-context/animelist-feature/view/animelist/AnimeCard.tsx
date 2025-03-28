@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link'
 import { FaThumbtack, FaPenToSquare, FaHeartCirclePlus, FaMagnifyingGlass } from 'react-icons/fa6';
 import { AnimeType } from '../../domain/model';
-import { useFavorites, useFollowedAnimes } from '@/bounded-contexts/user-preferences-context';
+import { useFavorites, useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
 
 
 interface AnimeCardProps {
