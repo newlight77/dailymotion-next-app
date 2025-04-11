@@ -195,8 +195,13 @@ export const AnimeList: React.FC<Props> = ({className}) => {
             <div className="md:flex flex-wrap">
                 {
                     filterList(items)
-                    .map(anime => withOrderScore(anime))
+                    .map((anime: AnimeType) => withOrderScore(anime))
                     .sort((a: AnimeWithOrderScore, b: AnimeWithOrderScore) => b.orderScore - a.orderScore)
+                    .map((anime: AnimeWithOrderScore) => {
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        const { orderScore, ...animeWithoutOrderScore }: AnimeWithOrderScore = anime;
+                        return animeWithoutOrderScore;
+                    })
                     .map(anime => (
                         <AnimeCard
                             className="pt-4 pb-4 xs:w-screen sm:w-screen md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 3xl:w-1/6 4xl:w-1/7 5xl:w-1/8 min-w-80 h-auto"

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { FaThumbtack, FaPenToSquare, FaHeartCirclePlus, FaMagnifyingGlass } from 'react-icons/fa6';
+import { FaThumbtack, FaPenToSquare, FaHeartCirclePlus, FaMagnifyingGlass, FaFileCirclePlus } from 'react-icons/fa6';
 import { AnimeType } from '../../domain/model';
 import { useFavorites, useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
+import { useAnimelist } from '../../hooks';
 
 
 interface AnimeCardProps {
@@ -14,6 +15,7 @@ interface AnimeCardProps {
 export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
     const useFavorite = useFavorites();
     const useFollowedAnime = useFollowedAnimes();
+    const useAnimes = useAnimelist();
 
     useEffect(() => {
 
@@ -59,6 +61,10 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
 
     const keywords = (anime: AnimeType) => encodeURIComponent(`${anime.title} ${anime.lastEpisode ? anime.lastEpisode : ''}`)
 
+    const handleIncraseEpisode = (anime: AnimeType): void => {
+        useAnimes.upsert({...anime, lastEpisode: anime.lastEpisode ? Number(anime.lastEpisode) + 1 : 1});
+    }
+
     return (
         <div className={`${className} p-2 md:hover:border border-gold rounded-md`}>
             <div className='relative -z-1'>
@@ -74,6 +80,9 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                     </Link>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
                         <FaPenToSquare size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                    </Link>
+                    <Link href={``} className="pluslink gap-2 p-4" onClick={() => handleIncraseEpisode(anime)}>
+                        <FaFileCirclePlus size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                     </Link>
                 </div>
                 <div className='title p-2 m-1 absolute translate-x-3 translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondaryVariant place-self-end place-items-end place-content-end self-end items-end content-end justify-self-end justify-items-end justify-end'>{anime.originalTitle}</div>
