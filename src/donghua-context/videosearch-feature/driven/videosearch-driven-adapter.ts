@@ -60,7 +60,7 @@ function mapToVideo(d: any): MetaVideoType {
 }
 
 
-class VideoSearchAdapter implements VideoSearchPort {
+class VideoSearchDrivenAdapter implements VideoSearchPort {
   search = async (params: VideoSearchParamsType): Promise<VideoSearchResponse> => {
 
     const searchParams = {
@@ -141,4 +141,4 @@ class VideoSearchAdapter implements VideoSearchPort {
 }
 
 
-export const videoSearchAdapter = new VideoSearchAdapter();
+export const videoSearchAdapter = new VideoSearchDrivenAdapter();

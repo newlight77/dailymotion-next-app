@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import { AnimeListConfigurator } from '../hooks';
-import { animeListAdapter } from '../adapter';
+import { animeListAdapter } from '../driven';
 
 
 type Props = {

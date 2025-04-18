@@ -2,7 +2,7 @@ import { AnimeListPort } from "../domain";
 import { AnimeType } from "../domain";
 
 
-class AnimeListAdapter implements AnimeListPort {
+class AnimeListDrivenAdapter implements AnimeListPort {
 
   upsert = async (anime: AnimeType): Promise<AnimeType | undefined> => {
     try {
@@ -68,4 +68,4 @@ class AnimeListAdapter implements AnimeListPort {
   }
 }
 
-export const animeListAdapter = new AnimeListAdapter();
+export const animeListAdapter = new AnimeListDrivenAdapter();

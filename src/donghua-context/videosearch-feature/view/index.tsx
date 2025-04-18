@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { videoSearchAdapter } from '../adapter';
+import { videoSearchAdapter } from '../driven';
 import { VideoSearchConfigurator } from '../hooks';
 
 
