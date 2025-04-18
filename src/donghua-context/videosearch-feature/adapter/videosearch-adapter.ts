@@ -1,6 +1,7 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
 import { MetaVideoType, VideoType } from "../domain";
-import { VideoSearchResponse, VideoSearchParamsType, VideoSearchPort } from "../domain";
+import { VideoSearchResponse, VideoSearchParamsType } from "../domain";
+import { VideoSearchPort } from "../domain/port";
 
 
 const fields = [

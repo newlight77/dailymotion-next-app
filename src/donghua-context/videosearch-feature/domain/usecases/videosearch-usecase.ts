@@ -1,47 +1,7 @@
-import { FavoriteType, FollowedAnimeType, FollowedVideoOwnerType, LastViewType, MetaVideoType, SearchKeywordsType, VideoType } from "..";
+import { FollowedAnimeType, FollowedVideoOwnerType, MetaVideoType, PreferencesType } from "../model";
+import { VideoSearchParamsType, VideoSearchWithScoreResponse, VideoType, VideoWithScoreType } from "../model";
+import { VideoSearchPort, VideoSearchUsecasePort } from "../port";
 
-export type PreferencesType = {
-  strictSearch: boolean,
-  followedAnimes?: FollowedAnimeType[], // Array of followed anime IDs
-  followedOwners?: FollowedVideoOwnerType[], // Array of followed owner usernames
-  lastViews?: LastViewType[] // Array of last search keywords
-  favorites?: FavoriteType[], // Array of favorite video IDs
-  lastSearches?: SearchKeywordsType[] // Array of last search keywords
-}
-
-export type VideoSearchResponse = {
-  search: string,
-  page: number,
-  limit: number,
-  list: MetaVideoType[],
-  hasMore: boolean,
-}
-
-export type VideoSearchWithScoreResponse = {
-  search: string,
-  page: number,
-  limit: number,
-  list: VideoWithScoreType[],
-  hasMore: boolean,
-}
-
-export type VideoWithScoreType = MetaVideoType & { score: number}
-
-export type VideoSearchParamsType = {
-  search: string,
-  limit: number,
-  page: number,
-};
-
-export interface VideoSearchPort {
-  search: (searchParams: VideoSearchParamsType) => Promise<VideoSearchResponse>
-  getById: (id: string) => Promise<VideoType | undefined>
-}
-
-export interface VideoSearchUsecasePort {
-  search: (searchParams: VideoSearchParamsType, prefs?: PreferencesType) => Promise<VideoSearchWithScoreResponse>
-  getById: (id: string) => Promise<VideoType | undefined>
-}
 
 export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePort => {
 
@@ -81,28 +41,28 @@ export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePor
 const scoreVideo = ( video: MetaVideoType, keywords: string, prefs: PreferencesType) : VideoWithScoreType => {
   const { followedAnimes, followedOwners } = prefs;
 
+  const scoreFollowedAnimeMatched = (video: MetaVideoType, followedAnimes?: FollowedAnimeType[]): number => {
+    const results = followedAnimes?.filter(f => f.title.toLocaleLowerCase() === video.title.toLocaleLowerCase())
+    return results?.length === 1 ? 10 : 0
+  }
+
+  const scoreFollowedOwnerMatched = (video: MetaVideoType, followedOwners?: FollowedVideoOwnerType[]): number => {
+    const results = followedOwners?.filter(f => f.owner.toLocaleLowerCase() === video.ownerUsername.toLocaleLowerCase())
+    return results?.length === 1 ? 5 : 0
+  }
+
+  const scoreSearchKeywordsMatched = (video: MetaVideoType, keywords: string) : number => {
+    let score = 0
+    keywords.split(" ").forEach((w) => {
+      if (video.title.toLocaleLowerCase().includes(w.toLocaleLowerCase())) score += 1
+    })
+
+    return score
+  }
+
   let score = 0;
   score += scoreFollowedAnimeMatched(video, followedAnimes)
   score += scoreFollowedOwnerMatched(video, followedOwners)
   score += scoreSearchKeywordsMatched(video, keywords)
   return { ...video, score };
-}
-
-const scoreFollowedAnimeMatched = (video: MetaVideoType, followedAnimes?: FollowedAnimeType[]): number => {
-    const results = followedAnimes?.filter(f => f.title.toLocaleLowerCase() === video.title.toLocaleLowerCase())
-    return results?.length === 1 ? 10 : 0
-}
-
-const scoreFollowedOwnerMatched = (video: MetaVideoType, followedOwners?: FollowedVideoOwnerType[]): number => {
-  const results = followedOwners?.filter(f => f.owner.toLocaleLowerCase() === video.ownerUsername.toLocaleLowerCase())
-  return results?.length === 1 ? 5 : 0
-}
-
-const scoreSearchKeywordsMatched = (video: MetaVideoType, keywords: string) : number => {
-  let score = 0
-  keywords.split(" ").forEach((w) => {
-    if (video.title.toLocaleLowerCase().includes(w.toLocaleLowerCase())) score += 1
-  })
-
-  return score
 }

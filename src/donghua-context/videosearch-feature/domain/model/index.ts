@@ -72,3 +72,37 @@ export interface MetaVideoType {
   updated_time: number,
   duration: number,
 }
+
+
+export type VideoSearchResponse = {
+  search: string,
+  page: number,
+  limit: number,
+  list: MetaVideoType[],
+  hasMore: boolean,
+}
+
+export type PreferencesType = {
+  strictSearch: boolean,
+  followedAnimes?: FollowedAnimeType[], // Array of followed anime IDs
+  followedOwners?: FollowedVideoOwnerType[], // Array of followed owner usernames
+  lastViews?: LastViewType[] // Array of last search keywords
+  favorites?: FavoriteType[], // Array of favorite video IDs
+  lastSearches?: SearchKeywordsType[] // Array of last search keywords
+}
+
+export type VideoWithScoreType = MetaVideoType & { score: number}
+
+export type VideoSearchWithScoreResponse = {
+  search: string,
+  page: number,
+  limit: number,
+  list: VideoWithScoreType[],
+  hasMore: boolean,
+}
+
+export type VideoSearchParamsType = {
+  search: string,
+  limit: number,
+  page: number,
+};
