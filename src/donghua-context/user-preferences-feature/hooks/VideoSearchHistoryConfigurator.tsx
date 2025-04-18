@@ -26,7 +26,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const VideoSearchHistoryProvider = ({ children }: Props): React.ReactElement => {
+export const VideoSearchHistoryConfigurator = ({ children }: Props): React.ReactElement => {
 
   const {item, items, addOrUpdate, remove, clear} = useStorage<SearchKeywordsType>(`last-searches`, []);
 

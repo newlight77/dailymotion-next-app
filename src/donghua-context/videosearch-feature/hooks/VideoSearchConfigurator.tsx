@@ -25,7 +25,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const VideoSearchProvider = ({ videoSearchAdapter, children }: Props): React.ReactElement => {
+export const VideoSearchConfigurator = ({ videoSearchAdapter, children }: Props): React.ReactElement => {
 
   const usecase = VideoSearchUsecase(videoSearchAdapter)
 
@@ -42,7 +42,7 @@ export const VideoSearchProvider = ({ videoSearchAdapter, children }: Props): Re
     }
 
     const response: VideoSearchWithScoreResponse = await usecase.search(params, prefs);
-    console.log('VideoSearchProvider adapter.search', response);
+    console.log('VideoSearchConfigurator adapter.search', response);
 
     // TODO : do I have the title and last episode here so I can update the anime
 

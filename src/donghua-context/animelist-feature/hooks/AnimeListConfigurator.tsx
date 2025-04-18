@@ -29,7 +29,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const AnimeListProvider = ({ animeListAdapter, children }: Props): React.ReactElement => {
+export const AnimeListConfigurator = ({ animeListAdapter, children }: Props): React.ReactElement => {
 
   const usecase = AnimeListUsecase(animeListAdapter)
 
@@ -42,19 +42,19 @@ export const AnimeListProvider = ({ animeListAdapter, children }: Props): React.
 
   const reset = async () => {
     const all = await usecase.findAll();
-    // console.log('AnimeListProvider reset', all);
+    // console.log('AnimeListConfigurator reset', all);
     loadData(all);
   }
 
   const upsert = async (anime: AnimeType) => {
-    // console.log('AnimeListProvider before upsert', anime);
+    // console.log('AnimeListConfigurator before upsert', anime);
     const result = await usecase.upsert(anime);
     if (!result) {
       console.error('failed to upsert anime', anime)
       return
     }
     addOrUpdate(anime)
-    // console.log('AnimeListProvider post upsert', items)
+    // console.log('AnimeListConfigurator post upsert', items)
   }
 
   const memoedValue = useMemo(

@@ -26,7 +26,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const LastViewsProvider = ({ children }: Props): React.ReactElement => {
+export const LastViewsConfigurator = ({ children }: Props): React.ReactElement => {
 
   const {item, items, addOrUpdate, remove, clear} = useStorage<LastViewType>(`last-views`, []);
 

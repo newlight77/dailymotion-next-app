@@ -30,7 +30,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const FavoritesProvider = ({ children }: Props): React.ReactElement => {
+export const FavoritesConfigurator = ({ children }: Props): React.ReactElement => {
 
   const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FavoriteType>(`favorites`, []);
 

@@ -30,7 +30,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const FollowedVideoOwnersProvider = ({ children }: Props): React.ReactElement => {
+export const FollowedVideoOwnersConfigurator = ({ children }: Props): React.ReactElement => {
 
   const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FollowedVideoOwnerType>(`followed-video-owners`, []);
 

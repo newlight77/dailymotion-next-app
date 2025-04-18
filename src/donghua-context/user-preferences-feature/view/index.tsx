@@ -1,10 +1,10 @@
 'use client'
 import React from 'react';
-import { FavoritesProvider } from '../hooks';
-import { FollowedVideoOwnersProvider } from '../hooks';
-import { LastViewsProvider } from '../hooks';
-import { VideoSearchHistoryProvider } from '../hooks';
-import { FollowedAnimesProvider } from '../hooks';
+import { FavoritesConfigurator } from '../hooks';
+import { FollowedVideoOwnersConfigurator } from '../hooks';
+import { LastViewsConfigurator } from '../hooks';
+import { VideoSearchHistoryConfigurator } from '../hooks';
+import { FollowedAnimesConfigurator } from '../hooks';
 
 
 type Props = {
@@ -14,17 +14,17 @@ type Props = {
 export const UserPreferenceshModule = ({ children }: Props): React.ReactElement => {
 
   return (
-      <VideoSearchHistoryProvider>
-        <LastViewsProvider>
-          <FollowedAnimesProvider>
-          <FollowedVideoOwnersProvider>
-            <FavoritesProvider>
+      <VideoSearchHistoryConfigurator>
+        <LastViewsConfigurator>
+          <FollowedAnimesConfigurator>
+          <FollowedVideoOwnersConfigurator>
+            <FavoritesConfigurator>
                 {children}
-            </FavoritesProvider>
-          </FollowedVideoOwnersProvider>
-          </FollowedAnimesProvider>
-        </LastViewsProvider>
-      </VideoSearchHistoryProvider>
+            </FavoritesConfigurator>
+          </FollowedVideoOwnersConfigurator>
+          </FollowedAnimesConfigurator>
+        </LastViewsConfigurator>
+      </VideoSearchHistoryConfigurator>
   )
 }
 

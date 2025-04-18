@@ -1,1 +1,1 @@
-export * from './AnimeListProvider';
+export * from './AnimeListConfigurator';

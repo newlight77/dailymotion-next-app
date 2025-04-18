@@ -1,1 +1,1 @@
-export { useSearchVideos, VideoSearchProvider } from './VideoSearchProvider';
+export { useSearchVideos, VideoSearchConfigurator as VideoSearchConfigurator } from './VideoSearchConfigurator';

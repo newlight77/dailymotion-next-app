@@ -30,7 +30,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const FollowedAnimesProvider = ({ children }: Props): React.ReactElement => {
+export const FollowedAnimesConfigurator = ({ children }: Props): React.ReactElement => {
 
   const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FollowedAnimeType>(`followed-animes`, []);
 

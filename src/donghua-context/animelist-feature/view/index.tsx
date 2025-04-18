@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { AnimeListProvider } from '../hooks';
+import { AnimeListConfigurator } from '../hooks';
 import { animeListAdapter } from '../adapter';
 
 
@@ -11,9 +11,9 @@ type Props = {
 export const AnimeListModule = ({ children }: Props): React.ReactElement => {
 
   return (
-    <AnimeListProvider animeListAdapter={animeListAdapter}>
+    <AnimeListConfigurator animeListAdapter={animeListAdapter}>
       {children}
-    </AnimeListProvider>
+    </AnimeListConfigurator>
   )
 }
 
