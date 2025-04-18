@@ -6,6 +6,7 @@ import { AnimeType } from '../../domain';
 import { AnimeCard } from './AnimeCard';
 import { AnimeEdit } from './AnimeEdit';
 import { useLocalStorage } from '@/shared/useLocalStorage';
+import { useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
 
 type AnimeWithOrderScore = AnimeType & {
     orderScore: number
@@ -17,12 +18,14 @@ type Props = {
 
 export const AnimeList: React.FC<Props> = ({className}) => {
     const { items, loadData, reset } = useAnimelist();
+    const useFollowedAnime = useFollowedAnimes();
     const [data, setData] = useState('')
     const [addModal, setAddModal] = useState(false);
     const [loadMode, setLoadMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useLocalStorage<string>('filterKeywords', '');
     const [excludeCompleted, setExcludeCompleted] = useState(true);
     const [onlyWithUpdates, setOnlyWithUpdates] = useState(true);
+    const [onlyFollowedAnimes, setOnlyFollowedAnimes] = useState(true);
 
     // useEffect(() => {
     // }, [onlyCompleted]);
@@ -43,6 +46,10 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         if (event.target.value !== data) {
             setData(event.target.value);
         }
+    };
+
+    const handleOnlyFollowedAnimesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setOnlyFollowedAnimes(event.target.checked)
     };
 
     const handleExcludeCompletedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +110,12 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         }
 
         return 0;
-      }
+    }
+
+    const isFollowed = (anime: AnimeType): boolean => {
+        const results = useFollowedAnime.items?.filter(f => f.title === anime.title)
+        return results?.length === 1
+    }
 
     function withOrderScore(anime: AnimeType): AnimeWithOrderScore {
         const score = orderScore(anime);
@@ -115,7 +127,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
 
     function filterList(items: AnimeType[] | undefined): AnimeType[] {
         if (!items) return []
-
         return items
             .filter(
                 v => filterKeywords && filterKeywords !== '' ?
@@ -125,6 +136,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                     || v.summary.toLowerCase().includes(filterKeywords.toLowerCase())
                     || v.updateDays.toLowerCase().includes(filterKeywords.toLowerCase())
                 : true)
+            .filter(v => onlyFollowedAnimes ? isFollowed(v) : true)
             .filter(v => onlyWithUpdates ? v.updateDays !== '' : true)
             .filter(v => excludeCompleted ? v.status !== 'completed' : true )
     }
@@ -150,6 +162,11 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                         onChange={onFilterInputChange}
                         placeholder="filter on title, subtile original title or summary"
                     />
+                    <label className='px-2 w-12'>only followed</label>
+                    <input className='px-2 w-4'
+                        type="checkbox"
+                        checked={onlyFollowedAnimes}
+                        onChange={handleOnlyFollowedAnimesChange} />
                     <label className='px-2 w-12'>exclude completed</label>
                     <input className='px-2 w-4'
                         type="checkbox"
