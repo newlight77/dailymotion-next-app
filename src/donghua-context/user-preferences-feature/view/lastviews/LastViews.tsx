@@ -14,7 +14,7 @@ interface Props {
 
 
 export const LastViews: React.FC<Props> = ({ className }) => {
-    const { items, remove, clear } = useLastViews();
+    const useLastView = useLastViews();
     const useFollowing = useFollowedVideoOwners();
     const useFavorite = useFavorites();
 
@@ -27,7 +27,7 @@ export const LastViews: React.FC<Props> = ({ className }) => {
     }
 
     const handleDelete = async (uid: string) => {
-        remove(uid)
+        useLastView.remove(uid)
     }
 
     const keywords = (l: LastViewType) => encodeURIComponent(`${l.title} ${l.episode ? l.episode : ''}`)
@@ -36,10 +36,10 @@ export const LastViews: React.FC<Props> = ({ className }) => {
         <div className={className}>
             <div className='text-md pl-4'>Last viewed videos keep track of what you have watched</div>
             <div className='lastviews-header pb-4'>
-                <Link href={''} onClick={clear}>clear</Link>
+                <Link href={''} onClick={useLastView.clear}>clear</Link>
             </div>
             <div className='flex flex-col gap-2'>
-                { items ?.map(s => (
+                { useLastView.items ?.map(s => (
                     <RemovableItem onDelete={handleDelete} key={s.uid} id={s.uid}>
                         <Link className='col-span-1' href=''>
                             <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
