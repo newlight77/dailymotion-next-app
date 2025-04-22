@@ -3,26 +3,29 @@ import React, { useContext, useMemo } from 'react';
 import { createContext } from "react";
 import { useStorage } from '@/shared/useStorage';
 import { FavoriteType } from '../domain';
+import { favoritesDrivenAdapter } from '../driven/FavoritesDrivenAdapter';
+import { favoriteUsecase } from '../domain/usecases';
+import { favoritesDriverAdapter } from '../driver/FavoritesDriverAdapter';
 
 
 export interface FavoriteContextType {
-  item: FavoriteType | undefined,
-  items: FavoriteType[] | undefined,
+  // item: FavoriteType | undefined,
+  items: FavoriteType[],
   remove: (uid: string) => void,
   addOrUpdate: (value: FavoriteType) => void,
-  loadData: (data: FavoriteType[]) => void,
-  reset: () => void,
-  clear: () => void,
+  // loadData: (data: FavoriteType[]) => void,
+  // reset: () => void,
+  // clear: () => void,
 }
 
 export const FavoritesContext = createContext<FavoriteContextType>({
-  item: undefined,
+  // item: undefined,
   items: [],
   remove: (uid: string) => { console.log('remove', uid) },
   addOrUpdate: (value: FavoriteType) => { console.log('add or update', value) },
-  loadData: (data: FavoriteType[]) => { console.log('load data', data) },
-  reset: () => {},
-  clear: () => {},
+  // loadData: (data: FavoriteType[]) => { console.log('load data', data) },
+  // reset: () => {},
+  // clear: () => {},
 });
 
 
@@ -32,23 +35,23 @@ type Props = {
 
 export const FavoritesConfigurator = ({ children }: Props): React.ReactElement => {
 
-  const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FavoriteType>(`favorites`, []);
+  const driven = favoritesDrivenAdapter()
+  const driver = favoritesDriverAdapter(favoriteUsecase(driven))
 
-  const memoedValue = useMemo(
-    () => ({
-      item,
-      items,
-      remove,
-      addOrUpdate,
-      loadData,
-      reset,
-      clear
-    }),
-    [item, items, addOrUpdate, loadData, reset, reset, clear]
-  );
+  // const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FavoriteType>(`favorites`, []);
 
+  // const memoedValue = useMemo(
+    // () => ({
+      // ...driver
+    // }),
+    // [item, items, addOrUpdate, loadData, reset, reset, clear]
+  // );
   return (
-      <FavoritesContext.Provider value={ memoedValue }>
+      <FavoritesContext.Provider value={{
+          items: driver.items(),
+          remove: driver.remove,
+          addOrUpdate: driver.addOrUpdate
+      }}>
           { children }
       </FavoritesContext.Provider>
   )
