@@ -14,7 +14,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     const [debouncedInpout, setDebouncedInpout] = useState('');
     const [strictSearch, setStrictSearch] = useState(false);
     const { search } = useSearchVideos();
-    const useSearchHist = useVideoSearchHistory();
+    const useSearchHistory = useVideoSearchHistory();
     const useFollowedAnime = useFollowedAnimes();
     const useLastView = useLastViews();
     const useFavorite = useFavorites();
@@ -86,14 +86,14 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
             followedOwners: useFollowedVideoOwner.items,
             lastViews: useLastView.items,
             favorites: useFavorite.items,
-            lastSearches: useSearchHist.items
+            lastSearches: useSearchHistory.items
         }
 
         search(keywords, prefs)
 
         // console.log('SearchBar handleSearch with keywords', keywords);
         localStorage.setItem('last-search', keywords);
-        useSearchHist.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: keywords});
+        useSearchHistory.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: keywords});
     };
 
     return (
