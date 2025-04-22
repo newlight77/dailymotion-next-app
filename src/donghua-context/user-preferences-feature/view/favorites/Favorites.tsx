@@ -11,7 +11,7 @@ interface FavoritesProps {
 
 
 export const Favorites: React.FC<FavoritesProps> = ({ className }) => {
-    const { items, remove, addOrUpdate, loadData, reset } = useFavorites();
+    const useFavorite = useFavorites();
     const [loadMode, setLoadMode] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [data, setData] = React.useState('')
@@ -23,32 +23,32 @@ export const Favorites: React.FC<FavoritesProps> = ({ className }) => {
     // }
 
     const handleDelete = async (uid: string) => {
-        if (items) {
-            remove(uid);
+        if (useFavorite.items) {
+            useFavorite.remove(uid);
         }
     }
 
     const handleLastEpisodeBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
         if (Number.parseInt(event.target.value) !== selected.lastEpisode ) {
-            addOrUpdate({ ...selected, lastEpisode: Number.parseInt(event.target.value) });
+            useFavorite.addOrUpdate({ ...selected, lastEpisode: Number.parseInt(event.target.value) });
         }
     };
 
     const handleOrderBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
         if (event.target.value !== selected.order?.toString() ) {
-            addOrUpdate({ ...selected, order: Number(event.target.value) });
+            useFavorite.addOrUpdate({ ...selected, order: Number(event.target.value) });
         }
     };
 
     const handleOriginalTitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
         if (event.target.value !== selected.originalTitle ) {
-            addOrUpdate({ ...selected, originalTitle: event.target.value });
+            useFavorite.addOrUpdate({ ...selected, originalTitle: event.target.value });
         }
     };
 
     const handleSubtitleBlur = (event: React.ChangeEvent<HTMLInputElement>, selected: FavoriteType) => {
         if (event.target.value !== selected.subtitle ) {
-            addOrUpdate({ ...selected, subtitle: event.target.value });
+            useFavorite.addOrUpdate({ ...selected, subtitle: event.target.value });
         }
     };
 
@@ -63,7 +63,7 @@ export const Favorites: React.FC<FavoritesProps> = ({ className }) => {
             try {
                 const newFavorites = (JSON.parse(data) as FavoriteType[])
                 .reduce<FavoriteType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
-                loadData(newFavorites);
+                useFavorite.load(newFavorites);
             } catch (error) {
                 // display error latet
                 alert(`there is an error with the json you try to load : ${error}`);
@@ -103,7 +103,7 @@ export const Favorites: React.FC<FavoritesProps> = ({ className }) => {
             <div className='favorties-header pb-4'>
             <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
             <Link href={''} className="pr-4" onClick={toggleEditMode}>edit</Link>
-                <Link href={''} className="pr-4" onClick={reset}>reset</Link>
+                <Link href={''} className="pr-4" onClick={useFavorite.reset}>reset</Link>
 
                 {loadMode ?
                     <>
@@ -120,7 +120,7 @@ export const Favorites: React.FC<FavoritesProps> = ({ className }) => {
                 }
             </div>
             <div className='favorites-list flex flex-col gap-2'>
-                { items?.map(kw => (
+                { useFavorite.items?.map(kw => (
                     <RemovableItem onDelete={handleDelete} key={kw.uid} id={kw.uid}>
                         { editMode ?
                             <input className='col-span-1 min-w-8 max-w-28 h-6 w-10'

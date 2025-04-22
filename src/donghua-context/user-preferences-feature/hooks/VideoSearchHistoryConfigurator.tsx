@@ -1,22 +1,22 @@
 'use client'
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { createContext } from "react";
-import { useStorage } from '@/shared/useStorage';
 import { SearchKeywordsType } from '../domain';
+import { useVideoSearchHistoryDrivenAdapter } from '../driven/VideoSearchHistoryDrivenAdapter';
+import { videoSearchHistoryUsecase } from '../domain/usecases';
+import { videoSearchHistoryDriverAdapter } from '../driver/VideoSearchHistoryDriverAdapter';
 
 
 export interface VideoSearchHistoryContextType {
-  item: SearchKeywordsType | undefined,
   items: SearchKeywordsType[] | undefined,
-  addOrUpdate: (value: SearchKeywordsType) => void,
+  addOrUpdate : (keywords: SearchKeywordsType) => void,
   remove: (uid: string) => void,
   clear: () => void,
 }
 
 export const VideoSearchHistoryContext = createContext<VideoSearchHistoryContextType>({
-  item: undefined,
   items: [],
-  addOrUpdate: (value: SearchKeywordsType) => { console.log('add or update', value) },
+  addOrUpdate : (keywords: SearchKeywordsType) => { console.log('addOrUpdate', keywords) },
   remove: (uid: string) => { console.log('remove', uid) },
   clear: () => {},
 });
@@ -28,21 +28,16 @@ type Props = {
 
 export const VideoSearchHistoryConfigurator = ({ children }: Props): React.ReactElement => {
 
-  const {item, items, addOrUpdate, remove, clear} = useStorage<SearchKeywordsType>(`last-searches`, []);
-
-  const memoedValue = useMemo(
-    () => ({
-      item,
-      items,
-      addOrUpdate,
-      remove,
-      clear
-    }),
-    [item, items, addOrUpdate, remove, clear]
-  );
-
+  // manage dependencies injection
+  const driven = useVideoSearchHistoryDrivenAdapter()
+  const driver = videoSearchHistoryDriverAdapter(videoSearchHistoryUsecase(driven))
   return (
-      <VideoSearchHistoryContext.Provider value={ memoedValue }>
+      <VideoSearchHistoryContext.Provider value={{
+        items: driver.items(),
+        addOrUpdate: driven.addOrUpdate,
+        remove: driver.remove,
+        clear: driver.clear
+      }}>
           { children }
       </VideoSearchHistoryContext.Provider>
   )

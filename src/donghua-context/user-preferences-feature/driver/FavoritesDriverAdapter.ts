@@ -16,6 +16,18 @@ export const favoritesDriverAdapter = (usecase: FavoriteUsecaseType) : Favorites
 
   addOrUpdate: (fav: FavoriteType) => {
     usecase.addOrUpdate(fav)
+  },
+
+  load: (fav: FavoriteType[]) => {
+    usecase.load(fav)
+  },
+
+  reset: () => {
+    usecase.reset()
+  },
+
+  clear: () => {
+    usecase.clear()
   }
 
 })

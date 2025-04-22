@@ -1,5 +1,5 @@
 export * from './FavoritesUsecase'
 export * from './FollowedAnimesUsecase'
 export * from './FollowedVideoOwnersUsecase'
-export * from './LastviewsUsecase'
+export * from './LastViewsUsecase'
 export * from './VideoSearchHistoryUsecase'

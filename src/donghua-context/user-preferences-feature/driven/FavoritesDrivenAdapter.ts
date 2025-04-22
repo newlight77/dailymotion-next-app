@@ -1,12 +1,13 @@
+'use client'
 import { useStorage } from "@/shared/useStorage";
 import { FavoriteType } from "../domain/model";
 import { FavoritesDrivenPort } from "../domain/port";
 
 
 
-export const favoritesDrivenAdapter = (): FavoritesDrivenPort => {
+export const useFavoritesDrivenAdapter = (): FavoritesDrivenPort => {
 
-  const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FavoriteType>(`favorites`, []);
+  const {items, remove, addOrUpdate, loadData, clear} = useStorage<FavoriteType>(`favorites`, []);
 
   return {
     items: () => {
@@ -19,6 +20,18 @@ export const favoritesDrivenAdapter = (): FavoritesDrivenPort => {
 
     remove: (uid: string) => {
       remove(uid)
+    },
+
+    load: (fav: FavoriteType[]) => {
+      loadData(fav)
+    },
+
+    reset: () => {
+      clear()
+    },
+
+    clear: () => {
+      clear()
     }
 
   }

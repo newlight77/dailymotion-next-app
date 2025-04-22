@@ -1,22 +1,22 @@
 'use client'
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { createContext } from "react";
-import { useStorage } from '@/shared/useStorage';
 import { LastViewType } from '../domain';
+import { useLastViewsDrivenAdapter } from '../driven/LastViewsDrivenAdapter';
+import { lastViewsDriverAdapter } from '../driver/LastViewsDriverAdapter';
+import { lastViewsUsecase } from '../domain/usecases';
 
 
 export interface LastViewContextType {
-  item: LastViewType | undefined,
   items: LastViewType[] | undefined,
-  addOrUpdate: (value: LastViewType) => void,
+  addOrUpdate : (lastView: LastViewType) => void,
   remove: (uid: string) => void,
   clear: () => void,
 }
 
 export const LastViewsContext = createContext<LastViewContextType>({
-  item: undefined,
   items: [],
-  addOrUpdate: (value: LastViewType) => { console.log('add or update', value) },
+  addOrUpdate : (lastView: LastViewType) => { console.log('addOrUpdate', lastView) },
   remove: (uid: string) => { console.log('remove', uid) },
   clear: () => {},
 });
@@ -28,21 +28,17 @@ type Props = {
 
 export const LastViewsConfigurator = ({ children }: Props): React.ReactElement => {
 
-  const {item, items, addOrUpdate, remove, clear} = useStorage<LastViewType>(`last-views`, []);
-
-  const memoedValue = useMemo(
-    () => ({
-      item,
-      items,
-      addOrUpdate,
-      remove,
-      clear
-    }),
-    [item, items, addOrUpdate, remove, clear]
-  );
+  // manage dependencies injection
+  const driven = useLastViewsDrivenAdapter()
+  const driver = lastViewsDriverAdapter(lastViewsUsecase(driven))
 
   return (
-      <LastViewsContext.Provider value={ memoedValue }>
+      <LastViewsContext.Provider value={{
+        items: driver.items(),
+        addOrUpdate: driver.addOrUpdate,
+        remove: driver.remove,
+        clear: driver.clear
+      }}>
           { children }
       </LastViewsContext.Provider>
   )

@@ -1,28 +1,26 @@
 'use client'
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { createContext } from "react";
-import { useStorage } from '@/shared/useStorage';
 import { FollowedAnimeType } from '../domain';
+import { useFollowedAnimesDrivenAdapter } from '../driven/FollowedAnimesDrivenAdapter';
+import { followedAnimesUsecase } from '../domain/usecases';
+import { followedAnimesDriverAdapter } from '../driver/FollowedAnimesDriverAdapter';
 
 
 export interface FollowedAnimesContextType {
-  item: FollowedAnimeType | undefined,
   items: FollowedAnimeType[] | undefined,
   remove: (uid: string) => void,
   addOrUpdate: (value: FollowedAnimeType) => void,
-  loadData: (data: FollowedAnimeType[]) => void,
-  reset: () => void,
-  clear: () => void,
+  load:  (value: FollowedAnimeType[]) => void,
+  clear: () => void
 }
 
 export const FollowedAnimesContext = createContext<FollowedAnimesContextType>({
-  item: undefined,
   items: [],
   remove: (uid: string) => { console.log('remove', uid) },
   addOrUpdate: (value: FollowedAnimeType) => { console.log('add or update', value) },
-  loadData: (data: FollowedAnimeType[]) => { console.log('load data', data) },
-  reset: () => {},
-  clear: () => {},
+  load:  (value: FollowedAnimeType[]) => { console.log('load', value) },
+  clear: () => {}
 });
 
 
@@ -32,23 +30,19 @@ type Props = {
 
 export const FollowedAnimesConfigurator = ({ children }: Props): React.ReactElement => {
 
-  const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FollowedAnimeType>(`followed-animes`, []);
-
-  const memoedValue = useMemo(
-    () => ({
-      item,
-      items,
-      remove,
-      addOrUpdate,
-      loadData,
-      reset,
-      clear
-    }),
-    [item, items, addOrUpdate, loadData, reset, reset, clear]
-  );
+  // manage dependencies injection
+  const driven = useFollowedAnimesDrivenAdapter()
+  const driver = followedAnimesDriverAdapter(followedAnimesUsecase(driven))
 
   return (
-      <FollowedAnimesContext.Provider value={ memoedValue }>
+      <FollowedAnimesContext.Provider value={{
+        items: driver.items(),
+        remove: driver.remove,
+        addOrUpdate: driver.addOrUpdate,
+        load: driver.load,
+        clear: driver.clear
+
+      }}>
           { children }
       </FollowedAnimesContext.Provider>
   )

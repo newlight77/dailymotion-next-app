@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const Followings: React.FC<Props> = ({className}) => {
-    const { items, remove, loadData, reset, clear } = useFollowedVideoOwners();
+    const useFollowedVideoOwner = useFollowedVideoOwners();
     const [data, setData] = useState('')
     const [loadMode, setLoadMode] = useState(false);
 
@@ -31,7 +31,7 @@ export const Followings: React.FC<Props> = ({className}) => {
             try {
                 const newFollowings = (JSON.parse(data) as FollowedVideoOwnerType[])
                 .reduce<FollowedVideoOwnerType[]>((acc, curr) => acc.some(item => item.owner === curr.owner) ? acc : [...acc, curr], []);
-                loadData(newFollowings);
+                useFollowedVideoOwner.load(newFollowings);
             } catch (error) {
                 // display error latet
                 alert(`there is an error with the json you try to load : ${error}`);
@@ -57,8 +57,8 @@ export const Followings: React.FC<Props> = ({className}) => {
             <div className='text-md pl-4'>Follow an owner in order trigger latest updates on that anime from that owner</div>
             <div className='followings-header p-4'>
                 <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
-                <Link className='pr-4' href={''} onClick={clear}>clear</Link>
-                <Link href={''} className="pr-4" onClick={reset}>reset</Link>
+                <Link className='pr-4' href={''} onClick={useFollowedVideoOwner.clear}>clear</Link>
+                <Link href={''} className="pr-4" onClick={useFollowedVideoOwner.reset}>reset</Link>
 
                 {loadMode ?
                     <>
@@ -76,8 +76,8 @@ export const Followings: React.FC<Props> = ({className}) => {
             </div>
 
             <div className='flex flex-col gap-2 p-2'>
-                { items ?.map(s => (
-                    <RemovableItem onDelete={remove} key={s.uid} id={s.uid}>
+                { useFollowedVideoOwner.items ?.map(s => (
+                    <RemovableItem onDelete={useFollowedVideoOwner.remove} key={s.uid} id={s.uid}>
                         <Link
                             className="col-span-11 pl-2"
                             href={`https://www.dailymotion.com/${s.owner}`}

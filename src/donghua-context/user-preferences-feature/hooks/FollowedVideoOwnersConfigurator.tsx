@@ -1,26 +1,26 @@
 'use client'
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { createContext } from "react";
-import { useStorage } from '@/shared/useStorage';
 import { FollowedVideoOwnerType } from '../domain';
+import { useFollowedVideoAnimesDrivenAdapter } from '../driven/FollowedVideoOwnersDrivenAdapter';
+import { followedVideoOwnersDriverAdapter } from '../driver/FollowedVideoOwnersDriverAdapter';
+import { followedVideoOwnersUsecase } from '../domain/usecases';
 
 
 export interface FollowedVideoOwnersContextType {
-  item: FollowedVideoOwnerType | undefined,
   items: FollowedVideoOwnerType[] | undefined,
   remove: (uid: string) => void,
   addOrUpdate: (value: FollowedVideoOwnerType) => void,
-  loadData: (data: FollowedVideoOwnerType[]) => void,
+  load: (animes: FollowedVideoOwnerType[]) => void,
   reset: () => void,
   clear: () => void,
 }
 
 export const FollowedVideoOwnersContext = createContext<FollowedVideoOwnersContextType>({
-  item: undefined,
   items: [],
   remove: (uid: string) => { console.log('remove', uid) },
   addOrUpdate: (value: FollowedVideoOwnerType) => { console.log('add or update', value) },
-  loadData: (data: FollowedVideoOwnerType[]) => { console.log('load data', data) },
+  load: (animes: FollowedVideoOwnerType[]) => { console.log('load', animes) },
   reset: () => {},
   clear: () => {},
 });
@@ -32,23 +32,19 @@ type Props = {
 
 export const FollowedVideoOwnersConfigurator = ({ children }: Props): React.ReactElement => {
 
-  const {item, items, remove, addOrUpdate, loadData, reset, clear} = useStorage<FollowedVideoOwnerType>(`followed-video-owners`, []);
-
-  const memoedValue = useMemo(
-    () => ({
-      item,
-      items,
-      remove,
-      addOrUpdate,
-      loadData,
-      reset,
-      clear
-    }),
-    [item, items, addOrUpdate, loadData, reset, reset, clear]
-  );
+  // manage dependencies injection
+  const driven = useFollowedVideoAnimesDrivenAdapter()
+  const driver = followedVideoOwnersDriverAdapter(followedVideoOwnersUsecase(driven))
 
   return (
-      <FollowedVideoOwnersContext.Provider value={ memoedValue }>
+      <FollowedVideoOwnersContext.Provider value={{
+        items: driver.items(),
+        remove: driver.remove,
+        addOrUpdate: driver.addOrUpdate,
+        load: driver.load,
+        reset: driver.reset,
+        clear: driver.clear,
+      }}>
           { children }
       </FollowedVideoOwnersContext.Provider>
   )

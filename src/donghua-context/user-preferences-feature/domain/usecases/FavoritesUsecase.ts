@@ -5,7 +5,10 @@ export type FavoriteUsecaseType = {
 
   items: () => FavoriteType[],
   addOrUpdate : (fav: FavoriteType) => void,
-  remove : (uid: string) => void
+  remove : (uid: string) => void,
+  load: (fav: FavoriteType[]) => void,
+  reset: () => void,
+  clear: () => void,
 }
 
 export const favoriteUsecase = (drivenPort: FavoritesDrivenPort) : FavoriteUsecaseType => {
@@ -22,7 +25,19 @@ export const favoriteUsecase = (drivenPort: FavoritesDrivenPort) : FavoriteUseca
 
     remove : (uid: string) => {
       drivenPort.remove(uid)
-    }
+    },
+
+    load: (fav: FavoriteType[]) => {
+      drivenPort.load(fav)
+    },
+
+    reset: () => {
+      drivenPort.reset()
+    },
+
+    clear: () => {
+      drivenPort.clear()
+    },
   }
 
 }

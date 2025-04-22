@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const FollowedAnimes: React.FC<Props> = ({className}) => {
-    const { items, remove, loadData, clear } = useFollowedAnimes();
+    const useFollowedAnime = useFollowedAnimes();
     const [data, setData] = useState('')
     const [loadMode, setLoadMode] = useState(false);
 
@@ -31,7 +31,7 @@ export const FollowedAnimes: React.FC<Props> = ({className}) => {
             try {
                 const newFollowings = (JSON.parse(data) as FollowedAnimeType[])
                 .reduce<FollowedAnimeType[]>((acc, curr) => acc.some(item => item.animeId === curr.animeId) ? acc : [...acc, curr], []);
-                loadData(newFollowings);
+                useFollowedAnime.load(newFollowings);
             } catch (error) {
                 // display error latet
                 alert(`there is an error with the json you try to load : ${error}`);
@@ -71,7 +71,7 @@ export const FollowedAnimes: React.FC<Props> = ({className}) => {
             <div className='text-md pl-4'>Follow an anime in order trigger latest updates on that anime</div>
             <div className='followings-header p-4'>
                 <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
-                <Link className='pr-4' href={''} onClick={clear}>clear</Link>
+                <Link className='pr-4' href={''} onClick={useFollowedAnime.clear}>clear</Link>
 
                 {loadMode ?
                     <>
@@ -89,8 +89,8 @@ export const FollowedAnimes: React.FC<Props> = ({className}) => {
             </div>
 
             <div className='flex flex-col gap-2 p-2'>
-                { items ?.map(s => (
-                    <RemovableItem onDelete={remove} key={s.uid} id={s.uid}>
+                { useFollowedAnime.items ?.map(s => (
+                    <RemovableItem onDelete={useFollowedAnime.remove} key={s.uid} id={s.uid}>
                         <Link className="col-span-11" href={`/?keywords=${keywords(s)}`} >
                             <div className="col-span-5 hover:text-tertiary" >
                                 <div className='underline underline-offset-4 decoration-primary'>{s.title}</div>

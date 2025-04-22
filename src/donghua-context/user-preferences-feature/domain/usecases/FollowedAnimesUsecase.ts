@@ -1,13 +1,38 @@
-import { useFollowedAnimes } from "../../hooks";
 import { FollowedAnimeType } from "../model";
+import { FollowedAnimesDrivenPort } from "../port";
 
-export const FollowedAnimesUsecase = {
-  addOrUpdate: (followed: FollowedAnimeType) => {
-    const useFollowedAnime = useFollowedAnimes();
-    useFollowedAnime.addOrUpdate(followed)
-  },
-  remove: (uid: string) => {
-    const useFollowedAnime = useFollowedAnimes();
-    useFollowedAnime.remove(uid)
+
+export type FollowedAnimesUsecaseType = {
+  items: () => FollowedAnimeType[],
+  addOrUpdate : (fav: FollowedAnimeType) => void,
+  remove : (uid: string) => void,
+  load: (animes: FollowedAnimeType[]) => void,
+  clear: () => void
+}
+
+export const followedAnimesUsecase = (drivenPort: FollowedAnimesDrivenPort) : FollowedAnimesUsecaseType => {
+
+  return {
+
+    items: () => {
+      return drivenPort.items()
+    },
+
+    addOrUpdate : (followed: FollowedAnimeType) => {
+      drivenPort.addOrUpdate(followed)
+    },
+
+    remove : (uid: string) => {
+      drivenPort.remove(uid)
+    },
+
+    load: (animes: FollowedAnimeType[]) => {
+      drivenPort.load(animes)
+    },
+
+    clear: () => {
+      drivenPort.clear()
+    }
   }
+
 }
