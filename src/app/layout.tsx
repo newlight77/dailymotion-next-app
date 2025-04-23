@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react"
 import "./globals.css";
 import Navbar from "../components/organisms/NavBar";
 import { SearchModule } from "@/donghua-context/videosearch-feature/view";
@@ -45,7 +46,7 @@ export default function RootLayout({
 
               <header></header>
               <Navbar routes={routes} />
-
+              <Analytics />
               <main className='main'>
               {/* <main className='main min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'> */}
               {children}
