@@ -1,1 +1,1 @@
-export * from './animelist-driven-adapter'
+export * from './AnimeListDrivenAdapter'

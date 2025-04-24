@@ -1,75 +1,47 @@
 'use client'
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { createContext } from "react";
-import { useStorage } from '@/shared/useStorage';
 import { AnimeType } from '../domain';
-import { AnimeListPort, AnimeListUsecase, AnimeListUsecasePort } from '../domain';
+import { animeListUsecase } from '../domain';
+import { animeListDriverAdapter } from '../driver';
+import { animeListDrivenAdapter } from '../driven';
 
 
 
 interface AnimelistContextType {
-  usecase: AnimeListUsecasePort,
-  items: AnimeType[] | undefined,
-  loadData: (data: AnimeType[]) => void,
+  findById: (uid: string) => Promise<AnimeType | undefined>,
   upsert: (value: AnimeType) => void,
+  items: AnimeType[] | undefined,
+  load: (data: AnimeType[]) => void,
   reset: () => void,
 }
-
 const AnimelistContext = createContext<AnimelistContextType>({
-  usecase: {} as AnimeListUsecasePort,
-  items: [],
-  loadData: (data: AnimeType[]) => { console.log('load data', data) },
+  findById: async (uid: string): Promise<AnimeType | undefined> => { console.log('find by id', uid); return undefined },
   upsert: (value: AnimeType) => { console.log('add data', value) },
+  items: undefined,
+  load: (data: AnimeType[]) => { console.log('load data', data) },
   reset: () => {},
 });
 
 
 type Props = {
-  animeListAdapter: AnimeListPort,
   children: React.ReactNode
 }
 
-export const AnimeListConfigurator = ({ animeListAdapter, children }: Props): React.ReactElement => {
+export const AnimeListConfigurator = ({ children }: Props): React.ReactElement => {
 
-  const usecase = AnimeListUsecase(animeListAdapter)
-
-  const {items, loadData, addOrUpdate} = useStorage<AnimeType>(`animelist`, []);
-
-  useEffect(() => {
-    // required to update the storage to refresh UI
-    // reset();
-  }, [usecase])
-
-  const reset = async () => {
-    const all = await usecase.findAll();
-    // console.log('AnimeListConfigurator reset', all);
-    loadData(all);
-  }
-
-  const upsert = async (anime: AnimeType) => {
-    // console.log('AnimeListConfigurator before upsert', anime);
-    const result = await usecase.upsert(anime);
-    if (!result) {
-      console.error('failed to upsert anime', anime)
-      return
-    }
-    addOrUpdate(anime)
-    // console.log('AnimeListConfigurator post upsert', items)
-  }
-
-  const memoedValue = useMemo(
-    () => ({
-      usecase,
-      items,
-      loadData,
-      upsert,
-      reset,
-    }),
-    [usecase, items, loadData, reset, reset]
-  );
+  // manage dependencies injection
+  const driven = animeListDrivenAdapter()
+  const driver = animeListDriverAdapter(animeListUsecase(driven))
 
   return (
-      <AnimelistContext.Provider value={ memoedValue }>
+      <AnimelistContext.Provider value={{
+        findById: driver.findById,
+        upsert: driver.upsert,
+        items: driver.items(),
+        load: driver.load,
+        reset: driver.reset
+      }}>
           { children }
       </AnimelistContext.Provider>
   )

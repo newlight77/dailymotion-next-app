@@ -17,7 +17,7 @@ type Props = {
 }
 
 export const AnimeList: React.FC<Props> = ({className}) => {
-    const { items, loadData, reset } = useAnimelist();
+    const useAnimes = useAnimelist();
     const useFollowedAnime = useFollowedAnimes();
     const [data, setData] = useState('')
     const [addModal, setAddModal] = useState(false);
@@ -66,7 +66,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
             try {
                 const newAnimelist = (JSON.parse(data) as AnimeType[])
                 .reduce<AnimeType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
-                loadData(newAnimelist);
+                useAnimes.load(newAnimelist);
             } catch (error) {
                 // display error latet
                 alert(`there is an error with the json you try to load : ${error}`);
@@ -153,7 +153,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
             }
 
             {
-                items && items?.length > 0 ?
+                useAnimes.items && useAnimes.items?.length > 0 ?
                 <div className="pt-4 pb-4 text-primary">
                     <input
                         className='w-96'
@@ -183,7 +183,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                 <></>
             }
 
-            <label className='px-4 w-12'>total: {filterList(items).length} / {items?.length}</label>
+            <label className='px-4 w-12'>total: {filterList(useAnimes.items).length} / {useAnimes.items?.length}</label>
 
             <div className='animelist-header p-4'>
                 { addModal ?
@@ -192,7 +192,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                     <Link href={''} className="pr-4" onClick={toggleAddModal}>add</Link>
                 }
                 <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
-                <Link href={''} className="pr-4" onClick={reset}>reset</Link>
+                <Link href={''} className="pr-4" onClick={useAnimes.reset}>reset</Link>
 
                 {loadMode ?
                     <>
@@ -211,7 +211,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
 
             <div className="md:flex flex-wrap">
                 {
-                    filterList(items)
+                    filterList(useAnimes.items)
                     .map((anime: AnimeType) => withOrderScore(anime))
                     .sort((a: AnimeWithOrderScore, b: AnimeWithOrderScore) => b.orderScore - a.orderScore)
                     .map((anime: AnimeWithOrderScore) => {

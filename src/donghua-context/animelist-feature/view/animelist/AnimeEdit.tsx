@@ -34,7 +34,7 @@ const blankAnime: AnimeType = {
   }
 
 export const AnimeEdit: React.FC<Props> = ({mode = 'new', editedAnime = blankAnime, onEdit, onCopy}) => {
-    const { upsert } = useAnimelist();
+    const useAnimes = useAnimelist();
     const [ anime, setAnime ] = useState<AnimeType>(editedAnime);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -47,7 +47,7 @@ export const AnimeEdit: React.FC<Props> = ({mode = 'new', editedAnime = blankAni
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        upsert(anime)
+        useAnimes.upsert(anime)
         if (onEdit) onEdit(anime)
     };
 

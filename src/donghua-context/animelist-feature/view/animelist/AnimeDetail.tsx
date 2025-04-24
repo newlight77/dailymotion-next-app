@@ -18,7 +18,7 @@ type Props = {
 }
 
 export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
-    const { usecase } = useAnimelist();
+    const useAnimes = useAnimelist();
     const useFavorite = useFavorites();
     const useFollowedAnime = useFollowedAnimes();
 
@@ -29,7 +29,7 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
 
     useEffect(() => {
         // console.log('AnimeDetail useEffect params:', id, mode);
-        usecase.findById(id).then((a) => { // todo move to storage provider : add findById and
+        useAnimes.findById(id).then((a) => { // todo move to storage provider : add findById and
             // console.log('AnimeDetail useEffect params:', id, a);
             if (isMounted()) setAnime(a);
         });

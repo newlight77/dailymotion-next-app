@@ -1,8 +1,11 @@
-import { AnimeListPort } from "../domain";
+import { useStorage } from "@/shared/useStorage";
+import { AnimeListDrivenPort } from "../domain";
 import { AnimeType } from "../domain";
 
 
-class AnimeListDrivenAdapter implements AnimeListPort {
+class AnimeListDrivenAdapter implements AnimeListDrivenPort {
+
+  private storage = useStorage<AnimeType>(`animelist`, []);
 
   upsert = async (anime: AnimeType): Promise<AnimeType | undefined> => {
     try {
@@ -66,6 +69,23 @@ class AnimeListDrivenAdapter implements AnimeListPort {
       return [];
     }
   }
+
+  items = () => {
+    return this.storage.items || []
+  }
+
+  addOrUpdate = (anime: AnimeType) => {
+    this.addOrUpdate(anime)
+  }
+
+  load = (fav: AnimeType[]) => {
+    this.storage.loadData(fav)
+  }
+
+  reset = () => {
+    this.storage.clear()
+  }
+
 }
 
-export const animeListAdapter = new AnimeListDrivenAdapter();
+export const animeListDrivenAdapter = () => new AnimeListDrivenAdapter();
