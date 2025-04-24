@@ -4,9 +4,6 @@ import { AnimeListDrivenPort } from "../port";
 
 export type AnimeListUsecaseType = {
   upsert: (anime: AnimeType) => Promise<AnimeType | undefined>,
-  findById: (uid: string) => Promise<AnimeType | undefined>,
-  findAll: () => Promise<AnimeType[]>,
-  items: () => AnimeType[],
   load: (list: AnimeType[]) => void,
   reset: () => void
 }
@@ -24,20 +21,6 @@ export const animeListUsecase = (drivenPort: AnimeListDrivenPort): AnimeListUsec
     // console.log('AnimeListConfigurator post upsert', items)
   }
 
-  const findById = async (uid: string): Promise<AnimeType | undefined> => {
-    // console.log('AnimeListUsecase findById:', uid);
-    return await drivenPort.findById(uid);
-  }
-
-  const findAll = async (): Promise<AnimeType[]> => {
-    // console.log('AnimeListUsecase findAll:', port.findAll());
-    return await drivenPort.findAll();
-  }
-
-  const items = (): AnimeType[] => {
-    return drivenPort.items()
-  }
-
   const load = (list: AnimeType[]) => {
     // console.log('AnimeListConfigurator reset', all);
     drivenPort.load(list);
@@ -51,9 +34,6 @@ export const animeListUsecase = (drivenPort: AnimeListDrivenPort): AnimeListUsec
 
   return {
     upsert,
-    findAll,
-    findById,
-    items,
     load,
     reset
   }

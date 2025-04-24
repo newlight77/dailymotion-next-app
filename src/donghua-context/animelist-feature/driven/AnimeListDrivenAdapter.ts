@@ -75,7 +75,7 @@ class AnimeListDrivenAdapter implements AnimeListDrivenPort {
   }
 
   addOrUpdate = (anime: AnimeType) => {
-    this.addOrUpdate(anime)
+    this.storage.addOrUpdate(anime)
   }
 
   load = (fav: AnimeType[]) => {

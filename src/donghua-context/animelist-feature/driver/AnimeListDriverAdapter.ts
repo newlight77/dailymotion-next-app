@@ -1,22 +1,22 @@
 import { AnimeType } from '../domain/model';
 import { AnimeListDriverPort } from '../domain/port'
-import { AnimeListUsecaseType } from '../domain/usecases'
+import { AnimeListUsecaseType, AnimeListQueryType } from '../domain/usecases'
 
 
 
-export const animeListDriverAdapter = (usecase: AnimeListUsecaseType) : AnimeListDriverPort => ({
-
-  upsert: async (anime: AnimeType): Promise<AnimeType | undefined> => {
-    return await usecase.upsert(anime)
-  },
+export const animeListDriverAdapter = (usecase: AnimeListUsecaseType, query: AnimeListQueryType) : AnimeListDriverPort => ({
 
   findById: async (uid: string): Promise<AnimeType | undefined> => {
     // console.log('AnimeListUsecase findById:', uid);
-    return await usecase.findById(uid);
+    return await query.findById(uid);
   },
 
   items: (): AnimeType[] => {
-    return usecase.items()
+    return query.items()
+  },
+
+  upsert: async (anime: AnimeType): Promise<AnimeType | undefined> => {
+    return await usecase.upsert(anime)
   },
 
   load: (fav: AnimeType[]) => {
