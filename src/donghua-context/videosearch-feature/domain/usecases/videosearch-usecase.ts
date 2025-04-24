@@ -1,10 +1,16 @@
 import { FollowedAnimeType, FollowedVideoOwnerType, MetaVideoType, PreferencesType } from "../model";
 import { VideoSearchParamsType, VideoSearchWithScoreResponse, VideoType, VideoWithScoreType } from "../model";
-import { VideoSearchPort, VideoSearchUsecasePort } from "../port";
+import { VideoSearchDrivenPort } from "../port";
 
 
-export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePort => {
+export type VideoSearchUseCaseType = {
+  search: (searchParams: VideoSearchParamsType, prefs?: PreferencesType) => Promise<VideoSearchWithScoreResponse>,
+  getById: (id: string) => Promise<VideoType | undefined>
+}
 
+export const videoSearchUsecase = (port: VideoSearchDrivenPort): VideoSearchUseCaseType => {
+
+  // this is a query use case
   const search = async (searchParams: VideoSearchParamsType, prefs?: PreferencesType): Promise<VideoSearchWithScoreResponse> => {
     const response = await port.search(searchParams);
 
@@ -28,6 +34,7 @@ export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePor
     };
   }
 
+  // this is a query use case
   const getById = async (id: string): Promise<VideoType | undefined> => {
     return await port.getById(id)
   }
@@ -38,6 +45,8 @@ export const VideoSearchUsecase = (port: VideoSearchPort): VideoSearchUsecasePor
   }
 }
 
+
+// TODO : move to model associate to VideoWithScoreType
 const scoreVideo = ( video: MetaVideoType, keywords: string, prefs: PreferencesType) : VideoWithScoreType => {
   const { followedAnimes, followedOwners } = prefs;
 

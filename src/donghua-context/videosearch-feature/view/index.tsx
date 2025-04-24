@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-import { videoSearchAdapter } from '../driven';
 import { VideoSearchConfigurator } from '../hooks';
 
 
@@ -11,7 +10,7 @@ type Props = {
 export const SearchModule = ({ children }: Props): React.ReactElement => {
 
   return (
-    <VideoSearchConfigurator videoSearchAdapter={videoSearchAdapter}>
+    <VideoSearchConfigurator>
                 {children}
     </VideoSearchConfigurator>
   )

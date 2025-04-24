@@ -13,7 +13,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     const [keywords, setKeywords] = useState(newKeywords || '');
     const [debouncedInpout, setDebouncedInpout] = useState('');
     const [strictSearch, setStrictSearch] = useState(false);
-    const { search } = useSearchVideos();
+    const useSearchVideo = useSearchVideos();
     const useSearchHistory = useVideoSearchHistory();
     const useFollowedAnime = useFollowedAnimes();
     const useLastView = useLastViews();
@@ -89,7 +89,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
             lastSearches: useSearchHistory.items
         }
 
-        search(keywords, prefs)
+        useSearchVideo.search(keywords, prefs)
 
         // console.log('SearchBar handleSearch with keywords', keywords);
         localStorage.setItem('last-search', keywords);

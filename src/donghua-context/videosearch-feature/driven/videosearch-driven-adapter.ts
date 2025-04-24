@@ -1,7 +1,7 @@
 import { queryParamsToQueryString } from "@/shared/httpUtil";
 import { MetaVideoType, VideoType } from "../domain";
 import { VideoSearchResponse, VideoSearchParamsType } from "../domain";
-import { VideoSearchPort } from "../domain/port";
+import { VideoSearchDrivenPort } from "../domain/port";
 
 
 const fields = [
@@ -60,7 +60,7 @@ function mapToVideo(d: any): MetaVideoType {
 }
 
 
-class VideoSearchDrivenAdapter implements VideoSearchPort {
+class VideoSearchDrivenAdapter implements VideoSearchDrivenPort {
   search = async (params: VideoSearchParamsType): Promise<VideoSearchResponse> => {
 
     const searchParams = {
@@ -141,4 +141,4 @@ class VideoSearchDrivenAdapter implements VideoSearchPort {
 }
 
 
-export const videoSearchAdapter = new VideoSearchDrivenAdapter();
+export const videoSearchDrivenAdapter = () => new VideoSearchDrivenAdapter();

@@ -13,11 +13,11 @@ type Video = {
 const VideoPage: React.FC = () => {
     const { id } = useParams<{ id: string}>();
     const [video, setVideo] = React.useState<Video>();
-    const { findById } = useSearchVideos();
+    const useSearchVideo = useSearchVideos();
 
     useEffect(() => {
         console.log('params.id', id);
-        findById(id).then((v) => {
+        useSearchVideo.findById(id).then((v) => {
             if (v) setVideo({id: v.videoId, title: v.title});
         });
     }, [id]);

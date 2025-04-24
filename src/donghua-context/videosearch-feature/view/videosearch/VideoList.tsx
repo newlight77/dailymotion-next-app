@@ -12,7 +12,7 @@ export const VideoList: React.FC<VideoListProps> = ({ className }) => {
 
     const [filterKeywords, setFilterKeywords] = useState('');
     const [exclusions, setExclusions] = useState('');
-    const { searchResults = [] } = useSearchVideos();
+    const useSearchVideo = useSearchVideos();
 
     const onFilterInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilterKeywords(event.target.value);
@@ -26,7 +26,7 @@ export const VideoList: React.FC<VideoListProps> = ({ className }) => {
         <div className={className}>
 
             {
-                searchResults.length > 0 ?
+                (useSearchVideo.searchResults || []).length > 0 ?
                 <div className="pt-4 pb-4 text-primary">
                     <input
                         className='w-80'
@@ -49,7 +49,7 @@ export const VideoList: React.FC<VideoListProps> = ({ className }) => {
 
             <div className="md:flex flex-wrap">
                 {
-                    searchResults.filter(v => matchingTitleOrDescriptionOrOwner(v))
+                    (useSearchVideo.searchResults || []).filter(v => matchingTitleOrDescriptionOrOwner(v))
                     .filter(v => exclusions !== '' ? !v.title.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.description.toLowerCase().includes(exclusions.toLowerCase()) : true)
                     .filter(v => exclusions !== '' ? !v.ownerUsername.toLowerCase().includes(exclusions.toLowerCase()) : true)
