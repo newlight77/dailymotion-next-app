@@ -1,2 +1,2 @@
-export * from './videosearch-usecase'
-export * from './videosearch-query'
+export * from './VideoSearchUsecase'
+export * from './VideoSearchQuery'

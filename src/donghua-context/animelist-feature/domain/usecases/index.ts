@@ -1,2 +1,2 @@
-export * from './animelist-usecase'
-export * from './animelist-query'
+export * from './AnimeListUsecase'
+export * from './AnimeListQuery'

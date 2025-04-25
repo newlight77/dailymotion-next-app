@@ -1,1 +1,1 @@
-export * from './videosearch-driven-adapter'
+export * from './VideoSearchDrivenAdapter'
