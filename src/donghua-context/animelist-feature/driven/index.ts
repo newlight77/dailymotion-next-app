@@ -1,2 +1,1 @@
-export * from './AnimeListDrivenReadAdapter'
-export * from './AnimeListDrivenWriteAdapter'
+export * from './AnimeListDrivenAdapter'

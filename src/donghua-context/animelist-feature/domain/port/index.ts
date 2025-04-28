@@ -1,3 +1,2 @@
-export * from "./DrivenReadPort"
-export * from "./DrivenWritePort"
+export * from "./DrivenPort"
 export * from "./DriverPort"

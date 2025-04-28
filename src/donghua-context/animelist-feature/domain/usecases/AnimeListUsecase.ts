@@ -1,5 +1,5 @@
 import { AnimeType } from "../model";
-import { AnimeListDrivenReadPort, AnimeListDrivenWritePort } from "../port";
+import { AnimeListDrivenPort } from "../port";
 
 
 export type AnimeListUsecaseType = {
@@ -8,28 +8,28 @@ export type AnimeListUsecaseType = {
   reset: () => void
 }
 
-export const animeListUsecase = (drivenReadPort: AnimeListDrivenReadPort, drivenWritePort: AnimeListDrivenWritePort): AnimeListUsecaseType => {
+export const animeListUsecase = (drivenPort: AnimeListDrivenPort): AnimeListUsecaseType => {
 
   const upsert = async (anime: AnimeType): Promise<AnimeType | undefined> => {
     // console.log('AnimeListConfigurator before upsert', anime);
-    const result = await drivenWritePort.upsert(anime);
+    const result = await drivenPort.upsert(anime);
     if (!result) {
       console.error('failed to upsert anime', anime)
       return
     }
-    drivenWritePort.addOrUpdate(anime)
+    drivenPort.addOrUpdate(anime)
     // console.log('AnimeListConfigurator post upsert', items)
   }
 
   const load = (list: AnimeType[]) => {
     // console.log('AnimeListConfigurator reset', all);
-    drivenWritePort.load(list);
+    drivenPort.load(list);
   }
 
   const reset = async () => {
-    const all = await drivenReadPort.findAll();
+    const all = await drivenPort.findAll();
     // console.log('AnimeListConfigurator reset', all);
-    drivenWritePort.load(all);
+    drivenPort.load(all);
   }
 
   return {
