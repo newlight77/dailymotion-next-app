@@ -1,3 +1,4 @@
+export * from './FavoritesQuery'
 export * from './FavoritesUsecase'
 export * from './FollowedAnimesUsecase'
 export * from './FollowedVideoOwnersUsecase'

@@ -1,13 +1,13 @@
 import { FavoriteType } from "../domain";
 import { FavoritesDriverPort } from "../domain/port";
-import { FavoriteUsecaseType } from '../domain/usecases'
+import { FavoriteQueryType, FavoriteUsecaseType } from '../domain/usecases'
 
 
 
-export const favoritesDriverAdapter = (usecase: FavoriteUsecaseType) : FavoritesDriverPort => ({
+export const favoritesDriverAdapter = (usecase: FavoriteUsecaseType, query: FavoriteQueryType) : FavoritesDriverPort => ({
 
   items: (): FavoriteType[] => {
-    return usecase.items()
+    return query.items()
   },
 
   remove: (uid: string) => {

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { createContext } from "react";
 import { FavoriteType } from '../domain';
 import { useFavoritesDrivenAdapter } from '../driven/FavoritesDrivenAdapter';
-import { favoriteUsecase } from '../domain/usecases';
+import { favoriteQuery, favoriteUsecase } from '../domain/usecases';
 import { favoritesDriverAdapter } from '../driver/FavoritesDriverAdapter';
 
 
@@ -34,7 +34,7 @@ export const FavoritesConfigurator = ({ children }: Props): React.ReactElement =
 
   // manage dependencies injection
   const driven = useFavoritesDrivenAdapter()
-  const driver = favoritesDriverAdapter(favoriteUsecase(driven))
+  const driver = favoritesDriverAdapter(favoriteUsecase(driven), favoriteQuery(driven))
 
   return (
       <FavoritesContext.Provider value={{
