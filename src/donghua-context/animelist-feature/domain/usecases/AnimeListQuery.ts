@@ -1,5 +1,5 @@
 import { AnimeType } from "../model";
-import { AnimeListDrivenReadPort } from "../port";
+import { AnimeListDrivenPort } from "../port";
 
 
 export type AnimeListQueryType = {
@@ -7,7 +7,7 @@ export type AnimeListQueryType = {
   items: () => AnimeType[],
 }
 
-export const animeListQuery = (drivenPort: AnimeListDrivenReadPort): AnimeListQueryType => {
+export const animeListQuery = (drivenPort: AnimeListDrivenPort): AnimeListQueryType => {
 
   const findById = async (uid: string): Promise<AnimeType | undefined> => {
     // console.log('AnimeListUsecase findById:', uid);

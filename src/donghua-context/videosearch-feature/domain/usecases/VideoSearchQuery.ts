@@ -1,5 +1,5 @@
 import { VideoType } from "../model";
-import { VideoSearchDrivenReadPort } from "../port";
+import { VideoSearchDrivenPort } from "../port";
 
 
 export type VideoSearchQueryType = {
@@ -7,11 +7,11 @@ export type VideoSearchQueryType = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const videoSearchQuery = (readPort: VideoSearchDrivenReadPort): VideoSearchQueryType => {
+export const videoSearchQuery = (port: VideoSearchDrivenPort): VideoSearchQueryType => {
 
   // this is a query use case
   const getById = async (id: string): Promise<VideoType | undefined> => {
-    return await readPort.getById(id)
+    return await port.getById(id)
   }
 
   return {

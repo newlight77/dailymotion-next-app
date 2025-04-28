@@ -1,6 +1,6 @@
 import { MetaVideoType, PreferencesType, scoreVideo } from "../model";
 import { VideoSearchParamsType, VideoSearchWithScoreResponse, VideoWithScoreType } from "../model";
-import { VideoSearchDrivenReadPort, VideoSearchDrivenWritePort } from "../port";
+import { VideoSearchDrivenPort } from "../port";
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -9,11 +9,11 @@ export type VideoSearchUseCaseType = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const videoSearchUsecase = (readPort: VideoSearchDrivenReadPort, writePort: VideoSearchDrivenWritePort): VideoSearchUseCaseType => {
+export const videoSearchUsecase = (port: VideoSearchDrivenPort): VideoSearchUseCaseType => {
 
   // this is a query use case
   const search = async (searchParams: VideoSearchParamsType, prefs?: PreferencesType): Promise<VideoSearchWithScoreResponse> => {
-    const response = await readPort.search(searchParams);
+    const response = await port.search(searchParams);
 
     const { list } = response;
     let scoredList: VideoWithScoreType[] = []
