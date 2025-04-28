@@ -8,7 +8,7 @@ export const videoSearchDriverAdapter = (usecase: VideoSearchUseCaseType, query:
 
   getById: async (uid: string): Promise<VideoType | undefined> => {
     // console.log('AnimeListUsecase findById:', uid);
-    return await usecase.getById(uid);
+    return await query.getById(uid);
   },
 
   search: async (searchParams: VideoSearchParamsType, prefs?: PreferencesType): Promise<VideoSearchWithScoreResponse> => {

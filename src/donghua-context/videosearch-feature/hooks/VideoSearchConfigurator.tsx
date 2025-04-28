@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { createContext } from "react";
 import { MetaVideoType, VideoType, PreferencesType, videoSearchQuery } from '../domain';
 import { videoSearchUsecase, VideoSearchWithScoreResponse, VideoWithScoreType } from '../domain';
-import { videoSearchDrivenAdapter } from '../driven';
+import { videoSearchDrivenReadAdapter, videoSearchDrivenWriteAdapter } from '../driven';
 import { videoSearchDriverAdapter } from '../driver';
 
 
@@ -26,8 +26,9 @@ type Props = {
 
 export const VideoSearchConfigurator = ({ children }: Props): React.ReactElement => {
 
-  const driven = videoSearchDrivenAdapter()
-  const driver = videoSearchDriverAdapter(videoSearchUsecase(driven), videoSearchQuery(driven))
+  const readDriven = videoSearchDrivenReadAdapter()
+  const writeDriven = videoSearchDrivenWriteAdapter()
+  const driver = videoSearchDriverAdapter(videoSearchUsecase(readDriven, writeDriven), videoSearchQuery(readDriven))
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(50);
