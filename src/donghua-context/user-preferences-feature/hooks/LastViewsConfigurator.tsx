@@ -4,7 +4,7 @@ import { createContext } from "react";
 import { LastViewType } from '../domain';
 import { useLastViewsDrivenAdapter } from '../driven/LastViewsDrivenAdapter';
 import { lastViewsDriverAdapter } from '../driver/LastViewsDriverAdapter';
-import { lastViewsUsecase } from '../domain/usecases';
+import { lastViewsQuery, lastViewsUsecase } from '../domain/usecases';
 
 
 export interface LastViewContextType {
@@ -30,7 +30,7 @@ export const LastViewsConfigurator = ({ children }: Props): React.ReactElement =
 
   // manage dependencies injection
   const driven = useLastViewsDrivenAdapter()
-  const driver = lastViewsDriverAdapter(lastViewsUsecase(driven))
+  const driver = lastViewsDriverAdapter(lastViewsUsecase(driven), lastViewsQuery(driven))
 
   return (
       <LastViewsContext.Provider value={{

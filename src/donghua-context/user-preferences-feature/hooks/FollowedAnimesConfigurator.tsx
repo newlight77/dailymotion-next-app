@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { createContext } from "react";
 import { FollowedAnimeType } from '../domain';
 import { useFollowedAnimesDrivenAdapter } from '../driven/FollowedAnimesDrivenAdapter';
-import { followedAnimesUsecase } from '../domain/usecases';
+import { followedAnimesQuery, followedAnimesUsecase } from '../domain/usecases';
 import { followedAnimesDriverAdapter } from '../driver/FollowedAnimesDriverAdapter';
 
 
@@ -32,7 +32,7 @@ export const FollowedAnimesConfigurator = ({ children }: Props): React.ReactElem
 
   // manage dependencies injection
   const driven = useFollowedAnimesDrivenAdapter()
-  const driver = followedAnimesDriverAdapter(followedAnimesUsecase(driven))
+  const driver = followedAnimesDriverAdapter(followedAnimesUsecase(driven), followedAnimesQuery(driven))
 
   return (
       <FollowedAnimesContext.Provider value={{

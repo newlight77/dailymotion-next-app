@@ -1,13 +1,13 @@
 import { LastViewType } from "../domain";
 import { LastViewsDriverPort } from "../domain/port";
-import { LastViewsUsecaseType } from '../domain/usecases'
+import { LastViewsQueryType, LastViewsUsecaseType } from '../domain/usecases'
 
 
 
-export const lastViewsDriverAdapter = (usecase: LastViewsUsecaseType) : LastViewsDriverPort => ({
+export const lastViewsDriverAdapter = (usecase: LastViewsUsecaseType, query: LastViewsQueryType) : LastViewsDriverPort => ({
 
   items: (): LastViewType[] => {
-    return usecase.items()
+    return query.items()
   },
 
   addOrUpdate : (lastView: LastViewType) => {

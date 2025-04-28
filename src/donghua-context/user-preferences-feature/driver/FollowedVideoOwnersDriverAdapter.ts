@@ -1,13 +1,13 @@
 import { FollowedVideoOwnerType } from "../domain";
 import { FollowedVideoOwnersDriverPort } from "../domain/port";
-import { FollowedVideoOwnersUsecaseType } from '../domain/usecases'
+import { FollowedVideoOwnersQueryType, FollowedVideoOwnersUsecaseType } from '../domain/usecases'
 
 
 
-export const followedVideoOwnersDriverAdapter = (usecase: FollowedVideoOwnersUsecaseType) : FollowedVideoOwnersDriverPort => ({
+export const followedVideoOwnersDriverAdapter = (usecase: FollowedVideoOwnersUsecaseType, query: FollowedVideoOwnersQueryType) : FollowedVideoOwnersDriverPort => ({
 
   items: (): FollowedVideoOwnerType[] => {
-    return usecase.items()
+    return query.items()
   },
 
   remove: (uid: string) => {

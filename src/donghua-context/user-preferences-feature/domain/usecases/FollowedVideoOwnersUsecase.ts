@@ -3,7 +3,6 @@ import { FollowedVideoOwnersDrivenPort } from "../port";
 
 
 export type FollowedVideoOwnersUsecaseType = {
-  items: () => FollowedVideoOwnerType[],
   addOrUpdate : (fav: FollowedVideoOwnerType) => void,
   remove : (uid: string) => void,
   load: (animes: FollowedVideoOwnerType[]) => void,
@@ -14,10 +13,6 @@ export type FollowedVideoOwnersUsecaseType = {
 export const followedVideoOwnersUsecase = (drivenPort: FollowedVideoOwnersDrivenPort) : FollowedVideoOwnersUsecaseType => {
 
   return {
-
-    items: () => {
-      return drivenPort.items()
-    },
 
     addOrUpdate : (followed: FollowedVideoOwnerType) => {
       drivenPort.addOrUpdate(followed)

@@ -3,7 +3,6 @@ import { VideoSearchHistoryDrivenPort } from "../port";
 
 
 export type VideoSearchHistoryUsecaseType = {
-  items: () => SearchKeywordsType[],
   addOrUpdate : (keywords: SearchKeywordsType) => void,
   remove : (uid: string) => void,
   clear : () => void,
@@ -12,11 +11,6 @@ export type VideoSearchHistoryUsecaseType = {
 export const videoSearchHistoryUsecase = (drivenPort: VideoSearchHistoryDrivenPort) : VideoSearchHistoryUsecaseType => {
 
   return {
-
-    items: () => {
-      return drivenPort.items()
-    },
-
     addOrUpdate : (keywords: SearchKeywordsType) => {
       drivenPort.addOrUpdate(keywords)
     },

@@ -1,13 +1,13 @@
 import { SearchKeywordsType } from "../domain";
 import { VideoSearchHistoryDriverPort } from "../domain/port";
-import { VideoSearchHistoryUsecaseType } from '../domain/usecases'
+import { VideoSearchHistoryQueryType, VideoSearchHistoryUsecaseType } from '../domain/usecases'
 
 
 
-export const videoSearchHistoryDriverAdapter = (usecase: VideoSearchHistoryUsecaseType) : VideoSearchHistoryDriverPort => ({
+export const videoSearchHistoryDriverAdapter = (usecase: VideoSearchHistoryUsecaseType, query: VideoSearchHistoryQueryType) : VideoSearchHistoryDriverPort => ({
 
   items: (): SearchKeywordsType[] => {
-    return usecase.items()
+    return query.items()
   },
 
   addOrUpdate : (keywords: SearchKeywordsType) => {

@@ -1,13 +1,13 @@
 import { FollowedAnimeType } from "../domain";
 import { FollowedAnimesDriverPort } from "../domain/port";
-import { FollowedAnimesUsecaseType } from '../domain/usecases'
+import { FollowedAnimesQueryType, FollowedAnimesUsecaseType } from '../domain/usecases'
 
 
 
-export const followedAnimesDriverAdapter = (usecase: FollowedAnimesUsecaseType) : FollowedAnimesDriverPort => ({
+export const followedAnimesDriverAdapter = (usecase: FollowedAnimesUsecaseType, query: FollowedAnimesQueryType) : FollowedAnimesDriverPort => ({
 
   items: (): FollowedAnimeType[] => {
-    return usecase.items()
+    return query.items()
   },
 
   remove: (uid: string) => {

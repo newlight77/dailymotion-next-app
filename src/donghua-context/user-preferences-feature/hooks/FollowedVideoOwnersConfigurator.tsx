@@ -4,7 +4,7 @@ import { createContext } from "react";
 import { FollowedVideoOwnerType } from '../domain';
 import { useFollowedVideoAnimesDrivenAdapter } from '../driven/FollowedVideoOwnersDrivenAdapter';
 import { followedVideoOwnersDriverAdapter } from '../driver/FollowedVideoOwnersDriverAdapter';
-import { followedVideoOwnersUsecase } from '../domain/usecases';
+import { followedVideoOwnersQuery, followedVideoOwnersUsecase } from '../domain/usecases';
 
 
 export interface FollowedVideoOwnersContextType {
@@ -34,7 +34,7 @@ export const FollowedVideoOwnersConfigurator = ({ children }: Props): React.Reac
 
   // manage dependencies injection
   const driven = useFollowedVideoAnimesDrivenAdapter()
-  const driver = followedVideoOwnersDriverAdapter(followedVideoOwnersUsecase(driven))
+  const driver = followedVideoOwnersDriverAdapter(followedVideoOwnersUsecase(driven), followedVideoOwnersQuery(driven))
 
   return (
       <FollowedVideoOwnersContext.Provider value={{

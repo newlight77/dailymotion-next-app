@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { createContext } from "react";
 import { SearchKeywordsType } from '../domain';
 import { useVideoSearchHistoryDrivenAdapter } from '../driven/VideoSearchHistoryDrivenAdapter';
-import { videoSearchHistoryUsecase } from '../domain/usecases';
+import { videoSearchHistoryQuery, videoSearchHistoryUsecase } from '../domain/usecases';
 import { videoSearchHistoryDriverAdapter } from '../driver/VideoSearchHistoryDriverAdapter';
 
 
@@ -30,7 +30,7 @@ export const VideoSearchHistoryConfigurator = ({ children }: Props): React.React
 
   // manage dependencies injection
   const driven = useVideoSearchHistoryDrivenAdapter()
-  const driver = videoSearchHistoryDriverAdapter(videoSearchHistoryUsecase(driven))
+  const driver = videoSearchHistoryDriverAdapter(videoSearchHistoryUsecase(driven), videoSearchHistoryQuery(driven))
   return (
       <VideoSearchHistoryContext.Provider value={{
         items: driver.items(),

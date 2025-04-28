@@ -3,7 +3,6 @@ import { FollowedAnimesDrivenPort } from "../port";
 
 
 export type FollowedAnimesUsecaseType = {
-  items: () => FollowedAnimeType[],
   addOrUpdate : (fav: FollowedAnimeType) => void,
   remove : (uid: string) => void,
   load: (animes: FollowedAnimeType[]) => void,
@@ -13,10 +12,6 @@ export type FollowedAnimesUsecaseType = {
 export const followedAnimesUsecase = (drivenPort: FollowedAnimesDrivenPort) : FollowedAnimesUsecaseType => {
 
   return {
-
-    items: () => {
-      return drivenPort.items()
-    },
 
     addOrUpdate : (followed: FollowedAnimeType) => {
       drivenPort.addOrUpdate(followed)
