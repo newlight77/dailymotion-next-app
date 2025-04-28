@@ -4,7 +4,7 @@ import { createContext } from "react";
 import { animeListQuery, AnimeType } from '../domain';
 import { animeListUsecase } from '../domain';
 import { animeListDriverAdapter } from '../driver';
-import { animeListDrivenAdapter } from '../driven';
+import { animeListDrivenReadAdapter, animeListDrivenWriteAdapter } from '../driven';
 
 
 
@@ -31,8 +31,9 @@ type Props = {
 export const AnimeListConfigurator = ({ children }: Props): React.ReactElement => {
 
   // manage dependencies injection
-  const driven = animeListDrivenAdapter()
-  const driver = animeListDriverAdapter(animeListUsecase(driven), animeListQuery(driven))
+  const drivenRead = animeListDrivenReadAdapter()
+  const drivenWrite = animeListDrivenWriteAdapter()
+  const driver = animeListDriverAdapter(animeListUsecase(drivenRead, drivenWrite), animeListQuery(drivenRead))
 
   return (
       <AnimelistContext.Provider value={{
