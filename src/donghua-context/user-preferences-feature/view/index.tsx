@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-import { FavoritesConfigurator } from '../hooks';
 import { FollowedVideoOwnersConfigurator } from '../hooks';
 import { LastViewsConfigurator } from '../hooks';
 import { VideoSearchHistoryConfigurator } from '../hooks';
@@ -18,9 +17,7 @@ export const UserPreferenceshModule = ({ children }: Props): React.ReactElement 
         <LastViewsConfigurator>
           <FollowedAnimesConfigurator>
           <FollowedVideoOwnersConfigurator>
-            <FavoritesConfigurator>
                 {children}
-            </FavoritesConfigurator>
           </FollowedVideoOwnersConfigurator>
           </FollowedAnimesConfigurator>
         </LastViewsConfigurator>
@@ -28,7 +25,6 @@ export const UserPreferenceshModule = ({ children }: Props): React.ReactElement 
   )
 }
 
-export * from './favorites/Favorites'
 export * from './followings/FollowedAnimes'
 export * from './followings/FollowedOwners'
 export * from './lastviews/LastViews'

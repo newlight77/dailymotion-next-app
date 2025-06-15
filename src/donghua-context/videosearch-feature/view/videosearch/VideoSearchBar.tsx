@@ -17,7 +17,6 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     const useSearchHistory = useVideoSearchHistory();
     const useFollowedAnime = useFollowedAnimes();
     const useLastView = useLastViews();
-    // const useFavorite = useFavorites();
     const useFollowedVideoOwner = useFollowedVideoOwners();
 
     const delay = 1100;
@@ -85,7 +84,6 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
             followedAnimes: useFollowedAnime.items,
             followedOwners: useFollowedVideoOwner.items,
             lastViews: useLastView.items,
-            // favorites: useFavorite.items,
             lastSearches: useSearchHistory.items
         }
 

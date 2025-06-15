@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "My Dailymotion Search",
-  description: "This web site allows to search videos and series with filters, and save search history and favorites",
+  description: "This web site allows to search videos and series with filters, and save search history and follow serie and anime owners",
 };
 
 const routes = [
@@ -27,8 +27,7 @@ const routes = [
   { id: 2, route: '/animelist', label: "anime list" },
   // { id: 3, route: '/schedule', label: "schedule" },
   { id: 4, route: '/history', label: "history" },
-  // { id: 5, route: '/favorites', label: "favorites" },
-  { id: 6, route: '/followings', label: "followings" },
+  { id: 5, route: '/followings', label: "followings" },
 ];
 
 export default function RootLayout({

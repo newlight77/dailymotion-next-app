@@ -1,5 +1,3 @@
-export * from './FavoritesQuery'
-export * from './FavoritesUsecase'
 export * from './FollowedAnimesQuery'
 export * from './FollowedAnimesUsecase'
 export * from './FollowedVideoOwnersQuery'

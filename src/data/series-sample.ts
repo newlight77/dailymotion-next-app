@@ -1,4 +1,4 @@
-const FAVORITES = [
+const SERIES_SAMPLE = [
     { uid: crypto.randomUUID().toString(),  order: 1       , completed: false  ,    title: 'Battle through the Heaven'                                  , originalTitle: '斗破苍穹年番'          , subtitle: ''                                                             , lastEpisode: '125', total: 0 },
     { uid: crypto.randomUUID().toString(),  order: 2       , completed: false  ,    title: 'Perfect world'                                              , originalTitle: '完美世界'             , subtitle: ''                                                             , lastEpisode: '197', total: 0 },
     { uid: crypto.randomUUID().toString(),  order: 3       , completed: false  ,    title: 'Soul land 2 '                                               , originalTitle: '斗罗大陆'             , subtitle: ''                                                             , lastEpisode: '82', total: 0 },
@@ -151,4 +151,4 @@ const FAVORITES = [
     { uid: crypto.randomUUID().toString(),  order:  99999  , completed: false  ,    title: 'Legend of Soldier'                                          , originalTitle: '小兵传奇'                  , subtitle: ''                                                                , lastEpisode: '13', total: 0 },
 ]
 
-export default FAVORITES;
+export default SERIES_SAMPLE;

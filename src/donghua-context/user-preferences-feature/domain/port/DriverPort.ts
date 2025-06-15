@@ -1,13 +1,5 @@
-import { FavoriteType, FollowedAnimeType, FollowedVideoOwnerType, LastViewType, SearchKeywordsType } from "../model"
+import { FollowedAnimeType, FollowedVideoOwnerType, LastViewType, SearchKeywordsType } from "../model"
 
-export type FavoritesDriverPort = {
-  items: () => FavoriteType[],
-  remove: (uid: string) => void,
-  addOrUpdate: (fav: FavoriteType) => void,
-  load: (fav: FavoriteType[]) => void,
-  reset: () => void,
-  clear: () => void
-}
 
 export type FollowedAnimesDriverPort = {
   items: () => FollowedAnimeType[],
