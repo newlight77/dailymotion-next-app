@@ -1,10 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { FaHeartCirclePlus, FaMagnifyingGlass, FaPenToSquare, FaThumbtack } from 'react-icons/fa6';
+import { FaMagnifyingGlass, FaPenToSquare, FaThumbtack } from 'react-icons/fa6';
 import Modal from '@/components/molecules/Modal';
 import { useIsMounted } from '@/shared/useIsMounted';
-import { useFavorites } from '@/donghua-context/user-preferences-feature';
+// import { useFavorites } from '@/donghua-context/user-preferences-feature';
 import { useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
 import { AnimeType } from '../../domain';
 import { useAnimelist } from '../../hooks';
@@ -19,7 +19,7 @@ type Props = {
 
 export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const useAnimes = useAnimelist();
-    const useFavorite = useFavorites();
+    // const useFavorite = useFavorites();
     const useFollowedAnime = useFollowedAnimes();
 
     const isMounted = useIsMounted();
@@ -37,9 +37,9 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         if (mode === 'edit') toggleEditModal()
     }, [id]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [useFavorite.remove, useFollowedAnime.remove])
+    // }, [useFavorite.remove, useFollowedAnime.remove])
 
     function toggleEditModal(): void {
         setEditModal(editModal ? false : true);
@@ -49,13 +49,13 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         setAnime(anime);
     }
 
-    const handleAddToFavorites = async (anime: AnimeType) => {
-        if (isFavorite(anime)) {
-            useFavorite.remove(anime.uid)
-        } else {
-            useFavorite.addOrUpdate({uid: anime.uid, animeId: anime.uid, title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
-        }
-    }
+    // const handleAddToFavorites = async (anime: AnimeType) => {
+    //     if (isFavorite(anime)) {
+    //         useFavorite.remove(anime.uid)
+    //     } else {
+    //         useFavorite.addOrUpdate({uid: anime.uid, animeId: anime.uid, title: anime.title, subtitle: anime.subtitle, originalTitle: anime.originalTitle, order: 1});
+    //     }
+    // }
 
     const handleFollowAnime = async (anime: AnimeType) => {
         // console.log('handleFollowAnime', anime)
@@ -81,10 +81,10 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         return results?.length === 1
     }
 
-    const isFavorite = (anime: AnimeType): boolean => {
-        const results = useFavorite.items?.filter(f => f.title === anime.title)
-        return results?.length === 1
-    }
+    // const isFavorite = (anime: AnimeType): boolean => {
+    //     const results = useFavorite.items?.filter(f => f.title === anime.title)
+    //     return results?.length === 1
+    // }
 
     const keywords = (anime: AnimeType) => encodeURIComponent(`${anime.title} ${anime.lastEpisode ? anime.lastEpisode : ''}`)
 
@@ -121,9 +121,9 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                         <Link href={''} className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
                             <FaThumbtack size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                         </Link>
-                        <Link href={''} className='favoritelink gap-2 p-4' onClick={() => handleAddToFavorites(anime)}>
+                        {/* <Link href={''} className='favoritelink gap-2 p-4' onClick={() => handleAddToFavorites(anime)}>
                             <FaHeartCirclePlus size={36} className={`${isFavorite(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
-                        </Link>
+                        </Link> */}
                         { !editModal &&
                             <Link href={''} className="gap-2 p-4" onClick={toggleEditModal}>
                                 <FaPenToSquare size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>

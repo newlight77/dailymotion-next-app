@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useFavorites, useFollowedAnimes, useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/donghua-context/user-preferences-feature';
+import { useFollowedAnimes, useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/donghua-context/user-preferences-feature';
 import { useSearchVideos } from '../../hooks';
 import { PreferencesType } from '../../domain';
 
@@ -17,7 +17,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     const useSearchHistory = useVideoSearchHistory();
     const useFollowedAnime = useFollowedAnimes();
     const useLastView = useLastViews();
-    const useFavorite = useFavorites();
+    // const useFavorite = useFavorites();
     const useFollowedVideoOwner = useFollowedVideoOwners();
 
     const delay = 1100;
@@ -85,7 +85,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
             followedAnimes: useFollowedAnime.items,
             followedOwners: useFollowedVideoOwner.items,
             lastViews: useLastView.items,
-            favorites: useFavorite.items,
+            // favorites: useFavorite.items,
             lastSearches: useSearchHistory.items
         }
 

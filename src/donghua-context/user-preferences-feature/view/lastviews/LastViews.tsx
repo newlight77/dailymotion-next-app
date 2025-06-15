@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link'
-import { FaUserPlus, FaHeartCirclePlus, FaCirclePlay } from 'react-icons/fa6';
+import { FaUserPlus, FaCirclePlay } from 'react-icons/fa6';
 import RemovableItem from '@/components/molecules/RemovableItem';
 import { useFollowedVideoOwners } from '../../hooks';
 import { useLastViews } from '../../hooks';
-import { useFavorites } from '../../hooks';
+// import { useFavorites } from '../../hooks';
 import { LastViewType } from '../../domain';
 
 
@@ -16,11 +16,11 @@ interface Props {
 export const LastViews: React.FC<Props> = ({ className }) => {
     const useLastView = useLastViews();
     const useFollowing = useFollowedVideoOwners();
-    const useFavorite = useFavorites();
+    // const useFavorite = useFavorites();
 
-    const handleAddToFavorites = async (lastView: LastViewType) => {
-        useFavorite.addOrUpdate({uid: lastView.uid, animeId: '', title: lastView.title, order: 0});
-    }
+    // const handleAddToFavorites = async (lastView: LastViewType) => {
+    //     useFavorite.addOrUpdate({uid: lastView.uid, animeId: '', title: lastView.title, order: 0});
+    // }
 
     const handleFollowOwner = async (lastView: LastViewType) => {
         useFollowing.addOrUpdate({uid: lastView.uid, owner: lastView.owner, order: 0});
@@ -41,9 +41,9 @@ export const LastViews: React.FC<Props> = ({ className }) => {
             <div className='flex flex-col gap-2'>
                 { useLastView.items ?.map(s => (
                     <RemovableItem onDelete={handleDelete} key={s.uid} id={s.uid}>
-                        <Link className='col-span-1' href=''>
+                        {/* <Link className='col-span-1' href=''>
                             <FaHeartCirclePlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleAddToFavorites(s)}/>
-                        </Link>
+                        </Link> */}
                         <Link href={`/video/${s.videoId}`} className="col-span-1">
                             <FaCirclePlay size={32} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
                         </Link>

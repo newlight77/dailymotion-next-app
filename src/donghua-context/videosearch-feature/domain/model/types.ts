@@ -87,7 +87,7 @@ export type PreferencesType = {
   followedAnimes?: FollowedAnimeType[], // Array of followed anime IDs
   followedOwners?: FollowedVideoOwnerType[], // Array of followed owner usernames
   lastViews?: LastViewType[] // Array of last search keywords
-  favorites?: FavoriteType[], // Array of favorite video IDs
+  // favorites?: FavoriteType[], // Array of favorite video IDs
   lastSearches?: SearchKeywordsType[] // Array of last search keywords
 }
 
