@@ -69,7 +69,7 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
         <div className={`${className} p-2 md:hover:border border-gold rounded-md`}>
             <div className='relative -z-1'>
                 <div className='grid grid-rows-4 pt-5 absolute translate-y-14'>
-                    <Link href={`/?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
+                    <Link href={`/videosearch?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
                         <FaMagnifyingGlass size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                     </Link>
                     <Link href={''} className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>

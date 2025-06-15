@@ -52,7 +52,7 @@ export const LastViews: React.FC<Props> = ({ className }) => {
                             <span className='p-1 text-tertiary'>{`${s.owner}`}</span>
                         </Link>
 
-                        <Link className="col-span-8" href={`/?keywords=${keywords(s)}`} >
+                        <Link className="col-span-8" href={`/videosearch?keywords=${keywords(s)}`} >
                             <div className="col-span-5 hover:text-tertiary" >
                                 <div className='underline underline-offset-4 decoration-primary'>{s.title}</div>
                                 { s.episode ? <div>{s.episode}</div> : <></>}

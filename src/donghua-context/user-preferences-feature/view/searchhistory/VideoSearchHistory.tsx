@@ -31,7 +31,7 @@ export const VideoSearchHistory: React.FC<SearchBarProps> = ({ className }) => {
             <div className='flex flex-col gap-2'>
                 { useSearchHistory.items?.map(s => (
                     <RemovableItem onDelete={handleDelete} key={s.uid} id={s.uid}>
-                        <Link className="pl-2 col-span-11" href={`/?keywords=${keywords(s.keywords)}`} >
+                        <Link className="pl-2 col-span-11" href={`/videosearch?keywords=${keywords(s.keywords)}`} >
                             <div className="col-span-5 hover:text-tertiary" >
                                 <div className='underline underline-offset-4 decoration-primary'>{s.keywords}</div>
                             </div>

@@ -3,12 +3,10 @@ import { VideoSearchParamsType, VideoSearchWithScoreResponse, VideoWithScoreType
 import { VideoSearchDrivenPort } from "../port";
 
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type VideoSearchUseCaseType = {
   search: (searchParams: VideoSearchParamsType, prefs?: PreferencesType) => Promise<VideoSearchWithScoreResponse>,
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const videoSearchUsecase = (port: VideoSearchDrivenPort): VideoSearchUseCaseType => {
 
   // this is a query use case

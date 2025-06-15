@@ -1,32 +1,15 @@
 "use client"
 
-import React, { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation'
-import { VideoSearch } from '@/donghua-context/videosearch-feature';
-
-const VideoSearchWithParams: React.FC = () => {
-    const searchParams = useSearchParams()
-    const newKeywords = searchParams.get('keywords') || ''
-
-    return (
-        <VideoSearch
-            keywords={newKeywords}>
-        </VideoSearch>
-    );
-}
+import React from 'react';
+import AnimelistPage from './animelist/page';
 
 
-const VideoSearchPage: React.FC = () => {
-
+const HomePage: React.FC = () => {
     return (
         <div className="w-full">
-            <h2 className='title text-3xl m-1 md:p-4 capitalize'>search videos</h2>
-
-            <Suspense>
-                <VideoSearchWithParams></VideoSearchWithParams>
-            </Suspense>
+            <AnimelistPage/>
         </div>
     );
 };
 
-export default VideoSearchPage;
+export default HomePage;

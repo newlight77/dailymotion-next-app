@@ -91,7 +91,7 @@ export const FollowedAnimes: React.FC<Props> = ({className}) => {
             <div className='flex flex-col gap-2 p-2'>
                 { useFollowedAnime.items ?.map(s => (
                     <RemovableItem onDelete={useFollowedAnime.remove} key={s.uid} id={s.uid}>
-                        <Link className="col-span-11" href={`/?keywords=${keywords(s)}`} >
+                        <Link className="col-span-11" href={`/videosearch?keywords=${keywords(s)}`} >
                             <div className="col-span-5 hover:text-tertiary" >
                                 <div className='underline underline-offset-4 decoration-primary'>{s.title}</div>
                                 { s.originalTitle ? <div className='pr-2 w-fit'>{s.originalTitle}</div> : <></>}
