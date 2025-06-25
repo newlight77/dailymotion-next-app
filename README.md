@@ -36,6 +36,24 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## TODO
+
+- there is a small bug
+
+```
+While editing an anime, I can search videos with the anime title and episode.
+Upon search via the search icon, I'm navigated to the search page, but the search keywords is empty.
+```
+
+- next feature
+
+```
+Usually, I browse a list of animes with filters (ony followed checked, excluded completed checked and only with updates checked).
+On the list, typically the ones I follow, I want to know which was the last episode I have watched for each anime.
+And from that knowledge, I can search video for an anime based its title and the last episode I viewed.
+And the search will use the exact same keywords from the viewed video.
+```
+
 ## Documentation
 
 Refer the schema under /docs :
