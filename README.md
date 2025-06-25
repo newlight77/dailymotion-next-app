@@ -47,11 +47,28 @@ Upon search via the search icon, I'm navigated to the search page, but the searc
 
 - next feature
 
+Feature: display last viewed episode per anime in the list
 ```
 Usually, I browse a list of animes with filters (ony followed checked, excluded completed checked and only with updates checked).
-On the list, typically the ones I follow, I want to know which was the last episode I have watched for each anime.
+On the list, typically the ones I follow, I want to know which was the last episode I have viewed for each anime.
 And from that knowledge, I can search video for an anime based its title and the last episode I viewed.
 And the search will use the exact same keywords from the viewed video.
+```
+
+Feature : exclude short films
+```
+In the anime list page, I want to be able to exclude short films, that have length of less than 10 minutes.
+Short films are characterized by the frequency of 2 updates weekly, while long films have only one update per week.
+```
+
+Feature : list of watched anime (all episodes viewed) in my history
+```
+I want to track all watched animes, so I can add a filter to exclude watched anime in the list.
+```
+
+Feature : new anime (not followed)
+```
+I want to tag new animes in the list, that are not yet viewed, with a filter as well.
 ```
 
 ## Documentation
