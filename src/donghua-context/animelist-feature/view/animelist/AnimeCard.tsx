@@ -49,32 +49,33 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
 
     return (
         <div className={`${className} p-2 md:hover:border border-gold rounded-md`}>
-            <div className='relative -z-1'>
+            <div className='grid'>
                 <div className='grid grid-rows-4 pt-5 absolute translate-y-14'>
                     <Link href={`/videosearch?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
-                        <FaMagnifyingGlass size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                        <FaMagnifyingGlass size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
                     <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                        <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
+                        <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                     </Link>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
-                        <FaPenToSquare size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                        <FaPenToSquare size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
                     <Link href={``} about="increase episode" aria-label="increase episode" className="pluslink gap-2 p-4" onClick={() => handleIncraseEpisode(anime)}>
-                        <FaFileCirclePlus aria-label="increase episode" size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                        <FaFileCirclePlus aria-label="increase episode" size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
                 </div>
-                <div className='title p-2 m-1 absolute translate-x-72 translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondary-variant justify-self-end'>{anime.originalTitle}</div>
+                <div className='title p-2 m-1 absolute translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondary-variant justify-self-end'>{anime.originalTitle}</div>
+                {/* <div className='title p-2 m-1 absolute translate-x-3 translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondaryVariant place-self-end place-items-end place-content-end self-end items-end content-end justify-self-end justify-items-end justify-end'>{anime.originalTitle}</div> */}
 
-                <Link className='thumbnaillink' href={`/animelist/${anime.uid}`}>
-                    <Image className='anime max-h-screen h-128' src={anime.thumbnail || ''} alt={anime.title} width={480} height={480} />
-                </Link>
             </div>
+            <Link className='thumbnaillink' href={`/animelist/${anime.uid}`}>
+                <Image className='anime max-h-screen h-128' src={anime.thumbnail || ''} alt={anime.title} width={480} height={480} />
+            </Link>
             <div className=''>
                 <Link className='titlelink'
                     href={`/animelist/${anime.uid}`}>
                     <div className='title h-12 font-extrabold text-xl text-wrap text-tertiary underline underline-offset-4 decoration-primary'>{anime.title}</div>
-                    <div className='title py-2 h-8 text-sm text-wrap text-tertiary decoration-primaryVariant'>{anime.subtitle}</div>
+                    <div className='title py-2 h-8 text-sm text-wrap text-tertiary decoration-primary-variant'>{anime.subtitle}</div>
                 </Link>
                 <div className='description text-sm text-wrap pt-4 h-10 '>{`${anime.summary.substring(0, 140)} ...`}</div>
                 <div className='content pt-12'>

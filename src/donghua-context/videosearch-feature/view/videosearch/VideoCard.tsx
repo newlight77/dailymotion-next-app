@@ -59,20 +59,20 @@ export const VideoCard: React.FC<VideoCardProps> = ({video, className}) => {
             <div className='relative'>
                 <div className='grid grid-rows-2 pt-5 absolute translate-y-8 '>
                     <Link className='videoLink mb-4 flex gap-2 px-4' href={`https://www.dailymotion.com/video/${video.id}`}>
-                        <FaCirclePlay size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant"/>
-                        <div className='bg-secondaryVariant rounded-md px-2 content-center border border-tertiaryVariant outline outline-tertiaryVariant'>on dailymotion</div>
+                        <FaCirclePlay size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondary-variant border border-tertiary-variant outline outline-tertiary-variant"/>
+                        <div className='bg-secondary-variant rounded-md px-2 content-center border border-tertiary-variant outline outline-tertiary-variant'>on dailymotion</div>
                     </Link>
                     <Link className='followinglink mb-4 flex gap-2 px-4'
                         href={''} about="follow owner" aria-label="follow owner"
                         onClick={() => handleFollowOwner(video)}>
-                        <FaThumbtack size={36} className={`${isFollowed(video) ? 'text-tertiary' : ''} p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant`}/>
-                        <span className='p-1 bg-secondaryVariant rounded-md px-2 content-center border border-tertiaryVariant outline outline-tertiaryVariant'>{`${video.ownerUsername}`}</span>
+                        <FaThumbtack size={36} className={`${isFollowed(video) ? 'text-tertiary' : ''} p-2 hover:border rounded-md border-tertiary bg-secondary-variant border border-tertiary-variant outline outline-tertiary-variant`}/>
+                        <span className='p-1 bg-secondary-variant rounded-md px-2 content-center border border-tertiary-variant outline outline-tertiary-variant'>{`${video.ownerUsername}`}</span>
                     </Link>
                 </div>
                 <Link className='thumbnaillink' href={`/video/${video.id}`} target="_blank" onClick={() => handleViewVideo(video)}>
                     <Image className='video sm:w-112 md:w-full md:h-96' src={video.thumbnail_480_url} alt={video.title} width={480} height={480} />
                     <FaCirclePlay size={52} className="absolute inset-0 m-auto"/>
-                    <div className='absolute -translate-y-14 px-2 py-1 ml-4 mb-4 gap-2 w-fit bg-secondaryVariant rounded-lg border border-tertiaryVariant outline outline-tertiaryVariant'>{displayDurationInHMS(video.duration)}</div>
+                    <div className='absolute -translate-y-14 px-2 py-1 ml-4 mb-4 gap-2 w-fit bg-secondary-variant rounded-lg border border-tertiary-variant outline outline-tertiary-variant'>{displayDurationInHMS(video.duration)}</div>
                 </Link>
             </div>
 

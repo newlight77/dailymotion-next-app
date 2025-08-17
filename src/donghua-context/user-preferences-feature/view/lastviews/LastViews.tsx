@@ -36,10 +36,10 @@ export const LastViews: React.FC<Props> = ({ className }) => {
                 { useLastView.items ?.map(s => (
                     <RemovableItem onDelete={handleDelete} key={s.uid} id={s.uid}>
                         <Link href={`/video/${s.videoId}`} className="col-span-1">
-                            <FaCirclePlay size={32} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant"/>
+                            <FaCirclePlay size={32} className="p-2 hover:border rounded-md border-tertiary bg-secondary-variant"/>
                         </Link>
                         <Link href={''} className="col-span-5 flex" onClick={() => handleFollowOwner(s)}>
-                            <FaUserPlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={() => handleFollowOwner(s)}/>
+                            <FaUserPlus size={36} className="p-2 hover:border rounded-md border-tertiary bg-secondary-variant" onClick={() => handleFollowOwner(s)}/>
                             <span className='p-1 text-tertiary'>{`${s.owner}`}</span>
                         </Link>
 

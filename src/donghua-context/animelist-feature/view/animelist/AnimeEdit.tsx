@@ -63,11 +63,11 @@ export const AnimeEdit: React.FC<Props> = ({mode = 'new', editedAnime = blankAni
     return (
         <div className='w-full'>
             <form onSubmit={handleSubmit} className='grid grid-cols-12 gap-2 p-1 items-center'>
-                <select className='p-2 m-1 col-span-6 bg-secondaryVariant border border-primary rounded' name="type" value={anime.type} onChange={handleChange}>
+                <select className='p-2 m-1 col-span-6 bg-secondary-variant border border-primary rounded' name="type" value={anime.type} onChange={handleChange}>
                     <option value="movie">Movie</option>
                     <option value="series">Series</option>
                 </select>
-                <select className='p-2 m-1 col-span-6 bg-secondaryVariant border border-primary rounded' name="status" value={anime.status} onChange={handleChange}>
+                <select className='p-2 m-1 col-span-6 bg-secondary-variant border border-primary rounded' name="status" value={anime.status} onChange={handleChange}>
                     <option value="completed">Completed</option>
                     <option value="ongoing">Ongoing</option>
                 </select>

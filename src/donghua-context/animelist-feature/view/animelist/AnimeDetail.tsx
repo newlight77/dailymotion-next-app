@@ -97,14 +97,14 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                 <div className='flex flex-wrap p-2'>
                     <div className='grid grid-rows-4 pt-5 absolute translate-y-8'>
                         <Link href={`/?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
-                            <FaMagnifyingGlass size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                            <FaMagnifyingGlass size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                         </Link>
                         <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                            <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
+                            <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                         </Link>
                         { !editModal &&
                             <Link href={''} className="gap-2 p-4" onClick={toggleEditModal}>
-                                <FaPenToSquare size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                                <FaPenToSquare size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                             </Link>
                         }
                     </div>

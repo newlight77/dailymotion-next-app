@@ -32,11 +32,11 @@ const Modal: React.FC<Props> = ({ title, children, className, onClose }) => {
     };
 
     const modalContent = (
-        <div className={`${className} modal-overlay fixed z-999 p-4 w-full rounded-lg bg-secondaryVariant bottom-0`}>
+        <div className={`${className} modal-overlay fixed z-999 p-4 w-full rounded-lg bg-secondary-variant bottom-0`}>
               <div className="modal z-1000 border rounded-lg border-tertiary bg-secondary p-4">
                   <div className="modal-header flex text-xl">
-                      <FaXmark size={36} className="p-1 close hover:border rounded-md border-tertiary bg-secondaryVariant" onClick={handleCloseClick}/>
-                      {title && <h3 className="px- py-1 mx-2 bg-secondaryVariant rounded-md w-full">{title}</h3>}
+                      <FaXmark size={36} className="p-1 close hover:border rounded-md border-tertiary bg-secondary-variant" onClick={handleCloseClick}/>
+                      {title && <h3 className="px- py-1 mx-2 bg-secondary-variant rounded-md w-full">{title}</h3>}
                     </div>
                   <div className="modal-body pt-4">{children}</div>
               </div>
