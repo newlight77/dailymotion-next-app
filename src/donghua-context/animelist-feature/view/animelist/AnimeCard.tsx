@@ -64,7 +64,7 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                         <FaFileCirclePlus aria-label="increase episode" size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                     </Link>
                 </div>
-                <div className='title p-2 m-1 absolute translate-x-3 translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondaryVariant place-self-end place-items-end place-content-end self-end items-end content-end justify-self-end justify-items-end justify-end'>{anime.originalTitle}</div>
+                <div className='title p-2 m-1 absolute translate-x-72 translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondary-variant justify-self-end'>{anime.originalTitle}</div>
 
                 <Link className='thumbnaillink' href={`/animelist/${anime.uid}`}>
                     <Image className='anime max-h-screen h-128' src={anime.thumbnail || ''} alt={anime.title} width={480} height={480} />
