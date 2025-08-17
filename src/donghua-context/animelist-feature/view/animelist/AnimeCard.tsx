@@ -54,14 +54,14 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                     <Link href={`/videosearch?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
                         <FaMagnifyingGlass size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                     </Link>
-                    <Link href={''} className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                        <FaThumbtack size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
+                    <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
+                        <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                     </Link>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
                         <FaPenToSquare size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                     </Link>
-                    <Link href={``} className="pluslink gap-2 p-4" onClick={() => handleIncraseEpisode(anime)}>
-                        <FaFileCirclePlus size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
+                    <Link href={``} about="increase episode" aria-label="increase episode" className="pluslink gap-2 p-4" onClick={() => handleIncraseEpisode(anime)}>
+                        <FaFileCirclePlus aria-label="increase episode" size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                     </Link>
                 </div>
                 <div className='title p-2 m-1 absolute translate-x-3 translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondaryVariant place-self-end place-items-end place-content-end self-end items-end content-end justify-self-end justify-items-end justify-end'>{anime.originalTitle}</div>

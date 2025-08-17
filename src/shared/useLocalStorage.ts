@@ -10,7 +10,7 @@ export function useLocalStorage<S> (key: string, defaultValue?: S):
 
     const [value, setValue] = useState(initValue);
 
-    function getStorageValue(key: string, defaultValue?: S): S {
+    function getStorageValue(key: string, defaultValue?: S): S | undefined {
         const saved = typeof window !== 'undefined' ? localStorage.getItem(key) : undefined;
         // console.log(`useLocalStorage ${key} saved=`, saved);
         return saved ? JSON.parse(saved): (defaultValue);

@@ -63,7 +63,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({video, className}) => {
                         <div className='bg-secondaryVariant rounded-md px-2 content-center border border-tertiaryVariant outline outline-tertiaryVariant'>on dailymotion</div>
                     </Link>
                     <Link className='followinglink mb-4 flex gap-2 px-4'
-                        href={''}
+                        href={''} about="follow owner" aria-label="follow owner"
                         onClick={() => handleFollowOwner(video)}>
                         <FaThumbtack size={36} className={`${isFollowed(video) ? 'text-tertiary' : ''} p-2 hover:border rounded-md border-tertiary bg-secondaryVariant border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                         <span className='p-1 bg-secondaryVariant rounded-md px-2 content-center border border-tertiaryVariant outline outline-tertiaryVariant'>{`${video.ownerUsername}`}</span>

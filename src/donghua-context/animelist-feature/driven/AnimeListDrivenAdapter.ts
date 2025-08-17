@@ -1,11 +1,22 @@
-import { useStorage } from "@/shared/useStorage";
 import { AnimeListDrivenPort } from "../domain";
 import { AnimeType } from "../domain";
 
+type StorageType = {
+  item: AnimeType | undefined;
+  items: AnimeType[] | undefined;
+  remove: (uid: string) => void;
+  addOrUpdate: (value: AnimeType) => void;
+  loadData: (data: AnimeType[]) => void;
+  reset: () => void;
+  clear: () => void;
+};
 
 class AnimeListDrivenAdapter implements AnimeListDrivenPort {
+  private storage: StorageType;
 
-  private storage = useStorage<AnimeType>(`animelist`, []);
+  constructor(storage: StorageType) {
+    this.storage = storage;
+  }
 
   findById = async (uid: string): Promise<AnimeType | undefined> => {
     try {
@@ -85,7 +96,6 @@ class AnimeListDrivenAdapter implements AnimeListDrivenPort {
   reset = () => {
     this.storage.clear()
   }
-
 }
 
-export const animeListDrivenAdapter = () => new AnimeListDrivenAdapter();
+export const animeListDrivenAdapter = (storage: StorageType) => new AnimeListDrivenAdapter(storage);

@@ -5,7 +5,7 @@ import { animeListQuery, AnimeType } from '../domain';
 import { animeListUsecase } from '../domain';
 import { animeListDriverAdapter } from '../driver';
 import { animeListDrivenAdapter } from '../driven';
-
+import { useStorage } from "@/shared/useStorage";
 
 
 interface AnimelistContextType {
@@ -31,7 +31,8 @@ type Props = {
 export const AnimeListConfigurator = ({ children }: Props): React.ReactElement => {
 
   // manage dependencies injection
-  const driven = animeListDrivenAdapter()
+  const storage = useStorage<AnimeType>(`animelist`, []);
+  const driven = animeListDrivenAdapter(storage)
   const driver = animeListDriverAdapter(animeListUsecase(driven), animeListQuery(driven))
 
   return (

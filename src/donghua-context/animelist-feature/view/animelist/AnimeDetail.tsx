@@ -99,8 +99,8 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                         <Link href={`/?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
                             <FaMagnifyingGlass size={36} className="p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant"/>
                         </Link>
-                        <Link href={''} className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                            <FaThumbtack size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
+                        <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
+                            <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondaryVariant rounded-md border border-tertiaryVariant outline outline-tertiaryVariant`}/>
                         </Link>
                         { !editModal &&
                             <Link href={''} className="gap-2 p-4" onClick={toggleEditModal}>
