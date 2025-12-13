@@ -116,20 +116,29 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                         height={480} />
                     <div className='flex flex-col px-2 md:w-1/2'>
                         <h3 className='title text-3xl p-4 capitalize'>{anime.title}</h3>
-                        <div className='p-1 md:px-4'>{anime.originalTitle}</div>
-                        <div className='p-1 md:px-4'>{anime.subtitle}</div>
-                        <div className='p-1 md:px-4'>{anime.summary}</div>
+                        {anime.originalTitle && <div className='p-1 md:px-4'><strong>Original Title:</strong> {anime.originalTitle}</div>}
+                        {anime.subtitle && <div className='p-1 md:px-4'><strong>Subtitle:</strong> {anime.subtitle}</div>}
+                        <div className='p-1 md:px-4'><strong>Summary:</strong> {anime.summary}</div>
+
                         <div className='grid grid-cols-2 gap-2 p-4 md:px-4'>
-                            <div className='p-1 md:px-4'>type: {anime.type}</div>
-                            <div className='p-1 md:px-4'>status: {anime.status}</div>
-                            <div className='p-1 md:px-4'>update every: { anime.updateDays }</div>
-                            {/* <div className='p-1 md:px-4'>published by: {anime.publishedBy}</div> */}
-                            {/* <div className='p-1 md:px-4'>published: {anime.publishedAt.toISOString().split('T')[0]}</div> */}
-                            <div className='p-1 md:px-4'>first episode of season (global number): {anime.firstSeasonEpisode}</div>
-                            <div className='p-1 md:px-4'>last episode of season (season number): {anime.lastSeasonEpisode}</div>
-                            <div className='p-1 md:px-4'>total episode of season: {anime.totalSeasonEpisodes}</div>
-                            <div className='p-1 md:px-4'>last episode (global number): {anime.lastEpisode}</div>
-                            <div className='p-1 md:px-4'>total episodes: {anime.totalEpisodes}</div>
+                            <div className='p-1 md:px-4'><strong>UID:</strong> {anime.uid}</div>
+                            <div className='p-1 md:px-4'><strong>Type:</strong> {anime.type}</div>
+                            <div className='p-1 md:px-4'><strong>Status:</strong> {anime.status}</div>
+                            <div className='p-1 md:px-4'><strong>Studio:</strong> {anime.studio}</div>
+                            <div className='p-1 md:px-4'><strong>Published By:</strong> {anime.publishedBy}</div>
+                            <div className='p-1 md:px-4'><strong>Update Days:</strong> {anime.updateDays || 'N/A'}</div>
+                            <div className='p-1 md:px-4'><strong>Published At:</strong> {anime.publishedAt ? new Date(anime.publishedAt).toLocaleDateString() : 'N/A'}</div>
+                            <div className='p-1 md:px-4'><strong>Release At:</strong> {anime.releaseAt ? new Date(anime.releaseAt).toLocaleDateString() : 'N/A'}</div>
+                            <div className='p-1 md:px-4'><strong>Updated At:</strong> {anime.updatedAt ? new Date(anime.updatedAt).toLocaleDateString() : 'N/A'}</div>
+                            <div className='p-1 md:px-4'><strong>Thumbnail Filename:</strong> {anime.thumbnailFilename || 'N/A'}</div>
+                        </div>
+
+                        <div className='grid grid-cols-2 gap-2 p-4 md:px-4 border-t border-gray-300 mt-4'>
+                            <div className='p-1 md:px-4'><strong>First Episode of Season (Global):</strong> {anime.firstSeasonEpisode ?? 'N/A'}</div>
+                            <div className='p-1 md:px-4'><strong>Last Episode of Season (Season #):</strong> {anime.lastSeasonEpisode ?? 'N/A'}</div>
+                            <div className='p-1 md:px-4'><strong>Total Episodes of Season:</strong> {anime.totalSeasonEpisodes ?? 'N/A'}</div>
+                            <div className='p-1 md:px-4'><strong>Last Episode (Global):</strong> {anime.lastEpisode ?? 'N/A'}</div>
+                            <div className='p-1 md:px-4'><strong>Total Episodes:</strong> {anime.totalEpisodes ?? 'N/A'}</div>
                         </div>
                     </div>
                 </div>

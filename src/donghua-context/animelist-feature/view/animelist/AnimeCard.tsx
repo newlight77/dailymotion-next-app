@@ -86,6 +86,10 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                         <div className='ml-2'>{anime.lastSeasonEpisode} {`${anime.status === 'completed' ? '/ ' + anime.totalSeasonEpisodes : ''}`}</div>
                         <div className='ml-2'>last episode:</div>
                         <div className='ml-2'>{anime.lastEpisode} {`${anime.status === 'completed' ? '/ ' + anime.totalEpisodes : ''}`}</div>
+                        <div className='ml-2'>published:</div>
+                        <div className='ml-2 text-xs'>{anime.publishedAt ? new Date(anime.publishedAt).toLocaleDateString() : 'N/A'}</div>
+                        <div className='ml-2'>released:</div>
+                        <div className='ml-2 text-xs'>{anime.releaseAt ? new Date(anime.releaseAt).toLocaleDateString() : 'N/A'}</div>
                     </div>
                 </div>
             </div>
