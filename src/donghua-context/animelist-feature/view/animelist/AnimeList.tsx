@@ -98,18 +98,75 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const todayWeekDay = new Date().getDay();
 
-        if (!anime.updateDays) {
-          return 0;
-        }
-
-        for (let i = 0; i < 7; i++) {
-          const day = daysOfWeek[(todayWeekDay + i) % 7].toLowerCase();
-          if (anime.updateDays.toLowerCase().includes(day)) {
-            return 7 - i;
+        // Score based on update days (0-7)
+        let updateDaysScore = 0;
+        if (anime.updateDays) {
+          for (let i = 0; i < 7; i++) {
+            const day = daysOfWeek[(todayWeekDay + i) % 7].toLowerCase();
+            if (anime.updateDays.toLowerCase().includes(day)) {
+              updateDaysScore = 7 - i;
+              break;
+            }
           }
         }
 
-        return 0;
+        // Score based on updatedAt (latest has higher score)
+        let updatedAtScore = 0;
+        if (anime.updatedAt) {
+          const updatedDate = new Date(anime.updatedAt);
+          const now = new Date();
+          const daysSinceUpdated = Math.floor((now.getTime() - updatedDate.getTime()) / (1000 * 60 * 60 * 24));
+
+          // Calculate score: recently updated items get higher scores
+          // Items updated in last 30 days: +10 points
+          // Items updated in last 90 days: +7 points
+          // Items updated in last 180 days: +5 points
+          // Items updated in last year: +3 points
+          // Items updated in last 2 years: +1 point
+          // Older items: +0 points
+          if (daysSinceUpdated <= 30) {
+            updatedAtScore = 10;
+          } else if (daysSinceUpdated <= 90) {
+            updatedAtScore = 7;
+          } else if (daysSinceUpdated <= 180) {
+            updatedAtScore = 5;
+          } else if (daysSinceUpdated <= 365) {
+            updatedAtScore = 3;
+          } else if (daysSinceUpdated <= 730) {
+            updatedAtScore = 1;
+          }
+        }
+
+        // Score based on publishedAt (latest has higher score)
+        let publishedAtScore = 0;
+        if (anime.publishedAt) {
+          const publishedDate = new Date(anime.publishedAt);
+          const now = new Date();
+          const daysSincePublished = Math.floor((now.getTime() - publishedDate.getTime()) / (1000 * 60 * 60 * 24));
+
+          // Calculate score: recently published items get higher scores
+          // Items published in last 30 days: +10 points
+          // Items published in last 90 days: +7 points
+          // Items published in last 180 days: +5 points
+          // Items published in last year: +3 points
+          // Items published in last 2 years: +1 point
+          // Older items: +0 points
+          if (daysSincePublished <= 30) {
+            publishedAtScore = 10;
+          } else if (daysSincePublished <= 90) {
+            publishedAtScore = 7;
+          } else if (daysSincePublished <= 180) {
+            publishedAtScore = 5;
+          } else if (daysSincePublished <= 365) {
+            publishedAtScore = 3;
+          } else if (daysSincePublished <= 730) {
+            publishedAtScore = 1;
+          }
+        }
+
+        // Combine scores: updateDaysScore is multiplied by 3, then add both date scores
+        // This gives priority to items with upcoming updates, but also considers recency
+        return (updateDaysScore * 3) + updatedAtScore + publishedAtScore;
     }
 
     const isFollowed = (anime: AnimeType): boolean => {
