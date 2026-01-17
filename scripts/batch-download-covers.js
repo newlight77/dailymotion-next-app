@@ -80,11 +80,14 @@ function loadList() { return JSON.parse(fs.readFileSync(ANIMELIST_PATH, 'utf-8')
 function saveList(list) { fs.writeFileSync(ANIMELIST_PATH, JSON.stringify(list, null, 2) + '\n', 'utf-8'); }
 
 async function processEntry(entry) {
-  // skip if already local
+  // skip if already local and file exists
   if (!entry) return { skipped: true };
-  if (String(entry.thumbnail || '').startsWith('/uploads/')) return { skipped: true };
+  const thumb = String(entry.thumbnail || '');
+  const isLocal = thumb.startsWith('/uploads/');
+  const localPath = isLocal ? path.resolve(process.cwd(), `public${thumb}`) : '';
+  if (isLocal && localPath && fs.existsSync(localPath)) return { skipped: true };
   const rel = (dateStr) => { try { return Date.parse(dateStr); } catch { return 0; } };
-  const shouldProcess = (rel(entry.releaseAt) >= CUTOFF) || (rel(entry.updatedAt) >= CUTOFF);
+  const shouldProcess = (rel(entry.releaseAt) >= CUTOFF) || (rel(entry.updatedAt) >= CUTOFF) || (isLocal && localPath && !fs.existsSync(localPath));
   if (!shouldProcess) return { skipped: true };
 
   const title = entry.title || entry.originalTitle || '';
