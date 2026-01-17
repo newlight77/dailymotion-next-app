@@ -8,7 +8,7 @@ const UpcomingScheduleFeaturedRegion = dynamic(
 );
 
 const FeaturedNewSeriesRegion = dynamic(
-    () => import('@/donghua-context/animelist-feature/view/featured/FeaturedNewSeriesRegion').then(m => m.FeaturedNewSeriesRegion),
+    () => import('@/donghua-context/schedule-feature').then(m => m.FeaturedNewSeriesRegion),
     { ssr: false }
 );
 

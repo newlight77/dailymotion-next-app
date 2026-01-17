@@ -15,3 +15,4 @@ export const ScheduleModule = ({ children }: Props): React.ReactElement => {
 }
 
 export * from './schedule/UpcomingScheduleFeaturedRegion'
+export * from './new-series/FeaturedNewSeriesRegion'
