@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "add-anime": "node ./scripts/add-anime.js",
+    "update-official-thumbs": "node ./scripts/update-official-thumbs.js",
+    "download-covers": "node ./scripts/batch-download-covers.js",
     "postinstall": "prisma generate"
   },
   "dependencies": {
