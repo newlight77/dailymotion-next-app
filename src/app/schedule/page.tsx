@@ -7,10 +7,16 @@ const UpcomingScheduleFeaturedRegion = dynamic(
     { ssr: false }
 );
 
+const FeaturedNewSeriesRegion = dynamic(
+    () => import('@/donghua-context/animelist-feature/view/featured/FeaturedNewSeriesRegion').then(m => m.FeaturedNewSeriesRegion),
+    { ssr: false }
+);
+
 
 const SchedulePage: React.FC = () => {
     return (
         <div className='w-full'>
+            <FeaturedNewSeriesRegion />
             <UpcomingScheduleFeaturedRegion />
         </div>
     );
