@@ -30,6 +30,12 @@ help: ## display this help screen
 seed:
 	@npx prisma db seed
 
+# add-anime: add a title to prisma/animelist.json and optionally seed DB
+# usage: make add-anime TITLE="The Other Side of Deep Space" [SEED=1]
+add-anime: ## add an anime by title to `prisma/animelist.json` and optionally run `make seed` (use TITLE="...")
+	@if [ -z "$(TITLE)" ]; then echo "usage: make add-anime TITLE=\"<title>\" [SEED=1]"; exit 1; fi
+	@node ./scripts/add-anime.js --title "$(TITLE)" $(if $(SEED),--seed,)
+
 migrate:
 	@npx prisma migrate dev --name first_prisma_migration
 
