@@ -1,5 +1,6 @@
 "use client"
 import Link from 'next/link';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { FaTimes, FaBars } from 'react-icons/fa';
 import donghua from '../../../public/donghua.png';
@@ -33,7 +34,7 @@ const NavBar: React.FC<Props> = ({routes}) => {
       </div>
 
       <Link href={'/'} className="ml-2 px-2 flex">
-        <img className='p-1' style={{ objectFit: 'scale-down', width: 60, height: 60 }} src={donghua.src} alt="donghua" />
+        <Image className='p-1' style={{ objectFit: 'scale-down', width: 60, height: 60 }} src={donghua} alt="donghua" />
         <div className='py-2 pl-4 pr-1 underline underline-offset-4 font-bold text-3xl '>donghua</div>
         {/* <div className='py-2 px-1 underline underline-offset-4 font-bold text-3xl '>animation</div> */}
       </Link>

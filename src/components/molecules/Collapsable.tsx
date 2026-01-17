@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Link from 'next/link'
 
 interface CollapsableProps {
@@ -12,13 +12,13 @@ interface CollapsableProps {
 const Collapsable: React.FC<CollapsableProps> = ({ title, collapsedLabel, children, className, hideShow }) => {
     const [show, setShow] = React.useState(false)
 
-    const toggleShowHide = () => {
+    const toggleShowHide = useCallback(() => {
         setShow(!show);
-    }
+    }, [show]);
 
     useEffect(() => {
         toggleShowHide()
-    }, [setShow, hideShow]);
+    }, [hideShow, toggleShowHide]);
 
     return (
         <div className={className}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFollowedAnimes, useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/donghua-context/user-preferences-feature';
 import { useSearchVideos } from '../../hooks';
 import { PreferencesType } from '../../domain';
@@ -20,12 +20,12 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     const useFollowedVideoOwner = useFollowedVideoOwners();
 
     const delay = 1100;
-    let timerId: NodeJS.Timeout = setTimeout(() => {}, delay);;
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-    function debounce(callback: () => void, timeout: number) {
-        clearTimeout(timerId);
-        timerId = setTimeout(() => callback(), timeout);
-    }
+    const debounce = useCallback((callback: () => void, timeout: number) => {
+        if (timerRef.current) clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => callback(), timeout);
+    }, []);
 
     useEffect(() => {
         // console.log('SearchBar newKeywords', newKeywords);
@@ -47,12 +47,29 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
             setDebouncedInpout(localStorage.getItem('last-search') || '')
             return
         }
-    }, [newKeywords]);
+    }, [newKeywords, keywords, debouncedInpout]);
+
+    const handleVideoSearch = useCallback(async () => {
+
+        const prefs: PreferencesType = {
+            strictSearch: strictSearch,
+            followedAnimes: useFollowedAnime.items,
+            followedOwners: useFollowedVideoOwner.items,
+            lastViews: useLastView.items,
+            lastSearches: useSearchHistory.items
+        }
+
+        useSearchVideo.search(keywords, prefs)
+
+        // console.log('SearchBar handleSearch with keywords', keywords);
+        localStorage.setItem('last-search', keywords);
+        useSearchHistory.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: keywords});
+    }, [keywords, strictSearch, useFollowedAnime.items, useFollowedVideoOwner.items, useLastView.items, useSearchHistory, useSearchVideo]);
 
     useEffect(() => {
         // console.log('SearchBar keywords', keywords);
         if (keywords !== '') handleVideoSearch()
-    }, [keywords, strictSearch]);
+    }, [keywords, strictSearch, handleVideoSearch]);
 
     // useEffect(() => {
     //     if (debouncedInpout !== '') setKeywords(keywords)
@@ -77,22 +94,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
         }
     };
 
-    const handleVideoSearch = async () => {
-
-        const prefs: PreferencesType = {
-            strictSearch: strictSearch,
-            followedAnimes: useFollowedAnime.items,
-            followedOwners: useFollowedVideoOwner.items,
-            lastViews: useLastView.items,
-            lastSearches: useSearchHistory.items
-        }
-
-        useSearchVideo.search(keywords, prefs)
-
-        // console.log('SearchBar handleSearch with keywords', keywords);
-        localStorage.setItem('last-search', keywords);
-        useSearchHistory.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: keywords});
-    };
+    
 
     return (
         <div className={`${className} pr-3`}>

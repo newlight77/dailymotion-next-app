@@ -20,7 +20,7 @@ const VideoPage: React.FC = () => {
         useSearchVideo.findById(id).then((v) => {
             if (v) setVideo({id: v.videoId, title: v.title});
         });
-    }, [id]);
+    }, [id, useSearchVideo]);
 
     return (
         <div className='w-full'>

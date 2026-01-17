@@ -6,7 +6,6 @@ export type VideoSearchQueryType = {
   getById: (id: string) => Promise<VideoType | undefined>
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const videoSearchQuery = (port: VideoSearchDrivenPort): VideoSearchQueryType => {
 
   // this is a query use case

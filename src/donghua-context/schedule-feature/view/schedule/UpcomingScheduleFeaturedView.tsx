@@ -136,7 +136,7 @@ export const UpcomingScheduleFeaturedView: React.FC = () => {
         });
 
         setRows(nextRows);
-      } catch (err) {
+      } catch {
         setError('Could not fetch upcoming episodes.');
       } finally {
         setLoading(false);

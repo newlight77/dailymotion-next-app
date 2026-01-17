@@ -71,7 +71,20 @@ async function fetchHtml(url: string): Promise<string> {
   return await res.text();
 }
 
-async function aniListDetails(title: string) {
+type AniListMedia = {
+  title?: {
+    romaji?: string,
+    english?: string,
+    native?: string,
+  },
+  description?: string,
+  coverImage?: {
+    large?: string,
+    medium?: string,
+  }
+}
+
+async function aniListDetails(title: string): Promise<AniListMedia | null> {
   const query = `query ($search: String) { Media(search: $search, type: ANIME) { title { romaji english native } description coverImage { large medium } } }`;
   const res = await fetch(ANIMELIST_GQL, {
     method: 'POST',
@@ -83,7 +96,7 @@ async function aniListDetails(title: string) {
   return json?.data?.Media || null;
 }
 
-function normalizeAniList(media: any) {
+function normalizeAniList(media: AniListMedia | null) {
   if (!media) return null;
   const title = media?.title?.english || media?.title?.romaji || media?.title?.native || '';
   const originalTitle = media?.title?.native || media?.title?.romaji || '';

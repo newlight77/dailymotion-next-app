@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FaMagnifyingGlass, FaPenToSquare, FaThumbtack } from 'react-icons/fa6';
 import Modal from '@/components/molecules/Modal';
@@ -25,6 +25,10 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
 
+    const toggleEditModal = useCallback((): void => {
+        setEditModal(editModal ? false : true);
+    }, [editModal]);
+
     useEffect(() => {
         // console.log('AnimeDetail useEffect params:', id, mode);
         useAnimes.findById(id).then((a) => { // todo move to storage provider : add findById and
@@ -33,11 +37,7 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         });
 
         if (mode === 'edit') toggleEditModal()
-    }, [id]);
-
-    function toggleEditModal(): void {
-        setEditModal(editModal ? false : true);
-    }
+    }, [id, isMounted, mode, toggleEditModal, useAnimes]);
 
     const handleAnimeUpdate = (anime: AnimeType) => {
         setAnime(anime);

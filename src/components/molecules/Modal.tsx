@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { FaXmark } from 'react-icons/fa6';
 
@@ -12,19 +12,19 @@ type Props = {
 
 const Modal: React.FC<Props> = ({ title, children, className, onClose }) => {
 
-  useEffect(() => {
-    function handleEscapeKey(event: KeyboardEvent): void {
-      if (event.key === "Escape") {
-        onClose();
-      }
+  const handleEscapeKey = useCallback((event: KeyboardEvent): void => {
+    if (event.key === "Escape") {
+      onClose();
     }
+  }, [onClose]);
 
+  useEffect(() => {
     window.addEventListener('keydown', handleEscapeKey);
 
     return () => {
       window.removeEventListener('keydown', handleEscapeKey);
     };
-  }, []);
+  }, [handleEscapeKey]);
 
     const handleCloseClick = (e: React.MouseEvent<HTMLAnchorElement | SVGElement>) => {
       e.preventDefault();
