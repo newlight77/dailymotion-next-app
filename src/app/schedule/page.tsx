@@ -1,11 +1,17 @@
 "use client"
 import React from 'react';
+import dynamic from 'next/dynamic';
+
+const UpcomingScheduleFeaturedRegion = dynamic(
+    () => import('@/donghua-context/schedule-feature').then(m => m.UpcomingScheduleFeaturedRegion),
+    { ssr: false }
+);
 
 
 const SchedulePage: React.FC = () => {
     return (
         <div className='w-full'>
-            <h2 className='title text-3xl p-1 md:p-4 capitalize'>schedules</h2>
+            <UpcomingScheduleFeaturedRegion />
         </div>
     );
 };

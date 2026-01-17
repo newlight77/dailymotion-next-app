@@ -6,6 +6,7 @@ import Navbar from "../components/organisms/NavBar";
 import { SearchModule } from "@/donghua-context/videosearch-feature/view";
 import { AnimeListModule } from "@/donghua-context/animelist-feature/view";
 import { UserPreferenceshModule } from "@/donghua-context/user-preferences-feature";
+import { ScheduleModule } from "@/donghua-context/schedule-feature";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 const routes = [
   { id: 1, route: "/videosearch", label: 'search' },
   { id: 2, route: '/animelist', label: "anime list" },
-  // { id: 3, route: '/schedule', label: "schedule" },
+  { id: 3, route: '/schedule', label: "schedule" },
   { id: 4, route: '/history', label: "history" },
   { id: 5, route: '/followings', label: "followings" },
 ];
@@ -40,21 +41,23 @@ export default function RootLayout({
     <SearchModule>
       <AnimeListModule>
         <UserPreferenceshModule>
-          <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <ScheduleModule>
+            <html lang="en">
+              <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
-              <header></header>
-              <Navbar routes={routes} />
-              <Analytics />
-              <main className='main'>
-              {/* <main className='main min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'> */}
-              {children}
-              </main>
+                <header></header>
+                <Navbar routes={routes} />
+                <Analytics />
+                <main className='main'>
+                {/* <main className='main min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'> */}
+                {children}
+                </main>
 
-              <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
+                <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
 
-            </body>
-          </html>
+              </body>
+            </html>
+          </ScheduleModule>
         </UserPreferenceshModule>
       </AnimeListModule>
     </SearchModule>

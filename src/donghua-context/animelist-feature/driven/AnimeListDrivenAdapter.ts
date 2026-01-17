@@ -23,6 +23,10 @@ class AnimeListDrivenAdapter implements AnimeListDrivenPort {
       const response = await fetch(`/api/animelist/${uid}`, { method: "GET" });
       // console.log('AnimeListAdapter findById', response);
       if (!response.ok) {
+        if (response.status === 404) {
+          console.warn(`Anime not found for uid ${uid}`);
+          return undefined;
+        }
         throw new Error(`Error fetching anime with uid ${uid}: ${response.statusText}`);
       }
       const anime: AnimeType = await response.json();
