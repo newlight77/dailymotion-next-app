@@ -19,25 +19,27 @@ class AnimeListDrivenAdapter implements AnimeListDrivenPort {
   }
 
   findById = async (uid: string): Promise<AnimeType | undefined> => {
+    const cached = this.storage.items?.find(item => item.uid === uid);
     try {
       const response = await fetch(`/api/animelist/${uid}`, { method: "GET" });
       // console.log('AnimeListAdapter findById', response);
       if (!response.ok) {
         if (response.status === 404) {
           console.warn(`Anime not found for uid ${uid}`);
-          return undefined;
+          return cached;
         }
-        throw new Error(`Error fetching anime with uid ${uid}: ${response.statusText}`);
+        console.warn(`Error fetching anime with uid ${uid}: ${response.status} ${response.statusText}`);
+        return cached;
       }
       const anime: AnimeType = await response.json();
-      anime.publishedAt = new Date(anime.publishedAt)
-      anime.releaseAt = new Date(anime.releaseAt)
-      anime.updatedAt = new Date(anime.updatedAt)
+      anime.publishedAt = anime.publishedAt ? new Date(anime.publishedAt) : anime.publishedAt
+      anime.releaseAt = anime.releaseAt ? new Date(anime.releaseAt) : anime.releaseAt
+      anime.updatedAt = anime.updatedAt ? new Date(anime.updatedAt) : anime.updatedAt
       // console.log('AnimeListAdapter findById', anime);
       return anime;
     } catch (error) {
       console.error("Error fetching data: ", error);
-      return undefined;
+      return cached;
     }
   }
 

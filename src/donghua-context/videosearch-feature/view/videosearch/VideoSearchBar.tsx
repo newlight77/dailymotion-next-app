@@ -119,7 +119,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
         }
     };
 
-    
+
 
     return (
         <div className={`${className} pr-3`}>

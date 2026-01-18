@@ -26,8 +26,8 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const [addModal, setAddModal] = useState(false);
 
     const toggleEditModal = useCallback((): void => {
-        setEditModal(editModal ? false : true);
-    }, [editModal]);
+        setEditModal(prev => !prev);
+    }, []);
 
     useEffect(() => {
         // console.log('AnimeDetail useEffect params:', id, mode);
@@ -36,8 +36,8 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
             if (isMounted()) setAnime(a);
         });
 
-        if (mode === 'edit') toggleEditModal()
-    }, [id, isMounted, mode, toggleEditModal, useAnimes]);
+        if (mode === 'edit') setEditModal(true)
+    }, [id, isMounted, mode, useAnimes]);
 
     const handleAnimeUpdate = (anime: AnimeType) => {
         setAnime(anime);
@@ -83,12 +83,12 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         <div className='w-full'>
             <div id="modal-root"></div>
             { editModal && anime &&
-                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 z-40' onClose={() => setEditModal(false)} title={anime.title}>
+                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 z-40 inset-20 items-center' onClose={() => setEditModal(false)} title={anime.title}>
                     <AnimeEdit editedAnime={anime} mode={'edit'} onEdit={handleAnimeUpdate} onCopy={handleAdd}></AnimeEdit>
                 </Modal>
             }
             { addModal && anime &&
-                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 z-40' onClose={() => setAddModal(false)} title={`Copy of ${anime.title}`}>
+                <Modal className='sm:w-128 sm:h-156 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 3xl:w-3/8 z-40 inset-20 items-center' onClose={() => setAddModal(false)} title={`Copy of ${anime.title}`}>
                     <AnimeEdit editedAnime={anime} mode={'add'}></AnimeEdit>
                 </Modal>
             }
