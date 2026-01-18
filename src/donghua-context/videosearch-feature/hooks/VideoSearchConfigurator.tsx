@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { createContext } from "react";
 import { MetaVideoType, VideoType, PreferencesType, videoSearchQuery } from '../domain';
 import { videoSearchUsecase, VideoSearchWithScoreResponse, VideoWithScoreType } from '../domain';
@@ -25,15 +25,17 @@ type Props = {
 }
 
 export const VideoSearchConfigurator = ({ children }: Props): React.ReactElement => {
-
-  const driven = videoSearchDrivenAdapter()
-  const driver = videoSearchDriverAdapter(videoSearchUsecase(driven), videoSearchQuery(driven))
+  const driven = useMemo(() => videoSearchDrivenAdapter(), [])
+  const driver = useMemo(
+    () => videoSearchDriverAdapter(videoSearchUsecase(driven), videoSearchQuery(driven)),
+    [driven]
+  )
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(50);
   const [searchResults, setSearchResults] = useState<VideoWithScoreType[]>([]);
 
-  const search = async (keywords: string, prefs: PreferencesType) => {
+  const search = useCallback(async (keywords: string, prefs: PreferencesType) => {
     const params = {
         search: keywords,
         limit: limit,
@@ -48,14 +50,16 @@ export const VideoSearchConfigurator = ({ children }: Props): React.ReactElement
     setSearchResults(response.list || []);
     setPage(response.page || 1)
     setLimit(response.limit || 50)
-  }
+  }, [driver, limit, page])
+
+  const contextValue = useMemo(() => ({
+    searchResults,
+    search,
+    findById: driver.getById
+  }), [searchResults, search, driver])
 
   return (
-      <VideoSearchContext.Provider value={{
-        searchResults,
-        search,
-        findById: driver.getById
-      }}>
+      <VideoSearchContext.Provider value={contextValue}>
           { children }
       </VideoSearchContext.Provider>
   )

@@ -13,7 +13,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     const [keywords, setKeywords] = useState(newKeywords || '');
     const [debouncedInpout, setDebouncedInpout] = useState('');
     const [strictSearch, setStrictSearch] = useState(false);
-    const useSearchVideo = useSearchVideos();
+    const { search } = useSearchVideos();
     const useSearchHistory = useVideoSearchHistory();
     const useFollowedAnime = useFollowedAnimes();
     const useLastView = useLastViews();
@@ -21,6 +21,11 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
 
     const delay = 1100;
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const followedAnimesRef = useRef(useFollowedAnime.items);
+    const followedOwnersRef = useRef(useFollowedVideoOwner.items);
+    const lastViewsRef = useRef(useLastView.items);
+    const lastSearchesRef = useRef(useSearchHistory.items);
+    const addOrUpdateHistoryRef = useRef(useSearchHistory.addOrUpdate);
 
     const debounce = useCallback((callback: () => void, timeout: number) => {
         if (timerRef.current) clearTimeout(timerRef.current);
@@ -49,22 +54,42 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
         }
     }, [newKeywords, keywords, debouncedInpout]);
 
+    useEffect(() => {
+        followedAnimesRef.current = useFollowedAnime.items;
+    }, [useFollowedAnime.items]);
+
+    useEffect(() => {
+        followedOwnersRef.current = useFollowedVideoOwner.items;
+    }, [useFollowedVideoOwner.items]);
+
+    useEffect(() => {
+        lastViewsRef.current = useLastView.items;
+    }, [useLastView.items]);
+
+    useEffect(() => {
+        lastSearchesRef.current = useSearchHistory.items;
+    }, [useSearchHistory.items]);
+
+    useEffect(() => {
+        addOrUpdateHistoryRef.current = useSearchHistory.addOrUpdate;
+    }, [useSearchHistory.addOrUpdate]);
+
     const handleVideoSearch = useCallback(async () => {
 
         const prefs: PreferencesType = {
             strictSearch: strictSearch,
-            followedAnimes: useFollowedAnime.items,
-            followedOwners: useFollowedVideoOwner.items,
-            lastViews: useLastView.items,
-            lastSearches: useSearchHistory.items
+            followedAnimes: followedAnimesRef.current,
+            followedOwners: followedOwnersRef.current,
+            lastViews: lastViewsRef.current,
+            lastSearches: lastSearchesRef.current
         }
 
-        useSearchVideo.search(keywords, prefs)
+        search(keywords, prefs)
 
         // console.log('SearchBar handleSearch with keywords', keywords);
         localStorage.setItem('last-search', keywords);
-        useSearchHistory.addOrUpdate({uid: crypto.randomUUID().toString(), keywords: keywords});
-    }, [keywords, strictSearch, useFollowedAnime.items, useFollowedVideoOwner.items, useLastView.items, useSearchHistory, useSearchVideo]);
+        addOrUpdateHistoryRef.current({uid: crypto.randomUUID().toString(), keywords: keywords});
+    }, [keywords, strictSearch, search]);
 
     useEffect(() => {
         // console.log('SearchBar keywords', keywords);

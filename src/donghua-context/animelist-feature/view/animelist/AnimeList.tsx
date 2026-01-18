@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import Modal from '@/components/molecules/Modal';
 import { useAnimelist } from '../../hooks';
@@ -26,6 +27,11 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const [excludeCompleted, setExcludeCompleted] = useState(true);
     const [onlyWithUpdates, setOnlyWithUpdates] = useState(true);
     const [onlyFollowedAnimes, setOnlyFollowedAnimes] = useState(true);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     // useEffect(() => {
     // }, [onlyCompleted]);
@@ -196,6 +202,10 @@ export const AnimeList: React.FC<Props> = ({className}) => {
             .filter(v => onlyFollowedAnimes ? isFollowed(v) : true)
             .filter(v => onlyWithUpdates ? v.updateDays !== '' : true)
             .filter(v => excludeCompleted ? v.status !== 'completed' : true )
+    }
+
+    if (!isMounted) {
+        return <div className={className}><div id="modal-root"></div></div>
     }
 
     return (
