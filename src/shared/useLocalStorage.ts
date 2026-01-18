@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // type SetterFn<A> = (value: A) => void;
 // type Value<B> = B | undefined;
@@ -7,6 +7,12 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
     [S | undefined, (value: S) => void] {
 
     const [value, setValue] = useState<S | undefined>(() => defaultValue);
+    const userUpdatedRef = useRef(false);
+
+    const setValueAndMark = (nextValue: S) => {
+        userUpdatedRef.current = true;
+        setValue(nextValue);
+    };
 
     // function clear() {
     //     console.log(`useLocalStorage clear ${key} value=`, value);
@@ -17,6 +23,7 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
         if (typeof window === 'undefined') return;
         const saved = localStorage.getItem(key);
         if (saved !== null) {
+            if (userUpdatedRef.current) return;
             try {
                 setValue(JSON.parse(saved));
             } catch {
@@ -34,5 +41,5 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
         localStorage.setItem(key, JSON.stringify(value));
     }, [key, value]);
 
-    return [value, setValue];
+    return [value, setValueAndMark];
 };

@@ -10,8 +10,8 @@ interface VideoSearchBarProps {
 }
 
 export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, className }) => {
-    const [keywords, setKeywords] = useState(newKeywords || '');
-    const [debouncedInpout, setDebouncedInpout] = useState('');
+    const [keywords, setKeywords] = useState('');
+    const [inputValue, setInputValue] = useState('');
     const [strictSearch, setStrictSearch] = useState(false);
     const { search } = useSearchVideos();
     const useSearchHistory = useVideoSearchHistory();
@@ -21,6 +21,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
 
     const delay = 1100;
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const initializedRef = useRef(false);
     const followedAnimesRef = useRef(useFollowedAnime.items);
     const followedOwnersRef = useRef(useFollowedVideoOwner.items);
     const lastViewsRef = useRef(useLastView.items);
@@ -33,26 +34,20 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     }, []);
 
     useEffect(() => {
-        // console.log('SearchBar newKeywords', newKeywords);
-        if (newKeywords && newKeywords !== '' && newKeywords !== keywords) {
+        if (newKeywords && newKeywords.trim() !== '') {
+            setInputValue(newKeywords);
             setKeywords(newKeywords);
-            // console.log('SearchBar setDebouncedInpout 1', newKeywords);
-            setDebouncedInpout(newKeywords);
-            return
+            return;
         }
-        if (debouncedInpout !== '') {
-            // console.log('SearchBar setDebouncedInpout 2', localStorage.getItem('last-search') || '');
-            setKeywords(debouncedInpout);
-            setDebouncedInpout(debouncedInpout)
-            return
+
+        if (initializedRef.current) return;
+        initializedRef.current = true;
+        const last = typeof window !== 'undefined' ? (localStorage.getItem('last-search') || '') : '';
+        if (last !== '') {
+            setInputValue(last);
+            setKeywords(last);
         }
-        if (keywords === '') {
-            // console.log('SearchBar setKeywords 2', localStorage.getItem('last-search') || '');
-            setKeywords(localStorage.getItem('last-search') || '');
-            setDebouncedInpout(localStorage.getItem('last-search') || '')
-            return
-        }
-    }, [newKeywords, keywords, debouncedInpout]);
+    }, [newKeywords]);
 
     useEffect(() => {
         followedAnimesRef.current = useFollowedAnime.items;
@@ -101,11 +96,10 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     // }, [debouncedInpout]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDebouncedInpout(event.target.value)
+        const next = event.target.value;
+        setInputValue(next);
         debounce(() => {
-            if (keywords !== debouncedInpout) {
-                setKeywords(event.target.value)
-            }
+            setKeywords(next);
         }, delay)
     };
 
@@ -126,7 +120,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
             <input
                 className='w-80 md:w-2/5'
                 type="text"
-                value={debouncedInpout}
+                value={inputValue}
                 onChange={handleInputChange}
                 placeholder="Search videos by title"
                 onKeyUp={handleKeyup}
