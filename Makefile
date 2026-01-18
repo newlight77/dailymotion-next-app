@@ -36,6 +36,12 @@ add-anime: ## add an anime by title to `prisma/animelist.json` and optionally ru
 	@if [ -z "$(TITLE)" ]; then echo "usage: make add-anime TITLE=\"<title>\" [SEED=1]"; exit 1; fi
 	@node ./scripts/add-anime.js --title "$(TITLE)" $(if $(SEED),--seed,)
 
+batch-download-thumbnails: ## batch download missing thumbnails for anime in `prisma/animelist.json`
+	@node ./scripts/fill-missing-thumbnails.js --force-all
+
+update-official-thumbs: ## update thumbnails for a targeted anime
+	@node ./scripts/update-official-thumbs.js --title "$(TITLE)"
+
 migrate:
 	@npx prisma migrate dev --name first_prisma_migration
 

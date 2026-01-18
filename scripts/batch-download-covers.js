@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * scripts/batch-download-covers.js
- * - Downloads official covers from AniList (primary) and TMDB (optional) for recent entries
+ * - Downloads official covers from AniList (primary) and TMDB (optional) for all entries
  *   in prisma/animelist.json and saves them to public/uploads/.
- * - Default: process entries with releaseAt or updatedAt >= 2023-01-01 and with remote thumbnails.
- * - Usage: node scripts/batch-download-covers.js [--since YYYY] [--concurrency N] [--dry-run] [--seed]
+ * - Default: process all entries and fix missing /uploads files.
+ * - Usage: node scripts/batch-download-covers.js [--concurrency N] [--dry-run] [--seed] [--force] [--force-all]
  *
  * Notes:
  * - TMDB is optional; set TMDB_API_KEY in env to enable TMDB searches.
@@ -15,14 +15,12 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { spawnSync } = require('child_process');
-const argv = require('minimist')(process.argv.slice(2), { string: ['since'], boolean: ['dry-run', 'seed'], default: { since: '2023' } });
+const argv = require('minimist')(process.argv.slice(2), { boolean: ['dry-run', 'seed', 'force', 'force-all'] });
 
 const fetch = global.fetch || require('node-fetch');
 const ANIMELIST_GQL = 'https://graphql.anilist.co';
 const TMDB_KEY = process.env.TMDB_API_KEY || '';
 const CONCURRENCY = Number(argv.concurrency || Math.max(4, Math.floor(os.cpus().length)));
-const SINCE_YEAR = Number(argv.since || '2023');
-const CUTOFF = new Date(`${SINCE_YEAR}-01-01T00:00:00.000Z`).getTime();
 
 const ANIMELIST_PATH = path.resolve(__dirname, '../prisma/animelist.json');
 const UPLOADS_DIR = path.resolve(process.cwd(), 'public/uploads');
@@ -85,27 +83,44 @@ async function processEntry(entry) {
   const thumb = String(entry.thumbnail || '');
   const isLocal = thumb.startsWith('/uploads/');
   const localPath = isLocal ? path.resolve(process.cwd(), `public${thumb}`) : '';
-  if (isLocal && localPath && fs.existsSync(localPath)) return { skipped: true };
-  const rel = (dateStr) => { try { return Date.parse(dateStr); } catch { return 0; } };
-  const shouldProcess = (rel(entry.releaseAt) >= CUTOFF) || (rel(entry.updatedAt) >= CUTOFF) || (isLocal && localPath && !fs.existsSync(localPath));
-  if (!shouldProcess) return { skipped: true };
+  if (!argv.force && !argv['force-all'] && isLocal && localPath && fs.existsSync(localPath)) {
+    return { skipped: true, reason: 'already-local', attempts: [] };
+  }
+  // Always process if the local file is missing or the thumbnail is remote/empty
 
   const title = entry.title || entry.originalTitle || '';
   if (!title) return { skipped: true };
 
+  const attempts = [];
+
   // try AniList
   const al = await aniListCover(title).catch(() => null);
+  attempts.push({ source: 'anilist', found: Boolean(al) });
   let chosen = al;
+
   // fallback TMDB
-  if (!chosen && TMDB_KEY) chosen = await tmdbPoster(title).catch(() => null);
+  if (!chosen && TMDB_KEY) {
+    const tm = await tmdbPoster(title).catch(() => null);
+    attempts.push({ source: 'tmdb', found: Boolean(tm) });
+    chosen = tm;
+  } else if (!TMDB_KEY) {
+    attempts.push({ source: 'tmdb', found: false, reason: 'missing-key' });
+  }
+
   // fallback to existing remote thumbnail if it's already external and valid
-  if (!chosen && entry.thumbnail && /^https?:\/\//.test(entry.thumbnail)) chosen = entry.thumbnail;
-  if (!chosen) return { skipped: true };
+  if (!chosen && entry.thumbnail && /^https?:\/\//.test(entry.thumbnail)) {
+    attempts.push({ source: 'existing-thumbnail', found: true });
+    chosen = entry.thumbnail;
+  } else if (!chosen) {
+    attempts.push({ source: 'existing-thumbnail', found: false });
+  }
+
+  if (!chosen) return { skipped: true, reason: 'no-source-match', attempts };
 
   const ext = path.extname(new URL(chosen).pathname).split('?')[0] || '.jpg';
   const filename = safeFilename(title, ext);
   const dest = path.join(UPLOADS_DIR, filename);
-  if (fs.existsSync(dest)) {
+  if (fs.existsSync(dest) && !argv.force && !argv['force-all']) {
     // already downloaded
     entry.thumbnail = `/uploads/${filename}`;
     entry.thumbnailFilename = filename;
@@ -113,12 +128,16 @@ async function processEntry(entry) {
     return { downloaded: false, reused: true, filename };
   }
 
+  if (fs.existsSync(dest) && (argv.force || argv['force-all'])) {
+    fs.unlinkSync(dest);
+  }
+
   const ok = await download(chosen, dest);
-  if (!ok) return { skipped: true, reason: 'download-failed' };
+  if (!ok) return { skipped: true, reason: 'download-failed', attempts, source: chosen };
   entry.thumbnail = `/uploads/${filename}`;
   entry.thumbnailFilename = filename;
   entry.updatedAt = new Date().toISOString();
-  return { downloaded: true, filename };
+  return { downloaded: true, filename, attempts };
 }
 
 async function run() {
@@ -144,6 +163,7 @@ async function run() {
   await Promise.all(workers);
 
   const changed = results.filter(r => r.res && (r.res.downloaded || r.res.reused));
+  const skipped = results.filter(r => r.res && r.res.skipped);
   console.log(`processed ${results.length} entries — updated ${changed.length} covers`);
 
   if (!argv['dry-run'] && changed.length > 0) {
@@ -155,6 +175,17 @@ async function run() {
   // summary
   const downloadList = changed.map(c => ({ title: c.title, uid: c.uid, filename: c.res.filename, downloaded: c.res.downloaded }));
   console.table(downloadList.slice(0, 200));
+
+  if (skipped.length > 0) {
+    console.log(`skipped ${skipped.length} entries`);
+    const skipList = skipped.map(s => ({
+      title: s.title,
+      uid: s.uid,
+      reason: s.res.reason || 'unknown',
+      attempts: (s.res.attempts || []).map(a => `${a.source}:${a.found ? 'found' : (a.reason || 'not-found')}`).join(', ')
+    }));
+    console.table(skipList.slice(0, 200));
+  }
 
   if (argv.seed && !argv['dry-run']) {
     console.log('running make seed...');
