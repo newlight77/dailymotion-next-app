@@ -60,7 +60,14 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
             localStorage.removeItem(key);
             return;
         }
-        localStorage.setItem(key, JSON.stringify(value));
+        try {
+            if (key === 'watchlist-items') {
+                return;
+            }
+            localStorage.setItem(key, JSON.stringify(value));
+        } catch (error) {
+            console.warn(`Failed to persist ${key} to localStorage`, error);
+        }
     }, [key, value]);
 
     return [value, setValueAndMark];

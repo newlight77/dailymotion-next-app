@@ -85,3 +85,9 @@ He can rename the watch list, on the selected watch list page.
 
 On the animelist page, let's add a watch list button in the anime card on the animelist page. Upon click on the add to watch list button, a menu popups to suggest a list of watch lists so the user can choose to add the anime to a selected watch list.
 ```
+
+```prompt
+on the detail watch list page, there is no need of a removableItem button on the card, we can use the "add watch list" button as a toggle.
+
+Also for the menu when click on add to watch list, let's use a blurring background for the menu list watch listes (title item) to users.
+```

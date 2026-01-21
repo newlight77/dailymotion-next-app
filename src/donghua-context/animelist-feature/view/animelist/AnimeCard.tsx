@@ -9,10 +9,11 @@ import { useAnimelist } from '../../hooks';
 
 interface AnimeCardProps {
     anime: AnimeType,
-    className?: string
+    className?: string,
+    watchListId?: string
 }
 
-export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
+export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchListId}) => {
     const useFollowedAnime = useFollowedAnimes();
     const watchLists = useWatchLists();
     const useAnimes = useAnimelist();
@@ -49,7 +50,20 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
         useAnimes.upsert({...anime, lastEpisode: anime.lastEpisode ? Number(anime.lastEpisode) + 1 : 1});
     }
 
+    const isInActiveWatchList = watchListId
+        ? (watchLists.items || []).some(item => item.animeId === anime.uid)
+        : false
+
     const handleToggleWatchLists = async () => {
+        if (watchListId) {
+            if (isInActiveWatchList) {
+                await watchLists.removeAnime(watchListId, anime.uid);
+            } else {
+                await watchLists.addAnime(watchListId, anime);
+            }
+            return;
+        }
+
         let collectionId = watchLists.collectionId;
         if (!collectionId) {
             const created = await watchLists.createCollection();
@@ -77,7 +91,7 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                         <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                     </Link>
                     <Link href={''} about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={(event) => { event.preventDefault(); handleToggleWatchLists(); }}>
-                        <FaListUl aria-label="watch list" size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
+                        <FaListUl aria-label="watch list" size={36} className={`${isInActiveWatchList ? 'text-primary hover:text-tertiary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                     </Link>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
                         <FaPenToSquare size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
@@ -87,7 +101,7 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                     </Link>
                 </div>
                 {showWatchLists && (
-                    <div className='absolute left-16 top-28 z-20 bg-secondary-variant border border-tertiary-variant rounded-md p-2 text-xs min-w-40'>
+                    <div className='absolute left-16 top-28 z-20 bg-secondary-variant/70 backdrop-blur-md border border-tertiary-variant rounded-md p-2 text-xs min-w-40'>
                         {(watchLists.lists && watchLists.lists.length > 0) ? (
                             watchLists.lists.map(list => (
                                 <button
