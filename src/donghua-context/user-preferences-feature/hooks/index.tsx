@@ -2,3 +2,4 @@ export { useFollowedAnimes, FollowedAnimesConfigurator } from './FollowedAnimesC
 export { useFollowedVideoOwners, FollowedVideoOwnersConfigurator } from './FollowedVideoOwnersConfigurator';
 export { useLastViews, LastViewsConfigurator } from './LastViewsConfigurator';
 export { useVideoSearchHistory, VideoSearchHistoryConfigurator } from './VideoSearchHistoryConfigurator';
+export { useWatchLists, WatchListsConfigurator } from './WatchListsConfigurator';

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { FaThumbtack, FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus } from 'react-icons/fa6';
+import { FaThumbtack, FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus, FaListUl } from 'react-icons/fa6';
 import { AnimeType } from '../../domain/model';
-import { useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
+import { useFollowedAnimes, useWatchLists } from '@/donghua-context/user-preferences-feature';
 import { useAnimelist } from '../../hooks';
 
 
@@ -14,7 +14,9 @@ interface AnimeCardProps {
 
 export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
     const useFollowedAnime = useFollowedAnimes();
+    const watchLists = useWatchLists();
     const useAnimes = useAnimelist();
+    const [showWatchLists, setShowWatchLists] = useState(false);
 
     const handleFollowAnime = async (anime: AnimeType) => {
         console.log('handleFollowAnime', anime)
@@ -47,15 +49,35 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
         useAnimes.upsert({...anime, lastEpisode: anime.lastEpisode ? Number(anime.lastEpisode) + 1 : 1});
     }
 
+    const handleToggleWatchLists = async () => {
+        let collectionId = watchLists.collectionId;
+        if (!collectionId) {
+            const created = await watchLists.createCollection();
+            collectionId = created?.uid;
+        }
+        if (collectionId) {
+            await watchLists.loadCollection(collectionId);
+        }
+        setShowWatchLists(prev => !prev);
+    }
+
+    const handleAddToWatchList = async (listId: string) => {
+        await watchLists.addAnime(listId, anime);
+        setShowWatchLists(false);
+    }
+
     return (
         <div className={`${className} p-2 md:hover:border border-gold rounded-md`}>
-            <div className='grid'>
-                <div className='grid grid-rows-4 pt-5 absolute translate-y-14'>
+            <div className='grid relative'>
+                <div className='grid grid-rows-5 pt-5 absolute translate-y-14'>
                     <Link href={`/videosearch?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
                         <FaMagnifyingGlass size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
                     <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
                         <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
+                    </Link>
+                    <Link href={''} about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={(event) => { event.preventDefault(); handleToggleWatchLists(); }}>
+                        <FaListUl aria-label="watch list" size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
                         <FaPenToSquare size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
@@ -64,6 +86,30 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className}) => {
                         <FaFileCirclePlus aria-label="increase episode" size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
                 </div>
+                {showWatchLists && (
+                    <div className='absolute left-16 top-28 z-20 bg-secondary-variant border border-tertiary-variant rounded-md p-2 text-xs min-w-40'>
+                        {(watchLists.lists && watchLists.lists.length > 0) ? (
+                            watchLists.lists.map(list => (
+                                <button
+                                    key={list.uid}
+                                    className='block w-full text-left px-2 py-1 hover:text-tertiary'
+                                    onClick={() => handleAddToWatchList(list.uid)}
+                                >
+                                    {list.title}
+                                </button>
+                            ))
+                        ) : (
+                            <div className='px-2 py-1 text-gray-400'>no watch lists yet</div>
+                        )}
+                        <Link
+                            href={'/watchlists'}
+                            className='block px-2 py-1 hover:text-tertiary'
+                            onClick={() => setShowWatchLists(false)}
+                        >
+                            manage watch lists
+                        </Link>
+                    </div>
+                )}
                 <div className='title p-2 m-1 absolute translate-y-4 font-bold text-xxl text-wrap text-tertiary border rounded-sm bg-secondary-variant justify-self-end'>{anime.originalTitle}</div>
                 {/* <div className='title p-2 m-1 absolute translate-x-3 translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondaryVariant place-self-end place-items-end place-content-end self-end items-end content-end justify-self-end justify-items-end justify-end'>{anime.originalTitle}</div> */}
 

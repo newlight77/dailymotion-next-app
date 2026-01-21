@@ -8,6 +8,17 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
 
     const [value, setValue] = useState<S | undefined>(() => defaultValue);
     const userUpdatedRef = useRef(false);
+    const defaultValueRef = useRef(defaultValue);
+    const valueRef = useRef(value);
+    const lastLoadedRef = useRef<{ key?: string; raw?: string | null }>({});
+
+    useEffect(() => {
+        defaultValueRef.current = defaultValue;
+    }, [defaultValue]);
+
+    useEffect(() => {
+        valueRef.current = value;
+    }, [value]);
 
     const setValueAndMark = (nextValue: S) => {
         userUpdatedRef.current = true;
@@ -22,13 +33,24 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
     useEffect(() => {
         if (typeof window === 'undefined') return;
         const saved = localStorage.getItem(key);
+        if (lastLoadedRef.current.key === key && lastLoadedRef.current.raw === saved) return;
+        lastLoadedRef.current = { key, raw: saved };
+
         if (saved !== null) {
             if (userUpdatedRef.current) return;
             try {
-                setValue(JSON.parse(saved));
+                const parsed = JSON.parse(saved) as S;
+                setValue(parsed);
             } catch {
-                setValue(defaultValue);
+                if (valueRef.current !== defaultValueRef.current) {
+                    setValue(defaultValueRef.current as S);
+                }
             }
+            return;
+        }
+
+        if (valueRef.current === undefined && defaultValueRef.current !== undefined) {
+            setValue(defaultValueRef.current as S);
         }
     }, [key]);
 

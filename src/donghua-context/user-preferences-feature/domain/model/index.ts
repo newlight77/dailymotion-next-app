@@ -1,3 +1,5 @@
+import { AnimeType } from "@/donghua-context/animelist-feature";
+
 export type FollowedAnimeType = {
   uid: string,
   animeId: string,
@@ -34,4 +36,27 @@ export type VideoType = {
   owner: string,
   episode: number,
   link: string,
+}
+
+export type WatchListCollectionType = {
+  uid: string,
+  createdAt: Date,
+  updatedAt: Date,
+  lists?: WatchListType[],
+}
+
+export type WatchListType = {
+  uid: string,
+  collectionId: string,
+  title: string,
+  createdAt: Date,
+  updatedAt: Date,
+}
+
+export type WatchListItemType = {
+  uid: string,
+  listId: string,
+  animeId: string,
+  createdAt: Date,
+  anime?: AnimeType
 }

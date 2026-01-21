@@ -66,3 +66,22 @@ A featured object is an instance of a generic components with behavior.
 
 Featured components (objects, views, regions) are context specific, thus to be move into donghua context, in which there are hexagons (ex. animelist-feature, schedule-feature, videsearch-feature).
 ```
+
+## Watch List feature
+
+```prompt
+I want to be allow users to managers watch lists. Each watch list holds anime titles. Watch lists are to be stored in a db table identified by a uuid.
+Users can access a watch-list page with that uuid as param in the URL. Upon accessing that URL, the watch lists page is open to render a list of watch lists.
+Add a button in the header to access that watch lists page.
+
+On the watch lists page, upon click on a watch list item, open a watch list page with all anime cards.
+
+On the watch lists page, display each watch list as an item in a list. Use the same design as "Followed animes" view.
+Each watch list has a title, createdAt and updateAt. Users cann add/delete or click on the watch list to view the watch list content, on a separate page.
+
+On a selected watch list page, all animes that have been added as watched animes are displayed with cards, just like the "anime card", using AnimeCard component.
+The user can then update the list of anime titles, by removing an anime from the watch list.
+He can rename the watch list, on the selected watch list page.
+
+On the animelist page, let's add a watch list button in the anime card on the animelist page. Upon click on the add to watch list button, a menu popups to suggest a list of watch lists so the user can choose to add the anime to a selected watch list.
+```

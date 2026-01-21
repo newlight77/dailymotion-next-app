@@ -4,6 +4,7 @@ import { FollowedVideoOwnersConfigurator } from '../hooks';
 import { LastViewsConfigurator } from '../hooks';
 import { VideoSearchHistoryConfigurator } from '../hooks';
 import { FollowedAnimesConfigurator } from '../hooks';
+import { WatchListsConfigurator } from '../hooks';
 
 
 type Props = {
@@ -16,9 +17,11 @@ export const UserPreferenceshModule = ({ children }: Props): React.ReactElement 
       <VideoSearchHistoryConfigurator>
         <LastViewsConfigurator>
           <FollowedAnimesConfigurator>
-          <FollowedVideoOwnersConfigurator>
-                {children}
-          </FollowedVideoOwnersConfigurator>
+            <WatchListsConfigurator>
+              <FollowedVideoOwnersConfigurator>
+                    {children}
+              </FollowedVideoOwnersConfigurator>
+            </WatchListsConfigurator>
           </FollowedAnimesConfigurator>
         </LastViewsConfigurator>
       </VideoSearchHistoryConfigurator>
@@ -29,3 +32,5 @@ export * from './followings/FollowedAnimes'
 export * from './followings/FollowedOwners'
 export * from './lastviews/LastViews'
 export * from './searchhistory/VideoSearchHistory'
+export * from './watchlists/WatchLists'
+export * from './watchlists/WatchListDetail'

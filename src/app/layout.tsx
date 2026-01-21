@@ -29,6 +29,7 @@ const routes = [
   { id: 3, route: '/schedule', label: "schedule" },
   { id: 4, route: '/history', label: "history" },
   { id: 5, route: '/followings', label: "followings" },
+  { id: 6, route: '/watchlists', label: "watch lists" },
 ];
 
 export default function RootLayout({

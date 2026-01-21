@@ -37,4 +37,38 @@ model Anime {
   totalSeasonEpisodes Int?
   lastEpisode   Int?
   totalEpisodes Int?
+
+  watchListItems WatchListItem[]
+}
+
+model WatchListCollection {
+  uid       String      @id @default(uuid())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  lists     WatchList[]
+}
+
+model WatchList {
+  uid          String          @id @default(uuid())
+  collectionId String
+  title        String
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  items        WatchListItem[]
+
+  collection WatchListCollection @relation(fields: [collectionId], references: [uid], onDelete: Cascade)
+
+  @@index([collectionId])
+}
+
+model WatchListItem {
+  uid       String   @id @default(uuid())
+  listId    String
+  animeId   String
+  createdAt DateTime @default(now())
+
+  list  WatchList @relation(fields: [listId], references: [uid], onDelete: Cascade)
+  anime Anime     @relation(fields: [animeId], references: [uid])
+
+  @@unique([listId, animeId])
 }

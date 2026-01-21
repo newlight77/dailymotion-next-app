@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link'
 import Modal from '@/components/molecules/Modal';
 import { useAnimelist } from '../../hooks';
@@ -7,7 +7,7 @@ import { AnimeType } from '../../domain';
 import { AnimeCard } from './AnimeCard';
 import { AnimeEdit } from './AnimeEdit';
 import { useLocalStorage } from '@/shared/useLocalStorage';
-import { useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
+import { useFollowedAnimes, useWatchLists } from '@/donghua-context/user-preferences-feature';
 
 type AnimeWithOrderScore = AnimeType & {
     orderScore: number
@@ -20,6 +20,8 @@ type Props = {
 export const AnimeList: React.FC<Props> = ({className}) => {
     const useAnimes = useAnimelist();
     const useFollowedAnime = useFollowedAnimes();
+    const watchLists = useWatchLists();
+    const loadedCollectionRef = useRef<string | null>(null);
     const [data, setData] = useState('')
     const [addModal, setAddModal] = useState(false);
     const [loadMode, setLoadMode] = useState(false);
@@ -32,6 +34,18 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     useEffect(() => {
         setIsMounted(true);
     }, []);
+
+    const { loadCollection } = watchLists;
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const stored = localStorage.getItem('watchlists-collection-id');
+        if (stored) {
+            if (loadedCollectionRef.current === stored) return;
+            loadedCollectionRef.current = stored;
+            loadCollection(stored);
+        }
+    }, [loadCollection]);
 
     // useEffect(() => {
     // }, [onlyCompleted]);
