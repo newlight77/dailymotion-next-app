@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';
 import { createContext } from "react";
 import { AnimeType } from '@/donghua-context/animelist-feature';
 import { WatchListCollectionType, WatchListItemType, WatchListType } from '../domain';
@@ -50,21 +50,12 @@ export const WatchListsConfigurator = ({ children }: Props): React.ReactElement 
   const [collectionId, setCollectionId] = useState<string | undefined>(undefined);
   const lastLoadedCollectionRef = useRef<string | null>(null);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const stored = localStorage.getItem('watchlists-collection-id');
-    if (stored) setCollectionId(stored);
-  }, []);
-
   const loadCollection = useCallback(async (id: string) => {
     if (lastLoadedCollectionRef.current === id) {
       return driver.loadCollection(id);
     }
     lastLoadedCollectionRef.current = id;
     setCollectionId(id);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('watchlists-collection-id', id);
-    }
     return driver.loadCollection(id);
   }, [driver]);
 
@@ -72,9 +63,6 @@ export const WatchListsConfigurator = ({ children }: Props): React.ReactElement 
     const collection = await driver.createCollection();
     if (collection?.uid) {
       setCollectionId(collection.uid);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('watchlists-collection-id', collection.uid);
-      }
     }
     return collection;
   }, [driver]);

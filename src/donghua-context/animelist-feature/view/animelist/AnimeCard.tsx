@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaThumbtack, FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus, FaListUl } from 'react-icons/fa6';
@@ -10,14 +10,16 @@ import { useAnimelist } from '../../hooks';
 interface AnimeCardProps {
     anime: AnimeType,
     className?: string,
-    watchListId?: string
+    watchListId?: string,
+    isInWatchListOverride?: boolean
 }
 
-export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchListId}) => {
+export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchListId, isInWatchListOverride}) => {
     const useFollowedAnime = useFollowedAnimes();
     const watchLists = useWatchLists();
     const useAnimes = useAnimelist();
     const [showWatchLists, setShowWatchLists] = useState(false);
+    const [isInWatchList, setIsInWatchList] = useState(false);
 
     const handleFollowAnime = async (anime: AnimeType) => {
         console.log('handleFollowAnime', anime)
@@ -50,16 +52,22 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
         useAnimes.upsert({...anime, lastEpisode: anime.lastEpisode ? Number(anime.lastEpisode) + 1 : 1});
     }
 
-    const isInActiveWatchList = watchListId
-        ? (watchLists.items || []).some(item => item.animeId === anime.uid)
-        : false
+    useEffect(() => {
+        if (!watchListId) return;
+        const next = (watchLists.items || []).some(item => item.animeId === anime.uid);
+        setIsInWatchList(next);
+    }, [watchListId, watchLists.items, anime.uid]);
+
+    const activeInWatchList = isInWatchListOverride ?? isInWatchList;
 
     const handleToggleWatchLists = async () => {
         if (watchListId) {
-            if (isInActiveWatchList) {
+            if (activeInWatchList) {
                 await watchLists.removeAnime(watchListId, anime.uid);
+                setIsInWatchList(false);
             } else {
                 await watchLists.addAnime(watchListId, anime);
+                setIsInWatchList(true);
             }
             return;
         }
@@ -91,7 +99,7 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
                         <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                     </Link>
                     <Link href={''} about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={(event) => { event.preventDefault(); handleToggleWatchLists(); }}>
-                        <FaListUl aria-label="watch list" size={36} className={`${isInActiveWatchList ? 'text-primary hover:text-tertiary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
+                        <FaListUl aria-label="watch list" size={36} className={`${watchListId && activeInWatchList ? 'text-primary bg-primary/20 hover:text-tertiary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                     </Link>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
                         <FaPenToSquare size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>

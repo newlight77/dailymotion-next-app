@@ -87,7 +87,11 @@ On the animelist page, let's add a watch list button in the anime card on the an
 ```
 
 ```prompt
-on the detail watch list page, there is no need of a removableItem button on the card, we can use the "add watch list" button as a toggle.
+On the detail watch list page, there is no need of a removableItem button on the card, we can use the "add watch list" button as a toggle.
 
 Also for the menu when click on add to watch list, let's use a blurring background for the menu list watch listes (title item) to users.
+
+The "add watch list" toogle button is highlighted when added, un-highlighted when removed. Apply of the detail watch list page and animelist page.
+
+Also the watch lists and animes added to a watch list are stored into the database, not using any localstorage.
 ```

@@ -21,7 +21,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const useAnimes = useAnimelist();
     const useFollowedAnime = useFollowedAnimes();
     const watchLists = useWatchLists();
-    const loadedCollectionRef = useRef<string | null>(null);
     const [data, setData] = useState('')
     const [addModal, setAddModal] = useState(false);
     const [loadMode, setLoadMode] = useState(false);
@@ -36,16 +35,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     }, []);
 
     const { loadCollection } = watchLists;
-
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-        const stored = localStorage.getItem('watchlists-collection-id');
-        if (stored) {
-            if (loadedCollectionRef.current === stored) return;
-            loadedCollectionRef.current = stored;
-            loadCollection(stored);
-        }
-    }, [loadCollection]);
 
     // useEffect(() => {
     // }, [onlyCompleted]);

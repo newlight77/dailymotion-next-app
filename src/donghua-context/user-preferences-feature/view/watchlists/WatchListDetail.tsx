@@ -59,6 +59,7 @@ export const WatchListDetail: React.FC<Props> = ({ collectionId, listId, classNa
               key={item.uid}
               anime={item.anime}
               watchListId={listId}
+              isInWatchListOverride={true}
               className="pt-4 pb-4 xs:w-screen sm:w-screen md:w-1/2 lg:w-1/3 xl:w-1/4 min-w-80 h-auto"
             />
           ) : null

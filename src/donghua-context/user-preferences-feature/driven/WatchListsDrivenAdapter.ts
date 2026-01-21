@@ -1,7 +1,6 @@
 'use client'
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { AnimeType } from "@/donghua-context/animelist-feature";
-import { useStorage } from "@/shared/useStorage";
 import { WatchListCollectionType, WatchListItemType, WatchListType } from "../domain";
 import { WatchListsDrivenPort } from "../domain/port";
 
@@ -25,8 +24,52 @@ const mapItemDates = (item: WatchListItemType): WatchListItemType => ({
 });
 
 export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
-  const { items: lists, remove: removeList, addOrUpdate: addOrUpdateList, loadData: loadListsData, clear: clearLists } = useStorage<WatchListType>('watchlists', []);
-  const { items: items, remove: removeItem, addOrUpdate: addOrUpdateItem, loadData: loadItemsData, clear: clearItems } = useStorage<WatchListItemType>('watchlist-items', []);
+  const [lists, setLists] = useState<WatchListType[]>([]);
+  const [items, setItems] = useState<WatchListItemType[]>([]);
+
+  const loadListsData = useCallback((data: WatchListType[]) => {
+    setLists(data);
+  }, []);
+
+  const loadItemsData = useCallback((data: WatchListItemType[]) => {
+    setItems(data);
+  }, []);
+
+  const addOrUpdateList = useCallback((list: WatchListType) => {
+    setLists(prev => {
+      const exists = prev.find(item => item.uid === list.uid);
+      if (exists) {
+        return prev.map(item => item.uid === list.uid ? list : item);
+      }
+      return [list, ...prev];
+    });
+  }, []);
+
+  const addOrUpdateItem = useCallback((item: WatchListItemType) => {
+    setItems(prev => {
+      const exists = prev.find(it => it.uid === item.uid || it.animeId === item.animeId);
+      if (exists) {
+        return prev.map(it => (it.uid === item.uid || it.animeId === item.animeId) ? item : it);
+      }
+      return [item, ...prev];
+    });
+  }, []);
+
+  const removeList = useCallback((listId: string) => {
+    setLists(prev => prev.filter(item => item.uid !== listId));
+  }, []);
+
+  const removeItem = useCallback((itemId: string) => {
+    setItems(prev => prev.filter(item => item.uid !== itemId));
+  }, []);
+
+  const clearLists = useCallback(() => {
+    setLists([]);
+  }, []);
+
+  const clearItems = useCallback(() => {
+    setItems([]);
+  }, []);
 
   return useMemo(() => ({
     lists: () => lists || [],

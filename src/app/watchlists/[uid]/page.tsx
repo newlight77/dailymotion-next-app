@@ -1,16 +1,29 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { WatchListDetail } from '@/donghua-context/user-preferences-feature';
 
 const WatchListPage: React.FC = () => {
   const { uid } = useParams<{ uid: string }>();
   const [collectionId, setCollectionId] = useState<string | null>(null);
+  const loadedRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const stored = localStorage.getItem('watchlists-collection-id');
-    if (stored) setCollectionId(stored);
+    let mounted = true;
+    const resolveCollection = async () => {
+      const response = await fetch('/api/watchlists', { method: 'GET' });
+      if (!response.ok) return;
+      const collection = await response.json();
+      if (!collection?.uid) return;
+      if (loadedRef.current === collection.uid) return;
+      loadedRef.current = collection.uid;
+      if (mounted) setCollectionId(collection.uid);
+    };
+
+    resolveCollection();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   if (!collectionId) {

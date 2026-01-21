@@ -9,22 +9,23 @@ const WatchListsIndexPage: React.FC = () => {
   const loadedRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const stored = localStorage.getItem('watchlists-collection-id');
-    if (stored) {
-      if (loadedRef.current === stored) return;
-      loadedRef.current = stored;
-      loadCollection(stored).finally(() => setCollectionId(stored));
-      return;
-    }
+    let mounted = true;
+    const resolveCollection = async () => {
+      const response = await fetch('/api/watchlists', { method: 'GET' });
+      if (!response.ok) return;
+      const collection = await response.json();
+      if (!collection?.uid) return;
+      if (loadedRef.current === collection.uid) return;
+      loadedRef.current = collection.uid;
+      await loadCollection(collection.uid);
+      if (mounted) setCollectionId(collection.uid);
+    };
 
-    createCollection().then((collection) => {
-      if (collection?.uid) {
-        loadedRef.current = collection.uid;
-        setCollectionId(collection.uid);
-      }
-    });
-  }, [loadCollection, createCollection]);
+    resolveCollection();
+    return () => {
+      mounted = false;
+    };
+  }, [loadCollection]);
 
   if (!collectionId) {
     return (
