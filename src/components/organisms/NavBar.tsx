@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { FaTimes, FaBars } from 'react-icons/fa';
 import donghua from '../../../public/donghua.png';
+import { SigninButton, SignoutButton } from '@/core/capabilities/auth-feature/view';
 
 
 type RouteType = {
@@ -41,12 +42,18 @@ const NavBar: React.FC<Props> = ({routes}) => {
 
       <div className='pl-8 justify-between items-center'>
 
-        <ul className="hidden md:flex pt-4">
+        <ul className="hidden md:flex pt-4 items-center">
           {routes.map(({ id, label, route }) => (
             <li key={id} className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline" >
               <Link className='text-xl' href={route}>{label}</Link>
             </li>
           ))}
+          <li className="px-2">
+            <SigninButton />
+          </li>
+          <li className="px-2">
+            <SignoutButton />
+          </li>
         </ul>
 
         <div className='sm:show'>

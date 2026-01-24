@@ -1,12 +1,12 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import Modal from '@/components/molecules/Modal';
 import { useAnimelist } from '../../hooks';
 import { AnimeType } from '../../domain';
 import { AnimeCard } from './AnimeCard';
 import { AnimeEdit } from './AnimeEdit';
-import { useLocalStorage } from '@/shared/useLocalStorage';
+import { useLocalStorage } from '@/core/core-lib/shared/useLocalStorage';
 import { useFollowedAnimes, useWatchLists } from '@/donghua-context/user-preferences-feature';
 
 type AnimeWithOrderScore = AnimeType & {
@@ -20,7 +20,7 @@ type Props = {
 export const AnimeList: React.FC<Props> = ({className}) => {
     const useAnimes = useAnimelist();
     const useFollowedAnime = useFollowedAnimes();
-    const watchLists = useWatchLists();
+    useWatchLists();
     const [data, setData] = useState('')
     const [addModal, setAddModal] = useState(false);
     const [loadMode, setLoadMode] = useState(false);
@@ -33,8 +33,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     useEffect(() => {
         setIsMounted(true);
     }, []);
-
-    const { loadCollection } = watchLists;
 
     // useEffect(() => {
     // }, [onlyCompleted]);

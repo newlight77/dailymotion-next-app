@@ -72,3 +72,13 @@ model WatchListItem {
 
   @@unique([listId, animeId])
 }
+
+model AuthUser {
+  uid          String   @id @default(uuid())
+  username     String   @unique
+  email        String?  @unique
+  name         String?
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

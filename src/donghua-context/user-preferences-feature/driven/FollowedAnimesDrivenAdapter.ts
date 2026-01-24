@@ -1,5 +1,5 @@
 'use client'
-import { useStorage } from "@/shared/useStorage";
+import { useStorage } from "@/core/core-lib/shared/useStorage";
 import { FollowedAnimeType } from "../domain/model";
 import { FollowedAnimesDrivenPort } from "../domain/port";
 

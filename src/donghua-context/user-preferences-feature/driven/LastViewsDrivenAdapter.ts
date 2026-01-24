@@ -1,5 +1,5 @@
 'use client'
-import { useStorage } from "@/shared/useStorage";
+import { useStorage } from "@/core/core-lib/shared/useStorage";
 import { LastViewType } from "../domain/model";
 import { LastViewsDrivenPort } from "../domain/port";
 

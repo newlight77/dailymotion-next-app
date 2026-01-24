@@ -7,6 +7,7 @@ import { SearchModule } from "@/donghua-context/videosearch-feature/view";
 import { AnimeListModule } from "@/donghua-context/animelist-feature/view";
 import { UserPreferenceshModule } from "@/donghua-context/user-preferences-feature";
 import { ScheduleModule } from "@/donghua-context/schedule-feature";
+import { AuthModule } from "@/core/capabilities/auth-feature";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,28 +40,30 @@ export default function RootLayout({
 }>) {
 
   return (
-    <SearchModule>
-      <AnimeListModule>
-        <UserPreferenceshModule>
-          <ScheduleModule>
-            <html lang="en">
-              <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <AuthModule>
+      <SearchModule>
+        <AnimeListModule>
+          <UserPreferenceshModule>
+            <ScheduleModule>
+              <html lang="en">
+                <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
-                <header></header>
-                <Navbar routes={routes} />
-                <Analytics />
-                <main className='main'>
-                {/* <main className='main min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'> */}
-                {children}
-                </main>
+                  <header></header>
+                  <Navbar routes={routes} />
+                  <Analytics />
+                  <main className='main'>
+                  {/* <main className='main min-w-400 md:max-w-screen-xl lg:max-w-screen-2xl'> */}
+                  {children}
+                  </main>
 
-                <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
+                  <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
 
-              </body>
-            </html>
-          </ScheduleModule>
-        </UserPreferenceshModule>
-      </AnimeListModule>
-    </SearchModule>
+                </body>
+              </html>
+            </ScheduleModule>
+          </UserPreferenceshModule>
+        </AnimeListModule>
+      </SearchModule>
+    </AuthModule>
   );
 }

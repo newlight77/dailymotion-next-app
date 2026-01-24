@@ -95,3 +95,58 @@ The "add watch list" toogle button is highlighted when added, un-highlighted whe
 
 Also the watch lists and animes added to a watch list are stored into the database, not using any localstorage.
 ```
+
+## OIDC
+
+```prompt
+Let's implement the authentication feature, and integrate with open ID connect using, basic auth, google microsoft and apple as providers for authentication.
+
+Create a "sign in" button as a featured object, named SigninButton.
+Create a "sign out" button as a featured object, named SignoutButton.
+Create signin form wrapped as UI component, as a featured view component, named SigninWithSocialForm.
+Create signup form wrapped as UI component, as a featured view component, named SignupWithSocialForm, with email, password, firstname and lastname.
+
+Create an Authentication hook, with context and provideer such to inject into the SigninWithSocialForm.
+
+On the sign in form, add a sign up button so users can create an account if he does not yet have one.
+```
+
+```prompt
+For the basic auth, let's add a next backend route to ensure the authentication by managing credentials in the supabase, thus creating the required tables.
+
+For the password, nesure there are at least 8 characters with 1 capital and one digit and one special character.
+
+Once the user is authentcation, he is redirected to the home page. The token is stored in the localstorage.
+```
+
+## Refactor
+
+```prompt
+Let's rename all localstorage keys by adding a prefix "dailymotion_donghua".
+```
+
+```prompt
+Let's move everything under shared to core/core-lib.
+now let's rename the folder "react-mui-joy" to "core-ui", and move directly under a new folder named core.
+
+That way, we would have core/core-lib and core/core-ui.
+
+The authentication feature, named auth-feature, has to be put under core/capabilities.
+```
+
+## FEatures : watch list & anime list
+
+```prompt
+An authenticated user would be able to own watch lists and followed anime list.
+
+A watch list may be public so it can be shared, but it is owned by a user. Only the owner can modifiy the list.
+
+The following publishers are owned by a user. Only the owner can modifiy its content. The persistence of followings
+
+The followed anime
+```
+
+```prompt
+
+The animelist is only read-only, the anime list is load from the database, not anymore from the localstorage.
+```

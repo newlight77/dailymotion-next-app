@@ -4,7 +4,7 @@ import { useWatchLists, WatchLists } from '@/donghua-context/user-preferences-fe
 
 const WatchListsIndexPage: React.FC = () => {
   const watchLists = useWatchLists();
-  const { loadCollection, createCollection } = watchLists;
+  const { loadCollection } = watchLists;
   const [collectionId, setCollectionId] = useState<string | null>(null);
   const loadedRef = useRef<string | null>(null);
 

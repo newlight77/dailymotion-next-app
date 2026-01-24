@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Panel from '../../../../components/molecules/Panel';
-import { useIsMounted } from '@/shared/useIsMounted';
+import { useIsMounted } from '@/core/core-lib/shared/useIsMounted';
 import { FeaturedNewSeriesCard } from './FeaturedNewSeriesCard';
 
 type NewSeriesItem = {

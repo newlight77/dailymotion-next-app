@@ -1,4 +1,4 @@
-import { queryParamsToQueryString } from "@/shared/httpUtil";
+import { queryParamsToQueryString } from "@/core/core-lib/shared/httpUtil";
 import { MetaVideoType, VideoType } from "../domain";
 import { VideoSearchResponse, VideoSearchParamsType } from "../domain";
 import { VideoSearchDrivenPort } from "../domain/port";

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FaMagnifyingGlass, FaPenToSquare, FaThumbtack } from 'react-icons/fa6';
 import Modal from '@/components/molecules/Modal';
-import { useIsMounted } from '@/shared/useIsMounted';
+import { useIsMounted } from '@/core/core-lib/shared/useIsMounted';
 import { useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
 import { AnimeType } from '../../domain';
 import { useAnimelist } from '../../hooks';

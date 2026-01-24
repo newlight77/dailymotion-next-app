@@ -5,7 +5,7 @@ import { animeListQuery, AnimeType } from '../domain';
 import { animeListUsecase } from '../domain';
 import { animeListDriverAdapter } from '../driver';
 import { animeListDrivenAdapter } from '../driven';
-import { useStorage } from "@/shared/useStorage";
+import { useStorage } from "@/core/core-lib/shared/useStorage";
 
 
 interface AnimelistContextType {

@@ -1,5 +1,5 @@
 'use client'
-import { useStorage } from "@/shared/useStorage";
+import { useStorage } from "@/core/core-lib/shared/useStorage";
 import { FollowedVideoOwnerType } from "../domain/model";
 import { FollowedVideoOwnersDrivenPort } from "../domain/port";
 

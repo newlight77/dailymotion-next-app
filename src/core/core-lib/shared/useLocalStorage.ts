@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { prefixedKey } from './localStoragePrefix';
 
 // type SetterFn<A> = (value: A) => void;
 // type Value<B> = B | undefined;
@@ -32,14 +33,16 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
-        const saved = localStorage.getItem(key);
-        if (lastLoadedRef.current.key === key && lastLoadedRef.current.raw === saved) return;
-        lastLoadedRef.current = { key, raw: saved };
+        const newKey = prefixedKey(key);
+        const savedNew = localStorage.getItem(newKey);
+        // avoid unnecessary parse if nothing changed
+        if (lastLoadedRef.current.key === newKey && lastLoadedRef.current.raw === savedNew) return;
+        lastLoadedRef.current = { key: newKey, raw: savedNew };
 
-        if (saved !== null) {
+        if (savedNew !== null) {
             if (userUpdatedRef.current) return;
             try {
-                const parsed = JSON.parse(saved) as S;
+                const parsed = JSON.parse(savedNew) as S;
                 setValue(parsed);
             } catch {
                 if (valueRef.current !== defaultValueRef.current) {
@@ -49,6 +52,20 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
             return;
         }
 
+        // migrate old key if present
+        const savedOld = localStorage.getItem(key);
+        if (savedOld !== null) {
+            try {
+                localStorage.setItem(newKey, savedOld);
+                localStorage.removeItem(key);
+                const parsed = JSON.parse(savedOld) as S;
+                setValue(parsed);
+                return;
+            } catch {
+                // ignore migration errors
+            }
+        }
+
         if (valueRef.current === undefined && defaultValueRef.current !== undefined) {
             setValue(defaultValueRef.current as S);
         }
@@ -56,17 +73,15 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
+        const newKey = prefixedKey(key);
         if (value === undefined) {
-            localStorage.removeItem(key);
+            localStorage.removeItem(newKey);
             return;
         }
         try {
-            if (key === 'watchlist-items') {
-                return;
-            }
-            localStorage.setItem(key, JSON.stringify(value));
+            localStorage.setItem(newKey, JSON.stringify(value));
         } catch (error) {
-            console.warn(`Failed to persist ${key} to localStorage`, error);
+            console.warn(`Failed to persist ${newKey} to localStorage`, error);
         }
     }, [key, value]);
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaCirclePlay, FaThumbtack } from 'react-icons/fa6';
-import { displayDate, displayDurationInHMS } from '@/shared/dateUtil';
+import { displayDate, displayDurationInHMS } from '@/core/core-lib/shared/dateUtil';
 import { useFollowedVideoOwners, useLastViews } from '@/donghua-context/user-preferences-feature';
 import { FollowedVideoOwnerType, LastViewType, MetaVideoType } from '../../domain';
 

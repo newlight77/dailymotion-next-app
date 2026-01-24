@@ -1,4 +1,4 @@
-import { useLocalStorage } from "@/shared/useLocalStorage";
+import { useLocalStorage } from "@/core/core-lib/shared/useLocalStorage";
 import { useState } from "react";
 
 type Storage = {

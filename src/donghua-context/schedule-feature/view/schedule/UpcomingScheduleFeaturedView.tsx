@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
 import { useAnimelist } from '@/donghua-context/animelist-feature';
-import { useIsMounted } from '@/shared/useIsMounted';
+import { useIsMounted } from '@/core/core-lib/shared/useIsMounted';
 import { useUpcomingSchedule } from '../../hooks/UpcomingScheduleConfigurator';
 import { UpcomingEpisodeType } from '../../domain';
 import Panel from '../../../../components/molecules/Panel';

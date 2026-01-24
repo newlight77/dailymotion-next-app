@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFollowedAnimes, useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/donghua-context/user-preferences-feature';
 import { useSearchVideos } from '../../hooks';
 import { PreferencesType } from '../../domain';
+import { prefixedKey } from '@/core/core-lib/shared/localStoragePrefix';
 
 
 interface VideoSearchBarProps {
@@ -42,7 +43,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
 
         if (initializedRef.current) return;
         initializedRef.current = true;
-        const last = typeof window !== 'undefined' ? (localStorage.getItem('last-search') || '') : '';
+        const last = typeof window !== 'undefined' ? (localStorage.getItem(prefixedKey('last-search')) || localStorage.getItem('last-search') || '') : '';
         if (last !== '') {
             setInputValue(last);
             setKeywords(last);
@@ -82,7 +83,7 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
         search(keywords, prefs)
 
         // console.log('SearchBar handleSearch with keywords', keywords);
-        localStorage.setItem('last-search', keywords);
+        localStorage.setItem(prefixedKey('last-search'), keywords);
         addOrUpdateHistoryRef.current({uid: crypto.randomUUID().toString(), keywords: keywords});
     }, [keywords, strictSearch, search]);
 
