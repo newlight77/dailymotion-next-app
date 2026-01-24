@@ -25,9 +25,9 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const [addModal, setAddModal] = useState(false);
     const [loadMode, setLoadMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useLocalStorage<string>('filterKeywords', '');
-    const [excludeCompleted, setExcludeCompleted] = useState(true);
-    const [onlyWithUpdates, setOnlyWithUpdates] = useState(true);
-    const [onlyFollowedAnimes, setOnlyFollowedAnimes] = useState(true);
+    const [excludeCompleted, setExcludeCompleted] = useState(false);
+    const [onlyWithUpdates, setOnlyWithUpdates] = useState(false);
+    const [onlyFollowedAnimes, setOnlyFollowedAnimes] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
