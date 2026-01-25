@@ -5,6 +5,8 @@ import AppleProvider from 'next-auth/providers/apple';
 import AzureADProvider from 'next-auth/providers/azure-ad';
 import { verifyBasicCredentials, type BasicAuthUser } from './basicAuth';
 
+const ONE_DAY = 24 * 60 * 60;
+const THIRTY_DAYS = 30 * 24 * 60 * 60;
 const THIRTY_MINUTES = 30 * 60;
 
 const refreshAccessToken = async (token: Record<string, unknown>): Promise<Record<string, unknown>> => {
@@ -99,10 +101,10 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: 'jwt',
-    maxAge: THIRTY_MINUTES,
+    maxAge: ONE_DAY,
   },
   jwt: {
-    maxAge: THIRTY_MINUTES,
+    maxAge: ONE_DAY,
   },
   pages: {
     signIn: '/signin',
@@ -124,7 +126,7 @@ export const authOptions: NextAuthOptions = {
         const userRecord = user as unknown as Record<string, unknown>;
         if (userRecord && typeof userRecord['access_token'] === 'string') {
           (token as Record<string, unknown>)['accessToken'] = userRecord['access_token'] as string;
-          (token as Record<string, unknown>)['accessTokenExpires'] = Date.now() + THIRTY_MINUTES * 1000;
+          (token as Record<string, unknown>)['accessTokenExpires'] = Date.now() + THIRTY_DAYS * 1000;
         }
       }
 
