@@ -4,6 +4,7 @@ import { AnimeType } from '@/donghua-context/animelist-feature';
 import { writeFile } from 'fs/promises';
 import path from 'path';
 import fs from 'fs';
+import { isAdminUser } from '@/core/capabilities/auth-feature/server/isAdmin';
 
 const prisma = new PrismaClient();
 
@@ -50,6 +51,10 @@ export async function GET() {
 
 /** create many from a list */
 export async function POST(request: NextRequest) {
+  const isAdmin = await isAdminUser();
+  if (!isAdmin) {
+    return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403 });
+  }
 
   const animelist: AnimeType[] = await request.json()
 

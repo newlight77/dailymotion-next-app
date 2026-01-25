@@ -36,8 +36,20 @@ export function useStorage<S extends Storage>(key: string, defaultValue: S[]):
   const loadData = (data: S[]) => {
     if (data) {
       try {
-        const newItems = data.reduce<S[]>((acc, curr) => acc.some(item => isSame(item, curr)) ? acc : [...acc, curr], []);
-        setItems(newItems);
+        // Replace or merge server data into the store so authoritative fields (title, owner, etc.) are applied.
+        // We prefer server data; however keep any local items not present in the server response.
+        const incoming = data;
+        const existing = items || [];
+        const merged = [
+          // add/replace incoming items (server authoritative)
+          ...incoming.map(i => {
+            const found = existing.find(e => isSame(e, i));
+            return found ? { ...found, ...i } : i;
+          }),
+          // keep existing items that were not part of the incoming payload
+          ...existing.filter(e => !incoming.some(i => isSame(e, i)))
+        ];
+        setItems(merged);
       } catch (error) {
         // display error later
         alert(`there is an error with the json you try to load : ${error}`);

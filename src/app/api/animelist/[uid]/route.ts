@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { AnimeType } from '@/donghua-context/animelist-feature';
+import { isAdminUser } from '@/core/capabilities/auth-feature/server/isAdmin';
 
 const prisma = new PrismaClient();
 
@@ -34,6 +35,10 @@ export async function GET(request: NextRequest, { params }: ParamType) {
 }
 
 export async function PUT(request: NextRequest, { params }: ParamType) {
+  const isAdmin = await isAdminUser();
+  if (!isAdmin) {
+    return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403 });
+  }
   const uid = (await params).uid
   const anime: AnimeType = await request.json()
 

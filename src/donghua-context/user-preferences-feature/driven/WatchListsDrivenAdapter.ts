@@ -1,8 +1,9 @@
 'use client'
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { AnimeType } from "@/donghua-context/animelist-feature";
-import { WatchListCollectionType, WatchListItemType, WatchListType } from "../domain";
+import { WatchListItemType, WatchListType } from "../domain";
 import { WatchListsDrivenPort } from "../domain/port";
+import { useStorage } from "@/core/core-lib/shared/useStorage";
 
 const mapListDates = (list: WatchListType): WatchListType => ({
   ...list,
@@ -24,56 +25,44 @@ const mapItemDates = (item: WatchListItemType): WatchListItemType => ({
 });
 
 export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
-  const [lists, setLists] = useState<WatchListType[]>([]);
-  const [items, setItems] = useState<WatchListItemType[]>([]);
+  const listStore = useStorage<WatchListType>('watchlists', []);
+  const itemStore = useStorage<WatchListItemType>('watchlist-items', []);
 
   const loadListsData = useCallback((data: WatchListType[]) => {
-    setLists(data);
-  }, []);
+    listStore.loadData(data);
+  }, [listStore]);
 
   const loadItemsData = useCallback((data: WatchListItemType[]) => {
-    setItems(data);
-  }, []);
+    itemStore.loadData(data);
+  }, [itemStore]);
 
   const addOrUpdateList = useCallback((list: WatchListType) => {
-    setLists(prev => {
-      const exists = prev.find(item => item.uid === list.uid);
-      if (exists) {
-        return prev.map(item => item.uid === list.uid ? list : item);
-      }
-      return [list, ...prev];
-    });
-  }, []);
+    listStore.addOrUpdate(list);
+  }, [listStore]);
 
   const addOrUpdateItem = useCallback((item: WatchListItemType) => {
-    setItems(prev => {
-      const exists = prev.find(it => it.uid === item.uid || it.animeId === item.animeId);
-      if (exists) {
-        return prev.map(it => (it.uid === item.uid || it.animeId === item.animeId) ? item : it);
-      }
-      return [item, ...prev];
-    });
-  }, []);
+    itemStore.addOrUpdate(item);
+  }, [itemStore]);
 
   const removeList = useCallback((listId: string) => {
-    setLists(prev => prev.filter(item => item.uid !== listId));
-  }, []);
+    listStore.remove(listId);
+  }, [listStore]);
 
   const removeItem = useCallback((itemId: string) => {
-    setItems(prev => prev.filter(item => item.uid !== itemId));
-  }, []);
+    itemStore.remove(itemId);
+  }, [itemStore]);
 
   const clearLists = useCallback(() => {
-    setLists([]);
-  }, []);
+    listStore.clear();
+  }, [listStore]);
 
   const clearItems = useCallback(() => {
-    setItems([]);
-  }, []);
+    itemStore.clear();
+  }, [itemStore]);
 
   return useMemo(() => ({
-    lists: () => lists || [],
-    items: () => items || [],
+    lists: () => listStore.items || [],
+    items: () => itemStore.items || [],
 
     loadLists: (data: WatchListType[]) => {
       loadListsData(data.map(mapListDates));
@@ -96,7 +85,7 @@ export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
     },
 
     removeItemByAnimeId: (animeId: string) => {
-      const existing = items?.find(i => i.animeId === animeId);
+        const existing = itemStore.items?.find(i => i.animeId === animeId);
       if (existing?.uid) {
         removeItem(existing.uid);
       }
@@ -107,51 +96,27 @@ export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
       clearItems();
     },
 
-    createCollection: async (): Promise<WatchListCollectionType | undefined> => {
+    fetchLists: async (): Promise<WatchListType[] | undefined> => {
       try {
-        const response = await fetch('/api/watchlists', { method: 'POST' });
+        const response = await fetch('/api/watchlists', { method: 'GET', credentials: 'include' });
         if (!response.ok) {
-          const errorBody = await response.json().catch(() => ({}));
-          const message = (errorBody as { error?: string }).error || response.statusText;
-          throw new Error(`Failed to create watch list collection: ${message}`);
+          if (response.status === 401) return undefined;
+          throw new Error(`Failed to fetch watch lists: ${response.statusText}`);
         }
-        const collection: WatchListCollectionType = await response.json();
-        return {
-          ...collection,
-          createdAt: new Date(collection.createdAt),
-          updatedAt: new Date(collection.updatedAt),
-        };
+        const lists: WatchListType[] = await response.json();
+        return lists.map(mapListDates);
       } catch (error) {
-        console.error('Error creating watch list collection:', error);
+        console.error('Error fetching watch lists:', error);
         return undefined;
       }
     },
 
-    fetchCollection: async (collectionId: string): Promise<WatchListCollectionType | undefined> => {
+    createList: async (title: string): Promise<WatchListType | undefined> => {
       try {
-        const response = await fetch(`/api/watchlists/${collectionId}`, { method: 'GET' });
-        if (!response.ok) {
-          if (response.status === 404) return undefined;
-          throw new Error(`Failed to fetch watch list collection: ${response.statusText}`);
-        }
-        const collection: WatchListCollectionType = await response.json();
-        return {
-          ...collection,
-          createdAt: new Date(collection.createdAt),
-          updatedAt: new Date(collection.updatedAt),
-          lists: collection.lists?.map(mapListDates),
-        };
-      } catch (error) {
-        console.error('Error fetching watch list collection:', error);
-        return undefined;
-      }
-    },
-
-    createList: async (collectionId: string, title: string): Promise<WatchListType | undefined> => {
-      try {
-        const response = await fetch(`/api/watchlists/${collectionId}`, {
+        const response = await fetch(`/api/watchlists`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify({ title })
         });
         if (!response.ok) {
@@ -165,11 +130,12 @@ export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
       }
     },
 
-    renameList: async (collectionId: string, listId: string, title: string): Promise<WatchListType | undefined> => {
+    renameList: async (listId: string, title: string): Promise<WatchListType | undefined> => {
       try {
-        const response = await fetch(`/api/watchlists/${collectionId}/${listId}`, {
+        const response = await fetch(`/api/watchlists/${listId}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify({ title })
         });
         if (!response.ok) {
@@ -183,10 +149,30 @@ export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
       }
     },
 
-    deleteList: async (collectionId: string, listId: string): Promise<void> => {
+    setListVisibility: async (listId: string, isPublic: boolean): Promise<WatchListType | undefined> => {
       try {
-        const response = await fetch(`/api/watchlists/${collectionId}/${listId}`, {
-          method: 'DELETE'
+        const response = await fetch(`/api/watchlists/${listId}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ isPublic })
+        });
+        if (!response.ok) {
+          throw new Error(`Failed to update watch list visibility: ${response.statusText}`);
+        }
+        const list: WatchListType = await response.json();
+        return mapListDates(list);
+      } catch (error) {
+        console.error('Error updating watch list visibility:', error);
+        return undefined;
+      }
+    },
+
+    deleteList: async (listId: string): Promise<void> => {
+      try {
+        const response = await fetch(`/api/watchlists/${listId}`, {
+          method: 'DELETE',
+          credentials: 'include'
         });
         if (!response.ok && response.status !== 204) {
           throw new Error(`Failed to delete watch list: ${response.statusText}`);
@@ -196,9 +182,9 @@ export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
       }
     },
 
-    fetchList: async (collectionId: string, listId: string): Promise<(WatchListType & { items: WatchListItemType[] }) | undefined> => {
+    fetchList: async (listId: string): Promise<(WatchListType & { items: WatchListItemType[] }) | undefined> => {
       try {
-        const response = await fetch(`/api/watchlists/${collectionId}/${listId}`, { method: 'GET' });
+        const response = await fetch(`/api/watchlists/${listId}`, { method: 'GET', credentials: 'include' });
         if (!response.ok) {
           if (response.status === 404) return undefined;
           throw new Error(`Failed to fetch watch list: ${response.statusText}`);
@@ -214,11 +200,12 @@ export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
       }
     },
 
-    addAnime: async (collectionId: string, listId: string, anime: AnimeType): Promise<WatchListItemType | undefined> => {
+    addAnime: async (listId: string, anime: AnimeType): Promise<WatchListItemType | undefined> => {
       try {
-        const response = await fetch(`/api/watchlists/${collectionId}/${listId}`, {
+        const response = await fetch(`/api/watchlists/${listId}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify({ animeId: anime.uid })
         });
         if (!response.ok) {
@@ -232,10 +219,11 @@ export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
       }
     },
 
-    removeAnime: async (collectionId: string, listId: string, animeId: string): Promise<void> => {
+    removeAnime: async (listId: string, animeId: string): Promise<void> => {
       try {
-        const response = await fetch(`/api/watchlists/${collectionId}/${listId}?animeId=${animeId}`, {
-          method: 'DELETE'
+        const response = await fetch(`/api/watchlists/${listId}?animeId=${animeId}`, {
+          method: 'DELETE',
+          credentials: 'include'
         });
         if (!response.ok && response.status !== 204) {
           throw new Error(`Failed to remove anime from watch list: ${response.statusText}`);
@@ -245,15 +233,15 @@ export const useWatchListsDrivenAdapter = (): WatchListsDrivenPort => {
       }
     }
   }), [
-    lists,
-    items,
-    removeList,
-    addOrUpdateList,
+    listStore.items,
+    itemStore.items,
     loadListsData,
-    clearLists,
-    removeItem,
-    addOrUpdateItem,
     loadItemsData,
+    addOrUpdateList,
+    removeList,
+    addOrUpdateItem,
+    removeItem,
+    clearLists,
     clearItems
   ])
 }

@@ -1,4 +1,4 @@
-import { FollowedAnimeType, FollowedVideoOwnerType, LastViewType, SearchKeywordsType, WatchListCollectionType, WatchListItemType, WatchListType } from "../model"
+import { FollowedAnimeType, FollowedVideoOwnerType, LastViewType, SearchKeywordsType, WatchListItemType, WatchListType } from "../model"
 import { AnimeType } from "@/donghua-context/animelist-feature"
 
 
@@ -43,12 +43,12 @@ export type WatchListsDrivenPort = {
   addOrUpdateItem: (item: WatchListItemType) => void,
   removeItemByAnimeId: (animeId: string) => void,
   clear: () => void,
-  createCollection: () => Promise<WatchListCollectionType | undefined>,
-  fetchCollection: (collectionId: string) => Promise<WatchListCollectionType | undefined>,
-  createList: (collectionId: string, title: string) => Promise<WatchListType | undefined>,
-  renameList: (collectionId: string, listId: string, title: string) => Promise<WatchListType | undefined>,
-  deleteList: (collectionId: string, listId: string) => Promise<void>,
-  fetchList: (collectionId: string, listId: string) => Promise<(WatchListType & { items: WatchListItemType[] }) | undefined>,
-  addAnime: (collectionId: string, listId: string, anime: AnimeType) => Promise<WatchListItemType | undefined>,
-  removeAnime: (collectionId: string, listId: string, animeId: string) => Promise<void>
+  fetchLists: () => Promise<WatchListType[] | undefined>,
+  createList: (title: string) => Promise<WatchListType | undefined>,
+  renameList: (listId: string, title: string) => Promise<WatchListType | undefined>,
+  setListVisibility: (listId: string, isPublic: boolean) => Promise<WatchListType | undefined>,
+  deleteList: (listId: string) => Promise<void>,
+  fetchList: (listId: string) => Promise<(WatchListType & { items: WatchListItemType[] }) | undefined>,
+  addAnime: (listId: string, anime: AnimeType) => Promise<WatchListItemType | undefined>,
+  removeAnime: (listId: string, animeId: string) => Promise<void>
 }

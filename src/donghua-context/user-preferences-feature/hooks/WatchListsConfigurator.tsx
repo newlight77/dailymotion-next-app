@@ -1,20 +1,19 @@
 'use client'
-import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import { createContext } from "react";
 import { AnimeType } from '@/donghua-context/animelist-feature';
-import { WatchListCollectionType, WatchListItemType, WatchListType } from '../domain';
+import { WatchListItemType, WatchListType } from '../domain';
 import { watchListsQuery, watchListsUsecase } from '../domain/usecases';
 import { watchListsDriverAdapter } from '../driver/WatchListsDriverAdapter';
 import { useWatchListsDrivenAdapter } from '../driven/WatchListsDrivenAdapter';
 
 export interface WatchListsContextType {
-  collectionId?: string,
   lists: WatchListType[] | undefined,
   items: WatchListItemType[] | undefined,
-  loadCollection: (collectionId: string) => Promise<WatchListCollectionType | undefined>,
-  createCollection: () => Promise<WatchListCollectionType | undefined>,
+  loadLists: () => Promise<WatchListType[] | undefined>,
   createList: (title: string) => Promise<WatchListType | undefined>,
   renameList: (listId: string, title: string) => Promise<WatchListType | undefined>,
+  setListVisibility: (listId: string, isPublic: boolean) => Promise<WatchListType | undefined>,
   deleteList: (listId: string) => Promise<void>,
   loadListItems: (listId: string) => Promise<(WatchListType & { items: WatchListItemType[] }) | undefined>,
   addAnime: (listId: string, anime: AnimeType) => Promise<WatchListItemType | undefined>,
@@ -23,13 +22,12 @@ export interface WatchListsContextType {
 }
 
 export const WatchListsContext = createContext<WatchListsContextType>({
-  collectionId: undefined,
   lists: [],
   items: [],
-  loadCollection: async (collectionId: string) => { console.log('load collection', collectionId); return undefined },
-  createCollection: async () => { console.log('create collection'); return undefined },
+  loadLists: async () => { console.log('load lists'); return undefined },
   createList: async (title: string) => { console.log('create list', title); return undefined },
   renameList: async (listId: string, title: string) => { console.log('rename list', listId, title); return undefined },
+  setListVisibility: async (listId: string, isPublic: boolean) => { console.log('set list visibility', listId, isPublic); return undefined },
   deleteList: async (listId: string) => { console.log('delete list', listId); },
   loadListItems: async (listId: string) => { console.log('load list items', listId); return undefined },
   addAnime: async (listId: string, anime: AnimeType) => { console.log('add anime', listId, anime); return undefined },
@@ -47,58 +45,37 @@ export const WatchListsConfigurator = ({ children }: Props): React.ReactElement 
     () => watchListsDriverAdapter(watchListsUsecase(driven), watchListsQuery(driven)),
     [driven]
   );
-  const [collectionId, setCollectionId] = useState<string | undefined>(undefined);
-  const lastLoadedCollectionRef = useRef<string | null>(null);
-
-  const loadCollection = useCallback(async (id: string) => {
-    if (lastLoadedCollectionRef.current === id) {
-      return driver.loadCollection(id);
-    }
-    lastLoadedCollectionRef.current = id;
-    setCollectionId(id);
-    return driver.loadCollection(id);
-  }, [driver]);
-
-  const createCollection = useCallback(async () => {
-    const collection = await driver.createCollection();
-    if (collection?.uid) {
-      setCollectionId(collection.uid);
-    }
-    return collection;
+  const loadLists = useCallback(async () => {
+    return driver.loadLists();
   }, [driver]);
 
   const createList = useCallback(async (title: string) => {
-    if (!collectionId) {
-      const collection = await createCollection();
-      if (!collection?.uid) return undefined;
-    }
-    return driver.createList(collectionId as string, title);
-  }, [collectionId, createCollection, driver]);
+    return driver.createList(title);
+  }, [driver]);
 
   const renameList = useCallback(async (listId: string, title: string) => {
-    if (!collectionId) return undefined;
-    return driver.renameList(collectionId, listId, title);
-  }, [collectionId, driver]);
+    return driver.renameList(listId, title);
+  }, [driver]);
+
+  const setListVisibility = useCallback(async (listId: string, isPublic: boolean) => {
+    return driver.setListVisibility(listId, isPublic);
+  }, [driver]);
 
   const deleteList = useCallback(async (listId: string) => {
-    if (!collectionId) return;
-    return driver.deleteList(collectionId, listId);
-  }, [collectionId, driver]);
+    return driver.deleteList(listId);
+  }, [driver]);
 
   const loadListItems = useCallback(async (listId: string) => {
-    if (!collectionId) return undefined;
-    return driver.loadListItems(collectionId, listId);
-  }, [collectionId, driver]);
+    return driver.loadListItems(listId);
+  }, [driver]);
 
   const addAnime = useCallback(async (listId: string, anime: AnimeType) => {
-    if (!collectionId) return undefined;
-    return driver.addAnime(collectionId, listId, anime);
-  }, [collectionId, driver]);
+    return driver.addAnime(listId, anime);
+  }, [driver]);
 
   const removeAnime = useCallback(async (listId: string, animeId: string) => {
-    if (!collectionId) return;
-    return driver.removeAnime(collectionId, listId, animeId);
-  }, [collectionId, driver]);
+    return driver.removeAnime(listId, animeId);
+  }, [driver]);
 
   const clear = useCallback(() => {
     driver.clear();
@@ -108,26 +85,24 @@ export const WatchListsConfigurator = ({ children }: Props): React.ReactElement 
   const items = driver.items();
 
   const value = useMemo(() => ({
-    collectionId,
     lists,
     items,
-    loadCollection,
-    createCollection,
+    loadLists,
     createList,
     renameList,
+    setListVisibility,
     deleteList,
     loadListItems,
     addAnime,
     removeAnime,
     clear,
   }), [
-    collectionId,
     lists,
     items,
-    loadCollection,
-    createCollection,
+    loadLists,
     createList,
     renameList,
+    setListVisibility,
     deleteList,
     loadListItems,
     addAnime,

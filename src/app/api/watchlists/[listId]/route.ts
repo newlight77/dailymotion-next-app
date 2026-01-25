@@ -1,18 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { getAuthUserId } from '@/core/capabilities/auth-feature/server/getAuthUser';
 
 const prisma = new PrismaClient();
 
 type ParamType = {
-  params: Promise<{ collectionId: string; listId: string }>
+  params: Promise<{ listId: string }>
 }
 
 export async function GET(_: NextRequest, { params }: ParamType) {
-  const { collectionId, listId } = await params;
+  const { listId } = await params;
+  const userId = await getAuthUserId();
+
   const list = await prisma.watchList.findFirst({
     where: {
       uid: listId,
-      collectionId: collectionId,
+      OR: [
+        { ownerId: userId ?? undefined },
+        { isPublic: true },
+      ],
     },
     include: {
       items: {
@@ -33,9 +39,21 @@ export async function POST(request: NextRequest, { params }: ParamType) {
   const { listId } = await params;
   const body = await request.json();
   const { animeId } = body ?? {};
+  const userId = await getAuthUserId();
+  if (!userId) {
+    return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+  }
 
   if (!animeId) {
     return new NextResponse(JSON.stringify({ error: 'animeId is required' }), { status: 400 });
+  }
+
+  const ownedList = await prisma.watchList.findFirst({
+    where: { uid: listId, ownerId: userId },
+  });
+
+  if (!ownedList) {
+    return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403 });
   }
 
   const item = await prisma.watchListItem.upsert({
@@ -64,15 +82,31 @@ export async function POST(request: NextRequest, { params }: ParamType) {
 export async function PATCH(request: NextRequest, { params }: ParamType) {
   const { listId } = await params;
   const body = await request.json();
-  const { title } = body ?? {};
+  const { title, isPublic } = body ?? {};
+  const userId = await getAuthUserId();
+  if (!userId) {
+    return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+  }
 
-  if (!title) {
-    return new NextResponse(JSON.stringify({ error: 'title is required' }), { status: 400 });
+  if (!title && typeof isPublic !== 'boolean') {
+    return new NextResponse(JSON.stringify({ error: 'title or isPublic is required' }), { status: 400 });
+  }
+
+  const ownedList = await prisma.watchList.findFirst({
+    where: { uid: listId, ownerId: userId },
+  });
+
+  if (!ownedList) {
+    return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403 });
   }
 
   const list = await prisma.watchList.update({
     where: { uid: listId },
-    data: { title, updatedAt: new Date() },
+    data: {
+      ...(title ? { title } : {}),
+      ...(typeof isPublic === 'boolean' ? { isPublic } : {}),
+      updatedAt: new Date(),
+    },
   });
 
   return new NextResponse(JSON.stringify(list), { status: 200 });
@@ -81,6 +115,18 @@ export async function PATCH(request: NextRequest, { params }: ParamType) {
 export async function DELETE(request: NextRequest, { params }: ParamType) {
   const { listId } = await params;
   const animeId = request.nextUrl.searchParams.get('animeId');
+  const userId = await getAuthUserId();
+  if (!userId) {
+    return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+  }
+
+  const ownedList = await prisma.watchList.findFirst({
+    where: { uid: listId, ownerId: userId },
+  });
+
+  if (!ownedList) {
+    return new NextResponse(JSON.stringify({ error: 'Forbidden' }), { status: 403 });
+  }
 
   if (animeId) {
     await prisma.watchListItem.deleteMany({

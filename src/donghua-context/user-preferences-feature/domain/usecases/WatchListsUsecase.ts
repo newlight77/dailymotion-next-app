@@ -1,77 +1,75 @@
 import { AnimeType } from "@/donghua-context/animelist-feature";
-import { WatchListCollectionType, WatchListItemType, WatchListType } from "../model";
+import { WatchListItemType, WatchListType } from "../model";
 import { WatchListsDrivenPort } from "../port";
 
 export type WatchListsUsecaseType = {
-  loadCollection: (collectionId: string) => Promise<WatchListCollectionType | undefined>,
-  createCollection: () => Promise<WatchListCollectionType | undefined>,
-  createList: (collectionId: string, title: string) => Promise<WatchListType | undefined>,
-  renameList: (collectionId: string, listId: string, title: string) => Promise<WatchListType | undefined>,
-  deleteList: (collectionId: string, listId: string) => Promise<void>,
-  loadListItems: (collectionId: string, listId: string) => Promise<(WatchListType & { items: WatchListItemType[] }) | undefined>,
-  addAnime: (collectionId: string, listId: string, anime: AnimeType) => Promise<WatchListItemType | undefined>,
-  removeAnime: (collectionId: string, listId: string, animeId: string) => Promise<void>,
+  loadLists: () => Promise<WatchListType[] | undefined>,
+  createList: (title: string) => Promise<WatchListType | undefined>,
+  renameList: (listId: string, title: string) => Promise<WatchListType | undefined>,
+  setListVisibility: (listId: string, isPublic: boolean) => Promise<WatchListType | undefined>,
+  deleteList: (listId: string) => Promise<void>,
+  loadListItems: (listId: string) => Promise<(WatchListType & { items: WatchListItemType[] }) | undefined>,
+  addAnime: (listId: string, anime: AnimeType) => Promise<WatchListItemType | undefined>,
+  removeAnime: (listId: string, animeId: string) => Promise<void>,
   clear: () => void
 }
 
 export const watchListsUsecase = (drivenPort: WatchListsDrivenPort): WatchListsUsecaseType => {
-  const loadCollection = async (collectionId: string): Promise<WatchListCollectionType | undefined> => {
-    const collection = await drivenPort.fetchCollection(collectionId);
-    if (collection?.lists) {
-      drivenPort.loadLists(collection.lists);
+  const loadLists = async (): Promise<WatchListType[] | undefined> => {
+    const lists = await drivenPort.fetchLists();
+    if (lists) {
+      drivenPort.loadLists(lists);
     }
-    return collection;
+    return lists;
   }
 
-  const createCollection = async (): Promise<WatchListCollectionType | undefined> => {
-    const collection = await drivenPort.createCollection();
-    if (collection?.lists) {
-      drivenPort.loadLists(collection.lists);
-    } else {
-      drivenPort.loadLists([]);
-    }
-    return collection;
-  }
-
-  const createList = async (collectionId: string, title: string): Promise<WatchListType | undefined> => {
-    const list = await drivenPort.createList(collectionId, title);
+  const createList = async (title: string): Promise<WatchListType | undefined> => {
+    const list = await drivenPort.createList(title);
     if (list) {
       drivenPort.addOrUpdateList(list);
     }
     return list;
   }
 
-  const renameList = async (collectionId: string, listId: string, title: string): Promise<WatchListType | undefined> => {
-    const list = await drivenPort.renameList(collectionId, listId, title);
+  const renameList = async (listId: string, title: string): Promise<WatchListType | undefined> => {
+    const list = await drivenPort.renameList(listId, title);
     if (list) {
       drivenPort.addOrUpdateList(list);
     }
     return list;
   }
 
-  const deleteList = async (collectionId: string, listId: string): Promise<void> => {
-    await drivenPort.deleteList(collectionId, listId);
+  const setListVisibility = async (listId: string, isPublic: boolean): Promise<WatchListType | undefined> => {
+    const list = await drivenPort.setListVisibility(listId, isPublic);
+    if (list) {
+      drivenPort.addOrUpdateList(list);
+    }
+    return list;
+  }
+
+  const deleteList = async (listId: string): Promise<void> => {
+    await drivenPort.deleteList(listId);
     drivenPort.removeList(listId);
   }
 
-  const loadListItems = async (collectionId: string, listId: string): Promise<(WatchListType & { items: WatchListItemType[] }) | undefined> => {
-    const list = await drivenPort.fetchList(collectionId, listId);
+  const loadListItems = async (listId: string): Promise<(WatchListType & { items: WatchListItemType[] }) | undefined> => {
+    const list = await drivenPort.fetchList(listId);
     if (list?.items) {
       drivenPort.loadItems(list.items);
     }
     return list;
   }
 
-  const addAnime = async (collectionId: string, listId: string, anime: AnimeType): Promise<WatchListItemType | undefined> => {
-    const item = await drivenPort.addAnime(collectionId, listId, anime);
+  const addAnime = async (listId: string, anime: AnimeType): Promise<WatchListItemType | undefined> => {
+    const item = await drivenPort.addAnime(listId, anime);
     if (item) {
       drivenPort.addOrUpdateItem(item);
     }
     return item;
   }
 
-  const removeAnime = async (collectionId: string, listId: string, animeId: string): Promise<void> => {
-    await drivenPort.removeAnime(collectionId, listId, animeId);
+  const removeAnime = async (listId: string, animeId: string): Promise<void> => {
+    await drivenPort.removeAnime(listId, animeId);
     drivenPort.removeItemByAnimeId(animeId);
   }
 
@@ -80,10 +78,10 @@ export const watchListsUsecase = (drivenPort: WatchListsDrivenPort): WatchListsU
   }
 
   return {
-    loadCollection,
-    createCollection,
+    loadLists,
     createList,
     renameList,
+    setListVisibility,
     deleteList,
     loadListItems,
     addAnime,

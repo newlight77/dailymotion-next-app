@@ -1,5 +1,5 @@
 import { AnimeType } from "@/donghua-context/animelist-feature";
-import { WatchListCollectionType, WatchListItemType, WatchListType } from "../domain";
+import { WatchListItemType, WatchListType } from "../domain";
 import { WatchListsDriverPort } from "../domain/port";
 import { WatchListsQueryType, WatchListsUsecaseType } from "../domain/usecases";
 
@@ -10,36 +10,36 @@ export const watchListsDriverAdapter = (
   lists: (): WatchListType[] => query.lists(),
   items: (): WatchListItemType[] => query.items(),
 
-  loadCollection: (collectionId: string): Promise<WatchListCollectionType | undefined> => {
-    return usecase.loadCollection(collectionId);
+  loadLists: (): Promise<WatchListType[] | undefined> => {
+    return usecase.loadLists();
   },
 
-  createCollection: (): Promise<WatchListCollectionType | undefined> => {
-    return usecase.createCollection();
+  createList: (title: string): Promise<WatchListType | undefined> => {
+    return usecase.createList(title);
   },
 
-  createList: (collectionId: string, title: string): Promise<WatchListType | undefined> => {
-    return usecase.createList(collectionId, title);
+  renameList: (listId: string, title: string): Promise<WatchListType | undefined> => {
+    return usecase.renameList(listId, title);
   },
 
-  renameList: (collectionId: string, listId: string, title: string): Promise<WatchListType | undefined> => {
-    return usecase.renameList(collectionId, listId, title);
+  setListVisibility: (listId: string, isPublic: boolean): Promise<WatchListType | undefined> => {
+    return usecase.setListVisibility(listId, isPublic);
   },
 
-  deleteList: (collectionId: string, listId: string): Promise<void> => {
-    return usecase.deleteList(collectionId, listId);
+  deleteList: (listId: string): Promise<void> => {
+    return usecase.deleteList(listId);
   },
 
-  loadListItems: (collectionId: string, listId: string): Promise<(WatchListType & { items: WatchListItemType[] }) | undefined> => {
-    return usecase.loadListItems(collectionId, listId);
+  loadListItems: (listId: string): Promise<(WatchListType & { items: WatchListItemType[] }) | undefined> => {
+    return usecase.loadListItems(listId);
   },
 
-  addAnime: (collectionId: string, listId: string, anime: AnimeType): Promise<WatchListItemType | undefined> => {
-    return usecase.addAnime(collectionId, listId, anime);
+  addAnime: (listId: string, anime: AnimeType): Promise<WatchListItemType | undefined> => {
+    return usecase.addAnime(listId, anime);
   },
 
-  removeAnime: (collectionId: string, listId: string, animeId: string): Promise<void> => {
-    return usecase.removeAnime(collectionId, listId, animeId);
+  removeAnime: (listId: string, animeId: string): Promise<void> => {
+    return usecase.removeAnime(listId, animeId);
   },
 
   clear: () => {

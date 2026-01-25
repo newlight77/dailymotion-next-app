@@ -39,26 +39,19 @@ model Anime {
   totalEpisodes Int?
 
   watchListItems WatchListItem[]
-}
-
-model WatchListCollection {
-  uid       String      @id @default(uuid())
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  lists     WatchList[]
+  followedAnimes FollowedAnime[]
 }
 
 model WatchList {
   uid          String          @id @default(uuid())
-  collectionId String
   title        String
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
   items        WatchListItem[]
 
-  collection WatchListCollection @relation(fields: [collectionId], references: [uid], onDelete: Cascade)
-
-  @@index([collectionId])
+  ownerId  String?
+  isPublic Boolean @default(false)
+  owner    AuthUser? @relation(fields: [ownerId], references: [uid], onDelete: SetNull)
 }
 
 model WatchListItem {
@@ -81,4 +74,37 @@ model AuthUser {
   passwordHash String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  watchLists           WatchList[]
+  followedAnimes       FollowedAnime[]
+  followedVideoOwners  FollowedVideoOwner[]
+}
+
+model FollowedAnime {
+  uid       String   @id @default(uuid())
+  userId    String
+  animeId   String
+  title     String
+  subtitle  String?
+  originalTitle String?
+  lastEpisode Int?
+  updatedAt DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  user  AuthUser @relation(fields: [userId], references: [uid], onDelete: Cascade)
+  anime Anime    @relation(fields: [animeId], references: [uid], onDelete: Cascade)
+
+  @@unique([userId, animeId])
+}
+
+model FollowedVideoOwner {
+  uid       String   @id @default(uuid())
+  userId    String
+  owner     String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  user AuthUser @relation(fields: [userId], references: [uid], onDelete: Cascade)
+
+  @@unique([userId, owner])
 }

@@ -4,12 +4,12 @@ import { useParams } from 'next/navigation';
 import { WatchListDetail } from '@/donghua-context/user-preferences-feature';
 
 const WatchListDetailPage: React.FC = () => {
-  const { uid, listId } = useParams<{ uid: string; listId: string }>();
+  const { listId } = useParams<{ listId: string }>();
 
   return (
     <div className='w-full'>
       <h2 className='title text-3xl p-1 md:p-4 capitalize'>watch list</h2>
-      <WatchListDetail collectionId={uid} listId={listId} />
+      <WatchListDetail listId={listId} />
     </div>
   );
 };

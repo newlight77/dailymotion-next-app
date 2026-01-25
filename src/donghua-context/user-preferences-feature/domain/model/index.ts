@@ -38,16 +38,10 @@ export type VideoType = {
   link: string,
 }
 
-export type WatchListCollectionType = {
-  uid: string,
-  createdAt: Date,
-  updatedAt: Date,
-  lists?: WatchListType[],
-}
-
 export type WatchListType = {
   uid: string,
-  collectionId: string,
+  ownerId?: string,
+  isPublic?: boolean,
   title: string,
   createdAt: Date,
   updatedAt: Date,

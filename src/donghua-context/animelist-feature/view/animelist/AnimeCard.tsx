@@ -11,10 +11,11 @@ interface AnimeCardProps {
     anime: AnimeType,
     className?: string,
     watchListId?: string,
-    isInWatchListOverride?: boolean
+    isInWatchListOverride?: boolean,
+    canModify?: boolean
 }
 
-export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchListId, isInWatchListOverride}) => {
+export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchListId, isInWatchListOverride, canModify = true}) => {
     const useFollowedAnime = useFollowedAnimes();
     const watchLists = useWatchLists();
     const useAnimes = useAnimelist();
@@ -72,15 +73,20 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
             return;
         }
 
-        let collectionId = watchLists.collectionId;
-        if (!collectionId) {
-            const created = await watchLists.createCollection();
-            collectionId = created?.uid;
+        try {
+            await watchLists.loadLists();
+            setShowWatchLists(prev => !prev);
+        } catch (err: unknown) {
+            console.error('Failed to create/load watch list collection', err);
+            const message = err instanceof Error ? err.message : String(err);
+            if (message.toLowerCase().includes('unauthorized')) {
+                // redirect to sign in
+                window.location.href = '/signin';
+                return;
+            }
+            // fallback: show sign in for any auth-like errors
+            alert('Unable to access watch lists. Please sign in and try again.');
         }
-        if (collectionId) {
-            await watchLists.loadCollection(collectionId);
-        }
-        setShowWatchLists(prev => !prev);
     }
 
     const handleAddToWatchList = async (listId: string) => {
@@ -98,7 +104,7 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
                     <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
                         <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                     </Link>
-                    <Link href={''} about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={(event) => { event.preventDefault(); handleToggleWatchLists(); }}>
+                    <Link href={''} about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={(event) => { event.preventDefault(); if (watchListId && !canModify) { alert('Only the list owner can modify this list'); return; } handleToggleWatchLists(); }}>
                         <FaListUl aria-label="watch list" size={36} className={`${watchListId && activeInWatchList ? 'text-primary bg-primary/20 hover:text-tertiary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                     </Link>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">

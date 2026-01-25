@@ -134,19 +134,30 @@ That way, we would have core/core-lib and core/core-ui.
 The authentication feature, named auth-feature, has to be put under core/capabilities.
 ```
 
-## FEatures : watch list & anime list
+## Features : watch list & anime list
 
 ```prompt
 An authenticated user would be able to own watch lists and followed anime list.
 
-A watch list may be public so it can be shared, but it is owned by a user. Only the owner can modifiy the list.
+A watch list may be private or public. If it is public, it can be shared with a link, but it is still owned by a user who created it. Only the owner can add/remove an anime to the list, or change the alias of the watch list. Let's use the localstorage as local cache. Upon click on the "share" or "share link" button, let's copy the link into the clipboard. If the watch list is private, disable the share button. The user can not share the link, it has to be made public first. A public watch list is visible publicly, no sign in is required. A private watch list is only visible by the owner. A user can list he's own watch lists that have created.
 
-The following publishers are owned by a user. Only the owner can modifiy its content. The persistence of followings
+The followed video publishers are persisted into the database, They are owned by a user. Only the owner can follow/unfolow. Let's use the localstorage as local cache.
 
-The followed anime
+The followed anime are persisted into the database. They are owned by a user. Only the owner can follow/unfolow. Let's use the localstorage as local cache.
+
+The animelist is only read-only, the anime list is load from the database. Only the admin can modify the list. The localstorage is used as local cache.
+
 ```
 
 ```prompt
+Then add:
+- Admin enforcement for animelist updates
+- Public sharing endpoints for watch lists
+- UI toggles for public/private watch lists
 
-The animelist is only read-only, the anime list is load from the database, not anymore from the localstorage.
+Add a public share UI (copy link) and a public watchlist page that consumes the new endpoint. And a “Share” button in the watchlist list view.
+```
+
+```prompt
+For the authentication, when the token is generated, let's set the ttl to be valid for 1 day.
 ```
