@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useWatchLists } from '../../hooks';
 import { AnimeCard } from '@/donghua-context/animelist-feature';
+import type { AnimeType } from '@/donghua-context/animelist-feature';
 
 interface Props {
   listId: string,
@@ -66,10 +67,72 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
     }
   }
 
+  function orderScore(anime: AnimeType): number {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const todayWeekDay = new Date().getDay();
+
+    let updateDaysScore = 0;
+    if (anime.updateDays) {
+      for (let i = 0; i < 7; i++) {
+        const day = daysOfWeek[(todayWeekDay + i) % 7].toLowerCase();
+        if (anime.updateDays.toLowerCase().includes(day)) {
+          updateDaysScore = 7 - i;
+          break;
+        }
+      }
+    }
+
+    let updatedAtScore = 0;
+    if (anime.updatedAt) {
+      const updatedDate = new Date(anime.updatedAt);
+      const now = new Date();
+      const daysSinceUpdated = Math.floor((now.getTime() - updatedDate.getTime()) / (1000 * 60 * 60 * 24));
+
+      if (daysSinceUpdated <= 30) {
+        updatedAtScore = 10;
+      } else if (daysSinceUpdated <= 90) {
+        updatedAtScore = 7;
+      } else if (daysSinceUpdated <= 180) {
+        updatedAtScore = 5;
+      } else if (daysSinceUpdated <= 365) {
+        updatedAtScore = 3;
+      } else if (daysSinceUpdated <= 730) {
+        updatedAtScore = 1;
+      }
+    }
+
+    let publishedAtScore = 0;
+    if (anime.publishedAt) {
+      const publishedDate = new Date(anime.publishedAt);
+      const now = new Date();
+      const daysSincePublished = Math.floor((now.getTime() - publishedDate.getTime()) / (1000 * 60 * 60 * 24));
+
+      if (daysSincePublished <= 30) {
+        publishedAtScore = 10;
+      } else if (daysSincePublished <= 90) {
+        publishedAtScore = 7;
+      } else if (daysSincePublished <= 180) {
+        publishedAtScore = 5;
+      } else if (daysSincePublished <= 365) {
+        publishedAtScore = 3;
+      } else if (daysSincePublished <= 730) {
+        publishedAtScore = 1;
+      }
+    }
+
+    return (updateDaysScore * 3) + updatedAtScore + publishedAtScore;
+  }
+
   // determine ownership by looking up the current list and comparing to session user id
   const currentList = watchLists.lists?.find(l => l.uid === listId);
   const isOwner = !!currentList && !!sessionUserId && currentList.ownerId === sessionUserId;
-  const listItems = (watchLists.items || []).filter(item => item.listId === listId);
+  const listItems = (watchLists.items || [])
+    .filter(item => item.listId === listId)
+    .map(item => ({
+      ...item,
+      orderScore: item.anime ? orderScore(item.anime) : Number.NEGATIVE_INFINITY,
+    }))
+    .sort((a, b) => b.orderScore - a.orderScore);
 
   return (
     <div className={className}>

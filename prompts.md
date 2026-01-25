@@ -169,3 +169,7 @@ Let's remove the "follow anime" feature, and everything that is related to that,
 ```prompt
 And I have added a few anime titles to one watch list. But the page displays all items added to the first watch list on both watch lists.
 ```
+
+```prompt
+For the watch list, let's order items with the same rule as applied on the anime list page.
+```
