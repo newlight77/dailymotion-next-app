@@ -39,7 +39,6 @@ model Anime {
   totalEpisodes Int?
 
   watchListItems WatchListItem[]
-  followedAnimes FollowedAnime[]
 }
 
 model WatchList {
@@ -76,25 +75,7 @@ model AuthUser {
   updatedAt    DateTime @updatedAt
 
   watchLists           WatchList[]
-  followedAnimes       FollowedAnime[]
   followedVideoOwners  FollowedVideoOwner[]
-}
-
-model FollowedAnime {
-  uid       String   @id @default(uuid())
-  userId    String
-  animeId   String
-  title     String
-  subtitle  String?
-  originalTitle String?
-  lastEpisode Int?
-  updatedAt DateTime @default(now())
-  createdAt DateTime @default(now())
-
-  user  AuthUser @relation(fields: [userId], references: [uid], onDelete: Cascade)
-  anime Anime    @relation(fields: [animeId], references: [uid], onDelete: Cascade)
-
-  @@unique([userId, animeId])
 }
 
 model FollowedVideoOwner {

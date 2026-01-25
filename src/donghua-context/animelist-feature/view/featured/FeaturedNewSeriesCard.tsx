@@ -1,8 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaMagnifyingGlass, FaThumbtack } from 'react-icons/fa6';
-import { useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 interface Props {
   anime: {
@@ -17,39 +16,14 @@ interface Props {
 }
 
 export const FeaturedNewSeriesCard: React.FC<Props> = ({ anime, className }) => {
-  const useFollowedAnime = useFollowedAnimes();
-
-  const isFollowed = (a: { title: string }): boolean => {
-    const results = useFollowedAnime.items?.filter(f => f.title === a.title)
-    return results?.length === 1
-  }
-
-  const handleFollowAnime = async (a: Props['anime']) => {
-    if (isFollowed(a)) {
-      useFollowedAnime.remove(a.uid)
-    } else {
-      useFollowedAnime.addOrUpdate({
-        uid: a.uid,
-        animeId: a.uid,
-        title: a.title,
-        subtitle: a.subtitle,
-        originalTitle: a.originalTitle,
-        updatedAt: new Date()
-      })
-    }
-  }
-
   const keywords = (a: Props['anime']) => encodeURIComponent(`${a.title}`)
 
   return (
     <div className={`${className || ''} p-2 md:hover:border border-gold rounded-md`}>
       <div className='grid'>
-        <div className='grid grid-rows-2 pt-5 absolute translate-y-14'>
+        <div className='grid grid-rows-1 pt-5 absolute translate-y-14'>
           <Link href={`/videosearch?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
             <FaMagnifyingGlass size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
-          </Link>
-          <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-            <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
           </Link>
         </div>
         {anime.originalTitle && (

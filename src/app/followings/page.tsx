@@ -1,5 +1,5 @@
 "use client"
-import { FollowedAnimes, Followings } from '@/donghua-context/user-preferences-feature';
+import { Followings } from '@/donghua-context/user-preferences-feature';
 import React from 'react';
 
 
@@ -9,10 +9,6 @@ const FollowingsPage: React.FC = () => {
         <div className='w-full'>
             {/* <h2 className='title text-3xl p-1 md:p-4 capitalize'>my recent searches and views</h2> */}
             <div className='history md:grid grid-cols-2 gap-4 sm:max-w-screen-sm md:max-w-screen-xl'>
-                <div className="pt-2">
-                    <h3 className='title text-2xl p-1 md:p-4 capitalize'>followed animes</h3>
-                    <FollowedAnimes />
-                </div>
                 <div className="pt-2">
                     <h3 className='title text-2xl p-1 md:p-4 capitalize'>followed video publishers</h3>
                     <Followings />

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { FaThumbtack, FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus, FaListUl } from 'react-icons/fa6';
+import { FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus, FaThumbtack } from 'react-icons/fa6';
 import { AnimeType } from '../../domain/model';
-import { useFollowedAnimes, useWatchLists } from '@/donghua-context/user-preferences-feature';
+import { useWatchLists } from '@/donghua-context/user-preferences-feature';
 import { useAnimelist } from '../../hooks';
 
 
@@ -16,36 +16,10 @@ interface AnimeCardProps {
 }
 
 export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchListId, isInWatchListOverride, canModify = true}) => {
-    const useFollowedAnime = useFollowedAnimes();
     const watchLists = useWatchLists();
     const useAnimes = useAnimelist();
     const [showWatchLists, setShowWatchLists] = useState(false);
     const [isInWatchList, setIsInWatchList] = useState(false);
-
-    const handleFollowAnime = async (anime: AnimeType) => {
-        console.log('handleFollowAnime', anime)
-        // TODO : follow anime, add list of following anime
-        // TODO : display followed animes on following page
-
-        if (isFollowed(anime)) {
-            useFollowedAnime.remove(anime.uid)
-        } else {
-            useFollowedAnime.addOrUpdate({
-                uid: anime.uid,
-                animeId: anime.uid,
-                title: anime.title,
-                subtitle: anime.subtitle,
-                originalTitle: anime.originalTitle,
-                lastEpisode: anime.lastEpisode,
-                updatedAt: anime.updatedAt
-            })
-        }
-    }
-
-    const isFollowed = (anime: AnimeType): boolean => {
-        const results = useFollowedAnime.items?.filter(f => f.title === anime.title)
-        return results?.length === 1
-    }
 
     const keywords = (anime: AnimeType) => encodeURIComponent(`${anime.title} ${anime.lastEpisode ? anime.lastEpisode : ''}`)
 
@@ -97,15 +71,12 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
     return (
         <div className={`${className} p-2 md:hover:border border-gold rounded-md`}>
             <div className='grid relative'>
-                <div className='grid grid-rows-5 pt-5 absolute translate-y-14'>
+                <div className='grid grid-rows-4 pt-5 absolute translate-y-14'>
                     <Link href={`/videosearch?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
                         <FaMagnifyingGlass size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
-                    <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                        <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
-                    </Link>
                     <Link href={''} about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={(event) => { event.preventDefault(); if (watchListId && !canModify) { alert('Only the list owner can modify this list'); return; } handleToggleWatchLists(); }}>
-                        <FaListUl aria-label="watch list" size={36} className={`${watchListId && activeInWatchList ? 'text-primary bg-primary/20 hover:text-tertiary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
+                        <FaThumbtack aria-label="watch list" size={36} className={`${watchListId && activeInWatchList ? 'text-primary bg-primary/20 hover:text-tertiary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                     </Link>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
                         <FaPenToSquare size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>

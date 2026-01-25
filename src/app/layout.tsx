@@ -28,7 +28,7 @@ const routes = [
   { id: 1, route: "/videosearch", label: 'search' },
   { id: 2, route: '/animelist', label: "anime list" },
   { id: 3, route: '/schedule', label: "schedule" },
-  { id: 4, route: '/history', label: "history" },
+  // { id: 4, route: '/history', label: "history" },
   { id: 5, route: '/followings', label: "followings" },
   { id: 6, route: '/watchlists', label: "watch lists" },
 ];

@@ -1,14 +1,6 @@
-import { FollowedAnimeType, FollowedVideoOwnerType, LastViewType, SearchKeywordsType, WatchListItemType, WatchListType } from "../model"
+import { FollowedVideoOwnerType, LastViewType, SearchKeywordsType, WatchListItemType, WatchListType } from "../model"
 import { AnimeType } from "@/donghua-context/animelist-feature"
 
-
-export type FollowedAnimesDriverPort = {
-  items: () => FollowedAnimeType[],
-  remove: (uid: string) => void,
-  addOrUpdate: (followed: FollowedAnimeType) => void,
-  load: (animes: FollowedAnimeType[]) => void
-  clear: () => void
-}
 
 export type FollowedVideoOwnersDriverPort = {
   items: () => FollowedVideoOwnerType[],

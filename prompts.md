@@ -161,3 +161,7 @@ Add a public share UI (copy link) and a public watchlist page that consumes the 
 ```prompt
 For the authentication, when the token is generated, let's set the ttl to be valid for 1 day.
 ```
+
+```prompt
+Let's remove the "follow anime" feature, and everything that is related to that, such as "followed animes" views, pages and components
+```

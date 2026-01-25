@@ -1,5 +1,3 @@
-export * from './FollowedAnimesQuery'
-export * from './FollowedAnimesUsecase'
 export * from './FollowedVideoOwnersQuery'
 export * from './FollowedVideoOwnersUsecase'
 export * from './LastViewsQuery'

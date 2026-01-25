@@ -1,10 +1,9 @@
 "use client"
 import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { FaMagnifyingGlass, FaPenToSquare, FaThumbtack } from 'react-icons/fa6';
+import { FaMagnifyingGlass, FaPenToSquare } from 'react-icons/fa6';
 import Modal from '@/components/molecules/Modal';
 import { useIsMounted } from '@/core/core-lib/shared/useIsMounted';
-import { useFollowedAnimes } from '@/donghua-context/user-preferences-feature';
 import { AnimeType } from '../../domain';
 import { useAnimelist } from '../../hooks';
 import { AnimeEdit } from './AnimeEdit';
@@ -18,7 +17,6 @@ type Props = {
 
 export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const useAnimes = useAnimelist();
-    const useFollowedAnime = useFollowedAnimes();
 
     const isMounted = useIsMounted();
     const [anime, setAnime] = useState<AnimeType>();
@@ -41,30 +39,6 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
 
     const handleAnimeUpdate = (anime: AnimeType) => {
         setAnime(anime);
-    }
-
-    const handleFollowAnime = async (anime: AnimeType) => {
-        // console.log('handleFollowAnime', anime)
-        // TODO : follow anime, add list of following anime
-        // TODO: display followed animes on following page
-        if (isFollowed(anime)) {
-            useFollowedAnime.remove(anime.uid)
-        } else {
-            useFollowedAnime.addOrUpdate({
-                uid: anime.uid,
-                animeId: anime.uid,
-                title: anime.title,
-                subtitle: anime.subtitle,
-                originalTitle: anime.originalTitle,
-                lastEpisode: anime.lastEpisode,
-                updatedAt: anime.updatedAt
-            })
-        }
-    }
-
-    const isFollowed = (anime: AnimeType): boolean => {
-        const results = useFollowedAnime.items?.filter(f => f.title === anime.title)
-        return results?.length === 1
     }
 
     const keywords = (anime: AnimeType) => encodeURIComponent(`${anime.title} ${anime.lastEpisode ? anime.lastEpisode : ''}`)
@@ -98,9 +72,6 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                     <div className='grid grid-rows-4 pt-5 absolute translate-y-8'>
                         <Link href={`/?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
                             <FaMagnifyingGlass size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
-                        </Link>
-                        <Link href={''} about="follow anime" aria-label="follow anime" className='followinglink gap-2 p-4' onClick={() => handleFollowAnime(anime)}>
-                            <FaThumbtack aria-label="follow anime" size={36} className={`${isFollowed(anime) ? 'text-tertiary hover:text-primary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
                         </Link>
                         { !editModal &&
                             <Link href={''} className="gap-2 p-4" onClick={toggleEditModal}>

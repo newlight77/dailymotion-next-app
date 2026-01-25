@@ -1,15 +1,5 @@
 import { AnimeType } from "@/donghua-context/animelist-feature";
 
-export type FollowedAnimeType = {
-  uid: string,
-  animeId: string,
-  title: string,
-  originalTitle?: string,
-  subtitle?: string,
-  lastEpisode?: number,
-  updatedAt: Date,
-}
-
 export type SearchKeywordsType = {
     uid: string,
     keywords: string,

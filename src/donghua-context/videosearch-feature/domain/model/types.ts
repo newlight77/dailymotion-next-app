@@ -1,13 +1,3 @@
-export type FollowedAnimeType = {
-  uid: string,
-  animeId: string,
-  title: string,
-  originalTitle?: string,
-  subtitle?: string,
-  lastEpisode?: number,
-  updatedAt: Date,
-}
-
 export type SearchKeywordsType = {
     uid: string,
     keywords: string,
@@ -73,7 +63,6 @@ export type VideoSearchResponse = {
 
 export type PreferencesType = {
   strictSearch: boolean,
-  followedAnimes?: FollowedAnimeType[], // Array of followed anime IDs
   followedOwners?: FollowedVideoOwnerType[], // Array of followed owner usernames
   lastViews?: LastViewType[] // Array of last search keywords
   lastSearches?: SearchKeywordsType[] // Array of last search keywords

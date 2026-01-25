@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { FaCirclePlay, FaThumbtack } from 'react-icons/fa6';
+import { FaCirclePlay, FaThumbsUp } from 'react-icons/fa6';
 import { displayDate, displayDurationInHMS } from '@/core/core-lib/shared/dateUtil';
 import { useFollowedVideoOwners, useLastViews } from '@/donghua-context/user-preferences-feature';
 import { FollowedVideoOwnerType, LastViewType, MetaVideoType } from '../../domain';
@@ -65,7 +65,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({video, className}) => {
                     <Link className='followinglink mb-4 flex gap-2 px-4'
                         href={''} about="follow owner" aria-label="follow owner"
                         onClick={() => handleFollowOwner(video)}>
-                        <FaThumbtack size={36} className={`${isFollowed(video) ? 'text-tertiary' : ''} p-2 hover:border rounded-md border-tertiary bg-secondary-variant border border-tertiary-variant outline outline-tertiary-variant`}/>
+                        <FaThumbsUp size={36} className={`${isFollowed(video) ? 'text-tertiary' : ''} p-2 hover:border rounded-md border-tertiary bg-secondary-variant border border-tertiary-variant outline outline-tertiary-variant`}/>
                         <span className='p-1 bg-secondary-variant rounded-md px-2 content-center border border-tertiary-variant outline outline-tertiary-variant'>{`${video.ownerUsername}`}</span>
                     </Link>
                 </div>

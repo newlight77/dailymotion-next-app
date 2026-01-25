@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useFollowedAnimes, useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/donghua-context/user-preferences-feature';
+import { useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/donghua-context/user-preferences-feature';
 import { useSearchVideos } from '../../hooks';
 import { PreferencesType } from '../../domain';
 import { prefixedKey } from '@/core/core-lib/shared/localStoragePrefix';
@@ -16,14 +16,12 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     const [strictSearch, setStrictSearch] = useState(false);
     const { search } = useSearchVideos();
     const useSearchHistory = useVideoSearchHistory();
-    const useFollowedAnime = useFollowedAnimes();
     const useLastView = useLastViews();
     const useFollowedVideoOwner = useFollowedVideoOwners();
 
     const delay = 1100;
     const timerRef = useRef<NodeJS.Timeout | null>(null);
     const initializedRef = useRef(false);
-    const followedAnimesRef = useRef(useFollowedAnime.items);
     const followedOwnersRef = useRef(useFollowedVideoOwner.items);
     const lastViewsRef = useRef(useLastView.items);
     const lastSearchesRef = useRef(useSearchHistory.items);
@@ -51,10 +49,6 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
     }, [newKeywords]);
 
     useEffect(() => {
-        followedAnimesRef.current = useFollowedAnime.items;
-    }, [useFollowedAnime.items]);
-
-    useEffect(() => {
         followedOwnersRef.current = useFollowedVideoOwner.items;
     }, [useFollowedVideoOwner.items]);
 
@@ -74,7 +68,6 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
 
         const prefs: PreferencesType = {
             strictSearch: strictSearch,
-            followedAnimes: followedAnimesRef.current,
             followedOwners: followedOwnersRef.current,
             lastViews: lastViewsRef.current,
             lastSearches: lastSearchesRef.current
