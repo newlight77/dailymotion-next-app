@@ -165,3 +165,7 @@ For the authentication, when the token is generated, let's set the ttl to be val
 ```prompt
 Let's remove the "follow anime" feature, and everything that is related to that, such as "followed animes" views, pages and components
 ```
+
+```prompt
+And I have added a few anime titles to one watch list. But the page displays all items added to the first watch list on both watch lists.
+```

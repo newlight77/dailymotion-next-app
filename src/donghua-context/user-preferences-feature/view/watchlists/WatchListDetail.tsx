@@ -69,6 +69,7 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
   // determine ownership by looking up the current list and comparing to session user id
   const currentList = watchLists.lists?.find(l => l.uid === listId);
   const isOwner = !!currentList && !!sessionUserId && currentList.ownerId === sessionUserId;
+  const listItems = (watchLists.items || []).filter(item => item.listId === listId);
 
   return (
     <div className={className}>
@@ -121,7 +122,7 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
       </div>
 
       <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4'>
-        {(watchLists.items || []).map(item => (
+        {listItems.map(item => (
           item.anime ? (
             <AnimeCard
               key={item.uid}
