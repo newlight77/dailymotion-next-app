@@ -41,7 +41,6 @@ model Anime {
   watchListItems WatchListItem[]
   ratings        Rating[]
   comments       Comment[]
-  reviews        Review[]
 }
 
 model WatchList {
@@ -81,7 +80,6 @@ model AuthUser {
   followedVideoOwners  FollowedVideoOwner[]
   ratings              Rating[]
   comments             Comment[]
-  reviews              Review[]
 }
 
 model FollowedVideoOwner {
@@ -106,7 +104,6 @@ model Rating {
 
   anime  Anime    @relation(fields: [animeId], references: [uid], onDelete: Cascade)
   owner  AuthUser @relation(fields: [ownerId], references: [uid], onDelete: Cascade)
-  review Review?
 
   @@unique([animeId, ownerId])
 }
@@ -121,24 +118,8 @@ model Comment {
 
   anime  Anime    @relation(fields: [animeId], references: [uid], onDelete: Cascade)
   owner  AuthUser @relation(fields: [ownerId], references: [uid], onDelete: Cascade)
-  review Review?
 
   @@unique([animeId, ownerId])
 }
 
-model Review {
-  uid       String   @id @default(uuid())
-  animeId   String
-  ownerId   String
-  ratingId  String   @unique
-  commentId String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
-  anime   Anime    @relation(fields: [animeId], references: [uid], onDelete: Cascade)
-  owner   AuthUser @relation(fields: [ownerId], references: [uid], onDelete: Cascade)
-  rating  Rating   @relation(fields: [ratingId], references: [uid], onDelete: Cascade)
-  comment Comment  @relation(fields: [commentId], references: [uid], onDelete: Cascade)
-
-  @@unique([animeId, ownerId])
-}

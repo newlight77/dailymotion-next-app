@@ -55,26 +55,7 @@ export async function POST(request: Request) {
       },
     });
 
-    const rating = await prisma.rating.findUnique({
-      where: { animeId_ownerId: { animeId, ownerId: userId } },
-    });
 
-    if (rating) {
-      await prisma.review.upsert({
-        where: { animeId_ownerId: { animeId, ownerId: userId } },
-        create: {
-          animeId,
-          ownerId: userId,
-          ratingId: rating.uid,
-          commentId: comment.uid,
-        },
-        update: {
-          ratingId: rating.uid,
-          commentId: comment.uid,
-          updatedAt: new Date(),
-        },
-      });
-    }
 
     return new NextResponse(JSON.stringify(comment), { status: 200 });
   } catch (error) {
