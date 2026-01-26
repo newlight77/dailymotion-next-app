@@ -39,6 +39,9 @@ model Anime {
   totalEpisodes Int?
 
   watchListItems WatchListItem[]
+  ratings        Rating[]
+  comments       Comment[]
+  reviews        Review[]
 }
 
 model WatchList {
@@ -76,6 +79,9 @@ model AuthUser {
 
   watchLists           WatchList[]
   followedVideoOwners  FollowedVideoOwner[]
+  ratings              Rating[]
+  comments             Comment[]
+  reviews              Review[]
 }
 
 model FollowedVideoOwner {
@@ -88,4 +94,51 @@ model FollowedVideoOwner {
   user AuthUser @relation(fields: [userId], references: [uid], onDelete: Cascade)
 
   @@unique([userId, owner])
+}
+
+model Rating {
+  uid       String   @id @default(uuid())
+  animeId   String
+  ownerId   String
+  value     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  anime  Anime    @relation(fields: [animeId], references: [uid], onDelete: Cascade)
+  owner  AuthUser @relation(fields: [ownerId], references: [uid], onDelete: Cascade)
+  review Review?
+
+  @@unique([animeId, ownerId])
+}
+
+model Comment {
+  uid       String   @id @default(uuid())
+  animeId   String
+  ownerId   String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  anime  Anime    @relation(fields: [animeId], references: [uid], onDelete: Cascade)
+  owner  AuthUser @relation(fields: [ownerId], references: [uid], onDelete: Cascade)
+  review Review?
+
+  @@unique([animeId, ownerId])
+}
+
+model Review {
+  uid       String   @id @default(uuid())
+  animeId   String
+  ownerId   String
+  ratingId  String   @unique
+  commentId String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  anime   Anime    @relation(fields: [animeId], references: [uid], onDelete: Cascade)
+  owner   AuthUser @relation(fields: [ownerId], references: [uid], onDelete: Cascade)
+  rating  Rating   @relation(fields: [ratingId], references: [uid], onDelete: Cascade)
+  comment Comment  @relation(fields: [commentId], references: [uid], onDelete: Cascade)
+
+  @@unique([animeId, ownerId])
 }

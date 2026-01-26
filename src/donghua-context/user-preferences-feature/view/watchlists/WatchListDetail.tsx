@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useWatchLists } from '../../hooks';
 import { AnimeCard } from '@/donghua-context/animelist-feature';
@@ -67,7 +67,33 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
     }
   }
 
-  function orderScore(anime: AnimeType): number {
+  const [ratingsMap, setRatingsMap] = useState<Record<string, { average: number; count: number }>>({});
+
+  const fetchRatingsFor = useCallback(async (animeIds: string[]) => {
+    if (!animeIds || animeIds.length === 0) return;
+    try {
+      const results = await Promise.all(animeIds.map(async (id) => {
+        try {
+          const response = await fetch(`/api/ratings?animeId=${id}`);
+          if (!response.ok) return { id, average: 0, count: 0 };
+          const data = await response.json();
+          return { id, average: Number(data?.average || 0), count: Number(data?.count || 0) };
+        } catch (err) {
+          return { id, average: 0, count: 0 };
+        }
+      }));
+
+      const next: Record<string, { average: number; count: number }> = {};
+      for (const r of results) {
+        next[r.id] = { average: r.average, count: r.count };
+      }
+      setRatingsMap(next);
+    } catch (error) {
+      console.error('Failed to fetch ratings map', error);
+    }
+  }, []);
+
+  function orderScore(anime: AnimeType, ratingAvg = 0): number {
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const todayWeekDay = new Date().getDay();
 
@@ -120,7 +146,10 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
       }
     }
 
-    return (updateDaysScore * 3) + updatedAtScore + publishedAtScore;
+    const ratingWeight = 4; // max 20 points
+    const ratingScore = ratingAvg ? ratingAvg * ratingWeight : 0;
+
+    return (updateDaysScore * 3) + updatedAtScore + publishedAtScore + ratingScore;
   }
 
   // determine ownership by looking up the current list and comparing to session user id
@@ -130,9 +159,17 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
     .filter(item => item.listId === listId)
     .map(item => ({
       ...item,
-      orderScore: item.anime ? orderScore(item.anime) : Number.NEGATIVE_INFINITY,
+      orderScore: item.anime ? orderScore(item.anime, item.anime ? (ratingsMap[item.anime.uid]?.average ?? 0) : 0) : Number.NEGATIVE_INFINITY,
     }))
     .sort((a, b) => b.orderScore - a.orderScore);
+
+  // fetch ratings for all items in the list whenever list items change
+  useEffect(() => {
+    const ids = (watchLists.items || [])
+      .filter(item => item.listId === listId && item.anime)
+      .map(item => item.anime!.uid);
+    fetchRatingsFor(ids);
+  }, [watchLists.items, listId, fetchRatingsFor]);
 
   return (
     <div className={className}>

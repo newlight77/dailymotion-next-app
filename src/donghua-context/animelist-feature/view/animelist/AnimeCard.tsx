@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
-import { FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus, FaThumbtack } from 'react-icons/fa6';
+import { FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus, FaThumbtack, FaStar } from 'react-icons/fa6';
 import { AnimeType } from '../../domain/model';
 import { useWatchLists } from '@/donghua-context/user-preferences-feature';
 import { useAnimelist } from '../../hooks';
+import StarRating from '@/components/atoms/StarRating';
 
 
 interface AnimeCardProps {
@@ -20,6 +21,12 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
     const useAnimes = useAnimelist();
     const [showWatchLists, setShowWatchLists] = useState(false);
     const [isInWatchList, setIsInWatchList] = useState(false);
+    const [showRatingPicker, setShowRatingPicker] = useState(false);
+    const [ratingStats, setRatingStats] = useState<{ average: number; count: number; userRating: number | null }>({
+        average: 0,
+        count: 0,
+        userRating: null,
+    });
 
     const keywords = (anime: AnimeType) => encodeURIComponent(`${anime.title} ${anime.lastEpisode ? anime.lastEpisode : ''}`)
 
@@ -32,6 +39,25 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
         const next = (watchLists.items || []).some(item => item.animeId === anime.uid);
         setIsInWatchList(next);
     }, [watchListId, watchLists.items, anime.uid]);
+
+    const loadRating = useCallback(async () => {
+        try {
+            const response = await fetch(`/api/ratings?animeId=${anime.uid}`);
+            if (!response.ok) return;
+            const data = await response.json();
+            setRatingStats({
+                average: Number(data?.average || 0),
+                count: Number(data?.count || 0),
+                userRating: data?.userRating?.value ?? null,
+            });
+        } catch (error) {
+            console.error('Failed to load rating stats', error);
+        }
+    }, [anime.uid]);
+
+    useEffect(() => {
+        loadRating();
+    }, [loadRating]);
 
     const activeInWatchList = isInWatchListOverride ?? isInWatchList;
 
@@ -68,12 +94,36 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
         setShowWatchLists(false);
     }
 
+    const handleSetRating = async (value: number) => {
+        try {
+            const response = await fetch('/api/ratings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ animeId: anime.uid, value }),
+            });
+            if (response.status === 401) {
+                window.location.href = '/signin';
+                return;
+            }
+            if (!response.ok) {
+                throw new Error(`Failed to rate anime (${response.status})`);
+            }
+            setShowRatingPicker(false);
+            await loadRating();
+        } catch (error) {
+            console.error('Failed to save rating', error);
+        }
+    };
+
     return (
         <div className={`${className} p-2 md:hover:border border-gold rounded-md`}>
             <div className='grid relative'>
-                <div className='grid grid-rows-4 pt-5 absolute translate-y-14'>
+                <div className='grid grid-rows-5 pt-5 absolute translate-y-14'>
                     <Link href={`/videosearch?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
                         <FaMagnifyingGlass size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
+                    </Link>
+                    <Link href={''} about="rate anime" aria-label="rating" className='ratinglink gap-2 p-4' onClick={() => setShowRatingPicker(prev => !prev)}>
+                        <FaStar size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
                     <Link href={''} about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={(event) => { event.preventDefault(); if (watchListId && !canModify) { alert('Only the list owner can modify this list'); return; } handleToggleWatchLists(); }}>
                         <FaThumbtack aria-label="watch list" size={36} className={`${watchListId && activeInWatchList ? 'text-primary bg-primary/20 hover:text-tertiary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
@@ -85,6 +135,12 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
                         <FaFileCirclePlus aria-label="increase episode" size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
                 </div>
+                {showRatingPicker && (
+                    <div className='absolute left-16 top-16 z-20 bg-secondary-variant/70 backdrop-blur-md border border-tertiary-variant rounded-md p-2 text-xs min-w-40'>
+                        <div className='text-xs text-tertiary pb-2'>rate this anime</div>
+                        <StarRating value={ratingStats.userRating || 0} readOnly={false} size={18} onChange={handleSetRating} />
+                    </div>
+                )}
                 {showWatchLists && (
                     <div className='absolute left-16 top-28 z-20 bg-secondary-variant/70 backdrop-blur-md border border-tertiary-variant rounded-md p-2 text-xs min-w-40'>
                         {(watchLists.lists && watchLists.lists.length > 0) ? (
@@ -109,7 +165,11 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
                         </Link>
                     </div>
                 )}
-                <div className='title p-2 m-1 absolute translate-y-4 font-bold text-xxl text-wrap text-tertiary border rounded-sm bg-secondary-variant justify-self-end'>{anime.originalTitle}</div>
+                <div className='absolute right-1 top-1 z-10 flex items-center gap-1 rounded-md bg-secondary/60 backdrop-blur-sm px-2 py-1'>
+                    <StarRating value={ratingStats.average} readOnly size={18} />
+                    <span className='text-[18px] text-tertiary'>{ratingStats.average.toFixed(1)}</span>
+                </div>
+                <div className='title p-2 m-1 absolute translate-y-11 font-bold text-xxl text-wrap text-tertiary border rounded-sm bg-secondary/50 justify-self-end'>{anime.originalTitle}</div>
                 {/* <div className='title p-2 m-1 absolute translate-x-3 translate-y-4 font-bold text-xl text-wrap text-tertiary border rounded-sm bg-secondaryVariant place-self-end place-items-end place-content-end self-end items-end content-end justify-self-end justify-items-end justify-end'>{anime.originalTitle}</div> */}
 
             </div>

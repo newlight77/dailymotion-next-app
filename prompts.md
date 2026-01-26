@@ -173,3 +173,35 @@ And I have added a few anime titles to one watch list. But the page displays all
 ```prompt
 For the watch list, let's order items with the same rule as applied on the anime list page.
 ```
+
+## Features : rating and review
+
+```prompt
+Let's add ratings, reviews, and comments to animes in the anime list, they are to be persisted into the database. Create respective tables for that purpose. A rating and a comment are associated to a user, as he is the owner.
+A review is a concept, it represents a combination of a rating and a comment.
+
+On the anime card, users can only add/modify a rating, via the icon button.
+
+On the anime detail page, a user can add/modify a rating and a comment. A user can modify the rating and the review, only if he is the owner of the rating and comment
+Comments are displayed at the bottom of the page with a "add" button and an input field for a comment to be added.
+
+The rating is set via the icon button on the card, shown as a serie of 5 stars decribed below. On click on the "rating" button, allow users to choose the rating.
+
+Let's add an icon button on every anime card so to allow users to rate (with 1 to 5 stars):
+1 star = first star highlighted, and 4 stars not highlighted
+2 stars = first 2 stars highlighted, and 3 stars not highlighted
+3 stars = first 3 stars highlighted, and 2 stars not highlighted
+4 stars = first 4 stars highlighted, and 1 last star not highlighted
+5 stars = all 5 stars highlighted
+
+For the colors : un-highlighted = primary, highlighted = tertiary
+
+On the anime card or anime detail page, we display the global rating.
+
+The global rating of an anime is the average of all ratings from users. It is displayed on the anime card, top right with 5 star, un-highlighted by default.
+
+```
+
+```prompt
+Let's update the scoring of the anime order in the list, by taking into account the global rating, and apply that on the anime list page and watch lists.
+```

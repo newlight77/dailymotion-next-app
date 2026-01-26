@@ -8,6 +8,8 @@ import { AnimeType } from '../../domain';
 import { useAnimelist } from '../../hooks';
 import { AnimeEdit } from './AnimeEdit';
 import Link from 'next/link';
+import StarRating from '@/components/atoms/StarRating';
+import { useAuth } from '@/core/capabilities/auth-feature';
 
 type Props = {
     id: string
@@ -17,11 +19,20 @@ type Props = {
 
 export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
     const useAnimes = useAnimelist();
+    const { user } = useAuth();
 
     const isMounted = useIsMounted();
     const [anime, setAnime] = useState<AnimeType>();
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
+    const [ratingStats, setRatingStats] = useState<{ average: number; count: number; userRating: number | null }>({
+        average: 0,
+        count: 0,
+        userRating: null,
+    });
+    const [comments, setComments] = useState<Array<{ uid: string; content: string; ownerId: string; updatedAt: string | Date; owner?: { name?: string | null; username?: string | null } }>>([]);
+    const [commentText, setCommentText] = useState('');
+    const [isSavingComment, setIsSavingComment] = useState(false);
 
     const toggleEditModal = useCallback((): void => {
         setEditModal(prev => !prev);
@@ -36,6 +47,41 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
 
         if (mode === 'edit') setEditModal(true)
     }, [id, isMounted, mode, useAnimes]);
+
+    const loadRating = useCallback(async () => {
+        try {
+            const response = await fetch(`/api/ratings?animeId=${id}`);
+            if (!response.ok) return;
+            const data = await response.json();
+            setRatingStats({
+                average: Number(data?.average || 0),
+                count: Number(data?.count || 0),
+                userRating: data?.userRating?.value ?? null,
+            });
+        } catch (error) {
+            console.error('Failed to load rating stats', error);
+        }
+    }, [id]);
+
+    const loadComments = useCallback(async () => {
+        try {
+            const response = await fetch(`/api/comments?animeId=${id}`);
+            if (!response.ok) return;
+            const data = await response.json();
+            setComments(data || []);
+            const myComment = (data || []).find((item: { ownerId: string }) => item.ownerId === user?.id);
+            if (myComment) {
+                setCommentText(myComment.content);
+            }
+        } catch (error) {
+            console.error('Failed to load comments', error);
+        }
+    }, [id, user?.id]);
+
+    useEffect(() => {
+        loadRating();
+        loadComments();
+    }, [loadRating, loadComments]);
 
     const handleAnimeUpdate = (anime: AnimeType) => {
         setAnime(anime);
@@ -52,6 +98,50 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
             console.error('Failed to add anime:', error);
         }
     }
+
+    const handleSetRating = async (value: number) => {
+        try {
+            const response = await fetch('/api/ratings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ animeId: id, value }),
+            });
+            if (response.status === 401) {
+                window.location.href = '/signin';
+                return;
+            }
+            if (!response.ok) {
+                throw new Error(`Failed to rate anime (${response.status})`);
+            }
+            await loadRating();
+        } catch (error) {
+            console.error('Failed to save rating', error);
+        }
+    };
+
+    const handleSaveComment = async () => {
+        if (!commentText.trim()) return;
+        setIsSavingComment(true);
+        try {
+            const response = await fetch('/api/comments', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ animeId: id, content: commentText.trim() }),
+            });
+            if (response.status === 401) {
+                window.location.href = '/signin';
+                return;
+            }
+            if (!response.ok) {
+                throw new Error(`Failed to save comment (${response.status})`);
+            }
+            await loadComments();
+        } catch (error) {
+            console.error('Failed to save comment', error);
+        } finally {
+            setIsSavingComment(false);
+        }
+    };
 
     return (
         <div className='w-full'>
@@ -91,6 +181,18 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                         {anime.subtitle && <div className='p-1 md:px-4'><strong>Subtitle:</strong> {anime.subtitle}</div>}
                         <div className='p-1 md:px-4'><strong>Summary:</strong> {anime.summary}</div>
 
+                        <div className='flex flex-col gap-2 p-4 md:px-4'>
+                            <div className='flex items-center gap-2'>
+                                <span className='text-sm text-tertiary'>global rating</span>
+                                <StarRating value={ratingStats.average} readOnly size={18} />
+                                <span className='text-xs text-tertiary'>{ratingStats.average.toFixed(1)} ({ratingStats.count})</span>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <span className='text-sm text-tertiary'>your rating</span>
+                                <StarRating value={ratingStats.userRating || 0} readOnly={false} size={20} onChange={handleSetRating} />
+                            </div>
+                        </div>
+
                         <div className='grid grid-cols-2 gap-2 p-4 md:px-4'>
                             <div className='p-1 md:px-4'><strong>UID:</strong> {anime.uid}</div>
                             <div className='p-1 md:px-4'><strong>Type:</strong> {anime.type}</div>
@@ -116,6 +218,41 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                 :
                 <div>Loading...</div>
             }
+
+            <div className='w-full mt-8 border-t border-gray-300 pt-4'>
+                <h4 className='title text-xl px-2'>comments</h4>
+                <div className='flex flex-col md:flex-row gap-2 p-2'>
+                    <textarea
+                        className='w-full min-h-24 p-2 border border-tertiary-variant rounded-md bg-secondary-variant/40'
+                        value={commentText}
+                        onChange={(event) => setCommentText(event.target.value)}
+                        placeholder='add a comment'
+                    />
+                    <button
+                        type='button'
+                        onClick={handleSaveComment}
+                        disabled={isSavingComment}
+                        className='h-10 px-4 rounded-md bg-primary text-secondary hover:bg-primary/80 disabled:opacity-50'
+                    >
+                        {isSavingComment ? 'saving...' : 'add'}
+                    </button>
+                </div>
+                <div className='p-2 space-y-3'>
+                    {comments.length === 0 && (
+                        <div className='text-sm text-tertiary px-2'>no comments yet</div>
+                    )}
+                    {comments.map(comment => (
+                        <div key={comment.uid} className='border border-tertiary-variant rounded-md p-3 bg-secondary-variant/30'>
+                            <div className='text-xs text-tertiary flex flex-wrap gap-2'>
+                                <span>{comment.owner?.name || comment.owner?.username || 'anonymous'}</span>
+                                <span>{new Date(comment.updatedAt).toLocaleDateString()}</span>
+                                {user?.id === comment.ownerId && <span className='text-primary'>your comment</span>}
+                            </div>
+                            <div className='text-sm mt-2'>{comment.content}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link'
 import Modal from '@/components/molecules/Modal';
 import { useAnimelist } from '../../hooks';
@@ -95,7 +95,8 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     //     return 0;
     // }
 
-    function orderScore(anime: AnimeType): number {
+    // include optional ratingAvg (0..5) in score calculation
+    function orderScore(anime: AnimeType, ratingAvg = 0): number {
         const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const todayWeekDay = new Date().getDay();
 
@@ -118,13 +119,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
           const now = new Date();
           const daysSinceUpdated = Math.floor((now.getTime() - updatedDate.getTime()) / (1000 * 60 * 60 * 24));
 
-          // Calculate score: recently updated items get higher scores
-          // Items updated in last 30 days: +10 points
-          // Items updated in last 90 days: +7 points
-          // Items updated in last 180 days: +5 points
-          // Items updated in last year: +3 points
-          // Items updated in last 2 years: +1 point
-          // Older items: +0 points
           if (daysSinceUpdated <= 30) {
             updatedAtScore = 10;
           } else if (daysSinceUpdated <= 90) {
@@ -145,13 +139,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
           const now = new Date();
           const daysSincePublished = Math.floor((now.getTime() - publishedDate.getTime()) / (1000 * 60 * 60 * 24));
 
-          // Calculate score: recently published items get higher scores
-          // Items published in last 30 days: +10 points
-          // Items published in last 90 days: +7 points
-          // Items published in last 180 days: +5 points
-          // Items published in last year: +3 points
-          // Items published in last 2 years: +1 point
-          // Older items: +0 points
           if (daysSincePublished <= 30) {
             publishedAtScore = 10;
           } else if (daysSincePublished <= 90) {
@@ -165,13 +152,44 @@ export const AnimeList: React.FC<Props> = ({className}) => {
           }
         }
 
-        // Combine scores: updateDaysScore is multiplied by 3, then add both date scores
-        // This gives priority to items with upcoming updates, but also considers recency
-        return (updateDaysScore * 3) + updatedAtScore + publishedAtScore;
+        // Score based on global rating (ratingAvg is between 0 and 5)
+        // weight ratings so that a 5-star rating contributes meaningfully but does not dominate
+        const ratingWeight = 4; // max contribution 20 (5 * 4)
+        const ratingScore = ratingAvg ? ratingAvg * ratingWeight : 0;
+
+        // Combine scores: updateDaysScore is multiplied by 3, then add both date scores and rating score
+        return (updateDaysScore * 3) + updatedAtScore + publishedAtScore + ratingScore;
     }
 
+    const [ratingsMap, setRatingsMap] = useState<Record<string, { average: number; count: number }>>({});
+
+    const fetchRatingsFor = useCallback(async (animeIds: string[]) => {
+        if (!animeIds || animeIds.length === 0) return;
+        try {
+            const results = await Promise.all(animeIds.map(async (id) => {
+                try {
+                    const response = await fetch(`/api/ratings?animeId=${id}`);
+                    if (!response.ok) return { id, average: 0, count: 0 };
+                    const data = await response.json();
+                    return { id, average: Number(data?.average || 0), count: Number(data?.count || 0) };
+                } catch (err) {
+                    return { id, average: 0, count: 0 };
+                }
+            }));
+
+            const next: Record<string, { average: number; count: number }> = {};
+            for (const r of results) {
+                next[r.id] = { average: r.average, count: r.count };
+            }
+            setRatingsMap(next);
+        } catch (error) {
+            console.error('Failed to fetch ratings map', error);
+        }
+    }, []);
+
     function withOrderScore(anime: AnimeType): AnimeWithOrderScore {
-        const score = orderScore(anime);
+        const rating = ratingsMap[anime.uid]?.average ?? 0;
+        const score = orderScore(anime, rating);
         return {
             ...anime,
             orderScore: score
@@ -192,6 +210,14 @@ export const AnimeList: React.FC<Props> = ({className}) => {
             .filter(v => onlyWithUpdates ? v.updateDays !== '' : true)
             .filter(v => excludeCompleted ? v.status !== 'completed' : true )
     }
+
+    const filteredItems = useMemo(() => filterList(useAnimes.items), [useAnimes.items, filterKeywords, excludeCompleted, onlyWithUpdates]);
+
+    useEffect(() => {
+        // fetch ratings for all currently visible items to include in ordering
+        const ids = filteredItems.map(i => i.uid);
+        fetchRatingsFor(ids);
+    }, [filteredItems, fetchRatingsFor]);
 
     if (!isMounted) {
         return <div className={className}><div id="modal-root"></div></div>
@@ -262,7 +288,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
 
             <div className="md:flex flex-wrap">
                 {
-                    filterList(useAnimes.items)
+                    filteredItems
                     .map((anime: AnimeType) => withOrderScore(anime))
                     .sort((a: AnimeWithOrderScore, b: AnimeWithOrderScore) => b.orderScore - a.orderScore)
                     .map((anime: AnimeWithOrderScore) => {
