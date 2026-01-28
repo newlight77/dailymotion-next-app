@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus, FaThumbtack, FaStar } from 'react-icons/fa6';
@@ -40,24 +40,18 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
         setIsInWatchList(next);
     }, [watchListId, watchLists.items, anime.uid]);
 
-    const loadRating = useCallback(async () => {
-        try {
-            const response = await fetch(`/api/ratings?animeId=${anime.uid}`);
-            if (!response.ok) return;
-            const data = await response.json();
-            setRatingStats({
-                average: Number(data?.average || 0),
-                count: Number(data?.count || 0),
-                userRating: data?.userRating?.value ?? null,
-            });
-        } catch (error) {
-            console.error('Failed to load rating stats', error);
-        }
-    }, [anime.uid]);
-
+    // initialize rating stats from server-attached rating when available
     useEffect(() => {
-        loadRating();
-    }, [loadRating]);
+        const rated = anime as AnimeType & { rating?: { average: number; count: number } };
+        if (rated.rating) {
+            setRatingStats(prev => ({
+                average: Number(rated.rating!.average ?? 0),
+                count: Number(rated.rating!.count ?? 0),
+                userRating: prev.userRating ?? null,
+            }));
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [anime.uid]);
 
     const activeInWatchList = isInWatchListOverride ?? isInWatchList;
 
@@ -109,7 +103,19 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
                 throw new Error(`Failed to rate anime (${response.status})`);
             }
             setShowRatingPicker(false);
-            await loadRating();
+            try {
+                const resp = await fetch(`/api/ratings?animeId=${anime.uid}`);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    setRatingStats({
+                        average: Number(data?.average || 0),
+                        count: Number(data?.count || 0),
+                        userRating: data?.userRating?.value ?? null,
+                    });
+                }
+            } catch (err) {
+                console.error('Failed to refresh rating after save', err);
+            }
         } catch (error) {
             console.error('Failed to save rating', error);
         }

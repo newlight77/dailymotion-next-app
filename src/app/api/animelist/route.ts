@@ -5,6 +5,7 @@ import { writeFile } from 'fs/promises';
 import path from 'path';
 import fs from 'fs';
 import { isAdminUser } from '@/core/capabilities/auth-feature/server/isAdmin';
+import { getRatingsMap } from '@/core/core-lib/server/ratingAggregateCache';
 
 const prisma = new PrismaClient();
 
@@ -17,9 +18,15 @@ export async function GET() {
 
   const sorted = animelist.sort((a, b) => b.title.localeCompare(a.title))
 
+  // fetch aggregated ratings for all anime in one query (cached)
+  const animeIds = sorted.map(a => a.uid);
+  const ratingsMap = await getRatingsMap(prisma, animeIds);
+
   const result = await Promise.all(
     sorted.map(async (a) => {
       console.log(`saving thumbnail filename ${a.thumbnail} ${a.thumbnailFilename}`);
+
+      let thumbnailFilename = a.thumbnailFilename;
 
       if (a.thumbnail && a.thumbnail !== '' && a.thumbnailFilename === '') {
 
@@ -36,13 +43,15 @@ export async function GET() {
             }
           })
 
-          return {
-            ...a,
-            thumbnailFilename: savedFilename
-          }
+          thumbnailFilename = savedFilename
         }
       }
-      return a
+
+      return {
+        ...a,
+        thumbnailFilename,
+        rating: ratingsMap[a.uid] || { average: 0, count: 0 },
+      }
     })
   )
 

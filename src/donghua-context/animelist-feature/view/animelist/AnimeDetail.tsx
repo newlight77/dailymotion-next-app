@@ -38,30 +38,7 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         setEditModal(prev => !prev);
     }, []);
 
-    useEffect(() => {
-        // console.log('AnimeDetail useEffect params:', id, mode);
-        useAnimes.findById(id).then((a) => { // todo move to storage provider : add findById and
-            // console.log('AnimeDetail useEffect params:', id, a);
-            if (isMounted()) setAnime(a);
-        });
-
-        if (mode === 'edit') setEditModal(true)
-    }, [id, isMounted, mode, useAnimes]);
-
-    const loadRating = useCallback(async () => {
-        try {
-            const response = await fetch(`/api/ratings?animeId=${id}`);
-            if (!response.ok) return;
-            const data = await response.json();
-            setRatingStats({
-                average: Number(data?.average || 0),
-                count: Number(data?.count || 0),
-                userRating: data?.userRating?.value ?? null,
-            });
-        } catch (error) {
-            console.error('Failed to load rating stats', error);
-        }
-    }, [id]);
+    // loadComments and loadRating are declared below as stable callbacks
 
     const loadComments = useCallback(async () => {
         try {
@@ -78,10 +55,43 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
         }
     }, [id, user?.id]);
 
+    const loadRating = useCallback(async () => {
+        try {
+            const response = await fetch(`/api/ratings?animeId=${id}`);
+            if (!response.ok) return;
+            const data = await response.json();
+            setRatingStats(prev => ({ ...prev, average: Number(data?.average || prev.average), count: Number(data?.count || prev.count), userRating: data?.userRating?.value ?? prev.userRating }));
+        } catch (error) {
+            console.error('Failed to load rating stats', error);
+        }
+    }, [id]);
+
     useEffect(() => {
-        loadRating();
-        loadComments();
-    }, [loadRating, loadComments]);
+        // console.log('AnimeDetail useEffect params:', id, mode);
+        useAnimes.findById(id).then((a) => { // todo move to storage provider : add findById and
+            // console.log('AnimeDetail useEffect params:', id, a);
+            if (isMounted()) {
+                setAnime(a);
+                // initialize rating from server-attached value
+                const rated = a as AnimeType & { rating?: { average: number; count: number } };
+                if (rated?.rating) {
+                    setRatingStats(prev => ({ ...prev, average: Number(rated.rating!.average ?? 0), count: Number(rated.rating!.count ?? 0) }));
+                }
+
+                // fetch user-specific rating if user is present
+                if (user) {
+                    loadRating();
+                }
+
+                // load comments in parallel
+                loadComments();
+            }
+        });
+
+        if (mode === 'edit') setEditModal(true)
+    }, [id, isMounted, mode, useAnimes, user, loadComments, loadRating]);
+
+
 
     const handleAnimeUpdate = (anime: AnimeType) => {
         setAnime(anime);

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getAuthUserId } from '@/core/capabilities/auth-feature/server/getAuthUser';
+import { invalidateRatingCache } from '@/core/core-lib/server/ratingAggregateCache';
 
 const prisma = new PrismaClient();
 
@@ -71,6 +72,8 @@ export async function POST(request: Request) {
         updatedAt: new Date(),
       },
     });
+
+    invalidateRatingCache(animeId);
 
 
 

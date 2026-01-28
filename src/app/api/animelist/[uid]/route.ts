@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { AnimeType } from '@/donghua-context/animelist-feature';
 import { isAdminUser } from '@/core/capabilities/auth-feature/server/isAdmin';
+import { getRatingForAnime } from '@/core/core-lib/server/ratingAggregateCache';
 
 const prisma = new PrismaClient();
 
@@ -14,22 +15,17 @@ export async function GET(request: NextRequest, { params }: ParamType) {
 
   const uid = (await params).uid
 
-  const anime = await prisma.anime.findFirst({
-    where: {
-      uid: uid
-    }
-  })
-  // const anime = ANIMELIST.find(anime => anime.uid === uid);
-  console.log(`found by uid`, uid, anime);
+  const anime = await prisma.anime.findFirst({ where: { uid } });
 
   if (!anime) {
-    // console.log(`Anime with UID ${uid} not found`);
-    return new NextResponse(JSON.stringify({ name: `Anime with uid ${uid} not found` }), {
-      status: 404
-    });
+    return new NextResponse(JSON.stringify({ name: `Anime with uid ${uid} not found` }), { status: 404 });
   }
 
-  return new NextResponse(JSON.stringify(anime), {
+  // attach aggregated rating for this anime (cached)
+  const rating = await getRatingForAnime(prisma, uid);
+  const animeWithRating = { ...anime, rating };
+
+  return new NextResponse(JSON.stringify(animeWithRating), {
     status: 200,
   });
 }

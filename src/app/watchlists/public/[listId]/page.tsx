@@ -28,7 +28,9 @@ type PublicListResponse = {
   items: PublicListItem[];
 };
 
-const normalizeAnime = (anime: PublicListItem['anime']): AnimeType | null => {
+type PublicAnime = PublicListItem['anime'] & { rating?: { average: number; count: number } };
+
+const normalizeAnime = (anime: PublicAnime | undefined): AnimeType | null => {
   if (!anime) return null;
   return {
     uid: anime.uid,
@@ -46,6 +48,8 @@ const normalizeAnime = (anime: PublicListItem['anime']): AnimeType | null => {
     updatedAt: anime.updatedAt ? new Date(anime.updatedAt) : new Date(),
     originalTitle: anime.originalTitle,
     subtitle: anime.subtitle,
+    // pass rating if present
+    ...(anime.rating ? { rating: anime.rating } : {}),
   };
 };
 

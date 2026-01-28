@@ -205,3 +205,11 @@ The global rating of an anime is the average of all ratings from users. It is di
 ```prompt
 Let's update the scoring of the anime order in the list, by taking into account the global rating, and apply that on the anime list page and watch lists.
 ```
+
+## Optimisation
+
+```prompt
+there are too many sql reuests to the database, the supabase seems to not respond with good performance, let's optimise the requests to reduct sql request to the database, typically the rating per anime. We should retrieve the anime from the list and the ratings come with it within the same request.
+
+And add caching for rating aggregates.
+```

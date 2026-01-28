@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link'
 import Modal from '@/components/molecules/Modal';
 import { useAnimelist } from '../../hooks';
@@ -161,34 +161,12 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         return (updateDaysScore * 3) + updatedAtScore + publishedAtScore + ratingScore;
     }
 
-    const [ratingsMap, setRatingsMap] = useState<Record<string, { average: number; count: number }>>({});
-
-    const fetchRatingsFor = useCallback(async (animeIds: string[]) => {
-        if (!animeIds || animeIds.length === 0) return;
-        try {
-            const results = await Promise.all(animeIds.map(async (id) => {
-                try {
-                    const response = await fetch(`/api/ratings?animeId=${id}`);
-                    if (!response.ok) return { id, average: 0, count: 0 };
-                    const data = await response.json();
-                    return { id, average: Number(data?.average || 0), count: Number(data?.count || 0) };
-                } catch (err) {
-                    return { id, average: 0, count: 0 };
-                }
-            }));
-
-            const next: Record<string, { average: number; count: number }> = {};
-            for (const r of results) {
-                next[r.id] = { average: r.average, count: r.count };
-            }
-            setRatingsMap(next);
-        } catch (error) {
-            console.error('Failed to fetch ratings map', error);
-        }
-    }, []);
+    type RatedAnime = AnimeType & { rating?: { average: number; count: number } };
 
     function withOrderScore(anime: AnimeType): AnimeWithOrderScore {
-        const rating = ratingsMap[anime.uid]?.average ?? 0;
+        // prefer server-provided rating if present on the anime object
+        const rated = anime as RatedAnime;
+        const rating = rated.rating?.average ?? 0;
         const score = orderScore(anime, rating);
         return {
             ...anime,
@@ -196,8 +174,8 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         }
     }
 
-    function filterList(items: AnimeType[] | undefined): AnimeType[] {
-        if (!items) return []
+    const filteredItems = useMemo(() => {
+        const items = useAnimes.items || [];
         return items
             .filter(
                 v => filterKeywords && filterKeywords !== '' ?
@@ -209,15 +187,10 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                 : true)
             .filter(v => onlyWithUpdates ? v.updateDays !== '' : true)
             .filter(v => excludeCompleted ? v.status !== 'completed' : true )
-    }
+    }, [useAnimes.items, filterKeywords, excludeCompleted, onlyWithUpdates]);
 
-    const filteredItems = useMemo(() => filterList(useAnimes.items), [useAnimes.items, filterKeywords, excludeCompleted, onlyWithUpdates]);
+    // no client-side fetch needed for ratings; server attaches aggregates to anime objects
 
-    useEffect(() => {
-        // fetch ratings for all currently visible items to include in ordering
-        const ids = filteredItems.map(i => i.uid);
-        fetchRatingsFor(ids);
-    }, [filteredItems, fetchRatingsFor]);
 
     if (!isMounted) {
         return <div className={className}><div id="modal-root"></div></div>
@@ -260,7 +233,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                 <></>
             }
 
-            <label className='px-4 w-12'>total: {filterList(useAnimes.items).length} / {useAnimes.items?.length}</label>
+            <label className='px-4 w-12'>total: {filteredItems.length} / {useAnimes.items?.length}</label>
 
             <div className='animelist-header p-4'>
                 { addModal ?
