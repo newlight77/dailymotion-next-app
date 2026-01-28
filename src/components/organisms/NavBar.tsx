@@ -1,7 +1,8 @@
 "use client"
 import Link from 'next/link';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
+import versionModule from '@/generated/version';
 import { FaTimes, FaBars } from 'react-icons/fa';
 import donghua from '../../../public/donghua.png';
 import { SigninButton, SignoutButton } from '@/core/capabilities/auth-feature/view';
@@ -18,11 +19,15 @@ type Props = {
 }
 
 const NavBar: React.FC<Props> = ({routes}) => {
-  const [nav, setNav] = useState(false);
+  const [nav, setNav] = React.useState(false);
+  const version = versionModule.version || '';
+
 
   function toggleShowNav(): void {
     setNav(!nav);
 }
+
+
 
   return (
     <div className="flex py-2 relative z-50">
@@ -41,6 +46,11 @@ const NavBar: React.FC<Props> = ({routes}) => {
       </Link>
 
       <div className='pl-8 justify-between items-center'>
+
+        {/* version display top-right */}
+        <div className='absolute right-4 top-3 text-xs text-gray-400'>
+          {version ? <span className='select-none'>v: {version}</span> : <span className='select-none'>v: --</span>}
+        </div>
 
         <ul className="hidden md:flex pt-4 items-center">
           {routes.map(({ id, label, route }) => (

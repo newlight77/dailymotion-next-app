@@ -7,8 +7,8 @@ SHELL := /bin/sh
 #export BUILD = $(shell git describe --always)-$(shell date +%Y%m%d%H%M%S)
 export TAG = $(shell git describe --abbrev=0 --tags)
 #BRANCH = $(shell git branch --show-current)
-#export VERSION ?= $(shell git describe --always)
-export VERSION ?= latest
+export VERSION ?= $(shell git describe --always)
+# export VERSION ?= latest
 export MAKEFILE_LIST=Makefile
 
 #include ./.env
@@ -48,7 +48,7 @@ migrate:
 install:
 	@yarn
 
-build:
+build: ## build the app
 	@yarn build
 
 dev:

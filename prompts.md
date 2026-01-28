@@ -213,3 +213,15 @@ there are too many sql reuests to the database, the supabase seems to not respon
 
 And add caching for rating aggregates.
 ```
+
+```prompt
+Let's add a version opf the application on the nav bar on the top right:
+
+version = prefix-suffix
+
+prefix = yyyy.MM.dd of the git commit
+suffix = git describe --always
+
+This version is constructed at build time with `make build`. It generates a `.version` file and copies it into `public/.version` on build. The build also writes `src/generated/version.ts` for direct frontend import.
+The frontend imports the generated module `src/generated/version` for version metadata (no runtime API fetch required).
+```
