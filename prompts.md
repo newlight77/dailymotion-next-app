@@ -243,3 +243,7 @@ I want the current filter value (e.g., “3+”) displayed next to the star.
 ```prompt
 on click on any button the anime card, the page is scrolled to the top. Is there a way to avoid that scroll ?
 ```
+
+```prompt
+Let's remove the load from json functionality in the anime list page.
+```

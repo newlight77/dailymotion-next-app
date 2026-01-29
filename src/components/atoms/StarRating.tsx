@@ -28,7 +28,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
         const icon = (
           <FaStar
             size={size}
-            className={highlighted ? 'text-tertiary' : 'text-primary/30'}
+            className={`${highlighted ? 'text-tertiary' : ''} text-primary/30 hover:text-gold transition-colors`}
           />
         );
 
@@ -41,15 +41,14 @@ export const StarRating: React.FC<StarRatingProps> = ({
         }
 
         return (
-          <button
+          <div
             key={starValue}
-            type="button"
             aria-label={`rate ${starValue} star${starValue > 1 ? 's' : ''}`}
             onClick={() => onChange?.(starValue)}
-            className="hover:scale-110 transition-transform"
+            className="hover:scale-120 transition-transform hover:cursor-pointer"
           >
             {icon}
-          </button>
+          </div>
         );
       })}
     </div>

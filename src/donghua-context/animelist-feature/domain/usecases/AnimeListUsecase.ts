@@ -22,13 +22,14 @@ export const animeListUsecase = (drivenPort: AnimeListDrivenPort): AnimeListUsec
   }
 
   const load = (list: AnimeType[]) => {
-    // console.log('AnimeListConfigurator reset', all);
+    // forward to driven port which will perform a single bulk replace
     drivenPort.load(list);
   }
 
   const reset = async () => {
     const all = await drivenPort.findAll();
-    // console.log('AnimeListConfigurator reset', all);
+    // clear local storage and rehydrate in one operation
+    drivenPort.reset();
     drivenPort.load(all);
   }
 
@@ -37,4 +38,4 @@ export const animeListUsecase = (drivenPort: AnimeListDrivenPort): AnimeListUsec
     load,
     reset
   }
-}
+} 

@@ -21,9 +21,7 @@ type Props = {
 export const AnimeList: React.FC<Props> = ({className}) => {
     const useAnimes = useAnimelist();
     useWatchLists();
-    const [data, setData] = useState('')
     const [addModal, setAddModal] = useState(false);
-    const [loadMode, setLoadMode] = useState(false);
     const [filterKeywords, setFilterKeywords] = useLocalStorage<string>('filterKeywords', '');
     const [excludeCompleted, setExcludeCompleted] = useState(false);
     const [onlyWithUpdates, setOnlyWithUpdates] = useState(false);
@@ -34,26 +32,13 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         setIsMounted(true);
     }, []);
 
-    // useEffect(() => {
-    // }, [onlyCompleted]);
-
     const onFilterInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilterKeywords(event.target.value);
     };
 
-    function toggleLoadMode(): void {
-        setLoadMode(loadMode ? false : true);
-    }
-
     function toggleAddModal(): void {
         setAddModal(addModal ? false : true);
     }
-
-    const handleReloadDataChange = (event: React.FocusEvent<HTMLTextAreaElement>) => {
-        if (event.target.value !== data) {
-            setData(event.target.value);
-        }
-    };
 
     const handleExcludeCompletedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setExcludeCompleted(event.target.checked)
@@ -63,39 +48,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         setOnlyWithUpdates(event.target.checked)
         if (event.target.checked) setExcludeCompleted(true)
     };
-
-    const reloadData = () => {
-        if (data) {
-            try {
-                const newAnimelist = (JSON.parse(data) as AnimeType[])
-                .reduce<AnimeType[]>((acc, curr) => acc.some(item => item.title === curr.title) ? acc : [...acc, curr], []);
-                useAnimes.load(newAnimelist);
-            } catch (error) {
-                // display error latet
-                alert(`there is an error with the json you try to load : ${error}`);
-            }
-        }
-    };
-
-    const sample = JSON.stringify(
-        [], null, 4
-    )
-
-    // function orderScore(anime: AnimeType): number {
-    //     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    //     const todayWeekDay = new Date().getDay();
-
-    //     if (anime.updateDays) {
-    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 0) % 7].toLowerCase())) return 7;
-    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 1) % 7].toLowerCase())) return 6;
-    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 2) % 7].toLowerCase())) return 5;
-    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 3) % 7].toLowerCase())) return 4;
-    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 4) % 7].toLowerCase())) return 3;
-    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 5) % 7].toLowerCase())) return 2;
-    //         if (anime.updateDays.toLowerCase().includes(daysOfWeek[(todayWeekDay + 6) % 7].toLowerCase())) return 1;
-    //     }
-    //     return 0;
-    // }
 
     // include optional ratingAvg (0..5) in score calculation
     function orderScore(anime: AnimeType, ratingAvg = 0): number {
@@ -204,6 +156,14 @@ export const AnimeList: React.FC<Props> = ({className}) => {
         return <div className={className}><div id="modal-root"></div></div>
     }
 
+    const handleMinRatingFilter = (value: number) => {
+        if (value === minRatingFilter) {
+            setMinRatingFilter(0);
+            return;
+        }
+        setMinRatingFilter(value);
+    }
+
     return (
         <div className={className}>
 
@@ -238,14 +198,8 @@ export const AnimeList: React.FC<Props> = ({className}) => {
 
                     <label className='px-4 w-12'>min rating</label>
                     <div className='flex items-center gap-2'>
-                        <button
-                            type="button"
-                            className='text-xs text-primary/70 hover:text-tertiary'
-                            onClick={() => setMinRatingFilter(0)}
-                        >
-                            none
-                        </button>
-                        <StarRating value={minRatingFilter} readOnly={false} size={18} onChange={setMinRatingFilter} />
+                        <div className='pl-2 pt-1'>Rating: </div>
+                        <StarRating value={minRatingFilter} readOnly={false} size={18} onChange={handleMinRatingFilter} />
                         <span className='text-md text-primary/70'>
                             {minRatingFilter ? `${minRatingFilter}${minRatingFilter === 5 ? '' : '+'}` : 'all'}
                         </span>
@@ -264,22 +218,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                     :
                     <Link href={''} className="pr-4" onClick={toggleAddModal}>add</Link>
                 }
-                <Link href={''} className="pr-4" onClick={toggleLoadMode}>load</Link>
                 <Link href={''} className="pr-4" onClick={useAnimes.reset}>reset</Link>
-
-                {loadMode ?
-                    <>
-                        <textarea
-                            className='w-full h-96 rounded-lg'
-                            defaultValue={data || ''}
-                            onBlur={(event: React.FocusEvent<HTMLTextAreaElement>) => handleReloadDataChange(event) }
-                            placeholder={`Example : \n ${sample}`}
-                        ></textarea>
-                        <Link href={''} className="pl-4" onClick={reloadData}>load</Link>
-                    </>
-                    :
-                    <></>
-                }
             </div>
 
             <div className="md:flex flex-wrap">
