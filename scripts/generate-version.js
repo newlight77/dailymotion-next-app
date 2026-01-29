@@ -51,7 +51,8 @@ export const prefix = ${JSON.stringify(content.prefix)};
 export const suffix = ${JSON.stringify(content.suffix)};
 export const commitDate = ${JSON.stringify(content.commitDate)};
 
-export default { version, prefix, suffix, commitDate };
+const versionModule = { version, prefix, suffix, commitDate };
+export default versionModule;
 `;
     fs.writeFileSync(tsFilePath, tsContent);
 
