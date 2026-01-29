@@ -126,20 +126,20 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
             <div className='grid relative'>
                 <div className='grid grid-rows-5 pt-5 absolute translate-y-14'>
                     <Link href={`/videosearch?keywords=${keywords(anime)}`} className="searchlink gap-2 p-4">
-                        <FaMagnifyingGlass size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
+                        <FaMagnifyingGlass size={36} className="p-2 bg-secondary/80 rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
-                    <Link href={''} about="rate anime" aria-label="rating" className='ratinglink gap-2 p-4' onClick={() => setShowRatingPicker(prev => !prev)}>
-                        <FaStar size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
-                    </Link>
-                    <Link href={''} about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={(event) => { event.preventDefault(); if (watchListId && !canModify) { alert('Only the list owner can modify this list'); return; } handleToggleWatchLists(); }}>
-                        <FaThumbtack aria-label="watch list" size={36} className={`${watchListId && activeInWatchList ? 'text-primary bg-primary/20 hover:text-tertiary' : ''} p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant`}/>
-                    </Link>
+                    <div about="rate anime" aria-label="rating" className='ratinglink gap-2 p-4' onClick={() => setShowRatingPicker(prev => !prev)}>
+                        <FaStar size={36} className="p-2 bg-secondary/80 rounded-md border border-tertiary-variant outline outline-tertiary-variant hover:border-gold hover:outline-gold hover:cursor-pointer"/>
+                    </div>
+                    <div about="watch list" aria-label="watch list" className='watchlistlink gap-2 p-4' onClick={() => { if (watchListId && !canModify) { alert('Only the list owner can modify this list'); return; } handleToggleWatchLists(); }}>
+                        <FaThumbtack aria-label="watch list" size={36} className={`${watchListId && activeInWatchList ? 'text-primary bg-secondary/80 hover:text-tertiary' : ''} p-2 bg-secondary/80 rounded-md border border-tertiary-variant outline outline-tertiary-variant hover:border-gold hover:outline-gold hover:cursor-pointer`}/>
+                    </div>
                     <Link href={`/animelist/${anime.uid}?mode=edit`} className="editlink gap-2 p-4">
-                        <FaPenToSquare size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
+                        <FaPenToSquare size={36} className="p-2 bg-secondary/80 rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
                     </Link>
-                    <Link href={``} about="increase episode" aria-label="increase episode" className="pluslink gap-2 p-4" onClick={() => handleIncraseEpisode(anime)}>
-                        <FaFileCirclePlus aria-label="increase episode" size={36} className="p-2 bg-secondary-variant rounded-md border border-tertiary-variant outline outline-tertiary-variant"/>
-                    </Link>
+                    <div about="increase episode" aria-label="increase episode" className="pluslink gap-2 p-4" onClick={() => handleIncraseEpisode(anime)}>
+                        <FaFileCirclePlus aria-label="increase episode" size={36} className="p-2 bg-secondary/80 rounded-md border border-tertiary-variant outline outline-tertiary-variant hover:border-gold hover:outline-gold hover:cursor-pointer"/>
+                    </div>
                 </div>
                 {showRatingPicker && (
                     <div className='absolute left-16 top-16 z-20 bg-secondary-variant/70 backdrop-blur-md border border-tertiary-variant rounded-md p-2 text-xs min-w-40'>
