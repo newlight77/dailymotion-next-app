@@ -225,3 +225,17 @@ suffix = git describe --always
 This version is constructed at build time with `make build`. It generates a `.version` file and copies it into `public/.version` on build. The build also writes `src/generated/version.ts` for direct frontend import.
 The frontend imports the generated module `src/generated/version` for version metadata (no runtime API fetch required).
 ```
+
+# Anime list
+
+```prompt
+let's add a filter on the anime list page to filter animes card per rating :
+none : display all
+1 star : display all with 1 star and more
+2 stars : display all with 2 stars and more
+3 stars : display all with 3 stars and more
+4 stars : dispplya all with 4 stars and more
+5 stars : display only with 5 stars
+
+I want the current filter value (e.g., “3+”) displayed next to the star.
+```

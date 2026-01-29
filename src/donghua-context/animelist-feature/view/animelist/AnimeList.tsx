@@ -8,6 +8,7 @@ import { AnimeCard } from './AnimeCard';
 import { AnimeEdit } from './AnimeEdit';
 import { useLocalStorage } from '@/core/core-lib/shared/useLocalStorage';
 import { useWatchLists } from '@/donghua-context/user-preferences-feature';
+import StarRating from '@/components/atoms/StarRating';
 
 type AnimeWithOrderScore = AnimeType & {
     orderScore: number
@@ -26,6 +27,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const [filterKeywords, setFilterKeywords] = useLocalStorage<string>('filterKeywords', '');
     const [excludeCompleted, setExcludeCompleted] = useState(false);
     const [onlyWithUpdates, setOnlyWithUpdates] = useState(false);
+    const [minRatingFilter, setMinRatingFilter] = useState<number>(0);
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -187,7 +189,13 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                 : true)
             .filter(v => onlyWithUpdates ? v.updateDays !== '' : true)
             .filter(v => excludeCompleted ? v.status !== 'completed' : true )
-    }, [useAnimes.items, filterKeywords, excludeCompleted, onlyWithUpdates]);
+            .filter(v => {
+                if (!minRatingFilter) return true;
+                const rated = v as RatedAnime;
+                const avg = rated.rating?.average ?? 0;
+                return avg >= minRatingFilter;
+            })
+    }, [useAnimes.items, filterKeywords, excludeCompleted, onlyWithUpdates, minRatingFilter]);
 
     // no client-side fetch needed for ratings; server attaches aggregates to anime objects
 
@@ -227,6 +235,21 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                         type="checkbox"
                         checked={onlyWithUpdates}
                         onChange={handleOnlyWithUpdatesChange} />
+
+                    <label className='px-4 w-12'>min rating</label>
+                    <div className='flex items-center gap-2'>
+                        <button
+                            type="button"
+                            className='text-xs text-primary/70 hover:text-tertiary'
+                            onClick={() => setMinRatingFilter(0)}
+                        >
+                            none
+                        </button>
+                        <StarRating value={minRatingFilter} readOnly={false} size={18} onChange={setMinRatingFilter} />
+                        <span className='text-md text-primary/70'>
+                            {minRatingFilter ? `${minRatingFilter}${minRatingFilter === 5 ? '' : '+'}` : 'all'}
+                        </span>
+                    </div>
 
                 </div>
                 :
