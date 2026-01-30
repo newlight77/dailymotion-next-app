@@ -196,7 +196,6 @@ export const AnimeList: React.FC<Props> = ({className}) => {
                         checked={onlyWithUpdates}
                         onChange={handleOnlyWithUpdatesChange} />
 
-                    <label className='px-4 w-12'>min rating</label>
                     <div className='flex items-center gap-2'>
                         <div className='pl-2 pt-1'>Rating: </div>
                         <StarRating value={minRatingFilter} readOnly={false} size={18} onChange={handleMinRatingFilter} />

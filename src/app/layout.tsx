@@ -25,12 +25,12 @@ export const metadata: Metadata = {
 };
 
 const routes = [
-  { id: 1, route: "/videosearch", label: 'search' },
-  { id: 2, route: '/animelist', label: "anime list" },
-  { id: 3, route: '/schedule', label: "schedule" },
-  // { id: 4, route: '/history', label: "history" },
-  { id: 5, route: '/followings', label: "followings" },
-  { id: 6, route: '/watchlists', label: "watch lists" },
+  { id: 1, route: '/animelist', label: "anime list" },
+  { id: 2, route: "/videosearch", label: 'search' },
+  { id: 3, route: '/watchlists', label: "watch lists" },
+  { id: 4, route: '/followings', label: "followings" },
+  // { id: 5, route: '/history', label: "history" },
+  // { id: 6, route: '/schedule', label: "schedule" },
 ];
 
 export default function RootLayout({

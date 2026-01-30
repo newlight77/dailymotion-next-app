@@ -38,4 +38,4 @@ export const animeListUsecase = (drivenPort: AnimeListDrivenPort): AnimeListUsec
     load,
     reset
   }
-} 
+}

@@ -187,7 +187,7 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
         )}
       </div>
 
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4'>
+      <div className='md:flex flex-wrap'>
         {listItems.map(item => (
           item.anime ? (
             <AnimeCard
@@ -195,7 +195,7 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
               anime={item.anime}
               watchListId={listId}
               isInWatchListOverride={true}
-              className="pt-4 pb-4 xs:w-screen sm:w-screen md:w-1/2 lg:w-1/3 xl:w-1/4 min-w-80 h-auto"
+              className="pt-4 pb-4 xs:w-screen sm:w-screen md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 3xl:w-1/6 4xl:w-1/7 5xl:w-1/8 min-w-80 h-auto"
               canModify={isOwner}
             />
           ) : null
