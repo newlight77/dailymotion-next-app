@@ -1,317 +1,5 @@
 [
     {
-        "uid": "9a51ce3a-50f4-4a6f-8eaf-c6512289780e",
-        "title": "Jade Dynasty Season S3",
-        "updateDays": "",
-        "type": "series",
-        "status": "completed",
-        "summary": "Zhang Xiaofan's journey continues as he faces even greater challenges and adversaries. With his newfound powers, he strives to protect his loved ones and uncover the ultimate truths of the cultivation world.",
-        "thumbnail": "/uploads/jade-dynasty-season-s3-2025.webp",
-        "thumbnailFilename": "jade-dynasty-season-s3-2025.webp",
-        "studio": "Cloud Art",
-        "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-29T08:21:52.241Z",
-        "publishedAt": "2022-01-01T00:00:00.000Z",
-        "publishedBy": "Tencent Penguin Pictures",
-        "subtitle": "Zhu Xian",
-        "originalTitle": "诛仙",
-        "firstSeasonEpisode": 53,
-        "lastSeasonEpisode": 26,
-        "totalSeasonEpisodes": 26,
-        "lastEpisode": 78,
-        "totalEpisodes": 78,
-        "rating": {
-            "average": 4,
-            "count": 1
-        }
-    },
-    {
-        "uid": "23544167-9674-4ffc-a3ac-935832797e2e",
-        "title": "Wealth and Wonder",
-        "updateDays": "Tuesday",
-        "type": "series",
-        "status": "ongoing",
-        "summary": "In the future world, the virtual game “Epoch” developed by Chu Group has attracted worldwide attention for its perfect immersive experience. However, on the eve of the game’s official launch, the game developers Chu and his wife disappeared mysteriously. In order to find clues about the whereabouts of his parents, the rich young man Chu Yi, under the guidance of the humanoid AI Chaos, spent 30 billion krypton gold to enter the game upgrade adventure. In the process, Chu Yi gathered a group of player partners who fought side by side. After several efforts, he finally found out that his parents’ disappearance was related to the Fantasy World Organization.  In order to find the whereabouts of his parents, fight against the Fantasy World Organization, and “save” the Era World, Chu Yi launched a series of ridiculous and unimaginable krypton gold operations, embarked on a journey of playing the pig and eating the tiger, and a wonderful battle between good and evil began.",
-        "thumbnail": "/uploads/wealth-and-wonder-2025.webp",
-        "thumbnailFilename": "wealth-and-wonder-2025.webp",
-        "studio": "Qingxiang Culture",
-        "releaseAt": "2025-06-14T17:33:53.738Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
-        "publishedAt": "2025-06-14T17:33:53.738Z",
-        "publishedBy": "Youku",
-        "subtitle": "Ke Jin Wanjia, Rich Player",
-        "originalTitle": "克金玩家",
-        "firstSeasonEpisode": 1,
-        "lastSeasonEpisode": 1,
-        "totalSeasonEpisodes": 1,
-        "lastEpisode": 4,
-        "totalEpisodes": 4,
-        "rating": {
-            "average": 0,
-            "count": 0
-        }
-    },
-    {
-        "uid": "13b2a1fe-7a7e-4085-9966-1d0fd528c540",
-        "title": "Eclipse of Illusion",
-        "updateDays": "Saturday",
-        "type": "series",
-        "status": "ongoing",
-        "summary": "A beautiful wedding turns into betrayal by a beloved. No longer seeking immortality, a single thought transforms into darkness. The powerful and tragic heroine embarks on a path of vengeance as a killing deity, determined to eradicate all.",
-        "thumbnail": "/uploads/eclipse-of-illusion-2025.webp",
-        "thumbnailFilename": "eclipse-of-illusion-2025.webp",
-        "studio": "Yien Animation Studio",
-        "releaseAt": "2025-07-05T14:51:32.010Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
-        "publishedAt": "2025-07-05T14:51:32.010Z",
-        "publishedBy": "Youku",
-        "subtitle": "Yun Shen Buzhi Meng",
-        "originalTitle": "云深不知梦",
-        "firstSeasonEpisode": 1,
-        "lastSeasonEpisode": 2,
-        "totalSeasonEpisodes": 0,
-        "lastEpisode": 2,
-        "totalEpisodes": 2,
-        "rating": {
-            "average": 0,
-            "count": 0
-        }
-    },
-    {
-        "uid": "3edd0baf-39fb-4343-b830-fb846f5b250d",
-        "title": "Great Journey of Teenagers S4",
-        "updateDays": "Wednesday",
-        "type": "series",
-        "status": "ongoing",
-        "summary": "A wuxia donghua following the adventures of young heroes in the jianghu (martial world). The story combines elements of martial arts, friendship, and adventure as a group of talented young people travel together, facing challenges and uncovering secrets while pursuing their dreams in the martial world.",
-        "thumbnail": "/uploads/great-journey-of-teenagers-s4-2025.webp",
-        "thumbnailFilename": "great-journey-of-teenagers-s4-2025.webp",
-        "studio": "CG Year",
-        "releaseAt": "2018-12-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
-        "publishedAt": "2018-12-01T00:00:00.000Z",
-        "publishedBy": "Youku",
-        "subtitle": "Shoa Nian Ge Xing S4",
-        "originalTitle": "少年歌行",
-        "firstSeasonEpisode": 0,
-        "lastSeasonEpisode": 16,
-        "totalSeasonEpisodes": 4,
-        "lastEpisode": 16,
-        "totalEpisodes": 0,
-        "rating": {
-            "average": 4,
-            "count": 1
-        }
-    },
-    {
-        "uid": "fd252f6a-35ea-4bd4-b005-7a8aaf6e0cff",
-        "title": "Above the Kingdom of God",
-        "updateDays": "Friday",
-        "type": "series",
-        "status": "ongoing",
-        "summary": "Six days and nights, a strange case, and the boy returning to twelve years ago, can he break the shackles of the Kingdom of God this time",
-        "thumbnail": "/uploads/above-the-kingdom-of-god-2025.webp",
-        "thumbnailFilename": "above-the-kingdom-of-god-2025.webp",
-        "studio": "CG Year",
-        "releaseAt": "2025-07-05T14:47:30.504Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
-        "publishedAt": "2025-07-05T14:47:30.504Z",
-        "publishedBy": "Bilibili",
-        "subtitle": "Shenguo Zhi Shang",
-        "originalTitle": "神国之上",
-        "firstSeasonEpisode": 1,
-        "lastSeasonEpisode": 6,
-        "totalSeasonEpisodes": 0,
-        "lastEpisode": 6,
-        "totalEpisodes": 6,
-        "rating": {
-            "average": 0,
-            "count": 0
-        }
-    },
-    {
-        "uid": "adf3ed57-6f1d-4b50-9d3c-a3095f346de6",
-        "title": "Embers",
-        "updateDays": "Friday",
-        "type": "series",
-        "status": "ongoing",
-        "summary": "On the planet after the disaster, the young boy Ye Yu went to Embers City for an assessment in pursuit of his dream. He faces numerous murderous intentions and mysteries, and the truth behind them is impossible to unravel.",
-        "thumbnail": "/uploads/embers-2025.webp",
-        "thumbnailFilename": "embers-2025.webp",
-        "studio": "D.ROCK-ART",
-        "releaseAt": "2025-06-14T17:39:41.297Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
-        "publishedAt": "2025-06-14T17:39:41.297Z",
-        "publishedBy": "iQIYI",
-        "subtitle": "Embers, Yujin Xingzhe",
-        "originalTitle": "余烬行者",
-        "firstSeasonEpisode": 1,
-        "lastSeasonEpisode": 3,
-        "totalSeasonEpisodes": 3,
-        "lastEpisode": 3,
-        "totalEpisodes": 3,
-        "rating": {
-            "average": 0,
-            "count": 0
-        }
-    },
-    {
-        "uid": "bd251cb0-48d9-43fd-93bb-26d13aea2126",
-        "title": "Fighting the World",
-        "updateDays": "Tuesday,Saturday",
-        "type": "series",
-        "status": "ongoing",
-        "summary": "The mysterious young man Dafeng rescued Li Huamei, who was seriously ill after being plotted against. Dafeng wanted to go to Kyoto to find his senior sister and happened to be on the same road with Li Huamei. On the way, Li Huamei was shocked to find that her senior sister was the Queen Qin Zhao, and the Queen repeatedly sent assassins to kill her. In order to find out the reason, Dafeng and Li Huamei entrusted their lives to each other and fought against the enemy together. Disputes arose in the rivers and lakes, and the struggles in the court became even more intense. The two were unknowingly involved in a treacherous conspiracy, and Dafeng was the key to solving all the mysteries…",
-        "thumbnail": "/uploads/fighting-the-world-2025.webp",
-        "thumbnailFilename": "fighting-the-world-2025.webp",
-        "studio": "CG Year",
-        "releaseAt": "2025-06-15T09:04:33.552Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
-        "publishedAt": "2025-06-15T09:04:33.552Z",
-        "publishedBy": "IQIYI",
-        "subtitle": "Dou zhan tianxia",
-        "originalTitle": "斗战天下",
-        "firstSeasonEpisode": 1,
-        "lastSeasonEpisode": 48,
-        "totalSeasonEpisodes": 48,
-        "lastEpisode": 49,
-        "totalEpisodes": 48,
-        "rating": {
-            "average": 1,
-            "count": 1
-        }
-    },
-    {
-        "uid": "ebb2b1a1-1f9f-439a-84a2-3fccae12f699",
-        "title": "Little Fairy Yao",
-        "updateDays": "Monday,Thursday",
-        "type": "series",
-        "status": "ongoing",
-        "summary": "He Wan, the leader of the Hidden Clan feared by all three realms, suddenly attacked the Heavenly Palace. The Supreme God Nan Ze came to fight. In order to protect Nan Ze, the jade-growing fairy Yu Zhiyao risked her life to save him. When she and He Wan were about to perish together, she was unexpectedly reborn. By mistake, Yu Zhiyao was reborn into He Wan’s body. After the rebirth, He Wan’s Hidden Power was greatly damaged. Ting Zhao, the Hidden Guard of the West Sea, came to help the leader He Wan recover her Hidden Power. Since then, Zhiyao was forced to embark on the road of a two-faced female leader, pretending to be majestic in front of others and being charming in front of the king…",
-        "thumbnail": "/uploads/little-fairy-yao-2025.webp",
-        "thumbnailFilename": "little-fairy-yao-2025.webp",
-        "studio": "Oriental Creative Color",
-        "releaseAt": "2024-06-24T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
-        "publishedAt": "2024-06-24T22:00:00.000Z",
-        "publishedBy": "IQIYI",
-        "subtitle": "Xiao Xian Zhi Yao",
-        "originalTitle": "小仙之瑶",
-        "firstSeasonEpisode": 1,
-        "lastSeasonEpisode": 22,
-        "totalSeasonEpisodes": 19,
-        "lastEpisode": 22,
-        "totalEpisodes": 19,
-        "rating": {
-            "average": 0,
-            "count": 0
-        }
-    },
-    {
-        "uid": "68edffa7-978d-422e-97ad-931f6060718d",
-        "title": "Tomb of Fallen Gods S3",
-        "updateDays": "Saturday",
-        "type": "series",
-        "status": "ongoing",
-        "summary": "Chen Nan and his companions left the Dong Chu Kingdom and joined Shen Lan Academy as disciples. Together with Meng Ke’er and others, they embarked on a journey to uncover the truth behind the demonic path and the path of destruction. At the same time, the secrets of Chen Nan’s own origins gradually began to surface.",
-        "thumbnail": "/uploads/tomb-of-fallen-gods-s3-2025.jpg",
-        "thumbnailFilename": "tomb-of-fallen-gods-s3-2025.jpg",
-        "studio": "Wonder Cat Animation",
-        "releaseAt": "2024-08-05T00:00:00.000Z",
-        "updatedAt": "2026-01-25T10:04:31.523Z",
-        "publishedAt": "2024-01-01T00:00:00.000Z",
-        "publishedBy": "Youku",
-        "subtitle": "",
-        "originalTitle": "神墓 第三季",
-        "firstSeasonEpisode": 45,
-        "lastSeasonEpisode": 6,
-        "totalSeasonEpisodes": 0,
-        "lastEpisode": 26,
-        "totalEpisodes": 53,
-        "rating": {
-            "average": 3,
-            "count": 1
-        }
-    },
-    {
-        "uid": "9112f2a0-1558-4ff8-82b1-3313f9777514",
-        "title": "Stellar Transformations S6",
-        "updateDays": "Wednesday",
-        "type": "series",
-        "status": "completed",
-        "summary": "Qin Yu and his three sworn brothers ascend to the Divine Realm, where new challenges await. As he learns the complex rules of this powerful world, Qin Yu sets his sights on becoming the strongest Forging God to marry Jiang Li, a woman from one of the Divine Realm’s eight great families. Starting from eliminating bandits, he rises through the ranks, gaining recognition from the Holy Emperor and becoming a noble figure. However, when Jiang Li’s family announces a competition for her hand in marriage, Qin Yu must present three unparalleled gifts to win. After countless hardships, he crafts a one-of-a-kind Hongmeng spiritual treasure. Just when victory seems assured, Jiang Li’s family unfairly declares Zhou Xian the winner, igniting Qin Yu’s fury…",
-        "thumbnail": "/uploads/stellar-transformations-s6-2025.webp",
-        "thumbnailFilename": "stellar-transformations-s6-2025.webp",
-        "studio": "Foch Films",
-        "releaseAt": "2025-01-29T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
-        "publishedAt": "2025-01-01T00:00:00.000Z",
-        "publishedBy": "Tencent Penguin Pictures",
-        "subtitle": "Xing Chen Bian",
-        "originalTitle": "星辰变 第6季",
-        "firstSeasonEpisode": 81,
-        "lastSeasonEpisode": 28,
-        "totalSeasonEpisodes": 12,
-        "lastEpisode": 108,
-        "totalEpisodes": 108,
-        "rating": {
-            "average": 5,
-            "count": 1
-        }
-    },
-    {
-        "uid": "f1c321c1-d4c0-498a-8464-bbccb9422be1",
-        "title": "Ling Long 2",
-        "updateDays": "",
-        "type": "series",
-        "status": "completed",
-        "summary": "In a post-apocalyptic world, a young girl named Ling Long and her father embark on a perilous journey to uncover the mysteries of their world and save humanity from extinction.",
-        "thumbnail": "/uploads/ling-long.webp",
-        "thumbnailFilename": "ling-long.webp",
-        "studio": "YHKT Entertainment",
-        "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-29T21:51:47.074Z",
-        "publishedAt": "2024-02-18T23:00:00.000Z",
-        "publishedBy": "Bilibili",
-        "subtitle": "Ling Cage, Spirit Cage: Incarnation",
-        "originalTitle": "灵笼",
-        "firstSeasonEpisode": 0,
-        "lastSeasonEpisode": 0,
-        "totalSeasonEpisodes": 0,
-        "lastEpisode": 15,
-        "totalEpisodes": 0,
-        "rating": {
-            "average": 4,
-            "count": 1
-        }
-    },
-    {
-        "uid": "0d0880d7-56d4-4997-be4b-61f69c02d185",
-        "title": "Ling Long",
-        "updateDays": "",
-        "type": "series",
-        "status": "completed",
-        "summary": "In a post-apocalyptic world, a young girl named Ling Long and her father embark on a perilous journey to uncover the mysteries of their world and save humanity from extinction.",
-        "thumbnail": "/uploads/ling-long.webp",
-        "thumbnailFilename": "ling-long.webp",
-        "studio": "YHKT Entertainment",
-        "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
-        "publishedAt": "2024-02-18T23:00:00.000Z",
-        "publishedBy": "Bilibili",
-        "subtitle": "Ling Cage, Spirit Cage: Incarnation",
-        "originalTitle": "灵笼",
-        "firstSeasonEpisode": 0,
-        "lastSeasonEpisode": 0,
-        "totalSeasonEpisodes": 0,
-        "lastEpisode": 15,
-        "totalEpisodes": 0,
-        "rating": {
-            "average": 4,
-            "count": 1
-        }
-    },
-    {
         "uid": "73c23d44-92af-426b-85c5-437881b557b1",
         "title": "You’re a genius",
         "updateDays": "",
@@ -322,7 +10,7 @@
         "thumbnailFilename": "you-re-a-genius.png",
         "studio": "Mili Pictures",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Ni Zhenshi Ge Tiancai",
@@ -348,7 +36,7 @@
         "thumbnailFilename": "xianwu-heaven-season-s1.jpg",
         "studio": "Original Force",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Xian wu Cang qiong",
@@ -374,7 +62,7 @@
         "thumbnailFilename": "world-of-immortals-s1.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-03-15T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-03-15T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Chang Sheng Jie",
@@ -400,7 +88,7 @@
         "thumbnailFilename": "world-defying-dan-god.png",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2024-09-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-09-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Defying Heaven Dan God",
@@ -426,7 +114,7 @@
         "thumbnailFilename": "word-of-honor-s2.jpg",
         "studio": "Passion Paint Animation",
         "releaseAt": "2024-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Jun You Yun",
@@ -452,7 +140,7 @@
         "thumbnailFilename": "word-of-honor-s1.jpg",
         "studio": "Passion Paint Animation",
         "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Jun You Yun",
@@ -478,7 +166,7 @@
         "thumbnailFilename": "wonderland-of-ten-thousands-s5.jpg",
         "studio": "Original Force",
         "releaseAt": "2018-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wan Jie Xian Zong",
@@ -489,8 +177,60 @@
         "lastEpisode": 464,
         "totalEpisodes": 464,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "23544167-9674-4ffc-a3ac-935832797e2e",
+        "title": "Wealth and Wonder",
+        "updateDays": "Tuesday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "In the future world, the virtual game “Epoch” developed by Chu Group has attracted worldwide attention for its perfect immersive experience. However, on the eve of the game’s official launch, the game developers Chu and his wife disappeared mysteriously. In order to find clues about the whereabouts of his parents, the rich young man Chu Yi, under the guidance of the humanoid AI Chaos, spent 30 billion krypton gold to enter the game upgrade adventure. In the process, Chu Yi gathered a group of player partners who fought side by side. After several efforts, he finally found out that his parents’ disappearance was related to the Fantasy World Organization.  In order to find the whereabouts of his parents, fight against the Fantasy World Organization, and “save” the Era World, Chu Yi launched a series of ridiculous and unimaginable krypton gold operations, embarked on a journey of playing the pig and eating the tiger, and a wonderful battle between good and evil began.",
+        "thumbnail": "/uploads/wealth-and-wonder-2025.webp",
+        "thumbnailFilename": "wealth-and-wonder-2025.webp",
+        "studio": "Qingxiang Culture",
+        "releaseAt": "2025-06-14T17:33:53.738Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2025-06-14T17:33:53.738Z",
+        "publishedBy": "Youku",
+        "subtitle": "Ke Jin Wanjia, Rich Player",
+        "originalTitle": "克金玩家",
+        "firstSeasonEpisode": 1,
+        "lastSeasonEpisode": 1,
+        "totalSeasonEpisodes": 1,
+        "lastEpisode": 4,
+        "totalEpisodes": 4,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "e784cb5b-ca6b-4936-90f1-232b6630c68d",
+        "title": "Way of Choices",
+        "updateDays": "",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "Chen Changsheng, a young man of mysterious origins, is prophesied to die before the age of twenty due to his unique constitution. Determined to defy fate, he follows his master’s orders and travels to the Divine Capital of the human realm with a marriage contract in hand. His goal is to win first place in the highest-level Grand Imperial Examination, thereby earning the right to enter the Tomb of Heavenly Books to study the steles and seek a way to extend his life. In the Divine Capital, the marriage contract draws him into complex power struggles involving the Saintess Xu Yourong. Soon, an even greater crisis emerges: the forces of the demon race begin stirring in secret, plotting to overthrow the human race. Relying on his vast knowledge, Chen Changsheng makes his debut at the Ivy Banquet, then goes on to claim first place in the Grand Imperial Examination, gaining entry to the Tomb of Heavenly Books. There, he not only comprehends profound cultivation techniques but also uncovers a connection between his own origins and a massive conspiracy from years past. After leaving the Tomb of Heavenly Books, Chen Changsheng enters the Zhou Garden secret realm with companions such as Xu Yourong, Luoluo, and Tang Thirty-Six. Inside the Zhou Garden, they clash head-on with the demon race. Chen Changsheng ultimately inherits Zhou Dufu's legacy and uncovers the shocking possibility that he is the Crown Prince Zhaoming. This revelation thrusts him into the eye of the storm…\n\n(Source: iQ)",
+        "thumbnail": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx199410-x60vxUFQxu4x.jpg",
+        "thumbnailFilename": "way-of-choices.jpg",
+        "studio": "",
+        "releaseAt": "2026-01-30T23:00:00.000Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2026-01-30T23:00:00.000Z",
+        "publishedBy": "",
+        "subtitle": "",
+        "originalTitle": "择天记 (2026)",
+        "firstSeasonEpisode": 1,
+        "lastSeasonEpisode": 26,
+        "totalSeasonEpisodes": 26,
+        "lastEpisode": 26,
+        "totalEpisodes": 26,
+        "rating": {
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -504,7 +244,7 @@
         "thumbnailFilename": "transcending-the-nine-heavens.jpg",
         "studio": "Original Force",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Ao Shi Jiu Chong Tian",
@@ -530,7 +270,7 @@
         "thumbnailFilename": "transcend-evolution.jpg",
         "studio": "Joicy Studio",
         "releaseAt": "2025-12-27T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-12-27T00:00:00.000Z",
         "publishedBy": "Tencent Video",
         "subtitle": "超凡进化",
@@ -540,6 +280,32 @@
         "totalSeasonEpisodes": 14,
         "lastEpisode": 14,
         "totalEpisodes": 14,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "68edffa7-978d-422e-97ad-931f6060718d",
+        "title": "Tomb of Fallen Gods S3",
+        "updateDays": "Saturday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "Chen Nan and his companions left the Dong Chu Kingdom and joined Shen Lan Academy as disciples. Together with Meng Ke’er and others, they embarked on a journey to uncover the truth behind the demonic path and the path of destruction. At the same time, the secrets of Chen Nan’s own origins gradually began to surface.",
+        "thumbnail": "/uploads/tomb-of-fallen-gods-s3-2025.jpg",
+        "thumbnailFilename": "tomb-of-fallen-gods-s3-2025.jpg",
+        "studio": "Wonder Cat Animation",
+        "releaseAt": "2024-08-05T00:00:00.000Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2024-01-01T00:00:00.000Z",
+        "publishedBy": "Youku",
+        "subtitle": "",
+        "originalTitle": "神墓 第三季",
+        "firstSeasonEpisode": 45,
+        "lastSeasonEpisode": 6,
+        "totalSeasonEpisodes": 0,
+        "lastEpisode": 28,
+        "totalEpisodes": 53,
         "rating": {
             "average": 0,
             "count": 0
@@ -556,7 +322,7 @@
         "thumbnailFilename": "tomb-of-fallen-gods-s2.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2024-08-05T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "",
@@ -567,8 +333,8 @@
         "lastEpisode": 44,
         "totalEpisodes": 44,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -582,7 +348,7 @@
         "thumbnailFilename": "tomb-of-fallen-gods-s1.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2022-07-24T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Shen Mu",
@@ -593,8 +359,8 @@
         "lastEpisode": 44,
         "totalEpisodes": 44,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -608,7 +374,7 @@
         "thumbnailFilename": "time-prisoner.jpg",
         "studio": "Azure Sea Studios",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "",
@@ -634,7 +400,7 @@
         "thumbnailFilename": "tiger-crane-s1.webp",
         "studio": "Motion Magic",
         "releaseAt": "2024-04-16T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-04-16T22:00:00.000Z",
         "publishedBy": "bilibili",
         "subtitle": "Hu He Yao Shi Lu",
@@ -660,7 +426,7 @@
         "thumbnailFilename": "throne-of-seal.jpg",
         "studio": "Shenman Entertainment",
         "releaseAt": "2022-04-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-04-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Shen Yin Wangzuo",
@@ -671,8 +437,8 @@
         "lastEpisode": 166,
         "totalEpisodes": 0,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -686,7 +452,7 @@
         "thumbnailFilename": "thousand-autumn.png",
         "studio": "Shanghai Motion Magic",
         "releaseAt": "2021-02-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-02-01T00:00:00.000Z",
         "publishedBy": "Tencent",
         "subtitle": "Shen He Jian Xin",
@@ -712,7 +478,7 @@
         "thumbnailFilename": "the-young-brewmaster-adventure.jpg",
         "studio": "CG Year",
         "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "",
@@ -738,7 +504,7 @@
         "thumbnailFilename": "the-westward-the-cave-of-the-poor.jpg",
         "studio": "Shenman Entertainment",
         "releaseAt": "2018-07-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-07-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xi Xing Ji - Journey to the West, Westbound, Westbound Discipline",
@@ -764,7 +530,7 @@
         "thumbnailFilename": "the-westward-good-bye-monkey-king-2020.webp",
         "studio": "Shenman Entertainment",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Journey to the West, Westbound, Westbound Discipline, The Westward: Good Bye, Monkey King (2020)",
@@ -790,7 +556,7 @@
         "thumbnailFilename": "the-westward-s4.png",
         "studio": "BYMENT",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xi Xing Ji - Journey to the West, Westbound, Westbound Discipline",
@@ -816,7 +582,7 @@
         "thumbnailFilename": "the-westward-s2.png",
         "studio": "BYMENT",
         "releaseAt": "2018-07-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-07-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xi Xing Ji - Journey to the West, Westbound, Westbound Discipline",
@@ -842,7 +608,7 @@
         "thumbnailFilename": "the-war-of-cards.png",
         "studio": "Shenman Entertainment",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Ka Tu, Shi Shi Chuan Shuo - Disciples of Card",
@@ -853,8 +619,8 @@
         "lastEpisode": 13,
         "totalEpisodes": 0,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -868,7 +634,7 @@
         "thumbnailFilename": "the-uninhabited-wonderland-s1.jpg",
         "studio": "Original Force",
         "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wild Fairyland",
@@ -879,8 +645,8 @@
         "lastEpisode": 48,
         "totalEpisodes": 48,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -894,7 +660,7 @@
         "thumbnailFilename": "the-tale-of-the-spirit-stone.png",
         "studio": "Soyep",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "",
@@ -920,7 +686,7 @@
         "thumbnailFilename": "the-success-of-empyrean-xuan-emperor.png",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -931,8 +697,8 @@
         "lastEpisode": 111,
         "totalEpisodes": 0,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -946,7 +712,7 @@
         "thumbnailFilename": "the-shape-of-the-wind-siam-era.webp",
         "studio": "Star Hunter Animation",
         "releaseAt": "2025-08-01T22:00:38.532Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-08-01T22:00:38.532Z",
         "publishedBy": "Bilibili",
         "subtitle": "Fengzi Wuyu: Xian Luo Pian",
@@ -972,7 +738,7 @@
         "thumbnailFilename": "the-secrets-of-star-divine-arts.webp",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Taigu Xing Shen Jue",
@@ -998,7 +764,7 @@
         "thumbnailFilename": "the-rich-god.png",
         "studio": "Djinn Power",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "youju",
         "subtitle": "bu shen wang",
@@ -1024,7 +790,7 @@
         "thumbnailFilename": "the-peak-of-true-martial-arts-s3.jpg",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1035,8 +801,8 @@
         "lastEpisode": 100,
         "totalEpisodes": 100,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1050,7 +816,7 @@
         "thumbnailFilename": "the-peak-of-true-martial-arts-s2.png",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1061,8 +827,8 @@
         "lastEpisode": 52,
         "totalEpisodes": 52,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1076,7 +842,7 @@
         "thumbnailFilename": "the-peak-of-true-martial-arts-s1.jpg",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1087,14 +853,14 @@
         "lastEpisode": 40,
         "totalEpisodes": 40,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
         "uid": "d4f5a3e0-7c3b-4a2e-9a1f-2b8c9e0f6a12",
         "title": "The Other Side of Deep Space",
-        "updateDays": "",
+        "updateDays": "Friday",
         "type": "series",
         "status": "ongoing",
         "summary": "When a mysterious transdimensional rift opens in deep space, a small research crew must navigate hostile realms and cosmic secrets to save humanity — and discover what lies on the other side of the void.",
@@ -1102,19 +868,19 @@
         "thumbnailFilename": "the-other-side-of-deep-space.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-09-01T00:00:00.000Z",
-        "updatedAt": "2026-01-29T19:37:09.948Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-09-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "深空彼岸",
         "originalTitle": "深空彼岸",
         "firstSeasonEpisode": 1,
-        "lastSeasonEpisode": 12,
+        "lastSeasonEpisode": 5,
         "totalSeasonEpisodes": 12,
-        "lastEpisode": 13,
+        "lastEpisode": 6,
         "totalEpisodes": 12,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1128,7 +894,7 @@
         "thumbnailFilename": "the-most-proud-swordsman.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1154,7 +920,7 @@
         "thumbnailFilename": "the-lord-of-no-boundary-s3.jpg",
         "studio": "Original Force",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wanjie Shenzhu - Lord of the universe",
@@ -1165,8 +931,8 @@
         "lastEpisode": 316,
         "totalEpisodes": 316,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1180,7 +946,7 @@
         "thumbnailFilename": "the-lord-of-no-boundary-s2.jpg",
         "studio": "Original Force",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wanjie Shenzhu - Lord of the universe",
@@ -1191,8 +957,8 @@
         "lastEpisode": 316,
         "totalEpisodes": 316,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1206,7 +972,7 @@
         "thumbnailFilename": "the-lord-of-no-boundary-s1.jpg",
         "studio": "Original Force",
         "releaseAt": "2019-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2019-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wanjie Shenzhu - Lord of the universe",
@@ -1217,8 +983,8 @@
         "lastEpisode": 316,
         "totalEpisodes": 316,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1232,7 +998,7 @@
         "thumbnailFilename": "the-long-ballad.webp",
         "studio": "Original Force",
         "releaseAt": "2025-02-13T08:11:46.520Z",
-        "updatedAt": "2026-01-29T08:19:34.071Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-02-13T08:11:46.520Z",
         "publishedBy": "Bilibili",
         "subtitle": "Chang Ge Xing - The Legeng of Princess Chang Ge",
@@ -1243,8 +1009,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 16,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1258,7 +1024,7 @@
         "thumbnailFilename": "the-legend-of-wuhun-continent.jpg",
         "studio": "Original Force",
         "releaseAt": "2025-01-05T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-01-05T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wuhun Continent",
@@ -1284,7 +1050,7 @@
         "thumbnailFilename": "the-legend-of-the-taiyi-sword-immortal.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "youku",
         "subtitle": "Taiyi Jian Xian Chuan",
@@ -1310,7 +1076,7 @@
         "thumbnailFilename": "the-legend-of-dragon-soldier.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Shen Ji Long Wei",
@@ -1336,7 +1102,7 @@
         "thumbnailFilename": "the-legend-and-the-hero-s4.jpg",
         "studio": "Shenman Entertainment",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Wu Geng Ji - The Legend and the Hero - Chronicles of the God's Order",
@@ -1362,7 +1128,7 @@
         "thumbnailFilename": "the-legend-and-the-hero-s3.webp",
         "studio": "Shenman Entertainment",
         "releaseAt": "2016-06-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2016-06-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Wu Geng Ji",
@@ -1388,7 +1154,7 @@
         "thumbnailFilename": "the-land-of-miracles-s3.webp",
         "studio": "Original Force",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Shen Lan Qi Yu Wushuang Zhu",
@@ -1414,7 +1180,7 @@
         "thumbnailFilename": "the-island-of-saliang-s2.webp",
         "studio": "Year Young Culture",
         "releaseAt": "2021-06-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-06-01T00:00:00.000Z",
         "publishedBy": "Tencent",
         "subtitle": "",
@@ -1425,8 +1191,8 @@
         "lastEpisode": 15,
         "totalEpisodes": 15,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1440,7 +1206,7 @@
         "thumbnailFilename": "the-great-ruler-s1.jpg",
         "studio": "Oriental Creative Color",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "iQIYI",
         "subtitle": "nitian xie shen",
@@ -1451,8 +1217,8 @@
         "lastEpisode": 52,
         "totalEpisodes": 52,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1466,7 +1232,7 @@
         "thumbnailFilename": "the-great-lord-of-destiny.webp",
         "studio": "Original Force",
         "releaseAt": "2024-01-15T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-01-15T00:00:00.000Z",
         "publishedBy": "bilibili",
         "subtitle": "",
@@ -1492,7 +1258,7 @@
         "thumbnailFilename": "the-god-of-ten-thousand-realms.png",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wan Jie Fa Shen",
@@ -1503,8 +1269,8 @@
         "lastEpisode": 54,
         "totalEpisodes": 54,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1518,7 +1284,7 @@
         "thumbnailFilename": "the-gate-of-mystical-realm.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Mystical Realm Gate",
@@ -1544,7 +1310,7 @@
         "thumbnailFilename": "the-galaxy-emperor.jpeg",
         "studio": "Xiaoming Taiji",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Gaishi Dizun, Matchless Emperor, Emperor Gaishi",
@@ -1570,7 +1336,7 @@
         "thumbnailFilename": "the-flame-imperial-guards.png",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2024-12-28T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-28T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Flame Guards",
@@ -1596,7 +1362,7 @@
         "thumbnailFilename": "the-eternal-strife-s1.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2023-11-28T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2023-11-28T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Bu Shi Bu Mie",
@@ -1622,7 +1388,7 @@
         "thumbnailFilename": "the-eternal-realm.png",
         "studio": "Original Force",
         "releaseAt": "2024-11-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-11-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Eternal Domain",
@@ -1648,7 +1414,7 @@
         "thumbnailFilename": "the-divine-emperor-of-destiny.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2024-12-15T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-15T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Destiny Emperor",
@@ -1674,7 +1440,7 @@
         "thumbnailFilename": "the-demon-hunter-s2.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-12-08T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-08T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Cang Yuan Tu  - Azure Legacy S2",
@@ -1685,8 +1451,8 @@
         "lastEpisode": 64,
         "totalEpisodes": 61,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1700,7 +1466,7 @@
         "thumbnailFilename": "ten-thousand-worlds.webp",
         "studio": "Original Force",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wan Jie Du Zun - The Sovereign of All Realms",
@@ -1711,8 +1477,8 @@
         "lastEpisode": 17,
         "totalEpisodes": 0,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1726,7 +1492,7 @@
         "thumbnailFilename": "tales-of-demons-and-gods-s9.jpeg",
         "studio": "Original Force",
         "releaseAt": "2017-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-29T08:14:53.942Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2017-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1737,8 +1503,8 @@
         "lastEpisode": 432,
         "totalEpisodes": 432,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1752,7 +1518,7 @@
         "thumbnailFilename": "tales-of-demons-and-gods-s7.jpeg",
         "studio": "Original Force",
         "releaseAt": "2017-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2017-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1763,8 +1529,8 @@
         "lastEpisode": 380,
         "totalEpisodes": 0,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1778,7 +1544,7 @@
         "thumbnailFilename": "tales-of-demons-and-gods-s6.jpeg",
         "studio": "Original Force",
         "releaseAt": "2017-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2017-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1789,8 +1555,8 @@
         "lastEpisode": 380,
         "totalEpisodes": 0,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1804,7 +1570,7 @@
         "thumbnailFilename": "tales-of-demons-and-gods-s5.webp",
         "studio": "Original Force",
         "releaseAt": "2017-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2017-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1815,8 +1581,8 @@
         "lastEpisode": 380,
         "totalEpisodes": 0,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1830,7 +1596,7 @@
         "thumbnailFilename": "tales-of-demons-and-gods-s4.jpeg",
         "studio": "Original Force",
         "releaseAt": "2017-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2017-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1841,8 +1607,8 @@
         "lastEpisode": 380,
         "totalEpisodes": 0,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1856,7 +1622,7 @@
         "thumbnailFilename": "tales-of-demons-and-gods-s3.jpg",
         "studio": "Original Force",
         "releaseAt": "2017-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2017-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -1867,8 +1633,8 @@
         "lastEpisode": 40,
         "totalEpisodes": 40,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1882,7 +1648,7 @@
         "thumbnailFilename": "tales-of-demons-and-gods-s2.jpg",
         "studio": "Original Force",
         "releaseAt": "2017-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2017-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "yao shen ji",
@@ -1893,8 +1659,8 @@
         "lastEpisode": 40,
         "totalEpisodes": 40,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1908,7 +1674,7 @@
         "thumbnailFilename": "tales-of-demons-and-gods-s1.jpeg",
         "studio": "Original Force",
         "releaseAt": "2017-05-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2017-05-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Yao Shen Ji",
@@ -1919,8 +1685,8 @@
         "lastEpisode": 40,
         "totalEpisodes": 40,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -1934,7 +1700,7 @@
         "thumbnailFilename": "sword-of-coming-s1.png",
         "studio": "Cloud Art",
         "releaseAt": "2024-08-24T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-08-15T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Jian Lai",
@@ -1960,7 +1726,7 @@
         "thumbnailFilename": "sword-and-fairy-3.jpg",
         "studio": "Year Young Culture",
         "releaseAt": "2025-12-28T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-12-28T00:00:00.000Z",
         "publishedBy": "Tencent Video",
         "subtitle": "Xian Jian Qi Xia Zhuan 3",
@@ -1986,7 +1752,7 @@
         "thumbnailFilename": "swallowing-the-heavens.webp",
         "studio": "Suoyi Technology",
         "releaseAt": "2025-06-14T17:37:37.203Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-06-14T17:37:37.203Z",
         "publishedBy": "Tencent Video",
         "subtitle": "Tun Tian Ji",
@@ -1997,8 +1763,8 @@
         "lastEpisode": 38,
         "totalEpisodes": 0,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2012,7 +1778,7 @@
         "thumbnailFilename": "swallowed-star-s4.jpeg",
         "studio": "Sparkly Key Animation Studio",
         "releaseAt": "2023-01-02T23:00:00.000Z",
-        "updatedAt": "2026-01-29T21:21:11.747Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Tunshi Xinkong",
@@ -2023,8 +1789,8 @@
         "lastEpisode": 209,
         "totalEpisodes": 76,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2038,7 +1804,7 @@
         "thumbnailFilename": "swallowed-star-s3.webp",
         "studio": "Sparkly Key Animation Studio",
         "releaseAt": "2023-01-02T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Tunshi Xinkong",
@@ -2049,8 +1815,8 @@
         "lastEpisode": 33,
         "totalEpisodes": 33,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2064,7 +1830,7 @@
         "thumbnailFilename": "swallowed-star-s2.png",
         "studio": "Sparkly Key Animation Studio",
         "releaseAt": "2023-01-02T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Tunshi Xinkong",
@@ -2075,8 +1841,8 @@
         "lastEpisode": 26,
         "totalEpisodes": 26,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2090,7 +1856,7 @@
         "thumbnailFilename": "swallowed-star-s1.png",
         "studio": "Sparkly Key Animation Studio",
         "releaseAt": "2023-01-02T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Tunshi Xinkong",
@@ -2101,8 +1867,8 @@
         "lastEpisode": 26,
         "totalEpisodes": 26,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2116,7 +1882,7 @@
         "thumbnailFilename": "swallowed-star-movie-blood-rive-continent.webp",
         "studio": "Sparkly Key Animation Studio",
         "releaseAt": "2023-01-02T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Tunshi Xinkong",
@@ -2127,8 +1893,8 @@
         "lastEpisode": 0,
         "totalEpisodes": 0,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2142,7 +1908,7 @@
         "thumbnailFilename": "supreme-sword-god-s2.jpeg",
         "studio": "Xing Yi Kai Chen",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Jiandao Di Yi Xian",
@@ -2168,7 +1934,7 @@
         "thumbnailFilename": "supreme-lord-of-galaxy-s2.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Xinghe Zhizun",
@@ -2194,7 +1960,7 @@
         "thumbnailFilename": "supreme-god-emperor-s2.webp",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-29T08:12:01.870Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Wu Shang Shen Di",
@@ -2205,8 +1971,8 @@
         "lastEpisode": 552,
         "totalEpisodes": 0,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2220,7 +1986,7 @@
         "thumbnailFilename": "supreme-god-emperor-s1.webp",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Tencent",
         "subtitle": "Wu Shang Shen Di",
@@ -2231,8 +1997,34 @@
         "lastEpisode": 411,
         "totalEpisodes": 411,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "9112f2a0-1558-4ff8-82b1-3313f9777514",
+        "title": "Stellar Transformations S6",
+        "updateDays": "Wednesday",
+        "type": "series",
+        "status": "completed",
+        "summary": "Qin Yu and his three sworn brothers ascend to the Divine Realm, where new challenges await. As he learns the complex rules of this powerful world, Qin Yu sets his sights on becoming the strongest Forging God to marry Jiang Li, a woman from one of the Divine Realm’s eight great families. Starting from eliminating bandits, he rises through the ranks, gaining recognition from the Holy Emperor and becoming a noble figure. However, when Jiang Li’s family announces a competition for her hand in marriage, Qin Yu must present three unparalleled gifts to win. After countless hardships, he crafts a one-of-a-kind Hongmeng spiritual treasure. Just when victory seems assured, Jiang Li’s family unfairly declares Zhou Xian the winner, igniting Qin Yu’s fury…",
+        "thumbnail": "/uploads/stellar-transformations-s6-2025.webp",
+        "thumbnailFilename": "stellar-transformations-s6-2025.webp",
+        "studio": "Foch Films",
+        "releaseAt": "2025-01-29T00:00:00.000Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2025-01-01T00:00:00.000Z",
+        "publishedBy": "Tencent Penguin Pictures",
+        "subtitle": "Xing Chen Bian",
+        "originalTitle": "星辰变 第6季",
+        "firstSeasonEpisode": 81,
+        "lastSeasonEpisode": 28,
+        "totalSeasonEpisodes": 12,
+        "lastEpisode": 108,
+        "totalEpisodes": 108,
+        "rating": {
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2246,7 +2038,7 @@
         "thumbnailFilename": "stellar-transformations-s5.webp",
         "studio": "Foch Films",
         "releaseAt": "2022-11-28T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-12-26T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xing Chen Bian",
@@ -2257,8 +2049,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 16,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2272,7 +2064,7 @@
         "thumbnailFilename": "stellar-transformations-s4.jpg",
         "studio": "Shanghai Foch Film and TV Culture Investment",
         "releaseAt": "2022-01-23T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-23T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xing Chen Bian",
@@ -2283,8 +2075,8 @@
         "lastEpisode": 84,
         "totalEpisodes": 0,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2298,7 +2090,7 @@
         "thumbnailFilename": "stellar-transformations-s2.jpg",
         "studio": "Shanghai Foch Film and TV Culture Investments",
         "releaseAt": "2021-09-05T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-09-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xing Chen Bian",
@@ -2309,8 +2101,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 16,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2324,7 +2116,7 @@
         "thumbnailFilename": "spirit-sword-sovereign-s5.webp",
         "studio": "Shenman Entertainment",
         "releaseAt": "2019-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2019-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Ling Jian Zun",
@@ -2335,8 +2127,8 @@
         "lastEpisode": 604,
         "totalEpisodes": 604,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2350,7 +2142,7 @@
         "thumbnailFilename": "spirit-sword-sovereign-s4.webp",
         "studio": "Original Force",
         "releaseAt": "2019-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2019-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Ling Jian Zun",
@@ -2376,7 +2168,7 @@
         "thumbnailFilename": "soul-of-light.webp",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Youku Animation",
         "subtitle": "Zhen Yang Wushen",
@@ -2402,7 +2194,7 @@
         "thumbnailFilename": "soul-land-s2.webp",
         "studio": "Sparkly Key Animation Studio",
         "releaseAt": "2023-01-03T00:00:00.000Z",
-        "updatedAt": "2026-01-25T10:03:11.601Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Douluo Dalu II Jueshi Tangmen - Peerless Tang Sect",
@@ -2410,11 +2202,11 @@
         "firstSeasonEpisode": 0,
         "lastSeasonEpisode": 0,
         "totalSeasonEpisodes": 0,
-        "lastEpisode": 138,
+        "lastEpisode": 139,
         "totalEpisodes": 0,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2428,7 +2220,7 @@
         "thumbnailFilename": "soul-land.webp",
         "studio": "Xuanji Technology",
         "releaseAt": "2018-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Douluo Dalu",
@@ -2439,8 +2231,8 @@
         "lastEpisode": 250,
         "totalEpisodes": 250,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2454,7 +2246,7 @@
         "thumbnailFilename": "snow-eagle-lord.jpg",
         "studio": "Shenman Entertainment",
         "releaseAt": "2018-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xue Ying Ling Zhu , Snow Eagle Lord, Lord Xue Ying",
@@ -2465,8 +2257,8 @@
         "lastEpisode": 78,
         "totalEpisodes": 78,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2480,7 +2272,7 @@
         "thumbnailFilename": "shrouding-the-heavens.png",
         "studio": "Original Force",
         "releaseAt": "2024-12-09T23:00:00.000Z",
-        "updatedAt": "2026-01-29T21:00:31.146Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-09T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Zhe Tian",
@@ -2491,8 +2283,8 @@
         "lastEpisode": 147,
         "totalEpisodes": 0,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2506,7 +2298,7 @@
         "thumbnailFilename": "shishang-zui-qiang-nan-zhujia.jpg",
         "studio": "Original Force",
         "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -2532,7 +2324,7 @@
         "thumbnailFilename": "rise-of-the-dragon.webp",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Ji Dao Long Shen",
@@ -2543,8 +2335,8 @@
         "lastEpisode": 17,
         "totalEpisodes": 17,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2558,7 +2350,7 @@
         "thumbnailFilename": "return-of-gods.webp",
         "studio": "2:10 Animation",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Zhu Tian Ji - Thousands of worlds",
@@ -2584,7 +2376,7 @@
         "thumbnailFilename": "renegade-immortal.webp",
         "studio": "Build Dream",
         "releaseAt": "2024-12-06T23:00:00.000Z",
-        "updatedAt": "2026-01-25T09:59:08.922Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-06T23:00:00.000Z",
         "publishedBy": "Tencent Animation",
         "subtitle": "Xian Ni",
@@ -2595,8 +2387,8 @@
         "lastEpisode": 125,
         "totalEpisodes": 0,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2610,7 +2402,7 @@
         "thumbnailFilename": "rebirth-of-the-sword-patriarch.webp",
         "studio": "Mote Studios",
         "releaseAt": "2024-06-24T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-06-24T22:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Yongheng Jian Zu - Eternal Sword Ancestor",
@@ -2636,7 +2428,7 @@
         "thumbnailFilename": "ravages-of-time-s2.jpg",
         "studio": "LX Animation Studio",
         "releaseAt": "2025-01-16T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-01-16T00:00:00.000Z",
         "publishedBy": "bilibili animation",
         "subtitle": "Huo Feng Liao Yuan",
@@ -2662,7 +2454,7 @@
         "thumbnailFilename": "purple-river-king-return-s2.webp",
         "studio": "Build Dream",
         "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Zi Chuan",
@@ -2673,8 +2465,8 @@
         "lastEpisode": 35,
         "totalEpisodes": 35,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2688,7 +2480,7 @@
         "thumbnailFilename": "perfect-world.webp",
         "studio": "Foch Films",
         "releaseAt": "2024-12-04T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-04T23:00:00.000Z",
         "publishedBy": "Tencent Animation",
         "subtitle": "Wanmei Shijie",
@@ -2699,8 +2491,8 @@
         "lastEpisode": 234,
         "totalEpisodes": 0,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2714,7 +2506,7 @@
         "thumbnailFilename": "peerless-martial-spirit.png",
         "studio": "Soyep",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Jueshi Wuhun, Jue Shi Wu Shen - Peerless Martial Spirit, A Paragon of Wu hun, ",
@@ -2725,8 +2517,8 @@
         "lastEpisode": 440,
         "totalEpisodes": 440,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2740,7 +2532,7 @@
         "thumbnailFilename": "peerless-battle-spirit.webp",
         "studio": "Three Realms Animation",
         "releaseAt": "2021-11-04T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "Jue Shi Zhan Hun",
@@ -2751,8 +2543,8 @@
         "lastEpisode": 138,
         "totalEpisodes": 105,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -2766,7 +2558,7 @@
         "thumbnailFilename": "painting-rivers-and-lakes.webp",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "tua Jianghu: Buliang Ren",
@@ -2792,7 +2584,7 @@
         "thumbnailFilename": "over-the-divine-realms.jpg",
         "studio": "Oriental Creative Color",
         "releaseAt": "2025-06-14T16:50:09.670Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-06-14T16:50:09.670Z",
         "publishedBy": "IQIYI",
         "subtitle": "Shen Guo Zhi Shang",
@@ -2818,7 +2610,7 @@
         "thumbnailFilename": "otherworldly-evil-monarch.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2025-06-14T17:42:02.205Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-06-14T17:42:02.205Z",
         "publishedBy": "Youku",
         "subtitle": "Yiren Jun Moxie",
@@ -2844,7 +2636,7 @@
         "thumbnailFilename": "one-way-or-another.webp",
         "studio": "CG Year",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "bilibili",
         "subtitle": "The path toward heaven - Da Dao Chao Tian",
@@ -2870,7 +2662,7 @@
         "thumbnailFilename": "one-hundred-thousand-years-of-gas-refining.webp",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -2896,7 +2688,7 @@
         "thumbnailFilename": "nine-suns-martial-god.jpg",
         "studio": "Original Force",
         "releaseAt": "2025-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Nine Suns God",
@@ -2922,7 +2714,7 @@
         "thumbnailFilename": "myth-of-the-ancients.jpg",
         "studio": "Soyep",
         "releaseAt": "2024-04-16T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-04-16T22:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "Wangu Shenhua",
@@ -2940,7 +2732,7 @@
     {
         "uid": "b77911db-bd66-459a-adee-c752de992260",
         "title": "Myriad Realms Supreme",
-        "updateDays": "Monday,Thursday",
+        "updateDays": "",
         "type": "series",
         "status": "ongoing",
         "summary": "A cultivation donghua where the protagonist becomes the supreme ruler of myriad realms. Through cultivation and battles across different worlds, he rises to become the ultimate power, controlling the fate of countless realms.",
@@ -2948,7 +2740,7 @@
         "thumbnailFilename": "myriad-realms-supreme.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-06-29T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-06-29T22:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wan Jie Zhi zun - The sovereign of all realms",
@@ -2966,7 +2758,7 @@
     {
         "uid": "bf19a25a-0396-4132-bade-6a4c80fe3361",
         "title": "My WeChat is connected to Dragon Palace",
-        "updateDays": "Tuesday,Friday",
+        "updateDays": "",
         "type": "series",
         "status": "completed",
         "summary": "A modern fantasy donghua where the protagonist discovers his WeChat can connect to the Dragon Palace. Through this connection, he gains access to magical items, powers, and adventures in both the modern world and the mystical realm.",
@@ -2974,7 +2766,7 @@
         "thumbnailFilename": "my-wechat-is-connected-to-dragon-palace.webp",
         "studio": "Original Force",
         "releaseAt": "2024-03-29T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-03-29T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wo de Wei Xin Tong Longgong",
@@ -2985,8 +2777,8 @@
         "lastEpisode": 60,
         "totalEpisodes": 60,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3000,7 +2792,7 @@
         "thumbnailFilename": "my-journey-in-an-alternate-world.webp",
         "studio": "Ruo Hong Culture, Xuan Yuan",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wo De Yi Jie Zhi Lu",
@@ -3026,7 +2818,7 @@
         "thumbnailFilename": "millenniums-of-warring-states-s1.webp",
         "studio": "Oriental Creative Color",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Zhanguo Qiannian",
@@ -3052,7 +2844,7 @@
         "thumbnailFilename": "meteor-magic-sword-s1.jpg",
         "studio": "Soyep",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Tencent",
         "subtitle": "Liu Xing Huan Jian",
@@ -3078,7 +2870,7 @@
         "thumbnailFilename": "master-of-the-star-spring.webp",
         "studio": "Xuan Yuan",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilbili",
         "subtitle": "Xing Yuan Zhi Zhu",
@@ -3104,7 +2896,7 @@
         "thumbnailFilename": "martial-universe-s6.webp",
         "studio": "Motion Magic",
         "releaseAt": "2024-12-19T00:00:00.000Z",
-        "updatedAt": "2026-01-29T08:15:49.442Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Animation",
         "subtitle": "Wu Dong Qian Kun",
@@ -3115,8 +2907,8 @@
         "lastEpisode": 12,
         "totalEpisodes": 72,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3130,7 +2922,7 @@
         "thumbnailFilename": "martial-universe-s4.jpg",
         "studio": "Motion Magic",
         "releaseAt": "2025-01-18T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Animation",
         "subtitle": "Wu Dong Qian Kun",
@@ -3141,8 +2933,8 @@
         "lastEpisode": 48,
         "totalEpisodes": 48,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3156,7 +2948,7 @@
         "thumbnailFilename": "martial-universe-s3.png",
         "studio": "Shanghai Motion Magic",
         "releaseAt": "2022-01-12T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-02-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Wu Dong Qian Kun",
@@ -3167,8 +2959,8 @@
         "lastEpisode": 36,
         "totalEpisodes": 36,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3182,7 +2974,7 @@
         "thumbnailFilename": "martial-universe-s2.webp",
         "studio": "Motion Magic",
         "releaseAt": "2025-01-18T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Animation",
         "subtitle": "Wu Dong Qian Kun",
@@ -3193,8 +2985,8 @@
         "lastEpisode": 24,
         "totalEpisodes": 24,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3208,7 +3000,7 @@
         "thumbnailFilename": "martial-universe-s1.png",
         "studio": "Shanghai Motion Magic",
         "releaseAt": "2022-02-06T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2019-01-27T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Wu Dong Qian Kun",
@@ -3219,8 +3011,8 @@
         "lastEpisode": 12,
         "totalEpisodes": 12,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3234,7 +3026,7 @@
         "thumbnailFilename": "martial-peak.png",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2024-04-28T22:00:00.000Z",
-        "updatedAt": "2026-01-29T08:13:45.421Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-04-28T22:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Wu Lian Dian Feng",
@@ -3245,8 +3037,8 @@
         "lastEpisode": 48,
         "totalEpisodes": 48,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3260,7 +3052,7 @@
         "thumbnailFilename": "martial-master.webp",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2020-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-25T10:00:06.550Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2020-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Wushen Zhuzai",
@@ -3271,8 +3063,8 @@
         "lastEpisode": 620,
         "totalEpisodes": 0,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3286,7 +3078,7 @@
         "thumbnailFilename": "martial-inverse.webp",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2024-03-29T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-03-29T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Martial Reversal",
@@ -3312,7 +3104,7 @@
         "thumbnailFilename": "magic-chef-of-ice-and-fire.webp",
         "studio": "Joicy Studio",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Binghuo Mochu",
@@ -3323,8 +3115,8 @@
         "lastEpisode": 156,
         "totalEpisodes": 156,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3338,7 +3130,7 @@
         "thumbnailFilename": "mad-demon-lord.png",
         "studio": "Soyep",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Kuang Shen Mo Zun - The Lord of Rogue Devil",
@@ -3364,7 +3156,7 @@
         "thumbnailFilename": "lord-of-wonderlands.png",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Lord of all worlds - Dominator of Myriad Realms",
@@ -3390,7 +3182,7 @@
         "thumbnailFilename": "lord-of-planets-s1.jpg",
         "studio": "Soyep",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Wan Yu Feng She",
@@ -3416,7 +3208,7 @@
         "thumbnailFilename": "lord-of-all-lords.webp",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Sheng Zu",
@@ -3442,7 +3234,7 @@
         "thumbnailFilename": "long-shen-wan-xiang.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-12-20T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-20T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Dragon God Myriad Phenomena",
@@ -3452,6 +3244,32 @@
         "totalSeasonEpisodes": 0,
         "lastEpisode": 0,
         "totalEpisodes": 0,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "ebb2b1a1-1f9f-439a-84a2-3fccae12f699",
+        "title": "Little Fairy Yao",
+        "updateDays": "Monday,Thursday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "He Wan, the leader of the Hidden Clan feared by all three realms, suddenly attacked the Heavenly Palace. The Supreme God Nan Ze came to fight. In order to protect Nan Ze, the jade-growing fairy Yu Zhiyao risked her life to save him. When she and He Wan were about to perish together, she was unexpectedly reborn. By mistake, Yu Zhiyao was reborn into He Wan’s body. After the rebirth, He Wan’s Hidden Power was greatly damaged. Ting Zhao, the Hidden Guard of the West Sea, came to help the leader He Wan recover her Hidden Power. Since then, Zhiyao was forced to embark on the road of a two-faced female leader, pretending to be majestic in front of others and being charming in front of the king…",
+        "thumbnail": "/uploads/little-fairy-yao-2025.webp",
+        "thumbnailFilename": "little-fairy-yao-2025.webp",
+        "studio": "Oriental Creative Color",
+        "releaseAt": "2024-06-24T22:00:00.000Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2024-06-24T22:00:00.000Z",
+        "publishedBy": "IQIYI",
+        "subtitle": "Xiao Xian Zhi Yao",
+        "originalTitle": "小仙之瑶",
+        "firstSeasonEpisode": 1,
+        "lastSeasonEpisode": 22,
+        "totalSeasonEpisodes": 19,
+        "lastEpisode": 22,
+        "totalEpisodes": 19,
         "rating": {
             "average": 0,
             "count": 0
@@ -3468,7 +3286,7 @@
         "thumbnailFilename": "lingwu-continent.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-06-24T22:00:00.000Z",
-        "updatedAt": "2026-01-23T10:20:03.227Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-06-24T22:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -3477,6 +3295,32 @@
         "lastSeasonEpisode": 0,
         "totalSeasonEpisodes": 0,
         "lastEpisode": 85,
+        "totalEpisodes": 0,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "0d0880d7-56d4-4997-be4b-61f69c02d185",
+        "title": "Ling Long",
+        "updateDays": "",
+        "type": "series",
+        "status": "completed",
+        "summary": "In a post-apocalyptic world, a young girl named Ling Long and her father embark on a perilous journey to uncover the mysteries of their world and save humanity from extinction.",
+        "thumbnail": "/uploads/ling-long.webp",
+        "thumbnailFilename": "ling-long.webp",
+        "studio": "YHKT Entertainment",
+        "releaseAt": "2024-02-18T23:00:00.000Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2024-02-18T23:00:00.000Z",
+        "publishedBy": "Bilibili",
+        "subtitle": "Ling Cage, Spirit Cage: Incarnation",
+        "originalTitle": "灵笼",
+        "firstSeasonEpisode": 0,
+        "lastSeasonEpisode": 0,
+        "totalSeasonEpisodes": 0,
+        "lastEpisode": 15,
         "totalEpisodes": 0,
         "rating": {
             "average": 0,
@@ -3494,7 +3338,7 @@
         "thumbnailFilename": "library-of-heaven-s-path.jpg",
         "studio": "Foch films",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Tiandao Tushuguan",
@@ -3520,7 +3364,7 @@
         "thumbnailFilename": "leveling-up-in-a-fantasy-world-s1.webp",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -3546,7 +3390,7 @@
         "thumbnailFilename": "legendary-twins-special.webp",
         "studio": "BYMENT",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Juedai Shuang Jiao: Tian Wai You Tian",
@@ -3572,7 +3416,7 @@
         "thumbnailFilename": "legendary-twins.png",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Juedai Shuang Jiao",
@@ -3598,7 +3442,7 @@
         "thumbnailFilename": "legend-of-xianwu.webp",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2023-03-25T00:00:00.000Z",
-        "updatedAt": "2026-01-25T10:37:25.267Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2023-03-25T00:00:00.000Z",
         "publishedBy": "Youku Animation",
         "subtitle": "Xianwu Emperor",
@@ -3606,11 +3450,11 @@
         "firstSeasonEpisode": 0,
         "lastSeasonEpisode": 0,
         "totalSeasonEpisodes": 0,
-        "lastEpisode": 152,
+        "lastEpisode": 153,
         "totalEpisodes": 0,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3624,7 +3468,7 @@
         "thumbnailFilename": "legend-of-the-sky-lord.webp",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -3635,8 +3479,8 @@
         "lastEpisode": 24,
         "totalEpisodes": 24,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3650,7 +3494,7 @@
         "thumbnailFilename": "Legend-of-the-Ethereal-Sword-Immortal.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Ethereal Sword Immortal",
@@ -3676,7 +3520,7 @@
         "thumbnailFilename": "legend-of-sword-domain-s2.webp",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Jian Yu Chuanqi",
@@ -3702,7 +3546,7 @@
         "thumbnailFilename": "legend-of-soldier.png",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -3728,7 +3572,7 @@
         "thumbnailFilename": "land-of-keyboard-immortal.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-06-14T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-06-14T22:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "lu di jian xian",
@@ -3754,7 +3598,7 @@
         "thumbnailFilename": "king-of-casual-cultivators.jpg",
         "studio": "KUAIYING",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "San Xiu Zhi Wang - king of loose cultivators",
@@ -3780,7 +3624,7 @@
         "thumbnailFilename": "journey-to-the-west-special-asura-mad-king.png",
         "studio": "BYMENT",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xi Xing Ji Special : Kuang Wang",
@@ -3806,7 +3650,7 @@
         "thumbnailFilename": "jinwu-guard-the-wind-rises-in-jinling-2024.jpg",
         "studio": "CG Year",
         "releaseAt": "2024-06-14T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-06-14T22:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "Jin Wu Wei",
@@ -3816,6 +3660,32 @@
         "totalSeasonEpisodes": 16,
         "lastEpisode": 16,
         "totalEpisodes": 16,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "9a51ce3a-50f4-4a6f-8eaf-c6512289780e",
+        "title": "Jade Dynasty Season S3",
+        "updateDays": "",
+        "type": "series",
+        "status": "completed",
+        "summary": "Zhang Xiaofan's journey continues as he faces even greater challenges and adversaries. With his newfound powers, he strives to protect his loved ones and uncover the ultimate truths of the cultivation world.",
+        "thumbnail": "/uploads/jade-dynasty-season-s3-2025.webp",
+        "thumbnailFilename": "jade-dynasty-season-s3-2025.webp",
+        "studio": "Cloud Art",
+        "releaseAt": "2022-01-01T00:00:00.000Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2022-01-01T00:00:00.000Z",
+        "publishedBy": "Tencent Penguin Pictures",
+        "subtitle": "Zhu Xian",
+        "originalTitle": "诛仙",
+        "firstSeasonEpisode": 53,
+        "lastSeasonEpisode": 26,
+        "totalSeasonEpisodes": 26,
+        "lastEpisode": 78,
+        "totalEpisodes": 78,
         "rating": {
             "average": 0,
             "count": 0
@@ -3832,7 +3702,7 @@
         "thumbnailFilename": "jade-dynasty-s4.webp",
         "studio": "Cloud Art",
         "releaseAt": "2024-08-15T22:00:00.000Z",
-        "updatedAt": "2026-01-29T08:23:04.886Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-08-15T22:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Zhu Xian",
@@ -3843,8 +3713,8 @@
         "lastEpisode": 78,
         "totalEpisodes": 104,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3858,7 +3728,7 @@
         "thumbnailFilename": "jade-dynasty-s2.png",
         "studio": "Cloud Art",
         "releaseAt": "2024-08-15T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-08-15T22:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Zhu Xian",
@@ -3869,8 +3739,8 @@
         "lastEpisode": 52,
         "totalEpisodes": 52,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3884,7 +3754,7 @@
         "thumbnailFilename": "jade-dynasty-s1.png",
         "studio": "Cloud Art",
         "releaseAt": "2022-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Zhu Xian",
@@ -3895,8 +3765,8 @@
         "lastEpisode": 26,
         "totalEpisodes": 26,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3910,7 +3780,7 @@
         "thumbnailFilename": "immortals-of-the-godless-age.png",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Chun Qiu Feng Shen",
@@ -3921,8 +3791,34 @@
         "lastEpisode": 24,
         "totalEpisodes": 24,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "58840563-83b0-43b1-8aef-3ee93163b3a9",
+        "title": "Immortality S5",
+        "updateDays": "Saturday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "In the majestic fantasy world, how does the protagonist Fang Han traverse the world with his own power? Relying on a stubbornness that refused to admit defeat, he broke through the mystery of supernatural powers and forged his physical body into an immortal body. Endless novel magic weapons, a new prosperous world of immortals, demons and mortals will be opened by the protagonist one by one. It will take you to experience the fantasy style of immortals, demons, humans, demons and gods, and kings and emperors. The protagonist will also experience love, hatred, entanglements, and battles between immortals and demons in the world. Eventually it will lead you on the road to the top.",
+        "thumbnail": "/uploads/immortality-s4.jpg",
+        "thumbnailFilename": "immortality-s4.jpg",
+        "studio": "Oriental Creative Color",
+        "releaseAt": "2023-07-24T00:00:00.000Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2024-07-24T00:00:00.000Z",
+        "publishedBy": "",
+        "subtitle": "",
+        "originalTitle": "永生 第四季",
+        "firstSeasonEpisode": 0,
+        "lastSeasonEpisode": 0,
+        "totalSeasonEpisodes": 0,
+        "lastEpisode": 5,
+        "totalEpisodes": 16,
+        "rating": {
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3936,7 +3832,7 @@
         "thumbnailFilename": "immortality-s4.jpg",
         "studio": "Oriental Creative Color",
         "releaseAt": "2023-07-24T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-07-24T00:00:00.000Z",
         "publishedBy": "bilibili",
         "subtitle": "",
@@ -3947,8 +3843,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 16,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3962,7 +3858,7 @@
         "thumbnailFilename": "immortality-s3.jpg",
         "studio": "Oriental Creative Color",
         "releaseAt": "2024-03-20T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-04-19T00:00:00.000Z",
         "publishedBy": "bilibili",
         "subtitle": "",
@@ -3973,8 +3869,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 16,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -3988,7 +3884,7 @@
         "thumbnailFilename": "immortality-s2.webp",
         "studio": "Oriental Creative Color",
         "releaseAt": "2024-06-18T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2023-07-08T00:00:00.000Z",
         "publishedBy": "bilibili",
         "subtitle": "",
@@ -3999,8 +3895,8 @@
         "lastEpisode": 12,
         "totalEpisodes": 12,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4014,7 +3910,7 @@
         "thumbnailFilename": "immortal-doctor-in-modern-city.webp",
         "studio": "Oriental Creative Color",
         "releaseAt": "2025-02-14T17:49:19.496Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-02-14T17:49:19.496Z",
         "publishedBy": "iQIYI",
         "subtitle": "Du Shi Gu Xian Yi, Immortal Doctor In Modern City",
@@ -4040,7 +3936,7 @@
         "thumbnailFilename": "i-upset-millions-of-cultivators.webp",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "I annoyed millions of cultivators",
@@ -4066,7 +3962,7 @@
         "thumbnailFilename": "i-can-have-infinite-enlightenment-s1.jpg",
         "studio": "Oriental Creative Color",
         "releaseAt": "2024-06-24T22:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-06-24T22:00:00.000Z",
         "publishedBy": "iQIYI",
         "subtitle": "Wo neng Wuxian Dunwu -  I can have infinite epiphanies",
@@ -4092,7 +3988,7 @@
         "thumbnailFilename": "i-am-yingtai.png",
         "studio": "Original Force",
         "releaseAt": "2024-12-25T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-25T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Yingtai",
@@ -4118,7 +4014,7 @@
         "thumbnailFilename": "i-am-a-great-god.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -4144,7 +4040,7 @@
         "thumbnailFilename": "hidden-sect-leader.jpg",
         "studio": "Oriental Creative Color",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "yǐn shì zōng mén zhǎng jiào",
@@ -4155,8 +4051,8 @@
         "lastEpisode": 52,
         "totalEpisodes": 52,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4170,7 +4066,7 @@
         "thumbnailFilename": "heavenly-brick-knight.jpg",
         "studio": "Tang Kirin Culture",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "iQIYi",
         "subtitle": "tian ting ban zhuan xia - Heavenly Brick Man - Brick of Heaven",
@@ -4179,6 +4075,32 @@
         "lastSeasonEpisode": 0,
         "totalSeasonEpisodes": 0,
         "lastEpisode": 18,
+        "totalEpisodes": 0,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "3edd0baf-39fb-4343-b830-fb846f5b250d",
+        "title": "Great Journey of Teenagers S4",
+        "updateDays": "Wednesday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "A wuxia donghua following the adventures of young heroes in the jianghu (martial world). The story combines elements of martial arts, friendship, and adventure as a group of talented young people travel together, facing challenges and uncovering secrets while pursuing their dreams in the martial world.",
+        "thumbnail": "/uploads/great-journey-of-teenagers-s4-2025.webp",
+        "thumbnailFilename": "great-journey-of-teenagers-s4-2025.webp",
+        "studio": "CG Year",
+        "releaseAt": "2018-12-01T00:00:00.000Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2018-12-01T00:00:00.000Z",
+        "publishedBy": "Youku",
+        "subtitle": "Shoa Nian Ge Xing S4",
+        "originalTitle": "少年歌行",
+        "firstSeasonEpisode": 0,
+        "lastSeasonEpisode": 16,
+        "totalSeasonEpisodes": 4,
+        "lastEpisode": 16,
         "totalEpisodes": 0,
         "rating": {
             "average": 0,
@@ -4196,7 +4118,7 @@
         "thumbnailFilename": "great-journey-of-teenagers-s3.jpg",
         "studio": "CG Year",
         "releaseAt": "2018-12-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-12-01T00:00:00.000Z",
         "publishedBy": "youku",
         "subtitle": "Shoa Nian Ge Xing S3",
@@ -4222,7 +4144,7 @@
         "thumbnailFilename": "great-journey-of-teenagers-s2.webp",
         "studio": "Original Force",
         "releaseAt": "2018-12-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-12-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Shoa Nian Ge Xing S2",
@@ -4248,7 +4170,7 @@
         "thumbnailFilename": "great-journey-of-teenagers-s1.webp",
         "studio": "CG Year",
         "releaseAt": "2018-12-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-12-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Shoa Nian Ge Xing S1",
@@ -4259,8 +4181,8 @@
         "lastEpisode": 13,
         "totalEpisodes": 0,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4274,7 +4196,7 @@
         "thumbnailFilename": "glorious-revenge-of-ye-feng.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -4300,7 +4222,7 @@
         "thumbnailFilename": "forty-millenniums-of-cultivation.png",
         "studio": "Shenman Entertainment",
         "releaseAt": "2025-02-14T21:07:51.496Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-02-14T21:07:51.496Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Xing Yu Siwan Nian",
@@ -4326,7 +4248,7 @@
         "thumbnailFilename": "five-elements-of-god-war.webp",
         "studio": "Oriental Creative Color",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "Wuhang Zhanshen",
@@ -4336,6 +4258,32 @@
         "totalSeasonEpisodes": 80,
         "lastEpisode": 80,
         "totalEpisodes": 80,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "bd251cb0-48d9-43fd-93bb-26d13aea2126",
+        "title": "Fighting the World",
+        "updateDays": "Tuesday,Saturday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "The mysterious young man Dafeng rescued Li Huamei, who was seriously ill after being plotted against. Dafeng wanted to go to Kyoto to find his senior sister and happened to be on the same road with Li Huamei. On the way, Li Huamei was shocked to find that her senior sister was the Queen Qin Zhao, and the Queen repeatedly sent assassins to kill her. In order to find out the reason, Dafeng and Li Huamei entrusted their lives to each other and fought against the enemy together. Disputes arose in the rivers and lakes, and the struggles in the court became even more intense. The two were unknowingly involved in a treacherous conspiracy, and Dafeng was the key to solving all the mysteries…",
+        "thumbnail": "/uploads/fighting-the-world-2025.webp",
+        "thumbnailFilename": "fighting-the-world-2025.webp",
+        "studio": "CG Year",
+        "releaseAt": "2025-06-15T09:04:33.552Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2025-06-15T09:04:33.552Z",
+        "publishedBy": "IQIYI",
+        "subtitle": "Dou zhan tianxia",
+        "originalTitle": "斗战天下",
+        "firstSeasonEpisode": 1,
+        "lastSeasonEpisode": 48,
+        "totalSeasonEpisodes": 48,
+        "lastEpisode": 49,
+        "totalEpisodes": 48,
         "rating": {
             "average": 0,
             "count": 0
@@ -4352,7 +4300,7 @@
         "thumbnailFilename": "falling-mystic-master.webp",
         "studio": "Medo",
         "releaseAt": "2025-06-14T17:28:07.499Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-06-14T17:28:07.499Z",
         "publishedBy": "Bilibili",
         "subtitle": "Duo Xuan Shi, Fallen master",
@@ -4378,7 +4326,7 @@
         "thumbnailFilename": "everything-is-fine-with-the-emperor.webp",
         "studio": "Original Force",
         "releaseAt": "2025-02-13T20:20:28.240Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-02-13T20:20:28.240Z",
         "publishedBy": "bilibili",
         "subtitle": "Junzi Wu Ji",
@@ -4389,8 +4337,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 16,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4404,7 +4352,7 @@
         "thumbnailFilename": "everyone-in-my-sect-is-undercover-except-me.jpg",
         "studio": "Original Force",
         "releaseAt": "2025-02-15T11:46:14.678Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-02-15T11:46:14.678Z",
         "publishedBy": "Bilibili",
         "subtitle": "Zongmen Li Chule Wo Dou Shi Wodi - All Female Spies Are In My Sect , Spy x Sect",
@@ -4430,7 +4378,7 @@
         "thumbnailFilename": "every-disciple-is-a-boss-s1.jpg",
         "studio": "Shuiniu Dongman",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Over Goddess",
@@ -4456,7 +4404,7 @@
         "thumbnailFilename": "epic-of-divinity-light.png",
         "studio": "Foch Film",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Ding Hai Fu Sheng Lu",
@@ -4466,6 +4414,58 @@
         "totalSeasonEpisodes": 12,
         "lastEpisode": 12,
         "totalEpisodes": 12,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "adf3ed57-6f1d-4b50-9d3c-a3095f346de6",
+        "title": "Embers",
+        "updateDays": "Friday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "On the planet after the disaster, the young boy Ye Yu went to Embers City for an assessment in pursuit of his dream. He faces numerous murderous intentions and mysteries, and the truth behind them is impossible to unravel.",
+        "thumbnail": "/uploads/embers-2025.webp",
+        "thumbnailFilename": "embers-2025.webp",
+        "studio": "D.ROCK-ART",
+        "releaseAt": "2025-06-14T17:39:41.297Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2025-06-14T17:39:41.297Z",
+        "publishedBy": "iQIYI",
+        "subtitle": "Embers, Yujin Xingzhe",
+        "originalTitle": "余烬行者",
+        "firstSeasonEpisode": 1,
+        "lastSeasonEpisode": 3,
+        "totalSeasonEpisodes": 3,
+        "lastEpisode": 3,
+        "totalEpisodes": 3,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "13b2a1fe-7a7e-4085-9966-1d0fd528c540",
+        "title": "Eclipse of Illusion",
+        "updateDays": "Saturday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "A beautiful wedding turns into betrayal by a beloved. No longer seeking immortality, a single thought transforms into darkness. The powerful and tragic heroine embarks on a path of vengeance as a killing deity, determined to eradicate all.",
+        "thumbnail": "/uploads/eclipse-of-illusion-2025.webp",
+        "thumbnailFilename": "eclipse-of-illusion-2025.webp",
+        "studio": "Yien Animation Studio",
+        "releaseAt": "2025-07-05T14:51:32.010Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2025-07-05T14:51:32.010Z",
+        "publishedBy": "Youku",
+        "subtitle": "Yun Shen Buzhi Meng",
+        "originalTitle": "云深不知梦",
+        "firstSeasonEpisode": 1,
+        "lastSeasonEpisode": 2,
+        "totalSeasonEpisodes": 0,
+        "lastEpisode": 2,
+        "totalEpisodes": 2,
         "rating": {
             "average": 0,
             "count": 0
@@ -4482,7 +4482,7 @@
         "thumbnailFilename": "earth-spirit-song.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "di ling qu",
@@ -4508,7 +4508,7 @@
         "thumbnailFilename": "dragon-s-disciple.webp",
         "studio": "CG Animation",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -4519,8 +4519,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 0,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4534,7 +4534,7 @@
         "thumbnailFilename": "dragon-prince-yuan.png",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "yuan zun",
@@ -4560,7 +4560,7 @@
         "thumbnailFilename": "divine-manifestation.png",
         "studio": "Original Force",
         "releaseAt": "2024-07-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-07-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Divine Power",
@@ -4586,7 +4586,7 @@
         "thumbnailFilename": "divine-lord-of-the-heavens-s1.webp",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2025-01-22T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-01-01T00:00:00.000Z",
         "publishedBy": "bilibili",
         "subtitle": "Shendao Dizu - Shinto Emperor : rebirth of Qin Yang",
@@ -4597,8 +4597,8 @@
         "lastEpisode": 48,
         "totalEpisodes": 48,
         "rating": {
-            "average": 1,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4612,7 +4612,7 @@
         "thumbnailFilename": "Divine-Dragon-Star-Master.jpg",
         "studio": "Ruo Hong Culture",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "iQIYI",
         "subtitle": "Shen Long Xing Zhu - Dragon Star Lord",
@@ -4638,7 +4638,7 @@
         "thumbnailFilename": "chronicles-of-everlasting-wind-and-sword-rain.png",
         "studio": "Original Force",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -4664,7 +4664,7 @@
         "thumbnailFilename": "chief-spirit-master.jpg",
         "studio": "Soyep",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Chef Soul Manipulator",
@@ -4690,7 +4690,7 @@
         "thumbnailFilename": "carp-reborn-s3.png",
         "studio": "CG Year",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "yuan long",
@@ -4701,8 +4701,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 16,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4716,7 +4716,7 @@
         "thumbnailFilename": "carp-reborn-s2.png",
         "studio": "CG Year",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "yuan long",
@@ -4727,8 +4727,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 0,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4742,7 +4742,7 @@
         "thumbnailFilename": "carp-reborn-s1.png",
         "studio": "CG Year",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "yuan long",
@@ -4753,8 +4753,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 16,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4768,7 +4768,7 @@
         "thumbnailFilename": "blader-soul.webp",
         "studio": "Original Force",
         "releaseAt": "2024-03-24T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-01-01T00:00:00.000Z",
         "publishedBy": "bilibili",
         "subtitle": "Bu Xing Si Yuan Qi",
@@ -4794,7 +4794,7 @@
         "thumbnailFilename": "beyond-time-s-gaze.jpg",
         "studio": "Flying Fish Studio; Yien Animation Studio",
         "releaseAt": "2025-12-28T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.328Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2025-12-28T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "光阴之外",
@@ -4820,7 +4820,7 @@
         "thumbnailFilename": "beyond-the-ocean-s2.png",
         "studio": "Chosen",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "",
@@ -4846,7 +4846,7 @@
         "thumbnailFilename": "beyond-the-ocean-s1.png",
         "studio": "Chosen",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "Si Hai Jing Qi",
@@ -4872,7 +4872,7 @@
         "thumbnailFilename": "battle-through-the-heaven-special-2.jpg",
         "studio": "Motion Magic",
         "releaseAt": "2021-11-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-09-08T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Dou Po Cang Qiong: Tebie Pian 2 - Sha Zhi Lan Ge",
@@ -4883,8 +4883,8 @@
         "lastEpisode": 3,
         "totalEpisodes": 3,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4898,7 +4898,7 @@
         "thumbnailFilename": "battle-through-the-heaven-s5.jpg",
         "studio": "Motion Magic",
         "releaseAt": "2022-07-12T00:00:00.000Z",
-        "updatedAt": "2026-01-25T10:03:44.770Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-07-31T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Dou Po Cang Qiong - fights break sphere",
@@ -4906,11 +4906,11 @@
         "firstSeasonEpisode": 0,
         "lastSeasonEpisode": 0,
         "totalSeasonEpisodes": 0,
-        "lastEpisode": 182,
+        "lastEpisode": 183,
         "totalEpisodes": 0,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4924,7 +4924,7 @@
         "thumbnailFilename": "battle-through-the-heaven-s4.webp",
         "studio": "Motion Magic",
         "releaseAt": "2022-06-13T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Dou Po Cang Qiong - fights break sphere",
@@ -4935,8 +4935,8 @@
         "lastEpisode": 24,
         "totalEpisodes": 24,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4950,7 +4950,7 @@
         "thumbnailFilename": "battle-through-the-heaven-s2.webp",
         "studio": "Motion Magic",
         "releaseAt": "2023-03-03T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2018-03-03T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Dou Po Cang Qiong - fights break sphere",
@@ -4961,8 +4961,8 @@
         "lastEpisode": 12,
         "totalEpisodes": 12,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -4976,7 +4976,7 @@
         "thumbnailFilename": "battle-through-the-heaven-the-three-years-agreement.jpg",
         "studio": "Motion Magic",
         "releaseAt": "2022-01-16T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-10-31T00:00:00.000Z",
         "publishedBy": "Tencent Penguin Pictures",
         "subtitle": "Doupo Cangqiong: San Nian Zhi Yue",
@@ -4987,14 +4987,14 @@
         "lastEpisode": 13,
         "totalEpisodes": 13,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
         "uid": "41c2bbfe-90b1-45ba-89fe-35e0e0153aea",
         "title": "Back as Immortal Lord",
-        "updateDays": "Wednesday",
+        "updateDays": "Friday",
         "type": "series",
         "status": "ongoing",
         "summary": "A reincarnation cultivation story where a powerful immortal lord returns to his past life to rewrite his destiny. Using his knowledge from the future, he navigates through challenges and cultivates to become even stronger than before, while preventing past tragedies and changing the course of history.",
@@ -5002,7 +5002,7 @@
         "thumbnailFilename": "Back-as-Immortal-Lord-Episode.jpg",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2024-03-01T00:00:00.000Z",
-        "updatedAt": "2026-01-23T10:10:34.524Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-03-01T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "Immortal Lord Reborn",
@@ -5013,8 +5013,8 @@
         "lastEpisode": 16,
         "totalEpisodes": 0,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -5028,7 +5028,7 @@
         "thumbnailFilename": "ascendants-of-the-nine-suns.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-12-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Nine Suns Ascension",
@@ -5054,7 +5054,7 @@
         "thumbnailFilename": "apotheosis-s1.jpg",
         "studio": "Web Novel",
         "releaseAt": "2023-11-28T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2022-12-08T00:00:00.000Z",
         "publishedBy": "Youku Qingxiang",
         "subtitle": "Bai Lian Cheng Shen",
@@ -5065,8 +5065,8 @@
         "lastEpisode": 56,
         "totalEpisodes": 56,
         "rating": {
-            "average": 4,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -5080,7 +5080,7 @@
         "thumbnailFilename": "ancient-supremacy.webp",
         "studio": "Original Force",
         "releaseAt": "2024-09-15T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-09-15T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Yishi Du Zun, Ancient Lord - The Sovereign’s Ascension",
@@ -5106,7 +5106,7 @@
         "thumbnailFilename": "ancient-lords-s2.jpg",
         "studio": "Original Force",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Yishi Zhi Zun",
@@ -5132,7 +5132,7 @@
         "thumbnailFilename": "ancient-lords.webp",
         "studio": "Original Force",
         "releaseAt": "2021-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2021-01-01T00:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "Yishi Zhi Zun",
@@ -5150,7 +5150,7 @@
     {
         "uid": "714809af-0d00-4ab8-8b2a-a7e8cd543eba",
         "title": "Alchemy Supreme",
-        "updateDays": "Tuesday, Friday",
+        "updateDays": "",
         "type": "series",
         "status": "ongoing",
         "summary": "An alchemy-focused cultivation donghua. The protagonist masters the art of pill refinement, becoming the supreme alchemist while using his skills to cultivate and battle enemies in the world of cultivation.",
@@ -5158,7 +5158,7 @@
         "thumbnailFilename": "alchemy-supreme.webp",
         "studio": "Original Force",
         "releaseAt": "2024-11-08T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-11-08T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -5169,8 +5169,8 @@
         "lastEpisode": 169,
         "totalEpisodes": 0,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -5184,7 +5184,7 @@
         "thumbnailFilename": "against-the-sky-supreme.jpg",
         "studio": "Original Force",
         "releaseAt": "2024-12-11T23:00:00.000Z",
-        "updatedAt": "2026-01-26T11:19:07.596Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-11T23:00:00.000Z",
         "publishedBy": "Bilibili",
         "subtitle": "",
@@ -5192,11 +5192,11 @@
         "firstSeasonEpisode": 0,
         "lastSeasonEpisode": 0,
         "totalSeasonEpisodes": 0,
-        "lastEpisode": 483,
+        "lastEpisode": 484,
         "totalEpisodes": 0,
         "rating": {
-            "average": 2,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -5210,7 +5210,7 @@
         "thumbnailFilename": "against-the-gods.webp",
         "studio": "Energy Studio",
         "releaseAt": "2024-02-18T23:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-02-18T23:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "nitian xie shen",
@@ -5221,8 +5221,8 @@
         "lastEpisode": 30,
         "totalEpisodes": 0,
         "rating": {
-            "average": 3,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -5236,7 +5236,7 @@
         "thumbnailFilename": "adventure-in-subduing-the-demons.webp",
         "studio": "Wonder Cat Animation",
         "releaseAt": "2024-11-11T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-11-11T00:00:00.000Z",
         "publishedBy": "Youku",
         "subtitle": "",
@@ -5246,6 +5246,32 @@
         "totalSeasonEpisodes": 0,
         "lastEpisode": 7,
         "totalEpisodes": 7,
+        "rating": {
+            "average": 0,
+            "count": 0
+        }
+    },
+    {
+        "uid": "fd252f6a-35ea-4bd4-b005-7a8aaf6e0cff",
+        "title": "Above the Kingdom of God",
+        "updateDays": "Friday",
+        "type": "series",
+        "status": "ongoing",
+        "summary": "Six days and nights, a strange case, and the boy returning to twelve years ago, can he break the shackles of the Kingdom of God this time",
+        "thumbnail": "/uploads/above-the-kingdom-of-god-2025.webp",
+        "thumbnailFilename": "above-the-kingdom-of-god-2025.webp",
+        "studio": "CG Year",
+        "releaseAt": "2025-07-05T14:47:30.504Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
+        "publishedAt": "2025-07-05T14:47:30.504Z",
+        "publishedBy": "Bilibili",
+        "subtitle": "Shenguo Zhi Shang",
+        "originalTitle": "神国之上",
+        "firstSeasonEpisode": 1,
+        "lastSeasonEpisode": 6,
+        "totalSeasonEpisodes": 0,
+        "lastEpisode": 6,
+        "totalEpisodes": 6,
         "rating": {
             "average": 0,
             "count": 0
@@ -5262,7 +5288,7 @@
         "thumbnailFilename": "a-mortal-s-journey-to-immortality.jpg",
         "studio": "Original Force, Wonder Cat Animation",
         "releaseAt": "2024-12-12T23:00:00.000Z",
-        "updatedAt": "2026-01-25T10:02:18.326Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-12-12T23:00:00.000Z",
         "publishedBy": "Bilibili Animation",
         "subtitle": "Immortal Ascension",
@@ -5273,8 +5299,8 @@
         "lastEpisode": 176,
         "totalEpisodes": 0,
         "rating": {
-            "average": 5,
-            "count": 1
+            "average": 0,
+            "count": 0
         }
     },
     {
@@ -5288,7 +5314,7 @@
         "thumbnailFilename": "a-moment-but-forever.jpeg",
         "studio": "Oriental Creative Color",
         "releaseAt": "2024-01-01T00:00:00.000Z",
-        "updatedAt": "2026-01-21T21:46:06.329Z",
+        "updatedAt": "2026-02-01T10:27:26.875Z",
         "publishedAt": "2024-01-01T00:00:00.000Z",
         "publishedBy": "IQIYI",
         "subtitle": "Nian Wushuang",
