@@ -247,3 +247,15 @@ on click on any button the anime card, the page is scrolled to the top. Is there
 ```prompt
 Let's remove the load from json functionality in the anime list page.
 ```
+
+## Adding a title
+
+```prompt
+let's add a new anime "Threads of Fate: A War Untold".
+
+let's add a new anime "Martial God Asura", "Coiling Dragon" and "Ever Night".
+
+let's add a new anime "Walking the Way All Alone" and "Dragon's Triumph in the Celestial Realm".
+
+let's add a new anime "The First Order", "Sou Shen Ji" and "Aliens Among Immortals"
+```
