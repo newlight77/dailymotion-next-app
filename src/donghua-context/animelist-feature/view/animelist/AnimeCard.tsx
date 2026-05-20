@@ -93,6 +93,7 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
             const response = await fetch('/api/ratings', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ animeId: anime.uid, value }),
             });
             if (response.status === 401) {
@@ -104,14 +105,25 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
             }
             setShowRatingPicker(false);
             try {
-                const resp = await fetch(`/api/ratings?animeId=${anime.uid}`);
+                const resp = await fetch(`/api/ratings?animeId=${anime.uid}`, {
+                    credentials: 'include',
+                });
                 if (resp.ok) {
                     const data = await resp.json();
+                    const updatedAnime = {
+                        ...anime,
+                        rating: {
+                            average: Number(data?.average || 0),
+                            count: Number(data?.count || 0),
+                        },
+                    } as AnimeType & { rating: { average: number; count: number } };
+
                     setRatingStats({
-                        average: Number(data?.average || 0),
-                        count: Number(data?.count || 0),
+                        average: updatedAnime.rating.average,
+                        count: updatedAnime.rating.count,
                         userRating: data?.userRating?.value ?? null,
                     });
+                    useAnimes.load([updatedAnime]);
                 }
             } catch (err) {
                 console.error('Failed to refresh rating after save', err);

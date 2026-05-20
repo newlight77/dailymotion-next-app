@@ -259,3 +259,11 @@ let's add a new anime "Walking the Way All Alone" and "Dragon's Triumph in the C
 
 let's add a new anime "The First Order", "Sou Shen Ji" and "Aliens Among Immortals"
 ```
+
+## Rating
+
+```prompt
+After signin, when I add a rating on an anime on the anime list page. I does apply the effect on the stars on top of the card. But the new rating is not persisted into the database. So after refresh, it is reset.
+
+Let's fix that.
+```
