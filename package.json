@@ -43,12 +43,17 @@
     "typescript": "^5.9.2"
   },
   "overrides": {
+    "postcss": "^8.5.15",
     "uuid": "^14.0.0",
     "effect": "3.20.0",
     "defu": "6.1.5",
     "diff": "4.0.4",
     "flatted": "3.4.2",
     "picomatch": "4.0.4"
+  },
+  "resolutions": {
+    "postcss": "^8.5.15",
+    "uuid": "^14.0.0"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
