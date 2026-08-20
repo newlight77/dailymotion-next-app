@@ -20,9 +20,17 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
   const [copied, setCopied] = useState(false);
   const [isToggling, setIsToggling] = useState(false);
   const loadedListsRef = useRef<boolean>(false);
+  const listFromStore = watchLists.lists?.find(l => l.uid === listId);
+  const [syncedListId, setSyncedListId] = useState<string | null>(null);
 
   const { loadLists, loadListItems } = watchLists;
   const loadedListRef = useRef<string | null>(null);
+
+  if (listFromStore && listFromStore.uid !== syncedListId) {
+    setSyncedListId(listFromStore.uid);
+    setTitle(listFromStore.title);
+    setIsPublic(!!listFromStore.isPublic);
+  }
 
   useEffect(() => {
     if (loadedListsRef.current) return;
@@ -38,17 +46,10 @@ export const WatchListDetail: React.FC<Props> = ({ listId, className }) => {
       if (list) {
         setTitle(list.title);
         setIsPublic(!!list.isPublic);
+        setSyncedListId(list.uid);
       }
     });
   }, [listId, loadListItems]);
-
-  useEffect(() => {
-    const list = watchLists.lists?.find(l => l.uid === listId);
-    if (list) {
-      setTitle(list.title);
-      setIsPublic(!!list.isPublic);
-    }
-  }, [listId, watchLists.lists]);
 
   const handleRename = async () => {
     if (!title.trim()) return;

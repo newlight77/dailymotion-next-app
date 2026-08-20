@@ -2,12 +2,15 @@
   "name": "dailymotion-react-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=26"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "prebuild": "node ./scripts/generate-version.js",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "add-anime": "node ./scripts/add-anime.js",
     "update-official-thumbs": "node ./scripts/update-official-thumbs.js",
     "download-covers": "node ./scripts/batch-download-covers.js",
@@ -15,36 +18,34 @@
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
-    "@tailwindcss/postcss": "^4.1.12",
-    "@vercel/analytics": "^1.1.4",
-    "bcryptjs": "^2.4.3",
-    "cheerio": "1.0.0-rc.12",
-    "next": "^16.2.9",
-    "next-auth": "^4.24.14",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@vercel/analytics": "^1.6.1",
+    "bcryptjs": "^3.0.3",
+    "cheerio": "^1.2.0",
+    "next": "^16.3.1",
+    "next-auth": "^4.24.15",
     "node-fetch": "^3.3.2",
     "prisma": "^6.19.3",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^7.17.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-icons": "^5.7.0",
+    "react-router-dom": "^7.18.2",
     "ts-node": "^10.9.2",
-    "uuid": "^14.0.0"
+    "uuid": "^14.0.2"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^24.3.0",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
-    "eslint": "^9.33.0",
-    "eslint-config-next": "15.5.19",
-    "postcss": "^8.5.15",
-    "tailwindcss": "^4.1.12",
+    "@types/node": "^26.0.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.1",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.2"
   },
   "overrides": {
-    "postcss": "^8.5.15",
-    "uuid": "^14.0.0",
+    "postcss": "^8.5.26",
+    "uuid": "^14.0.2",
     "effect": "3.20.0",
     "defu": "6.1.5",
     "diff": "4.0.4",
@@ -52,8 +53,8 @@
     "picomatch": "4.0.4"
   },
   "resolutions": {
-    "postcss": "^8.5.15",
-    "uuid": "^14.0.0"
+    "postcss": "^8.5.26",
+    "uuid": "^14.0.2"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

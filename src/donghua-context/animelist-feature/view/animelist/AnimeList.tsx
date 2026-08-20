@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link'
 import Modal from '@/components/molecules/Modal';
 import { useAnimelist } from '../../hooks';
@@ -18,6 +18,10 @@ type Props = {
     className?: string,
 }
 
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export const AnimeList: React.FC<Props> = ({className}) => {
     const useAnimes = useAnimelist();
     useWatchLists();
@@ -26,11 +30,7 @@ export const AnimeList: React.FC<Props> = ({className}) => {
     const [excludeCompleted, setExcludeCompleted] = useLocalStorage<boolean>('animelist.excludeCompleted', false);
     const [onlyWithUpdates, setOnlyWithUpdates] = useLocalStorage<boolean>('animelist.onlyWithUpdates', false);
     const [minRatingFilter, setMinRatingFilter] = useLocalStorage<number>('animelist.minRatingFilter', 0);
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
+    const isMounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
     const onFilterInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilterKeywords(event.target.value);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
@@ -16,11 +16,14 @@ interface Props {
 }
 
 export const FeaturedNewSeriesCard: React.FC<Props> = ({ anime, className }) => {
-  const [imgSrc, setImgSrc] = useState(anime.thumbnail || '/donghua.png');
+  const fallback = anime.thumbnail || '/donghua.png';
+  const [imgSrc, setImgSrc] = useState(fallback);
+  const [prevThumbnail, setPrevThumbnail] = useState(anime.thumbnail);
 
-  useEffect(() => {
+  if (anime.thumbnail !== prevThumbnail) {
+    setPrevThumbnail(anime.thumbnail);
     setImgSrc(anime.thumbnail || '/donghua.png');
-  }, [anime.thumbnail]);
+  }
 
   const keywords = (a: Props['anime']) => encodeURIComponent(`${a.title}`)
 

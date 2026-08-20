@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'
 import { FaPenToSquare, FaMagnifyingGlass, FaFileCirclePlus, FaThumbtack, FaStar } from 'react-icons/fa6';
@@ -20,13 +20,25 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
     const watchLists = useWatchLists();
     const useAnimes = useAnimelist();
     const [showWatchLists, setShowWatchLists] = useState(false);
-    const [isInWatchList, setIsInWatchList] = useState(false);
+    const [optimisticInWatchList, setOptimisticInWatchList] = useState<boolean | null>(null);
     const [showRatingPicker, setShowRatingPicker] = useState(false);
+    const rated = anime as AnimeType & { rating?: { average: number; count: number } };
     const [ratingStats, setRatingStats] = useState<{ average: number; count: number; userRating: number | null }>({
-        average: 0,
-        count: 0,
+        average: Number(rated.rating?.average ?? 0),
+        count: Number(rated.rating?.count ?? 0),
         userRating: null,
     });
+    const [ratingAnimeUid, setRatingAnimeUid] = useState(anime.uid);
+
+    if (ratingAnimeUid !== anime.uid) {
+        setRatingAnimeUid(anime.uid);
+        setRatingStats({
+            average: Number(rated.rating?.average ?? 0),
+            count: Number(rated.rating?.count ?? 0),
+            userRating: null,
+        });
+        setOptimisticInWatchList(null);
+    }
 
     const keywords = (anime: AnimeType) => encodeURIComponent(`${anime.title} ${anime.lastEpisode ? anime.lastEpisode : ''}`)
 
@@ -34,35 +46,19 @@ export const AnimeCard: React.FC<AnimeCardProps> = ({anime, className, watchList
         useAnimes.upsert({...anime, lastEpisode: anime.lastEpisode ? Number(anime.lastEpisode) + 1 : 1});
     }
 
-    useEffect(() => {
-        if (!watchListId) return;
-        const next = (watchLists.items || []).some(item => item.animeId === anime.uid);
-        setIsInWatchList(next);
-    }, [watchListId, watchLists.items, anime.uid]);
-
-    // initialize rating stats from server-attached rating when available
-    useEffect(() => {
-        const rated = anime as AnimeType & { rating?: { average: number; count: number } };
-        if (rated.rating) {
-            setRatingStats(prev => ({
-                average: Number(rated.rating!.average ?? 0),
-                count: Number(rated.rating!.count ?? 0),
-                userRating: prev.userRating ?? null,
-            }));
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [anime.uid]);
-
-    const activeInWatchList = isInWatchListOverride ?? isInWatchList;
+    const derivedInWatchList = watchListId
+        ? (watchLists.items || []).some(item => item.animeId === anime.uid)
+        : false;
+    const activeInWatchList = isInWatchListOverride ?? optimisticInWatchList ?? derivedInWatchList;
 
     const handleToggleWatchLists = async () => {
         if (watchListId) {
             if (activeInWatchList) {
                 await watchLists.removeAnime(watchListId, anime.uid);
-                setIsInWatchList(false);
+                setOptimisticInWatchList(false);
             } else {
                 await watchLists.addAnime(watchListId, anime);
-                setIsInWatchList(true);
+                setOptimisticInWatchList(true);
             }
             return;
         }

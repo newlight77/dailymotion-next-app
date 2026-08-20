@@ -43,6 +43,8 @@ export function useLocalStorage<S>(key: string, defaultValue?: S):
             if (userUpdatedRef.current) return;
             try {
                 const parsed = JSON.parse(savedNew) as S;
+                // External store sync: localStorage is the source of truth on mount/key change.
+                // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate from localStorage
                 setValue(parsed);
             } catch {
                 if (valueRef.current !== defaultValueRef.current) {

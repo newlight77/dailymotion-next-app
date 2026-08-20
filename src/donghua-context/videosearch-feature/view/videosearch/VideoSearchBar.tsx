@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { useFollowedVideoOwners, useLastViews, useVideoSearchHistory } from '@/donghua-context/user-preferences-feature';
 import { useSearchVideos } from '../../hooks';
 import { PreferencesType } from '../../domain';
@@ -10,9 +10,17 @@ interface VideoSearchBarProps {
     className?: string,
 }
 
+const emptySubscribe = () => () => {};
+
+function readLastSearch(): string {
+    return localStorage.getItem(prefixedKey('last-search')) || localStorage.getItem('last-search') || '';
+}
+
 export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, className }) => {
-    const [keywords, setKeywords] = useState('');
-    const [inputValue, setInputValue] = useState('');
+    const storedLastSearch = useSyncExternalStore(emptySubscribe, readLastSearch, () => '');
+    const initialKeywords = (newKeywords && newKeywords.trim() !== '') ? newKeywords : storedLastSearch;
+    const [keywords, setKeywords] = useState(initialKeywords);
+    const [inputValue, setInputValue] = useState(initialKeywords);
     const [strictSearch, setStrictSearch] = useState(false);
     const { search } = useSearchVideos();
     const useSearchHistory = useVideoSearchHistory();
@@ -21,32 +29,36 @@ export const VideoSearchBar: React.FC<VideoSearchBarProps> = ({ newKeywords, cla
 
     const delay = 1100;
     const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const initializedRef = useRef(false);
     const followedOwnersRef = useRef(useFollowedVideoOwner.items);
     const lastViewsRef = useRef(useLastView.items);
     const lastSearchesRef = useRef(useSearchHistory.items);
     const addOrUpdateHistoryRef = useRef(useSearchHistory.addOrUpdate);
+    const [prevNewKeywords, setPrevNewKeywords] = useState(newKeywords);
+    const [appliedStoredSearch, setAppliedStoredSearch] = useState(storedLastSearch);
 
     const debounce = useCallback((callback: () => void, timeout: number) => {
         if (timerRef.current) clearTimeout(timerRef.current);
         timerRef.current = setTimeout(() => callback(), timeout);
     }, []);
 
-    useEffect(() => {
+    if (newKeywords !== prevNewKeywords) {
+        setPrevNewKeywords(newKeywords);
         if (newKeywords && newKeywords.trim() !== '') {
             setInputValue(newKeywords);
             setKeywords(newKeywords);
-            return;
         }
+    }
 
-        if (initializedRef.current) return;
-        initializedRef.current = true;
-        const last = typeof window !== 'undefined' ? (localStorage.getItem(prefixedKey('last-search')) || localStorage.getItem('last-search') || '') : '';
-        if (last !== '') {
-            setInputValue(last);
-            setKeywords(last);
-        }
-    }, [newKeywords]);
+    if (
+        storedLastSearch !== appliedStoredSearch &&
+        (!newKeywords || newKeywords.trim() === '') &&
+        keywords === '' &&
+        storedLastSearch !== ''
+    ) {
+        setAppliedStoredSearch(storedLastSearch);
+        setInputValue(storedLastSearch);
+        setKeywords(storedLastSearch);
+    }
 
     useEffect(() => {
         followedOwnersRef.current = useFollowedVideoOwner.items;

@@ -23,8 +23,14 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
 
     const isMounted = useIsMounted();
     const [anime, setAnime] = useState<AnimeType>();
-    const [editModal, setEditModal] = useState(false);
+    const [editModal, setEditModal] = useState(mode === 'edit');
+    const [prevMode, setPrevMode] = useState(mode);
     const [addModal, setAddModal] = useState(false);
+
+    if (mode !== prevMode) {
+        setPrevMode(mode);
+        if (mode === 'edit') setEditModal(true);
+    }
     const [ratingStats, setRatingStats] = useState<{ average: number; count: number; userRating: number | null }>({
         average: 0,
         count: 0,
@@ -87,8 +93,6 @@ export const AnimeDetail: React.FC<Props> = ({id, mode}) => {
                 loadComments();
             }
         });
-
-        if (mode === 'edit') setEditModal(true)
     }, [id, isMounted, mode, useAnimes, user, loadComments, loadRating]);
 
 
