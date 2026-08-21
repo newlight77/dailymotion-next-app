@@ -3,11 +3,11 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Pre-requisites
 
-Use **Node.js 26** (see `.nvmrc`):
+Use **Node.js 24** (see `.nvmrc`):
 
 ```bash
 nvm use
-node -v   # v26.x
+node -v   # v24.x
 ```
 
 1. create/update the database schema
